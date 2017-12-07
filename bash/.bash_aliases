@@ -19,6 +19,7 @@ alias gl='git la'
 alias gll='git ll'
 alias gs='git stash'
 alias gsp='git stash pop'
+alias gsd='git stash drop'
 
 alias gdiff='git diff | grep + | wc && git diff | grep - | wc'
 alias git-list-tags=\
@@ -53,23 +54,28 @@ alias lss='ls --color | less -R'
 alias lhid='ls -la | grep \\.'
 
 # Shortcuts
-alias diary='vim ~/mfs/personal/memdump.md'
-alias pandiary='pandoc -o ~/mfs/personal/diary.pdf ~/mfs/personal/memdump.md'
+alias diary='vim ~/mfs/private/memdump.md'
+alias ramble='vim ~/mfs/study/scribble/'
+alias pandiary='pandoc -o ~/mfs/private/diary.pdf ~/mfs/private/memdump.md'
 
 # Directory shortcuts
+alias bin='cd ~/bin'
+alias src='cd ~/src'
+alias c='cd ~/mfs'
 alias cdm='cd ~/mfs'
 alias cdc='cd ~/mfs/code'
 alias cds='cd ~/mfs/study'
 alias cdev='cd ~/mfs/event'
-alias cdpj='cd ~/mfs/project'
-alias cdox='cd ~/mfs/study/oxford'
+alias cdw='cd ~/mfs/work'
+alias cdphy='cd ~/mfs/study/physics'
 
 alias cdcc='cd ~/mfs/code/cc'
 alias cdpy='cd ~/mfs/code/python'
 alias cdsh='cd ~/mfs/code/bash'
 
-alias cdbb='cd ~/mfs/project/algo/blackbox'
-alias cdal='cd ~/mfs/project/algo'
+alias cdf='cd ~/mfs/study/oxford/fyp'
+alias cdbb='cd ~/mfs/work/algo/blackbox'
+alias cdal='cd ~/mfs/work/algo'
 
 # Fun
 alias mo='fortune | cowsay'

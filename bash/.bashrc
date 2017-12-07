@@ -111,6 +111,10 @@ bind 'TAB:menu-complete'
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-if [ -z "$TMUX" ]; then
-    t
-fi
+export LESS_TERMCAP_mb=$'\e[1;31m'          # begin bold
+export LESS_TERMCAP_md=$'\e[1;38;5;77m'     # begin blink
+export LESS_TERMCAP_so=$'\e[30;48;5;214m'   # begin standout-mode
+export LESS_TERMCAP_us=$'\e[4;38;5;185m'    # begin underline
+export LESS_TERMCAP_me=$'\e[0m'             # end bold/blink
+export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
+export LESS_TERMCAP_ue=$'\e[0m'             # end underline
