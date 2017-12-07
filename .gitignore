@@ -1,4 +1,6 @@
 vim/.vim/bundle/
+tmux/.tmux/resurrect/
 
-*.log
 *.aux
+*.log
+*.txt
