@@ -1,11 +1,24 @@
-"===[ General ]===
+"===[ Plugin ]===
 set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'
+Plugin 'othree/html5.vim'
+
+call vundle#end()
+
+" reset vundle settings
 filetype plugin on
 filetype indent on
 syntax on
-
-"===[ Plugin ]===
-execute pathogen#infect()
 
 " Dragvisuals
 runtime plugin/dragvisuals.vim
