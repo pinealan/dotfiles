@@ -1,0 +1,22 @@
+[user]
+	email = achan961117@gmail.com
+	name = pinealan
+[alias]
+	ll = log --graph --oneline --decorate
+	cm = commit -m
+	br = branch
+	co = checkout
+	s = status
+	bb = branch -vva
+	la = log --graph --oneline --all --decorate
+	l = log --graph --oneline --decorate
+	ls = log --graph --stat
+	lss = log --graph --oneline --shortstat
+	pull = pull -v
+[push]
+	default = matching
+[credential]
+	helper = cache
+[core]
+	fileMode = false
+	autocrlf = false
