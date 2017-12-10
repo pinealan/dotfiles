@@ -9,9 +9,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 Plugin 'othree/html5.vim'
+"Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
@@ -39,36 +39,36 @@ noremap  <c-E> :NERDTreeToggle<cr>
 noremap! <c-E> :NERDTreeToggle<cr>
 
 " YouCompleteMe
-let g:ycm_min_num_of_chars_for_completion = 3
-let g:ycm_max_num_candidates = 25
+"let g:ycm_min_num_of_chars_for_completion = 3
+"let g:ycm_max_num_candidates = 25
 
-let g:ycm_filetype_blacklist = {
-    \ 'tagbar': 1,
-    \ 'qf': 1,
-    \ 'notes': 1,
-    \ 'markdown': 1,
-    \ 'unite': 1,
-    \ 'text': 1,
-    \ 'vimwiki': 1,
-    \ 'pandoc': 1,
-    \ 'infolog': 1,
-    \ 'mail': 1,
-    \ 'html': 1,
-    \ 'gitconfig': 1,
-    \}
+"let g:ycm_filetype_blacklist = {
+"    \ 'tagbar': 1,
+"    \ 'qf': 1,
+"    \ 'notes': 1,
+"    \ 'markdown': 1,
+"    \ 'unite': 1,
+"    \ 'text': 1,
+"    \ 'vimwiki': 1,
+"    \ 'pandoc': 1,
+"    \ 'infolog': 1,
+"    \ 'mail': 1,
+"    \ 'html': 1,
+"    \ 'gitconfig': 1,
+"    \}
 
-let g:ycm_error_symbol = '>'
-let g:ycm_warning_symbol = '>'
-let g:ycm_enable_diagnostic_highlighting = 0
+"let g:ycm_error_symbol = '>'
+"let g:ycm_warning_symbol = '>'
+"let g:ycm_enable_diagnostic_highlighting = 0
 
-let g:ycm_global_ycm_extra_conf = "/home/alan/.vim/.ycm_extra_conf.py"
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_extra_conf_vim_data = ['&filetype']
-let g:ycm_python_binary_path = '/usr/bin/python3'
+"let g:ycm_global_ycm_extra_conf = "/home/alan/.vim/.ycm_extra_conf.py"
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_filepath_completion_use_working_dir = 1
+"let g:ycm_extra_conf_vim_data = ['&filetype']
+"let g:ycm_python_binary_path = '/usr/bin/python3'
 
-nnoremap <leader>0      :let g:ycm_auto_trigger=0<cr>
-nnoremap <leader>1      :let g:ycm_auto_trigger=1<cr>
+"nnoremap <leader>0      :let g:ycm_auto_trigger=0<cr>
+"nnoremap <leader>1      :let g:ycm_auto_trigger=1<cr>
 
 "===[ Color scheme ]===
 colorscheme onedark
