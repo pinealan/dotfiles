@@ -1,6 +1,6 @@
 [user]
-	email = achan961117@gmail.com
-	name = pinealan
+    name = pinealan
+    email = achan961117@gmail.com
 [alias]
 	ll = log --graph --oneline --decorate
 	cm = commit -m
@@ -12,9 +12,11 @@
 	l = log --graph --oneline --decorate
 	ls = log --graph --stat
 	lss = log --graph --oneline --shortstat
-	pull = pull -v
+    pull = pull -v
+[pull]
+    rebase = true
 [push]
-	default = matching
+	default = tracking
 [credential]
 	helper = cache
 [core]
