@@ -58,8 +58,6 @@ def FlagsForFile(filename, **kwargs):
     base_flags = [
         '-Wall',
         '-Wextra',
-        '-Werror',
-        '-pedantic',
         '-I.',
         '-I./include'
     ]
