@@ -20,8 +20,4 @@ fi
 if [ -z "$TMUX" ]; then
     # prepend PATH with user's private bin directories
     PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
-    # append PATH with miniconda bin directory
-    PATH="$PATH:/home/alan/miniconda3/bin"
 fi
-
