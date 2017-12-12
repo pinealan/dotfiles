@@ -94,8 +94,8 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Machine dependent bash/alias definitions
-if [ -f ~/.bash_local ]; then
-    . ~/.bash_local
+if [ -f ~/.local/.bash_aliases ]; then
+    . ~/.local/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
