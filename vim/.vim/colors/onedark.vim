@@ -100,6 +100,13 @@ let s:vertsplit = s:colors.vertsplit
 let s:silver= s:colors.silver
 let s:white = s:colors.white
 
+let s:x250 = s:colors.x250
+let s:x251 = s:colors.x251
+let s:x252 = s:colors.x252
+let s:x253 = s:colors.x253
+let s:x254 = s:colors.x254
+let s:x255 = s:colors.x255
+
 " }}}
 
 " Syntax Groups (descriptions and ordering from `:h w18`) {{{
