@@ -11,6 +11,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'othree/html5.vim'
+Plugin 'ap/vim-buftabline'
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
