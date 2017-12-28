@@ -215,7 +215,9 @@ noremap <c-w><c-k>  <c-w>9+
 noremap <c-w><c-l>  <c-w>9>
 
 nnoremap <cr>       o<esc>
-nnoremap <c-s>      :w<cr>
+nnoremap <c-s>      :update<cr>
+nnoremap <c-n>      :bnext<cr>
+nnoremap <c-p>      :bprev<cr>
 
 nnoremap <leader>ec :vsplit /home/alan/.vim/vimrc<cr>
 nnoremap <leader>sc :source /home/alan/.vim/vimrc<cr>
