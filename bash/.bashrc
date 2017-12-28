@@ -99,3 +99,5 @@ export LESS_TERMCAP_us=$'\e[4;38;5;185m'    # begin underline
 export LESS_TERMCAP_me=$'\e[0m'             # end bold/blink
 export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
 export LESS_TERMCAP_ue=$'\e[0m'             # end underline
+
+stty -ixon
