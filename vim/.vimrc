@@ -68,6 +68,12 @@ let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_extra_conf_vim_data = ['&filetype']
 let g:ycm_python_binary_path = '/usr/bin/python3'
 
+" BufTabLine
+hi default link BufTabLineCurrent TabLineSel
+hi default link BufTabLineActive TabLine
+hi default link BufTabLineHidden TabLine
+hi default link BufTabLineFill TabLineFill
+
 nnoremap <leader>0      :let g:ycm_auto_trigger=0<cr>
 nnoremap <leader>1      :let g:ycm_auto_trigger=1<cr>
 

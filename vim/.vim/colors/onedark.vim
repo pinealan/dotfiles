@@ -88,30 +88,25 @@ let s:purple = s:colors.purple
 let s:cyan = s:colors.cyan
 
 let s:transparent= s:colors.transparent
-let s:black = s:colors.black
-let s:dimgrey= s:colors.dimgrey
-let s:grey= s:colors.grey
-let s:cursor_grey = s:colors.cursor_grey
-let s:visual_grey = s:colors.visual_grey
 let s:menu_grey = s:colors.menu_grey
 let s:special_grey = s:colors.special_grey
-let s:comment_grey = s:colors.comment_grey
 let s:vertsplit = s:colors.vertsplit
-let s:silver= s:colors.silver
+let s:silver = s:colors.silver
 let s:white = s:colors.white
 
-let s:x250 = s:colors.x250
-let s:x251 = s:colors.x251
-let s:x252 = s:colors.x252
-let s:x253 = s:colors.x253
-let s:x254 = s:colors.x254
-let s:x255 = s:colors.x255
+let s:black = s:colors.x232
+let s:dark = s:colors.x233
+let s:grey = s:colors.x234
+let s:background = s:colors.x235
+let s:cursor = s:colors.x236
+let s:visual = s:colors.x237
+let s:comment = s:colors.x241
 
 " }}}
 
 " Syntax Groups (descriptions and ordering from `:h w18`) {{{
 
-call s:h("Comment",     { "fg": s:comment_grey, "gui": "italic", "cterm": "italic" }) " any comment
+call s:h("Comment",     { "fg": s:comment, "gui": "italic", "cterm": "italic" }) " any comment
 
 call s:h("Constant",    { "fg": s:cyan }) " any constant
 call s:h("String",      { "fg": s:green }) " a string constant: "this is a string"
@@ -146,7 +141,7 @@ call s:h("Special",     { "fg": s:blue }) " any special symbol
 call s:h("SpecialChar", {}) " special character in a constant
 call s:h("Tag",         {}) " you can use CTRL-] on this
 call s:h("Delimiter",   {}) " character that needs attention
-call s:h("SpecialComment", { "fg": s:comment_grey }) " special things inside a comment
+call s:h("SpecialComment", { "fg": s:comment }) " special things inside a comment
 call s:h("Debug",       {}) " debugging statements
 
 call s:h("Underlined",  { "gui": "underline", "cterm": "underline" }) " text that stands out, HTML links
@@ -161,7 +156,7 @@ call s:h("ColorColumn", { "fg": s:transparent, "bg": s:black }) " used for the c
 call s:h("Conceal", {}) " placeholder characters substituted for concealed text (see 'conceallevel')
 call s:h("Cursor", { "fg": s:black, "bg": s:blue }) " the character under the cursor
 call s:h("CursorIM", {}) " like Cursor, but used when in IME mode
-call s:h("CursorColumn", { "bg": s:cursor_grey }) " the screen column that the cursor is in when 'cursorcolumn' is set
+call s:h("CursorColumn", { "bg": s:cursor }) " the screen column that the cursor is in when 'cursorcolumn' is set
 if &diff
   " Don't change the background color in diff mode
   call s:h("CursorLine", { "gui": "underline" }) " the screen line that the cursor is in when 'cursorline' is set
@@ -175,17 +170,17 @@ call s:h("DiffDelete", { "bg": s:red, "fg": s:black }) " diff mode: Deleted line
 call s:h("DiffText", { "bg": s:black, "fg": s:yellow }) " diff mode: Changed text within a changed line
 call s:h("ErrorMsg", { "fg": s:red }) " error messages on the command line
 call s:h("VertSplit", { "fg": s:vertsplit }) " the column separating vertically split windows
-call s:h("Folded", { "fg": s:comment_grey }) " line used for closed folds
+call s:h("Folded", { "fg": s:comment }) " line used for closed folds
 call s:h("FoldColumn", {}) " 'foldcolumn'
 call s:h("SignColumn", {}) " column where signs are displayed
-call s:h("IncSearch", { "fg": s:yellow, "bg": s:comment_grey }) " 'incsearch' highlighting; also used for the text replaced with ':s///c'
+call s:h("IncSearch", { "fg": s:yellow, "bg": s:comment }) " 'incsearch' highlighting; also used for the text replaced with ':s///c'
 call s:h("LineNr", { "fg": s:special_grey }) " Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 call s:h("CursorLineNr", {}) " Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 call s:h("MatchParen", { "fg": s:blue, "gui": "underline" }) " The character under the cursor or just before it, if it is a paired bracket, and its match.
 call s:h("ModeMsg", {}) " 'showmode' message (e.g., -- INSERT --)
 call s:h("MoreMsg", {}) " more-prompt
 call s:h("NonText", { "fg": s:special_grey }) " '~' and '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., '>' displayed when a double-wide character doesn't fit at the end of the line).
-call s:h("Normal", { "fg": s:white, "bg": s:dimgrey }) " normal text
+call s:h("Normal", { "fg": s:white, "bg": s:background }) " normal text
 call s:h("Pmenu", { "bg": s:menu_grey }) " Popup menu: normal item.
 call s:h("PmenuSel", { "fg": s:black, "bg": s:blue }) " Popup menu: selected item.
 call s:h("PmenuSbar", { "bg": s:special_grey }) " Popup menu: scrollbar.
@@ -200,13 +195,13 @@ call s:h("SpellLocal", { "fg": s:dark_yellow }) " Word that is recognized by the
 call s:h("SpellRare", { "fg": s:dark_yellow }) " Word that is recognized by the spellchecker as one that is hardly ever used. spell This will be combined with the highlighting used otherwise.
 call s:h("StatusLine", { "fg": s:white, "bg": s:special_grey}) " status line of current window
 call s:h("StatusLineGit", { "fg": s:black, "bg": s:silver }) " status line of current window
-call s:h("StatusLineNC", { "fg": s:comment_grey, "bg": s:black }) " status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-call s:h("TabLine", { "fg": s:comment_grey }) " tab pages line, not active tab page label
+call s:h("StatusLineNC", { "fg": s:comment, "bg": s:black }) " status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+call s:h("TabLine", { "fg": s:comment }) " tab pages line, not active tab page label
 call s:h("TabLineFill", {}) " tab pages line, where there are no labels
 call s:h("TabLineSel", { "fg": s:white }) " tab pages line, active tab page label
 call s:h("Title", { "fg": s:green }) " titles for output from ":set all", ":autocmd" etc.
-call s:h("Visual", { "fg": s:transparent, "bg": s:visual_grey }) " Visual mode selection
-call s:h("VisualNOS", { "bg": s:visual_grey }) " Visual mode selection when vim is "Not Owning the Selection". Only X11 Gui's gui-x11 and xterm-clipboard supports this.
+call s:h("Visual", { "fg": s:transparent, "bg": s:visual }) " Visual mode selection
+call s:h("VisualNOS", { "bg": s:visual }) " Visual mode selection when vim is "Not Owning the Selection". Only X11 Gui's gui-x11 and xterm-clipboard supports this.
 call s:h("WarningMsg", { "fg": s:yellow }) " warning messages
 call s:h("WildMenu", { "fg": s:black, "bg": s:blue }) " current match in 'wildmenu' completion
 
@@ -327,8 +322,8 @@ call s:h("markdownCode", { "fg": s:green })
 call s:h("markdownCodeBlock", { "fg": s:green })
 call s:h("markdownCodeDelimiter", { "fg": s:green })
 call s:h("markdownHeadingDelimiter", { "fg": s:red })
-call s:h("markdownRule", { "fg": s:comment_grey })
-call s:h("markdownHeadingRule", { "fg": s:comment_grey })
+call s:h("markdownRule", { "fg": s:comment })
+call s:h("markdownHeadingRule", { "fg": s:comment })
 call s:h("markdownH1", { "fg": s:red })
 call s:h("markdownH2", { "fg": s:red })
 call s:h("markdownH3", { "fg": s:red })
@@ -337,7 +332,7 @@ call s:h("markdownH5", { "fg": s:red })
 call s:h("markdownH6", { "fg": s:red })
 call s:h("markdownIdDelimiter", { "fg": s:purple })
 call s:h("markdownId", { "fg": s:purple })
-call s:h("markdownBlockquote", { "fg": s:comment_grey })
+call s:h("markdownBlockquote", { "fg": s:comment })
 call s:h("markdownItalic", { "fg": s:purple, "gui": "italic", "cterm": "italic" })
 call s:h("markdownBold", { "fg": s:dark_yellow, "gui": "bold", "cterm": "bold" })
 call s:h("markdownListMarker", { "fg": s:red })
@@ -352,8 +347,8 @@ call s:h("perlFiledescRead", { "fg": s:green })
 call s:h("perlFunction", { "fg": s:purple })
 call s:h("perlMatchStartEnd",{ "fg": s:blue })
 call s:h("perlMethod", { "fg": s:purple })
-call s:h("perlPOD", { "fg": s:comment_grey })
-call s:h("perlSharpBang", { "fg": s:comment_grey })
+call s:h("perlPOD", { "fg": s:comment })
+call s:h("perlSharpBang", { "fg": s:comment })
 call s:h("perlSpecialString",{ "fg": s:cyan })
 call s:h("perlStatementFiledesc", { "fg": s:red })
 call s:h("perlStatementFlow",{ "fg": s:red })
@@ -465,7 +460,7 @@ call s:h("diffRemoved", { "fg": s:red })
 
 " Git Highlighting {{{
 
-call s:h("gitcommitComment", { "fg": s:comment_grey })
+call s:h("gitcommitComment", { "fg": s:comment })
 call s:h("gitcommitUnmerged", { "fg": s:green })
 call s:h("gitcommitOnBranch", {})
 call s:h("gitcommitBranch", { "fg": s:purple })
@@ -491,26 +486,26 @@ hi link gitcommitUnmergedArrow gitcommitUnmergedFile
 
 " Neovim terminal colors {{{
 
-if has("nvim")
-  let g:terminal_color_0 =  s:black.gui
-  let g:terminal_color_1 =  s:red.gui
-  let g:terminal_color_2 =  s:green.gui
-  let g:terminal_color_3 =  s:yellow.gui
-  let g:terminal_color_4 =  s:blue.gui
-  let g:terminal_color_5 =  s:purple.gui
-  let g:terminal_color_6 =  s:cyan.gui
-  let g:terminal_color_7 =  s:white.gui
-  let g:terminal_color_8 =  s:visual_grey.gui
-  let g:terminal_color_9 =  s:dark_red.gui
-  let g:terminal_color_10 = s:green.gui " No dark version
-  let g:terminal_color_11 = s:dark_yellow.gui
-  let g:terminal_color_12 = s:blue.gui " No dark version
-  let g:terminal_color_13 = s:purple.gui " No dark version
-  let g:terminal_color_14 = s:cyan.gui " No dark version
-  let g:terminal_color_15 = s:comment_grey.gui
-  let g:terminal_color_background = g:terminal_color_0
-  let g:terminal_color_foreground = g:terminal_color_7
-endif
+"if has("nvim")
+"  let g:terminal_color_0 =  s:black.gui
+"  let g:terminal_color_1 =  s:red.gui
+"  let g:terminal_color_2 =  s:green.gui
+"  let g:terminal_color_3 =  s:yellow.gui
+"  let g:terminal_color_4 =  s:blue.gui
+"  let g:terminal_color_5 =  s:purple.gui
+"  let g:terminal_color_6 =  s:cyan.gui
+"  let g:terminal_color_7 =  s:white.gui
+"  let g:terminal_color_8 =  s:visual.gui
+"  let g:terminal_color_9 =  s:dark_red.gui
+"  let g:terminal_color_10 = s:green.gui " No dark version
+"  let g:terminal_color_11 = s:dark_yellow.gui
+"  let g:terminal_color_12 = s:blue.gui " No dark version
+"  let g:terminal_color_13 = s:purple.gui " No dark version
+"  let g:terminal_color_14 = s:cyan.gui " No dark version
+"  let g:terminal_color_15 = s:comment.gui
+"  let g:terminal_color_background = g:terminal_color_0
+"  let g:terminal_color_foreground = g:terminal_color_7
+"endif
 
 " }}}
 
