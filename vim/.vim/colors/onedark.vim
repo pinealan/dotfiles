@@ -152,7 +152,7 @@ call s:h("Todo",        { "fg": s:silver}) " anything that needs extra attention
 " }}}
 
 " Highlighting Groups (descriptions and ordering from `:h highlight-groups`) {{{
-call s:h("ColorColumn", { "fg": s:transparent, "bg": s:black }) " used for the columns set with 'colorcolumn'
+call s:h("ColorColumn", { "fg": s:transparent, "bg": s:grey }) " used for the columns set with 'colorcolumn'
 call s:h("Conceal", {}) " placeholder characters substituted for concealed text (see 'conceallevel')
 call s:h("Cursor", { "fg": s:black, "bg": s:blue }) " the character under the cursor
 call s:h("CursorIM", {}) " like Cursor, but used when in IME mode
