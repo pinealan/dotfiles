@@ -42,7 +42,6 @@ noremap! <c-e> :NERDTreeToggle<cr>
 " YouCompleteMe
 let g:ycm_min_num_of_chars_for_completion = 3
 let g:ycm_max_num_candidates = 25
-
 let g:ycm_filetype_blacklist = {
     \ 'tagbar': 1,
     \ 'qf': 1,
@@ -68,14 +67,16 @@ let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_extra_conf_vim_data = ['&filetype']
 let g:ycm_python_binary_path = '/usr/bin/python3'
 
+nnoremap <leader>0      :let g:ycm_auto_trigger=0<cr>
+nnoremap <leader>1      :let g:ycm_auto_trigger=1<cr>
+
 " BufTabLine
 hi default link BufTabLineCurrent TabLineSel
 hi default link BufTabLineActive TabLine
 hi default link BufTabLineHidden TabLine
 hi default link BufTabLineFill TabLineFill
 
-nnoremap <leader>0      :let g:ycm_auto_trigger=0<cr>
-nnoremap <leader>1      :let g:ycm_auto_trigger=1<cr>
+let g:buftabline_numbers = 1
 
 "===[ Color scheme ]===
 colorscheme onedark
