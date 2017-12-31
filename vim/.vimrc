@@ -209,26 +209,30 @@ noremap!    <esc>OC     <right>
 noremap!    <esc>[3~    <del>
 
 " Swap undo
-noremap    U   <c-R>
-noremap <C-r>     U
+noremap    U   <c-r>
+noremap <c-r>     U
 
 " Shortcuts
 noremap <space>     :setlocal hlsearch!<cr>
 noremap <tab>       :setlocal wrap!<cr>
-noremap <c-w>'      :vsp<cr>
-noremap <c-w>"      :sp<cr>
-noremap <c-w><c-h>  <c-w>9<
-noremap <c-w><c-j>  <c-w>9-
-noremap <c-w><c-k>  <c-w>9+
-noremap <c-w><c-l>  <c-w>9>
+noremap ['          :vsp<cr>
+noremap ["          :sp<cr>
+noremap [h          <c-w>h
+noremap [j          <c-w>j
+noremap [k          <c-w>k
+noremap [l          <c-w>l
+noremap [<s-h>      <c-w>9<
+noremap [<s-j>      <c-w>9-
+noremap [<s-k>      <c-w>9+
+noremap [<s-l>      <c-w>9>
 
 nnoremap <cr>       o<esc>
 nnoremap <c-s>      :update<cr>
 nnoremap <c-n>      :bnext<cr>
 nnoremap <c-p>      :bprev<cr>
 
-nnoremap <leader>ec :vsplit /home/alan/.vim/vimrc<cr>
-nnoremap <leader>sc :source /home/alan/.vim/vimrc<cr>
+nnoremap <leader>ec :vsplit /home/alan/.vimrc<cr>
+nnoremap <leader>sc :source /home/alan/.vimrc<cr>
 
 noremap <F9>        :call EchoHighlightName()<cr>
 noremap <s-tab>     :call FastEsc()<cr>
