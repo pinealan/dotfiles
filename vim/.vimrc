@@ -102,7 +102,8 @@ set statusline=
 set statusline+=%#StatusLineGit#
 set statusline+=%{StatusLineGit()}
 set statusline+=%#User{1}#
-set statusline+=\ %{HasPaste()}%r%f%h
+set statusline+=\ %{HasPaste()}
+set statusline+=%r%m%t
 set statusline+=%=
 set statusline+=%{GetCwd()}
 set statusline+=\ %y
@@ -146,7 +147,7 @@ set list
 
 set colorcolumn=81
 set formatoptions+=t
-set textwidth=80
+set textwidth=100
 set wrap
 
 "===[ Regex ]===
