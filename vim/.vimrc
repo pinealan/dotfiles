@@ -229,8 +229,12 @@ noremap [<s-l>      <c-w>9>
 
 nnoremap <cr>       o<esc>
 nnoremap <c-s>      :update<cr>
-nnoremap <c-n>      :bnext<cr>
-nnoremap <c-p>      :bprev<cr>
+
+nnoremap <c-l>      :bnext<cr>
+nnoremap <c-h>      :bprev<cr>
+
+nnoremap <c-n>      :cnext<cr>
+nnoremap <c-p>      :cprev<cr>
 
 nnoremap <leader>ec :vsplit /home/alan/.vimrc<cr>
 nnoremap <leader>sc :source /home/alan/.vimrc<cr>
