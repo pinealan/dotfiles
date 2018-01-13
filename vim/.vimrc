@@ -229,6 +229,7 @@ noremap [<s-l>      <c-w>9>
 
 nnoremap <cr>       o<esc>
 nnoremap <c-s>      :update<cr>
+nnoremap <c-q>      :q<cr>
 
 nnoremap <c-l>      :bnext<cr>
 nnoremap <c-h>      :bprev<cr>
