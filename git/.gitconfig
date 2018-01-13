@@ -8,10 +8,9 @@
 	co = checkout
 	s = status
 	bb = branch -vva
-	la = log --graph --oneline --all --decorate
-	l = log --graph --oneline --decorate
+	la = log --graph --oneline --all --decorate --date-order
+	l = log --graph --oneline --decorate --date-order
 	ls = log --graph --stat
-	lss = log --graph --oneline --shortstat
     pull = pull -v
 [pull]
     rebase = true
