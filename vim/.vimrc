@@ -34,6 +34,8 @@ vmap    <expr> <C-D>   DVB_Duplicate()
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let NERDTreeIgnore=['\.log$']
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 
 noremap  <c-e> :NERDTreeToggle<cr>
@@ -78,11 +80,13 @@ hi default link BufTabLineFill TabLineFill
 
 let g:buftabline_numbers = 1
 
+
 "===[ Color scheme ]===
 colorscheme onedark
 
 hi YcmErrorSection cterm=underline ctermfg=196
 hi YcmWarningSection cterm=underline ctermfg=196
+
 
 "===[ UI/UX ]===
 set backspace=eol,start,indent
@@ -95,6 +99,7 @@ set noshowmatch
 set number
 set relativenumber
 set whichwrap+=<,>,h,l
+
 
 "===[ Statusline ]===
 set laststatus=2
@@ -134,6 +139,7 @@ function! StatusLineGit()
     return strlen(l:branchname)>0?'  '.l:branchname.' ':''
 endfunction
 
+
 "===[ Tab, indent, wrap ]===
 set autoindent
 set expandtab
@@ -150,10 +156,12 @@ set formatoptions+=t
 set textwidth=100
 set wrap
 
+
 "===[ Regex ]===
 set ignorecase
 set magic
 set smartcase
+
 
 "===[ Files, backups and undo ]===
 set fileformat=unix
@@ -164,6 +172,7 @@ set noswapfile
 
 " Trim trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
+
 
 "===[ File explorer (netrw) ]===
 set path+=**
@@ -177,6 +186,7 @@ let g:netrw_altv=1
 let g:netrw_winsize=25
 let g:netrw_sort_by='time'
 let g:netrw_sort_direction='reverse'
+
 
 "===[ Remap ]===
 let mapleader="-"
@@ -264,6 +274,7 @@ function! FastEsc()
         echom "Disabled fast Esc"
     endif
 endfunction
+
 
 "===[ Abbrevations ]===
 " Common typos
