@@ -247,8 +247,12 @@ nnoremap <c-h>      :bprev<cr>
 nnoremap <c-n>      :cnext<cr>
 nnoremap <c-p>      :cprev<cr>
 
+nnoremap <c-j>      <c-x>
+nnoremap <c-k>      <c-a>
+
 nnoremap <leader>ec :vsplit /home/alan/.vimrc<cr>
 nnoremap <leader>sc :source /home/alan/.vimrc<cr>
+
 
 noremap <F9>        :call EchoHighlightName()<cr>
 noremap <s-tab>     :call FastEsc()<cr>
