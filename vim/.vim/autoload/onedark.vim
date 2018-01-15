@@ -3,14 +3,14 @@
 let s:overrides = get(g:, "onedark_color_overrides", {})
 
 let s:colors = {
-      \ "red":              get(s:overrides, "red",             { "gui": "#E06C75", "cterm": "204", "cterm16": "1" }),
-      \ "dark_red":         get(s:overrides, "dark_red",        { "gui": "#BE5046", "cterm": "196", "cterm16": "9" }),
+      \ "pink":             get(s:overrides, "pink",            { "gui": "#E06C75", "cterm": "204", "cterm16": "1" }),
+      \ "red":              get(s:overrides, "red",             { "gui": "#BE5046", "cterm": "124", "cterm16": "9" }),
       \ "green":            get(s:overrides, "green",           { "gui": "#98C379", "cterm": "114", "cterm16": "2" }),
-      \ "yellow":           get(s:overrides, "yellow",          { "gui": "#E5C07B", "cterm": "214", "cterm16": "11" }),
+      \ "yellow":           get(s:overrides, "yellow",          { "gui": "#E5C07B", "cterm": "179", "cterm16": "11" }),
       \ "dark_yellow":      get(s:overrides, "dark_yellow",     { "gui": "#D19A66", "cterm": "173", "cterm16": "3" }),
       \ "blue":             get(s:overrides, "blue",            { "gui": "#61AFEF", "cterm": "75", "cterm16": "4" }),
       \ "purple":           get(s:overrides, "purple",          { "gui": "#C678DD", "cterm": "170", "cterm16": "5" }),
-      \ "cyan":             get(s:overrides, "cyan",            { "gui": "#56B6C2", "cterm": "49", "cterm16": "6" }),
+      \ "cyan":             get(s:overrides, "cyan",            { "gui": "#56B6C2", "cterm": "44", "cterm16": "6" }),
       \
       \ "transparent":      get(s:overrides, "transparent",     { "gui": "NONE",    "cterm": "NONE", "cterm16": "0" }),
       \ "menu_grey":        get(s:overrides, "menu_grey",       { "gui": "#3E4452", "cterm": "237", "cterm16": "8" }),

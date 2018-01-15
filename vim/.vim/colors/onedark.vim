@@ -78,8 +78,8 @@ endfunction
 
 let s:colors = onedark#GetColors()
 
+let s:pink = s:colors.pink
 let s:red = s:colors.red
-let s:dark_red = s:colors.dark_red
 let s:green = s:colors.green
 let s:yellow = s:colors.yellow
 let s:dark_yellow = s:colors.dark_yellow
@@ -115,7 +115,7 @@ call s:h("Number",      { "fg": s:dark_yellow }) " a number constant: 234, 0xff
 call s:h("Boolean",     { "fg": s:dark_yellow }) " a boolean constant: TRUE, false
 call s:h("Float",       { "fg": s:dark_yellow }) " a floating point constant: 2.3e10
 
-call s:h("Identifier",  { "fg": s:red }) " any variable name
+call s:h("Identifier",  { "fg": s:pink }) " any variable name
 call s:h("Function",    { "fg": s:blue }) " function name (also: methods for classes)
 
 call s:h("Statement",   { "fg": s:purple }) " any statement
@@ -123,7 +123,7 @@ call s:h("Conditional", { "fg": s:purple }) " if, then, else, endif, switch, etc
 call s:h("Repeat",      { "fg": s:purple }) " for, do, while, etc.
 call s:h("Label",       { "fg": s:purple }) " case, default, etc.
 call s:h("Operator",    { "fg": s:purple }) " sizeof", "+", "*", etc.
-call s:h("Keyword",     { "fg": s:dark_red }) " any other keyword
+call s:h("Keyword",     { "fg": s:red }) " any other keyword
 call s:h("Exception",   { "fg": s:purple }) " try, catch, throw
 
 call s:h("PreProc",     { "fg": s:dark_yellow }) " generic Preprocessor
@@ -146,7 +146,7 @@ call s:h("Debug",       {}) " debugging statements
 
 call s:h("Underlined",  { "gui": "underline", "cterm": "underline" }) " text that stands out, HTML links
 call s:h("Ignore",      {}) " left blank, hidden
-call s:h("Error",       { "fg": s:dark_red }) " any erroneous construct
+call s:h("Error",       { "fg": s:red }) " any erroneous construct
 call s:h("Todo",        { "fg": s:silver}) " anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
 " }}}
@@ -166,9 +166,9 @@ endif
 call s:h("Directory", { "fg": s:blue }) " directory names (and other special names in listings)
 call s:h("DiffAdd", { "bg": s:green, "fg": s:black }) " diff mode: Added line
 call s:h("DiffChange", { "bg": s:yellow, "fg": s:black }) " diff mode: Changed line
-call s:h("DiffDelete", { "bg": s:red, "fg": s:black }) " diff mode: Deleted line
+call s:h("DiffDelete", { "bg": s:pink, "fg": s:black }) " diff mode: Deleted line
 call s:h("DiffText", { "bg": s:black, "fg": s:yellow }) " diff mode: Changed text within a changed line
-call s:h("ErrorMsg", { "fg": s:red }) " error messages on the command line
+call s:h("ErrorMsg", { "fg": s:pink }) " error messages on the command line
 call s:h("VertSplit", { "fg": s:vertsplit }) " the column separating vertically split windows
 call s:h("Folded", { "fg": s:comment }) " line used for closed folds
 call s:h("FoldColumn", {}) " 'foldcolumn'
@@ -189,7 +189,7 @@ call s:h("Question", { "fg": s:purple }) " hit-enter prompt and yes/no questions
 call s:h("Search", { "fg": s:black, "bg": s:yellow }) " Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 call s:h("QuickFixLine", { "fg": s:black, "bg": s:yellow }) " Current quickfix item in the quickfix window.
 call s:h("SpecialKey", { "fg": s:special_grey }) " Meta and special keys listed with ":map", also for text used to show unprintable characters in the text, 'listchars'. Generally: text that is displayed differently from what it really is.
-call s:h("SpellBad", { "fg": s:red, "gui": "underline", "cterm": "underline" }) " Word that is not recognized by the spellchecker. This will be combined with the highlighting used otherwise.
+call s:h("SpellBad", { "fg": s:pink, "gui": "underline", "cterm": "underline" }) " Word that is not recognized by the spellchecker. This will be combined with the highlighting used otherwise.
 call s:h("SpellCap", { "fg": s:dark_yellow }) " Word that should start with a capital. This will be combined with the highlighting used otherwise.
 call s:h("SpellLocal", { "fg": s:dark_yellow }) " Word that is recognized by the spellchecker as one that is used in another region. This will be combined with the highlighting used otherwise.
 call s:h("SpellRare", { "fg": s:dark_yellow }) " Word that is recognized by the spellchecker as one that is hardly ever used. spell This will be combined with the highlighting used otherwise.
@@ -228,7 +228,7 @@ call s:h("cssProp", { "fg": s:white })
 call s:h("cssPseudoClassId", { "fg": s:dark_yellow })
 call s:h("cssSelectorOp", { "fg": s:purple })
 call s:h("cssSelectorOp2", { "fg": s:purple })
-call s:h("cssTagName", { "fg": s:red })
+call s:h("cssTagName", { "fg": s:pink })
 
 " Go
 call s:h("goDeclaration", { "fg": s:purple })
@@ -240,9 +240,9 @@ call s:h("htmlEndTag", { "fg": s:white })
 call s:h("htmlH1", { "fg": s:white })
 call s:h("htmlLink", { "fg": s:purple })
 call s:h("htmlSpecialChar", { "fg": s:dark_yellow })
-call s:h("htmlSpecialTagName", { "fg": s:red })
+call s:h("htmlSpecialTagName", { "fg": s:pink })
 call s:h("htmlTag", { "fg": s:white })
-call s:h("htmlTagName", { "fg": s:red })
+call s:h("htmlTagName", { "fg": s:pink })
 
 " JavaScript
 call s:h("javaScriptBraces", { "fg": s:white })
@@ -273,10 +273,10 @@ call s:h("jsModules", { "fg": s:purple })
 call s:h("jsNull", { "fg": s:dark_yellow })
 call s:h("jsOperator", { "fg": s:purple })
 call s:h("jsStorageClass", { "fg": s:purple })
-call s:h("jsSuper", { "fg": s:red })
-call s:h("jsTemplateBraces", { "fg": s:dark_red })
+call s:h("jsSuper", { "fg": s:pink })
+call s:h("jsTemplateBraces", { "fg": s:red })
 call s:h("jsTemplateVar", { "fg": s:green })
-call s:h("jsThis", { "fg": s:red })
+call s:h("jsThis", { "fg": s:pink })
 call s:h("jsUndefined", { "fg": s:dark_yellow })
 " https://github.com/othree/yajs.vim
 call s:h("javascriptArrowFunc", { "fg": s:purple })
@@ -289,28 +289,28 @@ call s:h("javascriptEndColons", { "fg": s:white })
 call s:h("javascriptExport", { "fg": s:purple })
 call s:h("javascriptFuncArg", { "fg": s:white })
 call s:h("javascriptFuncKeyword", { "fg": s:purple })
-call s:h("javascriptIdentifier", { "fg": s:red })
+call s:h("javascriptIdentifier", { "fg": s:pink })
 call s:h("javascriptImport", { "fg": s:purple })
 call s:h("javascriptMethodName", { "fg": s:white })
 call s:h("javascriptObjectLabel", { "fg": s:white })
 call s:h("javascriptOpSymbol", { "fg": s:cyan })
 call s:h("javascriptOpSymbols", { "fg": s:cyan })
 call s:h("javascriptPropertyName", { "fg": s:green })
-call s:h("javascriptTemplateSB", { "fg": s:dark_red })
+call s:h("javascriptTemplateSB", { "fg": s:red })
 call s:h("javascriptVariable", { "fg": s:purple })
 
 " JSON
 call s:h("jsonCommentError", { "fg": s:white })
-call s:h("jsonKeyword", { "fg": s:red })
+call s:h("jsonKeyword", { "fg": s:pink })
 call s:h("jsonBoolean", { "fg": s:dark_yellow })
 call s:h("jsonNumber", { "fg": s:dark_yellow })
 call s:h("jsonQuote", { "fg": s:white })
-call s:h("jsonMissingCommaError", { "fg": s:red, "gui": "reverse" })
-call s:h("jsonNoQuotesError", { "fg": s:red, "gui": "reverse" })
-call s:h("jsonNumError", { "fg": s:red, "gui": "reverse" })
+call s:h("jsonMissingCommaError", { "fg": s:pink, "gui": "reverse" })
+call s:h("jsonNoQuotesError", { "fg": s:pink, "gui": "reverse" })
+call s:h("jsonNumError", { "fg": s:pink, "gui": "reverse" })
 call s:h("jsonString", { "fg": s:green })
-call s:h("jsonStringSQError", { "fg": s:red, "gui": "reverse" })
-call s:h("jsonSemicolonError", { "fg": s:red, "gui": "reverse" })
+call s:h("jsonStringSQError", { "fg": s:pink, "gui": "reverse" })
+call s:h("jsonSemicolonError", { "fg": s:pink, "gui": "reverse" })
 
 " LESS
 call s:h("lessVariable", { "fg": s:purple })
@@ -321,22 +321,22 @@ call s:h("lessClass", { "fg": s:dark_yellow })
 call s:h("markdownCode", { "fg": s:green })
 call s:h("markdownCodeBlock", { "fg": s:green })
 call s:h("markdownCodeDelimiter", { "fg": s:green })
-call s:h("markdownHeadingDelimiter", { "fg": s:red })
+call s:h("markdownHeadingDelimiter", { "fg": s:pink })
 call s:h("markdownRule", { "fg": s:comment })
 call s:h("markdownHeadingRule", { "fg": s:comment })
-call s:h("markdownH1", { "fg": s:red })
-call s:h("markdownH2", { "fg": s:red })
-call s:h("markdownH3", { "fg": s:red })
-call s:h("markdownH4", { "fg": s:red })
-call s:h("markdownH5", { "fg": s:red })
-call s:h("markdownH6", { "fg": s:red })
+call s:h("markdownH1", { "fg": s:pink })
+call s:h("markdownH2", { "fg": s:pink })
+call s:h("markdownH3", { "fg": s:pink })
+call s:h("markdownH4", { "fg": s:pink })
+call s:h("markdownH5", { "fg": s:pink })
+call s:h("markdownH6", { "fg": s:pink })
 call s:h("markdownIdDelimiter", { "fg": s:purple })
 call s:h("markdownId", { "fg": s:purple })
 call s:h("markdownBlockquote", { "fg": s:comment })
 call s:h("markdownItalic", { "fg": s:purple, "gui": "italic", "cterm": "italic" })
 call s:h("markdownBold", { "fg": s:dark_yellow, "gui": "bold", "cterm": "bold" })
-call s:h("markdownListMarker", { "fg": s:red })
-call s:h("markdownOrderedListMarker", { "fg": s:red })
+call s:h("markdownListMarker", { "fg": s:pink })
+call s:h("markdownOrderedListMarker", { "fg": s:pink })
 call s:h("markdownIdDeclaration", { "fg": s:blue })
 call s:h("markdownLinkText", { "fg": s:blue })
 call s:h("markdownLinkDelimiter", { "fg": s:white })
@@ -350,8 +350,8 @@ call s:h("perlMethod", { "fg": s:purple })
 call s:h("perlPOD", { "fg": s:comment })
 call s:h("perlSharpBang", { "fg": s:comment })
 call s:h("perlSpecialString",{ "fg": s:cyan })
-call s:h("perlStatementFiledesc", { "fg": s:red })
-call s:h("perlStatementFlow",{ "fg": s:red })
+call s:h("perlStatementFiledesc", { "fg": s:pink })
+call s:h("perlStatementFlow",{ "fg": s:pink })
 call s:h("perlStatementInclude", { "fg": s:purple })
 call s:h("perlStatementScalar",{ "fg": s:purple })
 call s:h("perlStatementStorage", { "fg": s:purple })
@@ -359,7 +359,7 @@ call s:h("perlSubName",{ "fg": s:yellow })
 call s:h("perlVarPlain",{ "fg": s:blue })
 
 " PHP
-call s:h("phpVarSelector", { "fg": s:red })
+call s:h("phpVarSelector", { "fg": s:pink })
 call s:h("phpOperator", { "fg": s:white })
 call s:h("phpParent", { "fg": s:white })
 call s:h("phpMemberSelector", { "fg": s:white })
@@ -375,24 +375,24 @@ call s:h("phpFunction", { "fg": s:blue })
 call s:h("phpFunctions", { "fg": s:cyan })
 call s:h("phpMethodsVar", { "fg": s:dark_yellow })
 call s:h("phpMagicConstants", { "fg": s:dark_yellow })
-call s:h("phpSuperglobals", { "fg": s:red })
+call s:h("phpSuperglobals", { "fg": s:pink })
 call s:h("phpConstants", { "fg": s:dark_yellow })
 
 " Ruby
-call s:h("rubyBlockParameter", { "fg": s:red})
-call s:h("rubyBlockParameterList", { "fg": s:red })
+call s:h("rubyBlockParameter", { "fg": s:pink})
+call s:h("rubyBlockParameterList", { "fg": s:pink })
 call s:h("rubyClass", { "fg": s:purple})
 call s:h("rubyConstant", { "fg": s:yellow})
 call s:h("rubyControl", { "fg": s:purple })
-call s:h("rubyEscape", { "fg": s:red})
+call s:h("rubyEscape", { "fg": s:pink})
 call s:h("rubyFunction", { "fg": s:blue})
-call s:h("rubyGlobalVariable", { "fg": s:red})
+call s:h("rubyGlobalVariable", { "fg": s:pink})
 call s:h("rubyInclude", { "fg": s:blue})
-call s:h("rubyIncluderubyGlobalVariable", { "fg": s:red})
-call s:h("rubyInstanceVariable", { "fg": s:red})
+call s:h("rubyIncluderubyGlobalVariable", { "fg": s:pink})
+call s:h("rubyInstanceVariable", { "fg": s:pink})
 call s:h("rubyInterpolation", { "fg": s:cyan })
-call s:h("rubyInterpolationDelimiter", { "fg": s:red })
-call s:h("rubyInterpolationDelimiter", { "fg": s:red})
+call s:h("rubyInterpolationDelimiter", { "fg": s:pink })
+call s:h("rubyInterpolationDelimiter", { "fg": s:pink})
 call s:h("rubyRegexp", { "fg": s:cyan})
 call s:h("rubyRegexpDelimiter", { "fg": s:cyan})
 call s:h("rubyStringDelimiter", { "fg": s:green})
@@ -400,7 +400,7 @@ call s:h("rubySymbol", { "fg": s:cyan})
 
 " Sass
 " https://github.com/tpope/vim-haml
-call s:h("sassAmpersand", { "fg": s:red })
+call s:h("sassAmpersand", { "fg": s:pink })
 call s:h("sassClass", { "fg": s:dark_yellow })
 call s:h("sassControl", { "fg": s:purple })
 call s:h("sassExtend", { "fg": s:purple })
@@ -429,9 +429,9 @@ call s:h("typescriptBraces", { "fg": s:white })
 
 " XML
 call s:h("xmlAttrib", { "fg": s:dark_yellow })
-call s:h("xmlEndTag", { "fg": s:red })
-call s:h("xmlTag", { "fg": s:red })
-call s:h("xmlTagName", { "fg": s:red })
+call s:h("xmlEndTag", { "fg": s:pink })
+call s:h("xmlTag", { "fg": s:pink })
+call s:h("xmlTagName", { "fg": s:pink })
 
 " }}}
 
@@ -445,16 +445,16 @@ hi link GitGutterDelete SignifySignDelete
 " mhinz/vim-signify
 call s:h("SignifySignAdd", { "fg": s:green })
 call s:h("SignifySignChange", { "fg": s:yellow })
-call s:h("SignifySignDelete", { "fg": s:red })
+call s:h("SignifySignDelete", { "fg": s:pink })
 
 " neomake/neomake
 call s:h("NeomakeWarningSign", { "fg": s:yellow })
-call s:h("NeomakeErrorSign", { "fg": s:red })
+call s:h("NeomakeErrorSign", { "fg": s:pink })
 call s:h("NeomakeInfoSign", { "fg": s:blue })
 
 " tpope/vim-fugitive
 call s:h("diffAdded", { "fg": s:green })
-call s:h("diffRemoved", { "fg": s:red })
+call s:h("diffRemoved", { "fg": s:pink })
 
 " }}}
 
@@ -464,16 +464,16 @@ call s:h("gitcommitComment", { "fg": s:comment })
 call s:h("gitcommitUnmerged", { "fg": s:green })
 call s:h("gitcommitOnBranch", {})
 call s:h("gitcommitBranch", { "fg": s:purple })
-call s:h("gitcommitDiscardedType", { "fg": s:red })
+call s:h("gitcommitDiscardedType", { "fg": s:pink })
 call s:h("gitcommitSelectedType", { "fg": s:green })
 call s:h("gitcommitHeader", {})
 call s:h("gitcommitUntrackedFile", { "fg": s:cyan })
-call s:h("gitcommitDiscardedFile", { "fg": s:red })
+call s:h("gitcommitDiscardedFile", { "fg": s:pink })
 call s:h("gitcommitSelectedFile", { "fg": s:green })
 call s:h("gitcommitUnmergedFile", { "fg": s:yellow })
 call s:h("gitcommitFile", {})
 call s:h("gitcommitSummary", { "fg": s:white })
-call s:h("gitcommitOverflow", { "fg": s:red })
+call s:h("gitcommitOverflow", { "fg": s:pink })
 hi link gitcommitNoBranch gitcommitBranch
 hi link gitcommitUntracked gitcommitComment
 hi link gitcommitDiscarded gitcommitComment
@@ -488,7 +488,7 @@ hi link gitcommitUnmergedArrow gitcommitUnmergedFile
 
 "if has("nvim")
 "  let g:terminal_color_0 =  s:black.gui
-"  let g:terminal_color_1 =  s:red.gui
+"  let g:terminal_color_1 =  s:pink.gui
 "  let g:terminal_color_2 =  s:green.gui
 "  let g:terminal_color_3 =  s:yellow.gui
 "  let g:terminal_color_4 =  s:blue.gui
@@ -496,7 +496,7 @@ hi link gitcommitUnmergedArrow gitcommitUnmergedFile
 "  let g:terminal_color_6 =  s:cyan.gui
 "  let g:terminal_color_7 =  s:white.gui
 "  let g:terminal_color_8 =  s:visual.gui
-"  let g:terminal_color_9 =  s:dark_red.gui
+"  let g:terminal_color_9 =  s:red.gui
 "  let g:terminal_color_10 = s:green.gui " No dark version
 "  let g:terminal_color_11 = s:dark_yellow.gui
 "  let g:terminal_color_12 = s:blue.gui " No dark version
