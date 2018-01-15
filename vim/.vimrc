@@ -88,6 +88,10 @@ hi YcmErrorSection cterm=underline ctermfg=196
 hi YcmWarningSection cterm=underline ctermfg=196
 
 
+"===[ Syntax ]===
+let g:python_no_doctest_highlight = 1
+
+
 "===[ UI/UX ]===
 set backspace=eol,start,indent
 set cursorline
@@ -223,7 +227,7 @@ noremap!    <esc>[3~    <del>
 noremap    U   <c-r>
 noremap <c-r>     U
 
-" Shortcuts
+" Shortcut
 noremap <space>     :setlocal hlsearch!<cr>
 noremap <tab>       :setlocal wrap!<cr>
 noremap ['          :vsp<cr>
@@ -253,7 +257,6 @@ nnoremap <c-k>      <c-a>
 nnoremap <leader>ec :vsplit /home/alan/.vimrc<cr>
 nnoremap <leader>sc :source /home/alan/.vimrc<cr>
 
-
 noremap <F9>        :call EchoHighlightName()<cr>
 noremap <s-tab>     :call FastEsc()<cr>
 
@@ -280,7 +283,7 @@ function! FastEsc()
 endfunction
 
 
-"===[ Abbrevations ]===
+"===[ Abbrevation ]===
 " Common typos
 iabbrev fro         for
 iabbrev adn         and
