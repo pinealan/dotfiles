@@ -6,6 +6,7 @@ syntax region   pythonFunctionCall start='(' end=')' display contains=
             \ pythonEscape,
             \ pythonNumber,
             \ pythonBuiltin,
+            \ pythonExceptions,
             \ pythonKeywordArg
 syntax match    pythonKeywordArg /\i*\ze=\(=\)\@!/ display contained
 
