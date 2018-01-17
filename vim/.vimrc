@@ -254,6 +254,7 @@ nnoremap <c-p>      :cprev<cr>
 nnoremap <c-j>      <c-x>
 nnoremap <c-k>      <c-a>
 
+nnoremap <leader>m  :silent make \| redraw! \| cc<cr>
 nnoremap <leader>ec :vsplit /home/alan/.vimrc<cr>
 nnoremap <leader>sc :source /home/alan/.vimrc<cr>
 
