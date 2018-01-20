@@ -2,14 +2,13 @@
     name = pinealan
     email = achan961117@gmail.com
 [alias]
-	ll = log --graph --oneline --decorate
 	cm = commit -m
-	br = branch
-	co = checkout
+	b = branch
+	c = checkout
 	s = status
 	bb = branch -vva
 	la = log --graph --oneline --all --decorate --date-order
-	l = log --graph --oneline --decorate --date-order
+	ll = log --graph --oneline --decorate
 	ls = log --graph --stat
     pull = pull -v
 [pull]
