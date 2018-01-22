@@ -97,12 +97,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Machine dependent bashrc
-if [ -f ~/.local/.bashrc ]; then
-    . ~/.local/.bashrc
-fi
+# Machine dependent bash files (i.e. local bashrc, local aliases)
+for f in ~/.local/bash*; do
+    . $f
+done
 
-# Machine dependent bash/alias definitions
-if [ -f ~/.local/.bash_aliases ]; then
-    . ~/.local/.bash_aliases
-fi
