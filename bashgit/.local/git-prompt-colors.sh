@@ -15,11 +15,11 @@ override_git_prompt_colors() {
 
   GIT_PROMPT_BRANCH="${Yellow}"             # the git branch that is active in the current directory
   GIT_PROMPT_MASTER_BRANCH="${DimYellow}"   # used if the git branch that is active in the current directory is $GIT_PROMPT_MASTER_BRANCHES
-  GIT_PROMPT_STAGED=" ${BoldYellow}•"       # the number of staged files/directories
+  GIT_PROMPT_STAGED=" ${Green}+"       # the number of staged files/directories •
+  GIT_PROMPT_CHANGED=" ${Red}+"        # the number of changed files
   GIT_PROMPT_CONFLICTS=" ${BoldRed}✖"       # the number of files in conflict
-  GIT_PROMPT_CHANGED=" ${BoldBlue}∗"        # the number of changed files
 
-  GIT_PROMPT_UNTRACKED=" ${Green}+"       # the number of untracked files/dirs
+  GIT_PROMPT_UNTRACKED=" ${Red}∗"       # the number of untracked files/dirs
   GIT_PROMPT_STASHED=" ${BoldMagenta}☗"    # the number of stashed files/dir
   GIT_PROMPT_CLEAN=""
   # GIT_PROMPT_REMOTE=" "                 # the remote branch name (if any) and the symbols for ahead and behind
