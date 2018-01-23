@@ -1,5 +1,6 @@
 # List
 alias l='ls -lFh'
+alias lt='ls -lth'
 alias la='ls -lAF'
 alias ld='ls -al | grep " \."'
 alias las='ls -lASF'
