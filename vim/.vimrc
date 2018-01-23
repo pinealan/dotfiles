@@ -57,6 +57,7 @@ let g:ycm_filetype_blacklist = {
     \ 'mail': 1,
     \ 'html': 1,
     \ 'gitconfig': 1,
+    \ 'tex': 1,
     \}
 
 let g:ycm_error_symbol = '>'
@@ -146,11 +147,11 @@ endfunction
 
 "===[ Tab, indent, wrap ]===
 set autoindent
+set smartindent
+set smarttab
 set expandtab
 set shiftwidth=4
-set smartindent
 set softtabstop=4
-set tabstop=4
 
 exec "set listchars=tab:\u2015\u2015,trail:\uB7"
 set list
