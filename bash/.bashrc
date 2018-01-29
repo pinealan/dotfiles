@@ -52,7 +52,7 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls --color=auto --group-directories-first'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -82,6 +82,8 @@ bind 'TAB:menu-complete'
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export GLOBIGNORE=__pycache__
+export PYTHONDONTWRITEBYTECODE=true
 
 export LESS_TERMCAP_mb=$'\e[1;31m'          # begin bold
 export LESS_TERMCAP_md=$'\e[1;38;5;77m'     # begin blink
