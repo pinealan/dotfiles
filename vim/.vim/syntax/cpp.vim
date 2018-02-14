@@ -31,12 +31,14 @@ syn keyword cppOperator         and bitor or xor compl bitand and_eq or_eq xor_e
 syn keyword cppStorageClass     mutable
 syn keyword cppBoolean          true false
 syn keyword cppConstant         __cplusplus
-syn match cppCast               "\<\(const\|static\|dynamic\|reinterpret\)_cast\s*<"me=e-1
+syn match cppCast               "\<\(const\|static\|dynamic\|reinterpret\)_cast\s*<"
 syn match cppCast               "\<\(const\|static\|dynamic\|reinterpret\)_cast\s*$"
+syn match cppBracket            "<"
+syn match cppBracket            ">"
+syn match cppScope              "::"
 
 " Match functions
-syn match cCustomParen          "(" contains=cParen contains=cCppParen
-syn match cFunc                 "\w\+\s*(\@="
+syn match cppFunc               "\w\+\s*(\@="
 
 " Class name declaration
 syn match cppStructure          "\<class\>"
@@ -47,6 +49,7 @@ syn match cppAccess             "\<private\>"
 syn match cppAccess             "\<public\>"
 syn match cppAccess             "\<protected\>"
 
+syn match cppClassName          "[0-9A-Za-z:_<>*&]\+\ze\s\+\w\+" contains=cppBracket,cppScope
 syn match cppClassName          "\<class\_s\+\w\+\>" contains=cppStructure
 syn match cppClassName          "\<namespace\_s\+\w\+\>" contains=cppStructure
 syn match cppClassName          "\<template\_s\+\w\+\>" contains=cppStructure
@@ -55,9 +58,8 @@ syn match cppClassName          "\<private\_s\+\w\+\>" contains=cppAccess
 syn match cppClassName          "\<public\_s\+\w\+\>" contains=cppAccess
 syn match cppClassName          "\<protected\_s\+\w\+\>" contains=cppAccess
 
-"syn match cppAngleBracketStart  "<\_[^;()]\{-}" contained contains=cppAngleBracketStart,cppAngleBracketEnd
-"syn match cppAngleBracketEnd    ">\_[^<>;()]\{-}" contained contains=cppAngleBracketEnd
-"syn match cppTemplateFunc       "\<\w*\s*<\_[^;()]\{-}>\s*(\@=" contains=ALLBUT,cLabel
+syn match   cppTemplate         "<[0-9A-Za-z:_ <>*&]\+>" contains=cppScope,cppBracket
+syn match   cppTemplateFunc     "[0-9A-Za-z_]\+\ze\s*<[0-9A-Za-z_:<>*]\+\s*(" contains=cppTemplate
 
 " C++ 11 extensions
 if !exists("cpp_no_cpp11")
@@ -83,14 +85,14 @@ endif
 " The minimum and maximum operators in GNU C++
 syn match cppMinMax "[<>]?"
 
-" TODO perhaps put this in a c.vim?
-hi link cFunc                   Function
-hi link cppCast                 Function
-hi link cppTemplateFunc         Function
-
 hi link cppAccess               cppStatement
 hi link cppModifier             cppStorageClass
 hi link cppClassName            cppType
+hi link cppTemplate             cppType
+
+hi link cppFunc                 Function
+hi link cppCast                 Function
+hi link cppTemplateFunc         Function
 
 hi link cppExceptions           Exception
 hi link cppOperator             Operator
