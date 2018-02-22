@@ -1,11 +1,10 @@
-" vim:fdm=marker
 " Vim Color File
+"
 " Name:       onedark.vim
-" Maintainer: https://github.com/joshdick/onedark.vim/
+" Maintainer: Alan Chan
 " License:    The MIT License (MIT)
-"Based On:   https://github.com/MaxSt/FlatColor/
-
-" A companion [vim-airline](https://github.com/bling/vim-airline) theme is available at: https://github.com/joshdick/airline-onedark.vim
+" Based On:   https://github.com/joshdick/onedark.vim/
+" Based On:   https://github.com/MaxSt/FlatColor/
 
 " Initialization {{{
 
@@ -81,6 +80,7 @@ let s:colors = onedark#GetColors()
 let s:pink = s:colors.pink
 let s:red = s:colors.red
 let s:green = s:colors.green
+let s:teagreen = s:colors.teagreen
 let s:yellow= s:colors.yellow
 let s:gold = s:colors.gold
 let s:carrot = s:colors.carrot
@@ -107,11 +107,11 @@ let s:comment = s:colors.x241
 
 " Syntax Groups (descriptions and ordering from `:h w18`) {{{
 
-call s:h("Comment",         { "fg": s:cyan, "gui": "italic", "cterm": "italic" }) " any comment
+call s:h("Comment",         { "fg": s:comment, "gui": "italic", "cterm": "italic" }) " any comment
 
-call s:h("Constant",        { "fg": s:cyan }) " any constant
-call s:h("String",          { "fg": s:green }) " a string constant: "this is a string"
-call s:h("Character",       { "fg": s:green }) " a character constant: 'c', '\n'
+call s:h("Constant",        { "fg": s:teagreen }) " any constant
+call s:h("String",          { "fg": s:teagreen }) " a string constant: 'this is a string'
+call s:h("Character",       { "fg": s:teagreen }) " a character constant: 'c', '\n'
 call s:h("Number",          { "fg": s:carrot }) " a number constant: 234, 0xff
 call s:h("Boolean",         { "fg": s:carrot }) " a boolean constant: TRUE, false
 call s:h("Float",           { "fg": s:carrot }) " a floating point constant: 2.3e10
@@ -123,20 +123,20 @@ call s:h("Statement",       { "fg": s:purple }) " any statement
 call s:h("Conditional",     { "fg": s:purple }) " if, then, else, endif, switch, etc.
 call s:h("Repeat",          { "fg": s:purple }) " for, do, while, etc.
 call s:h("Label",           { "fg": s:purple }) " case, default, etc.
-call s:h("Operator",        { "fg": s:purple }) " sizeof", "+", "*", etc.
-call s:h("Keyword",         { "fg": s:red }) " any other keyword
+call s:h("Operator",        { "fg": s:purple }) " sizeof, +, *, etc.
+call s:h("Keyword",         { "fg": s:purple }) " any other keyword
 call s:h("Exception",       { "fg": s:purple }) " try, catch, throw
 
 call s:h("PreProc",         { "fg": s:carrot }) " generic Preprocessor
 call s:h("Include",         { "fg": s:blue }) " preprocessor #include
-call s:h("Define",          { "fg": s:carrot}) " preprocessor #define
-call s:h("Macro",           { "fg": s:carrot}) " same as Define
-call s:h("PreCondit",       { "fg": s:purple}) " preprocessor #if, #else, #endif, etc.
+call s:h("Define",          { "fg": s:carrot }) " preprocessor #define
+call s:h("Macro",           { "fg": s:carrot }) " same as Define
+call s:h("PreCondit",       { "fg": s:carrot }) " preprocessor #if, #else, #endif, etc.
 
 call s:h("Type",            { "fg": s:gold }) " int, long, char, etc.
-call s:h("StorageClass",    { "fg": s:purple}) " static, register, volatile, etc.
-call s:h("Structure",       { "fg": s:purple}) " struct, union, enum, etc.
-call s:h("Typedef",         { "fg": s:purple}) " A typedef
+call s:h("StorageClass",    { "fg": s:purple }) " static, register, volatile, etc.
+call s:h("Structure",       { "fg": s:purple }) " struct, union, enum, etc.
+call s:h("Typedef",         { "fg": s:purple }) " A typedef
 
 call s:h("Special",         { "fg": s:blue }) " any special symbol
 call s:h("SpecialChar",     {}) " special character in a constant
@@ -146,7 +146,7 @@ call s:h("SpecialComment",  { "fg": s:comment }) " special things inside a comme
 call s:h("Debug",           {}) " debugging statements
 
 call s:h("Underlined",      { "gui": "underline", "cterm": "underline" }) " text that stands out, HTML links
-call s:h("Ignore",          {}) " left blank, hidden
+call s:h("Ignore",          { "fg": s:comment }) " left blank, hidden
 call s:h("Error",           { "fg": s:red }) " any erroneous construct
 call s:h("Todo",            { "fg": s:silver}) " anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
@@ -165,7 +165,7 @@ else
   call s:h("CursorLine",    { "bg": s:grey }) " the screen line that the cursor is in when 'cursorline' is set
 endif
 call s:h("Directory",       { "fg": s:blue }) " directory names (and other special names in listings)
-call s:h("DiffAdd",         { "bg": s:green, "fg": s:black }) " diff mode: Added line
+call s:h("DiffAdd",         { "bg": s:teagreen, "fg": s:black }) " diff mode: Added line
 call s:h("DiffChange",      { "bg": s:gold, "fg": s:black }) " diff mode: Changed line
 call s:h("DiffDelete",      { "bg": s:pink, "fg": s:black }) " diff mode: Deleted line
 call s:h("DiffText",        { "bg": s:black, "fg": s:gold }) " diff mode: Changed text within a changed line
@@ -200,7 +200,7 @@ call s:h("StatusLineNC",    { "fg": s:comment, "bg": s:black }) " status lines o
 call s:h("TabLine",         { "fg": s:comment }) " tab pages line, not active tab page label
 call s:h("TabLineFill",     {}) " tab pages line, where there are no labels
 call s:h("TabLineSel",      { "fg": s:white }) " tab pages line, active tab page label
-call s:h("Title",           { "fg": s:green }) " titles for output from ":set all", ":autocmd" etc.
+call s:h("Title",           { "fg": s:teagreen }) " titles for output from ":set all", ":autocmd" etc.
 call s:h("Visual",          { "fg": s:transparent, "bg": s:visual }) " Visual mode selection
 call s:h("VisualNOS",       { "bg": s:visual }) " Visual mode selection when vim is "Not Owning the Selection". Only X11 Gui's gui-x11 and xterm-clipboard supports this.
 call s:h("WarningMsg",      { "fg": s:yellow }) " warning messages
@@ -212,7 +212,7 @@ call s:h("WildMenu",        { "fg": s:black, "bg": s:blue }) " current match in 
 
 " CSS
 call s:h("cssAttrComma",            { "fg": s:purple })
-call s:h("cssAttributeSelector",    { "fg": s:green })
+call s:h("cssAttributeSelector",    { "fg": s:teagreen })
 call s:h("cssBraces",               { "fg": s:white })
 call s:h("cssClassName",            { "fg": s:carrot })
 call s:h("cssClassNameDot",         { "fg": s:carrot })
@@ -276,7 +276,7 @@ call s:h("jsOperator",              { "fg": s:purple })
 call s:h("jsStorageClass",          { "fg": s:purple })
 call s:h("jsSuper",                 { "fg": s:pink })
 call s:h("jsTemplateBraces",        { "fg": s:red })
-call s:h("jsTemplateVar",           { "fg": s:green })
+call s:h("jsTemplateVar",           { "fg": s:teagreen })
 call s:h("jsThis",                  { "fg": s:pink })
 call s:h("jsUndefined",             { "fg": s:carrot })
 " https://github.com/othree/yajs.vim
@@ -296,7 +296,7 @@ call s:h("javascriptMethodName",    { "fg": s:white })
 call s:h("javascriptObjectLabel",   { "fg": s:white })
 call s:h("javascriptOpSymbol",      { "fg": s:cyan })
 call s:h("javascriptOpSymbols",     { "fg": s:cyan })
-call s:h("javascriptPropertyName",  { "fg": s:green })
+call s:h("javascriptPropertyName",  { "fg": s:teagreen })
 call s:h("javascriptTemplateSB",    { "fg": s:red })
 call s:h("javascriptVariable",      { "fg": s:purple })
 
@@ -309,7 +309,7 @@ call s:h("jsonQuote",               { "fg": s:white })
 call s:h("jsonMissingCommaError",   { "fg": s:pink, "gui": "reverse" })
 call s:h("jsonNoQuotesError",       { "fg": s:pink, "gui": "reverse" })
 call s:h("jsonNumError",            { "fg": s:pink, "gui": "reverse" })
-call s:h("jsonString",              { "fg": s:green })
+call s:h("jsonString",              { "fg": s:teagreen })
 call s:h("jsonStringSQError",       { "fg": s:pink, "gui": "reverse" })
 call s:h("jsonSemicolonError",      { "fg": s:pink, "gui": "reverse" })
 
@@ -319,9 +319,9 @@ call s:h("lessAmpersandChar",       { "fg": s:white })
 call s:h("lessClass",               { "fg": s:carrot })
 
 " Markdown
-call s:h("markdownCode",            { "fg": s:green })
-call s:h("markdownCodeBlock",       { "fg": s:green })
-call s:h("markdownCodeDelimiter",   { "fg": s:green })
+call s:h("markdownCode",            { "fg": s:teagreen })
+call s:h("markdownCodeBlock",       { "fg": s:teagreen })
+call s:h("markdownCodeDelimiter",   { "fg": s:teagreen })
 call s:h("markdownHeadingDelimiter",{ "fg": s:pink })
 call s:h("markdownRule",            { "fg": s:comment })
 call s:h("markdownHeadingRule",     { "fg": s:comment })
@@ -344,7 +344,7 @@ call s:h("markdownLinkDelimiter",   { "fg": s:white })
 call s:h("markdownUrl",             { "fg": s:purple })
 
 " Perl
-call s:h("perlFiledescRead",        { "fg": s:green })
+call s:h("perlFiledescRead",        { "fg": s:teagreen })
 call s:h("perlFunction",            { "fg": s:purple })
 call s:h("perlMatchStartEnd",       { "fg": s:blue })
 call s:h("perlMethod",              { "fg": s:purple })
@@ -370,7 +370,7 @@ call s:h("phpClass",                { "fg": s:gold })
 call s:h("phpUseClass",             { "fg": s:white })
 call s:h("phpUseAlias",             { "fg": s:white })
 call s:h("phpInclude",              { "fg": s:purple })
-call s:h("phpClassExtends",         { "fg": s:green })
+call s:h("phpClassExtends",         { "fg": s:teagreen })
 call s:h("phpDocTags",              { "fg": s:white })
 call s:h("phpFunction",             { "fg": s:blue })
 call s:h("phpFunctions",            { "fg": s:cyan })
@@ -396,7 +396,7 @@ call s:h("rubyInterpolationDelimiter", { "fg": s:pink })
 call s:h("rubyInterpolationDelimiter", { "fg": s:pink})
 call s:h("rubyRegexp",              { "fg": s:cyan})
 call s:h("rubyRegexpDelimiter",     { "fg": s:cyan})
-call s:h("rubyStringDelimiter",     { "fg": s:green})
+call s:h("rubyStringDelimiter",     { "fg": s:teagreen})
 call s:h("rubySymbol",              { "fg": s:cyan})
 
 " Sass
@@ -444,7 +444,7 @@ hi link GitGutterChange SignifySignChange
 hi link GitGutterDelete SignifySignDelete
 
 " mhinz/vim-signify
-call s:h("SignifySignAdd",          { "fg": s:green })
+call s:h("SignifySignAdd",          { "fg": s:teagreen })
 call s:h("SignifySignChange",       { "fg": s:gold })
 call s:h("SignifySignDelete",       { "fg": s:pink })
 
@@ -454,7 +454,7 @@ call s:h("NeomakeErrorSign",        { "fg": s:pink })
 call s:h("NeomakeInfoSign",         { "fg": s:blue })
 
 " tpope/vim-fugitive
-call s:h("diffAdded",               { "fg": s:green })
+call s:h("diffAdded",               { "fg": s:teagreen })
 call s:h("diffRemoved",             { "fg": s:pink })
 
 " }}}
@@ -462,15 +462,15 @@ call s:h("diffRemoved",             { "fg": s:pink })
 " Git Highlighting {{{
 
 call s:h("gitcommitComment",        { "fg": s:comment })
-call s:h("gitcommitUnmerged",       { "fg": s:green })
+call s:h("gitcommitUnmerged",       { "fg": s:teagreen })
 call s:h("gitcommitOnBranch",       {})
 call s:h("gitcommitBranch",         { "fg": s:purple })
 call s:h("gitcommitDiscardedType",  { "fg": s:pink })
-call s:h("gitcommitSelectedType",   { "fg": s:green })
+call s:h("gitcommitSelectedType",   { "fg": s:teagreen })
 call s:h("gitcommitHeader",         {})
 call s:h("gitcommitUntrackedFile",  { "fg": s:cyan })
 call s:h("gitcommitDiscardedFile",  { "fg": s:pink })
-call s:h("gitcommitSelectedFile",   { "fg": s:green })
+call s:h("gitcommitSelectedFile",   { "fg": s:teagreen })
 call s:h("gitcommitUnmergedFile",   { "fg": s:gold })
 call s:h("gitcommitFile",           {})
 call s:h("gitcommitSummary",        { "fg": s:white })
@@ -490,7 +490,7 @@ hi link gitcommitUnmergedArrow gitcommitUnmergedFile
 "if has("nvim")
 "  let g:terminal_color_0 =  s:black.gui
 "  let g:terminal_color_1 =  s:pink.gui
-"  let g:terminal_color_2 =  s:green.gui
+"  let g:terminal_color_2 =  s:teagreen.gui
 "  let g:terminal_color_3 =  s:gold.gui
 "  let g:terminal_color_4 =  s:blue.gui
 "  let g:terminal_color_5 =  s:purple.gui
@@ -498,7 +498,7 @@ hi link gitcommitUnmergedArrow gitcommitUnmergedFile
 "  let g:terminal_color_7 =  s:white.gui
 "  let g:terminal_color_8 =  s:visual.gui
 "  let g:terminal_color_9 =  s:red.gui
-"  let g:terminal_color_10 = s:green.gui " No dark version
+"  let g:terminal_color_10 = s:teagreen.gui " No dark version
 "  let g:terminal_color_11 = s:carrot.gui
 "  let g:terminal_color_12 = s:blue.gui " No dark version
 "  let g:terminal_color_13 = s:purple.gui " No dark version

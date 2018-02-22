@@ -1,15 +1,15 @@
-" [onedark.vim](https://github.com/joshdick/onedark.vim/)
-
-let s:overrides = get(g:, "onedark_color_overrides", {})
+let s:overrides = get(g:, "color_overrides", {})
 
 let s:colors = {
       \ "pink":             get(s:overrides, "pink",            { "gui": "#E06C75", "cterm": "204", "cterm16": "1" }),
       \ "red":              get(s:overrides, "red",             { "gui": "#BE5046", "cterm": "160", "cterm16": "9" }),
-      \ "green":            get(s:overrides, "green",           { "gui": "#98C379", "cterm": "114", "cterm16": "2" }),
+      \ "green":            get(s:overrides, "green",           { "gui": "#98C379", "cterm": "76",  "cterm16": "2" }),
+      \ "teagreen":         get(s:overrides, "teagreen",        { "gui": "#98C379", "cterm": "114", "cterm16": "2" }),
       \ "yellow":           get(s:overrides, "yellow",          { "gui": "#E5C07B", "cterm": "220", "cterm16": "11" }),
       \ "gold":             get(s:overrides, "gold",            { "gui": "#E5C07B", "cterm": "179", "cterm16": "11" }),
       \ "carrot":           get(s:overrides, "carrot",          { "gui": "#D19A66", "cterm": "173", "cterm16": "3" }),
       \ "blue":             get(s:overrides, "blue",            { "gui": "#61AFEF", "cterm": "75", "cterm16": "4" }),
+      \ "navy":             get(s:overrides, "navy",            { "gui": "#61AFEF", "cterm": "17", "cterm16": "4" }),
       \ "purple":           get(s:overrides, "purple",          { "gui": "#C678DD", "cterm": "170", "cterm16": "5" }),
       \ "cyan":             get(s:overrides, "cyan",            { "gui": "#56B6C2", "cterm": "44", "cterm16": "6" }),
       \
