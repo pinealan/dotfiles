@@ -59,9 +59,10 @@ let g:ycm_filetype_blacklist = {
     \ 'html': 1,
     \ 'gitconfig': 1,
     \ 'tex': 1,
+    \ 'bib': 1,
     \}
 
-let g:ycm_error_symbol = '>'
+let g:ycm_error_symbol = 'x'
 let g:ycm_warning_symbol = '>'
 let g:ycm_enable_diagnostic_highlighting = 0
 
