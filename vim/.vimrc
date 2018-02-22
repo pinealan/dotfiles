@@ -265,9 +265,15 @@ noremap <F9>        :call EchoHighlightName()<cr>
 noremap <s-tab>     :call FastEsc()<cr>
 
 function! EchoHighlightName()
-    echo "hi: " . synIDattr(synID(line("."),col("."),1),"name")
-        \ . " \| trans: " . synIDattr(synID(line("."),col("."),0),"name")
-        \ . " \| lo: " . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name")
+    let id  = synID(line("."), col("."), 1)
+    let tid = synID(line("."), col("."), 0)
+
+    let s = "hi: ".synIDattr(id, "name")." \| lo:".synIDattr(synIDtrans(id), "name")
+    if id != tid
+        let s = s." \| trans: ".synIDattr(tid, "name")
+    endif
+
+    echo s
 endfunction
 
 function! FastEsc()
