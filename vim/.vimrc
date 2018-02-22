@@ -268,12 +268,13 @@ function! EchoHighlightName()
     let id  = synID(line("."), col("."), 1)
     let tid = synID(line("."), col("."), 0)
 
-    let s = "hi: ".synIDattr(id, "name")." \| lo:".synIDattr(synIDtrans(id), "name")
-    if id != tid
-        let s = s." \| trans: ".synIDattr(tid, "name")
-    endif
+    let fg  = synIDattr(synIDtrans(id), "fg")
+    let bg  = synIDattr(synIDtrans(id), "bg")
+    let hi  = synIDattr(id, "name")
+    let lo  = synIDattr(synIDtrans(id), "name")
+    let tr  = synIDattr(tid, "name")
 
-    echo s
+    echo "fg: ".fg." \| bg: ".bg." \| hi: ".hi." \| lo: ".lo." \| trans: ".tr
 endfunction
 
 function! FastEsc()
