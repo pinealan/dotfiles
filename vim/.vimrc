@@ -38,6 +38,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 let NERDTreeIgnore=['\.log$', '__pycache__', '\.pyc$', '.exe$', '\.png$', '\.jpg$', '\.jpeg$']
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
+let NERDTreeShowHidden=1
 
 noremap  <c-e> :NERDTreeToggle<cr>
 noremap! <c-e> :NERDTreeToggle<cr>
