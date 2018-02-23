@@ -93,6 +93,7 @@ hi YcmWarningSection cterm=underline ctermfg=196
 
 "===[ Syntax ]===
 let g:python_no_doctest_highlight = 1
+let g:python_no_builtin_highlight = 1
 
 
 "===[ UI/UX ]===
