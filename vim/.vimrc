@@ -274,7 +274,7 @@ function! EchoHighlightName()
     let lo  = synIDattr(synIDtrans(id), "name")
     let tr  = synIDattr(tid, "name")
 
-    echo "fg: ".fg." \| bg: ".bg." \| hi: ".hi." \| lo: ".lo." \| trans: ".tr
+    echo "hi: ".hi." \| lo: ".lo." \| trans: ".tr." \| fg: ".fg." \| bg: ".bg
 endfunction
 
 function! FastEsc()
