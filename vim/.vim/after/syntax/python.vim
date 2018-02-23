@@ -1,4 +1,4 @@
-" Ordering is important 40
+" Ordering is important
 syntax keyword  pythonBoolean False True None
 syntax region   pythonDocString start='\'\'\'' end='\'\'\'' display
 syntax match    pythonFunction /\w\+\ze(/

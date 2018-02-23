@@ -94,14 +94,14 @@ let s:special_grey = s:colors.special_grey
 let s:vertsplit = s:colors.vertsplit
 let s:silver = s:colors.silver
 let s:white = s:colors.white
-
 let s:black = s:colors.x232
 let s:dark = s:colors.x233
 let s:grey = s:colors.x234
+
 let s:background = s:colors.x235
 let s:cursor = s:colors.x236
 let s:visual = s:colors.x237
-let s:comment = s:colors.x241
+let s:comment = s:colors.green
 
 " }}}
 
@@ -158,12 +158,7 @@ call s:h("Conceal",         {}) " placeholder characters substituted for conceal
 call s:h("Cursor",          { "fg": s:black, "bg": s:blue }) " the character under the cursor
 call s:h("CursorIM",        {}) " like Cursor, but used when in IME mode
 call s:h("CursorColumn",    { "bg": s:cursor }) " the screen column that the cursor is in when 'cursorcolumn' is set
-if &diff
-  " Don't change the background color in diff mode
-  call s:h("CursorLine",    { "gui": "underline" }) " the screen line that the cursor is in when 'cursorline' is set
-else
-  call s:h("CursorLine",    { "bg": s:grey }) " the screen line that the cursor is in when 'cursorline' is set
-endif
+call s:h("CursorLine",      { "bg": s:grey }) " the screen line that the cursor is in when 'cursorline' is set
 call s:h("Directory",       { "fg": s:blue }) " directory names (and other special names in listings)
 call s:h("DiffAdd",         { "bg": s:teagreen, "fg": s:black }) " diff mode: Added line
 call s:h("DiffChange",      { "bg": s:gold, "fg": s:black }) " diff mode: Changed line
@@ -174,7 +169,7 @@ call s:h("VertSplit",       { "fg": s:vertsplit }) " the column separating verti
 call s:h("Folded",          { "fg": s:comment }) " line used for closed folds
 call s:h("FoldColumn",      {}) " 'foldcolumn'
 call s:h("SignColumn",      {}) " column where signs are displayed
-call s:h("IncSearch",       { "fg": s:yellow, "bg": s:comment }) " 'incsearch' highlighting; also used for the text replaced with ':s///c'
+call s:h("IncSearch",       { "fg": s:yellow, "bg": s:silver}) " 'incsearch' highlighting; also used for the text replaced with ':s///c'
 call s:h("LineNr",          { "fg": s:special_grey }) " Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 call s:h("CursorLineNr",    {}) " Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 call s:h("MatchParen",      { "fg": s:blue, "gui": "underline" }) " The character under the cursor or just before it, if it is a paired bracket, and its match.
@@ -196,8 +191,8 @@ call s:h("SpellLocal",      { "fg": s:carrot }) " Word that is recognized by the
 call s:h("SpellRare",       { "fg": s:carrot }) " Word that is recognized by the spellchecker as one that is hardly ever used. spell This will be combined with the highlighting used otherwise.
 call s:h("StatusLine",      { "fg": s:white, "bg": s:special_grey}) " status line of current window
 call s:h("StatusLineGit",   { "fg": s:black, "bg": s:silver }) " status line of current window
-call s:h("StatusLineNC",    { "fg": s:comment, "bg": s:black }) " status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-call s:h("TabLine",         { "fg": s:comment }) " tab pages line, not active tab page label
+call s:h("StatusLineNC",    { "fg": s:silver, "bg": s:black }) " status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+call s:h("TabLine",         { "fg": s:silver }) " tab pages line, not active tab page label
 call s:h("TabLineFill",     {}) " tab pages line, where there are no labels
 call s:h("TabLineSel",      { "fg": s:white }) " tab pages line, active tab page label
 call s:h("Title",           { "fg": s:teagreen }) " titles for output from ":set all", ":autocmd" etc.
