@@ -142,11 +142,11 @@ call s:h("Special",         { "fg": s:blue }) " any special symbol
 call s:h("SpecialChar",     {}) " special character in a constant
 call s:h("Tag",             {}) " you can use CTRL-] on this
 call s:h("Delimiter",       {}) " character that needs attention
-call s:h("SpecialComment",  { "fg": s:comment }) " special things inside a comment
+call s:h("SpecialComment",  { "fg": s:pink}) " special things inside a comment
 call s:h("Debug",           {}) " debugging statements
 
 call s:h("Underlined",      { "gui": "underline", "cterm": "underline" }) " text that stands out, HTML links
-call s:h("Ignore",          { "fg": s:comment }) " left blank, hidden
+call s:h("Ignore",          { "fg": s:pink}) " left blank, hidden
 call s:h("Error",           { "fg": s:red }) " any erroneous construct
 call s:h("Todo",            { "fg": s:silver}) " anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
