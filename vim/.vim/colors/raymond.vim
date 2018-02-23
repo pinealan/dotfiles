@@ -39,12 +39,12 @@ endfunction
 "
 let s:red           = { "gui": "#be5046", "cterm": "160" }
 let s:pink          = { "gui": "#e06c75", "cterm": "204" }
-let s:green         = { "gui": "#98c379", "cterm": "70" }
+let s:green         = { "gui": "#98c379", "cterm": "76" }
 let s:teagreen      = { "gui": "#98c379", "cterm": "114" }
 let s:yellow        = { "gui": "#e5c07b", "cterm": "220" }
 let s:gold          = { "gui": "#e5c07b", "cterm": "179" }
 let s:carrot        = { "gui": "#d19a66", "cterm": "173" }
-let s:blue          = { "gui": "#61afef", "cterm": "75" }
+let s:blue          = { "gui": "#61afef", "cterm": "69" }
 let s:purple        = { "gui": "#c678dd", "cterm": "170" }
 
 let s:transparent   = { "gui": "NONE",    "cterm": "NONE" }
@@ -65,7 +65,7 @@ let s:background1   = s:dimgrey
 let s:background2   = s:darkgrey
 
 let s:string        = s:teagreen
-let s:numeric       = s:purple
+let s:numeric       = s:carrot
 let s:keyword       = s:content1
 let s:comment       = s:green
 let s:type          = s:purple
