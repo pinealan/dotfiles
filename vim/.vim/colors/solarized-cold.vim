@@ -37,51 +37,43 @@ endfunction
 
 " [ Color Variables ]
 "
-let s:colors = {
-    \ "red":            { "gui": "#be5046", "cterm": "160" },
-    \ "pink":           { "gui": "#e06c75", "cterm": "204" },
-    \ "green":          { "gui": "#98c379", "cterm": "70" },
-    \ "teagreen":       { "gui": "#98c379", "cterm": "114" },
-    \ "yellow":         { "gui": "#e5c07b", "cterm": "220" },
-    \ "gold":           { "gui": "#e5c07b", "cterm": "179" },
-    \ "carrot":         { "gui": "#d19a66", "cterm": "173" },
-    \ "blue":           { "gui": "#61afef", "cterm": "75" },
-    \ "purple":         { "gui": "#c678dd", "cterm": "170" },
-    \
-    \ "transparent":    { "gui": "NONE",    "cterm": "NONE" },
-    \ "white":          { "gui": "#bbc2cf", "cterm": "255" },
-    \ "whitesmoke":     { "gui": "#bbc2cf", "cterm": "251" },
-    \ "lightgrey":      { "gui": "#abb2bf", "cterm": "246" },
-    \ "silver":         { "gui": "#abb2bf", "cterm": "241" },
-    \ "grey":           { "gui": "#3e4452", "cterm": "237" },
-    \ "dimgrey":        { "gui": "#bbc2cf", "cterm": "235" },
-    \ "darkgrey":       { "gui": "#bbc2cf", "cterm": "234" },
-    \ "black":          { "gui": "#bbc2cf", "cterm": "232" },
-    \}
+let s:red           = { "gui": "#be5046", "cterm": "160" }
+let s:pink          = { "gui": "#e06c75", "cterm": "204" }
+let s:green         = { "gui": "#98c379", "cterm": "70" }
+let s:teagreen      = { "gui": "#98c379", "cterm": "114" }
+let s:yellow        = { "gui": "#e5c07b", "cterm": "220" }
+let s:gold          = { "gui": "#e5c07b", "cterm": "179" }
+let s:carrot        = { "gui": "#d19a66", "cterm": "173" }
+let s:blue          = { "gui": "#61afef", "cterm": "75" }
+let s:purple        = { "gui": "#c678dd", "cterm": "170" }
 
-let s:red           = s:colors.red
-let s:pink          = s:colors.pink
-let s:green         = s:colors.green
-let s:teagreen      = s:colors.teagreen
-let s:yellow        = s:colors.yellow
-let s:gold          = s:colors.gold
-let s:carrot        = s:colors.carrot
-let s:blue          = s:colors.blue
-let s:purple        = s:colors.purple
-let s:white         = s:colors.white
-let s:black         = s:colors.black
+let s:navy          = { "gui": "#c678dd", "cterm": "17" }
+let s:skin          = { "gui": "#c678dd", "cterm": "180" }
+let s:cyan          = { "gui": "#c678dd", "cterm": "44" }
+let s:dirt          = { "gui": "#abcdef", "cterm": "65" }
 
-let s:string        = s:colors.teagreen
-let s:numeric       = s:colors.carrot
-let s:keyword       = s:colors.purple
-let s:comment       = s:colors.green
+let s:transparent   = { "gui": "NONE",    "cterm": "NONE" }
+let s:white         = { "gui": "#bbc2cf", "cterm": "255" }
+let s:whitesmoke    = { "gui": "#bbc2cf", "cterm": "251" }
+let s:lightgrey     = { "gui": "#abb2bf", "cterm": "246" }
+let s:silver        = { "gui": "#abb2bf", "cterm": "241" }
+let s:grey          = { "gui": "#3e4452", "cterm": "237" }
+let s:dimgrey       = { "gui": "#bbc2cf", "cterm": "235" }
+let s:darkgrey      = { "gui": "#bbc2cf", "cterm": "234" }
+let s:black         = { "gui": "#bbc2cf", "cterm": "232" }
 
-let s:content0      = s:colors.whitesmoke
-let s:content1      = s:colors.lightgrey
-let s:content2      = s:colors.silver
-let s:background0   = s:colors.grey
-let s:background1   = s:colors.dimgrey
-let s:background2   = s:colors.darkgrey
+let s:string        = s:teagreen
+let s:numeric       = s:cyan
+let s:keyword       = s:white
+let s:comment       = s:green
+let s:type          = s:dirt
+
+let s:content0      = s:skin
+let s:content1      = s:lightgrey
+let s:content2      = s:silver
+let s:background0   = s:grey
+let s:background1   = s:dimgrey
+let s:background2   = s:darkgrey
 
 
 " [ Syntax Groups (descriptions and ordering from `:h w18`) ]
@@ -107,12 +99,12 @@ call s:h("Keyword",         { "fg": s:keyword }) " any other keyword
 call s:h("Exception",       { "fg": s:keyword }) " try, catch, throw
 
 call s:h("PreProc",         { "fg": s:carrot }) " generic Preprocessor
-call s:h("Include",         { "fg": s:blue }) " preprocessor #include
+call s:h("Include",         { "fg": s:purple }) " preprocessor #include
 call s:h("Define",          { "fg": s:carrot }) " preprocessor #define
 call s:h("Macro",           { "fg": s:carrot }) " same as Define
 call s:h("PreCondit",       { "fg": s:carrot }) " preprocessor #if, #else, #endif, etc.
 
-call s:h("Type",            { "fg": s:gold }) " int, long, char, etc.
+call s:h("Type",            { "fg": s:type }) " int, long, char, etc.
 call s:h("StorageClass",    { "fg": s:keyword }) " static, register, volatile, etc.
 call s:h("Structure",       { "fg": s:keyword }) " struct, union, enum, etc.
 call s:h("Typedef",         { "fg": s:keyword }) " A typedef
