@@ -66,6 +66,7 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_error_symbol = 'x'
 let g:ycm_warning_symbol = '>'
 let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 let g:ycm_global_ycm_extra_conf = "/home/alan/.vim/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 0
