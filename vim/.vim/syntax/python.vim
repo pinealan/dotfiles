@@ -65,10 +65,7 @@ syn region  pythonFunctionParen start='(' end=')' display contains=ALL
 syn match   pythonKeywordArg /\i*\ze=[^=]/ contained
 
 
-" DocStrings
-syn region  pythonDocString start="'''" end="'''" display
-syn region  pythonDocString start='"""' end='"""' display
-
+" Comments
 syn match   pythonComment       "#.*$" contains=pythonTodo,@Spell
 syn keyword pythonTodo          FIXME NOTE NOTES TODO XXX contained
 
@@ -86,6 +83,11 @@ syn region  pythonRawString matchgroup=pythonQuotes
 syn region  pythonRawString matchgroup=pythonTripleQuotes
       \ start=+[uU]\=[rR]\z('''\|"""\)+ end="\z1" keepend
       \ contains=pythonSpaceError,pythonDoctest,@Spell
+
+
+" DocStrings
+syn region  pythonDocString start="'''" end="'''" display
+syn region  pythonDocString start='"""' end='"""' display
 
 syn match   pythonEscape        +\\[abfnrtv'"\\]+ contained
 syn match   pythonEscape        "\\\o\{1,3}" contained
@@ -216,7 +218,7 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonFunctionCall     Function
   HiLink pythonDeclFunction     Function
   HiLink pythonDeclDecorator    Function
-  HiLink pythonDeclClass        Type
+  HiLink pythonDeclClass        Function
 
   HiLink pythonComment          Comment
   HiLink pythonNumber           Number

@@ -14,7 +14,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name="solarized_cold"
+let g:colors_name="onedark"
 
 " Helper function to match highlight group with colors in all modes
 " gui:      Full RGB, 24 bit
@@ -40,6 +40,7 @@ endfunction
 let s:red           = { "gui": "#be5046", "cterm": "160" }
 let s:pink          = { "gui": "#e06c75", "cterm": "204" }
 let s:green         = { "gui": "#98c379", "cterm": "70" }
+let s:lightgreen    = { "gui": "#98c379", "cterm": "76" }
 let s:teagreen      = { "gui": "#98c379", "cterm": "114" }
 let s:yellow        = { "gui": "#e5c07b", "cterm": "220" }
 let s:gold          = { "gui": "#e5c07b", "cterm": "179" }
@@ -68,13 +69,12 @@ let s:string        = s:teagreen
 let s:numeric       = s:carrot
 let s:macro         = s:carrot
 let s:keyword       = s:purple
-let s:comment       = s:green
+let s:comment       = s:content2
 
 
 " [ Syntax Groups (descriptions and ordering from `:h w18`) ]
 "
 call s:h("Comment",         { "fg": s:comment, "gui": "italic" }) " any comment
-
 call s:h("Constant",        { "fg": s:string }) " any constant
 call s:h("String",          { "fg": s:string }) " a string constant: 'this is a string'
 call s:h("Character",       { "fg": s:string }) " a character constant: 'c', '\n'
@@ -99,17 +99,17 @@ call s:h("Define",          { "fg": s:macro }) " preprocessor #define
 call s:h("Macro",           { "fg": s:macro }) " same as Define
 call s:h("PreCondit",       { "fg": s:macro }) " preprocessor #if, #else, #endif, etc.
 
-call s:h("Type",            { "fg": s:blue }) " int, long, char, etc.
+call s:h("Type",            { "fg": s:gold }) " int, long, char, etc.
 call s:h("StorageClass",    { "fg": s:keyword }) " static, register, volatile, etc.
 call s:h("Structure",       { "fg": s:keyword }) " struct, union, enum, etc.
 call s:h("Typedef",         { "fg": s:keyword }) " A typedef
 
-call s:h("Special",         { "fg": s:blue }) " any special symbol
-call s:h("SpecialChar",     { "fg": s:blue }) " special character in a constant
+call s:h("Special",         { "fg": s:content1 }) " any special symbol
+call s:h("SpecialChar",     { "fg": s:content1 }) " special character in a constant
 call s:h("Tag",             { "fg": s:pink }) " you can use CTRL-] on this
-call s:h("Delimiter",       {}) " character that needs attention
-call s:h("SpecialComment",  { "fg": s:pink }) " special things inside a comment
-call s:h("Debug",           {}) " debugging statements
+call s:h("Delimiter",       { "fg": s:content1 }) " character that needs attention
+call s:h("SpecialComment",  { "fg": s:string }) " special things inside a comment
+call s:h("Debug",           { "fg": s:content1 }) " debugging statements
 
 call s:h("Underlined",      { "gui": "underline", "cterm": "underline" }) " text that stands out, HTML links
 call s:h("Ignore",          { "fg": s:pink }) " left blank, hidden
@@ -121,12 +121,10 @@ call s:h("Todo",            { "fg": s:comment, "cterm": "bold", "gui": "bold" })
 "
 call s:h("ColorColumn",     { "bg": s:background2 }) " used for the columns set with 'colorcolumn'
 call s:h("Conceal",         {}) " placeholder characters substituted for concealed text (see 'conceallevel')
-
 call s:h("Cursor",          { "fg": s:black, "bg": s:blue }) " the character under the cursor
 call s:h("CursorIM",        {}) " like Cursor, but used when in IME mode
 call s:h("CursorColumn",    { "bg": s:background2 }) " the screen column that the cursor is in when 'cursorcolumn' is set
 call s:h("CursorLine",      { "bg": s:background2 }) " the screen line that the cursor is in when 'cursorline' is set
-
 call s:h("Directory",       { "fg": s:blue }) " directory names (and other special names in listings)
 
 call s:h("DiffAdd",         { "bg": s:teagreen, "fg": s:black }) " diff mode: Added line
@@ -176,6 +174,11 @@ call s:h("Visual",          { "bg": s:background0 }) " Visual mode selection
 call s:h("VisualNOS",       { "bg": s:background1 }) " Visual mode selection when vim is 'Not Owning the Selection'. Only X11 Gui's gui-x11 and xterm-clipboard supports this.
 call s:h("WarningMsg",      { "fg": s:yellow }) " warning messages
 call s:h("WildMenu",        { "fg": s:black, "bg": s:blue }) " current match in 'wildmenu' completion
+
+
+" [ Python ]
+"
+call s:h("pythonDocString", { "fg": s:green })
 
 
 " [ Git Highlighting ]

@@ -14,7 +14,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name="solarized_cold"
+let g:colors_name="raymond"
 
 " Helper function to match highlight group with colors in all modes
 " gui:      Full RGB, 24 bit
@@ -66,9 +66,9 @@ let s:background2   = s:darkgrey
 
 let s:string        = s:teagreen
 let s:numeric       = s:carrot
+let s:macro         = s:carrot
 let s:keyword       = s:content1
 let s:comment       = s:green
-let s:type          = s:gold
 
 
 " [ Syntax Groups (descriptions and ordering from `:h w18`) ]
@@ -93,13 +93,13 @@ call s:h("Operator",        { "fg": s:keyword }) " sizeof, +, *, etc.
 call s:h("Keyword",         { "fg": s:purple }) " any other keyword
 call s:h("Exception",       { "fg": s:keyword }) " try, catch, throw
 
-call s:h("PreProc",         { "fg": s:carrot }) " generic Preprocessor
+call s:h("PreProc",         { "fg": s:macro }) " generic Preprocessor
 call s:h("Include",         { "fg": s:keyword }) " preprocessor #include
-call s:h("Define",          { "fg": s:carrot }) " preprocessor #define
-call s:h("Macro",           { "fg": s:carrot }) " same as Define
-call s:h("PreCondit",       { "fg": s:carrot }) " preprocessor #if, #else, #endif, etc.
+call s:h("Define",          { "fg": s:macro }) " preprocessor #define
+call s:h("Macro",           { "fg": s:macro }) " same as Define
+call s:h("PreCondit",       { "fg": s:macro }) " preprocessor #if, #else, #endif, etc.
 
-call s:h("Type",            { "fg": s:green }) " int, long, char, etc.
+call s:h("Type",            { "fg": s:gold }) " int, long, char, etc.
 call s:h("StorageClass",    { "fg": s:keyword }) " static, register, volatile, etc.
 call s:h("Structure",       { "fg": s:keyword }) " struct, union, enum, etc.
 call s:h("Typedef",         { "fg": s:keyword }) " A typedef
@@ -177,6 +177,9 @@ call s:h("VisualNOS",       { "bg": s:background1 }) " Visual mode selection whe
 call s:h("WarningMsg",      { "fg": s:yellow }) " warning messages
 call s:h("WildMenu",        { "fg": s:black, "bg": s:blue }) " current match in 'wildmenu' completion
 
+" [ Python ]
+"
+call s:h("pythonDeclClass",         { "fg": s:green }) " try, catch, throw
 
 " [ Git Highlighting ]
 "

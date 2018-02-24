@@ -62,17 +62,18 @@ let s:dimgrey       = { "gui": "#bbc2cf", "cterm": "235" }
 let s:darkgrey      = { "gui": "#bbc2cf", "cterm": "234" }
 let s:black         = { "gui": "#bbc2cf", "cterm": "232" }
 
-let s:string        = s:teagreen
-let s:numeric       = s:cyan
-let s:keyword       = s:white
-let s:comment       = s:green
-
 let s:content0      = s:skin
 let s:content1      = s:lightgrey
 let s:content2      = s:silver
 let s:background0   = s:grey
 let s:background1   = s:dimgrey
 let s:background2   = s:darkgrey
+
+let s:string        = s:teagreen
+let s:numeric       = s:cyan
+let s:macro         = s:carrot
+let s:keyword       = s:white
+let s:comment       = s:green
 
 
 " [ Syntax Groups (descriptions and ordering from `:h w18`) ]
@@ -97,11 +98,11 @@ call s:h("Operator",        { "fg": s:keyword }) " sizeof, +, *, etc.
 call s:h("Keyword",         { "fg": s:dirt }) " any other keyword
 call s:h("Exception",       { "fg": s:keyword }) " try, catch, throw
 
-call s:h("PreProc",         { "fg": s:carrot }) " generic Preprocessor
+call s:h("PreProc",         { "fg": s:macro }) " generic Preprocessor
 call s:h("Include",         { "fg": s:purple }) " preprocessor #include
-call s:h("Define",          { "fg": s:carrot }) " preprocessor #define
-call s:h("Macro",           { "fg": s:carrot }) " same as Define
-call s:h("PreCondit",       { "fg": s:carrot }) " preprocessor #if, #else, #endif, etc.
+call s:h("Define",          { "fg": s:macro }) " preprocessor #define
+call s:h("Macro",           { "fg": s:macro }) " same as Define
+call s:h("PreCondit",       { "fg": s:macro }) " preprocessor #if, #else, #endif, etc.
 
 call s:h("Type",            { }) " int, long, char, MyClass etc.
 call s:h("StorageClass",    { "fg": s:keyword }) " static, register, volatile, etc.
