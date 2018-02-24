@@ -1,9 +1,9 @@
 " Vim syntax file
-" Language:	Python
-" Maintainer:	Alan Chan
-" Credits:	Zvezdan Petkovic <zpetkovic@acm.org>
-"		Neil Schemenauer <nas@python.ca>
-"		Dmitry Vasiliev
+" Language:     Python
+" Maintainer:   Alan Chan
+" Credits:      Zvezdan Petkovic <zpetkovic@acm.org>
+"               Neil Schemenauer <nas@python.ca>
+"               Dmitry Vasiliev
 "
 " Highly customized for my own use (Alan Chan). Python3 only. The original
 " version was much easier to tweak. Use at your own risk.
@@ -41,27 +41,27 @@ set cpo&vim
 "   built-in below (use 'from __future__ import print_function' in 2)
 " - async and await were added in Python 3.5 and are soft keywords.
 "
-syn keyword pythonBoolean	False, None, True
-syn keyword pythonStatement	as assert break continue del exec global
-syn keyword pythonStatement	lambda nonlocal pass print return with yield
-syn keyword pythonStatement	class def nextgroup=pythonFunction skipwhite
-syn keyword pythonConditional	elif else if
-syn keyword pythonRepeat	for while
-syn keyword pythonOperator	and in is not or
-syn keyword pythonException	except finally raise try
-syn keyword pythonInclude	from import
-syn keyword pythonAsync		async await
+syn keyword pythonBoolean       False, None, True
+syn keyword pythonStatement     as assert break continue del exec global
+syn keyword pythonStatement     lambda nonlocal pass print return with yield
+syn keyword pythonStatement     class def nextgroup=pythonFunction skipwhite
+syn keyword pythonConditional   elif else if
+syn keyword pythonRepeat        for while
+syn keyword pythonOperator      and in is not or
+syn keyword pythonException     except finally raise try
+syn keyword pythonInclude       from import
+syn keyword pythonAsync         async await
 
-syn match   pythonDecorator	"@" display nextgroup=pythonFunction skipwhite
+syn match   pythonDecorator     "@" display nextgroup=pythonFunction skipwhite
 
 
 " A dot must be allowed because of @MyClass.myfunc decorators.
-syn match   pythonFunction "\h\w\+\ze("
-syn match   pythonFunction "\%(def\s\+\)\@<=\h\w\+"     " Function declaration
-syn match   pythonFunction "\%(@\s\+\)\@<=\h\%(\w\|\)*" " Decorator declaration
-syn match   pythonClass    "\%(class\s\+\)\@<=\h\w\+"
+syn match   pythonFunctionCall  "\h\w\+\ze("
+syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\w\+"     " Function declaration
+syn match   pythonDeclDecorator "\%(@\s\+\)\@<=\h\%(\w\|\.\)*" " Decorator declaration
+syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 
-syn region  pythonFunctionCall start='(' end=')' display contains=ALL
+syn region  pythonFunctionParen start='(' end=')' display contains=ALL
 syn match   pythonKeywordArg /\i*\ze=[^=]/ contained
 
 
@@ -69,8 +69,8 @@ syn match   pythonKeywordArg /\i*\ze=[^=]/ contained
 syn region  pythonDocString start="'''" end="'''" display
 syn region  pythonDocString start='"""' end='"""' display
 
-syn match   pythonComment	"#.*$" contains=pythonTodo,@Spell
-syn keyword pythonTodo		FIXME NOTE NOTES TODO XXX contained
+syn match   pythonComment       "#.*$" contains=pythonTodo,@Spell
+syn keyword pythonTodo          FIXME NOTE NOTES TODO XXX contained
 
 
 " Triple-quoted strings can contain doctests.
@@ -87,13 +87,13 @@ syn region  pythonRawString matchgroup=pythonTripleQuotes
       \ start=+[uU]\=[rR]\z('''\|"""\)+ end="\z1" keepend
       \ contains=pythonSpaceError,pythonDoctest,@Spell
 
-syn match   pythonEscape	+\\[abfnrtv'"\\]+ contained
-syn match   pythonEscape	"\\\o\{1,3}" contained
-syn match   pythonEscape	"\\x\x\{2}" contained
-syn match   pythonEscape	"\%(\\u\x\{4}\|\\U\x\{8}\)" contained
+syn match   pythonEscape        +\\[abfnrtv'"\\]+ contained
+syn match   pythonEscape        "\\\o\{1,3}" contained
+syn match   pythonEscape        "\\x\x\{2}" contained
+syn match   pythonEscape        "\%(\\u\x\{4}\|\\U\x\{8}\)" contained
 " Python allows case-insensitive Unicode IDs: http://www.unicode.org/charts/
-syn match   pythonEscape	"\\N{\a\+\%(\s\a\+\)*}" contained
-syn match   pythonEscape	"\\$"
+syn match   pythonEscape        "\\N{\a\+\%(\s\a\+\)*}" contained
+syn match   pythonEscape        "\\$"
 
 
 " It is very important to understand all details before changing the
@@ -112,12 +112,12 @@ syn match   pythonEscape	"\\$"
 " https://docs.python.org/2/reference/lexical_analysis.html#numeric-literals
 " https://docs.python.org/3/reference/lexical_analysis.html#numeric-literals
 "
-syn match   pythonNumber	"\<0[oO]\=\o\+[Ll]\=\>"
-syn match   pythonNumber	"\<0[xX]\x\+[Ll]\=\>"
-syn match   pythonNumber	"\<0[bB][01]\+[Ll]\=\>"
-syn match   pythonNumber	"\<\%([1-9]\d*\|0\)[Ll]\=\>"
-syn match   pythonNumber	"\<\d\+[jJ]\>"
-syn match   pythonNumber	"\<\d\+[eE][+-]\=\d\+[jJ]\=\>"
+syn match   pythonNumber        "\<0[oO]\=\o\+[Ll]\=\>"
+syn match   pythonNumber        "\<0[xX]\x\+[Ll]\=\>"
+syn match   pythonNumber        "\<0[bB][01]\+[Ll]\=\>"
+syn match   pythonNumber        "\<\%([1-9]\d*\|0\)[Ll]\=\>"
+syn match   pythonNumber        "\<\d\+[jJ]\>"
+syn match   pythonNumber        "\<\d\+[eE][+-]\=\d\+[jJ]\=\>"
 syn match   pythonFloat
       \ "\<\d\+\.\%([eE][+-]\=\d\+\)\=[jJ]\=\%(\W\|$\)\@="
 syn match   pythonFloat
@@ -128,66 +128,66 @@ syn match   pythonFloat
 " http://docs.python.org/3/library/functions.html
 " Python built-in functions are in alphabetical order.
 "
-syn keyword pythonBuiltin	abs all any bin bool bytearray callable chr
-syn keyword pythonBuiltin	classmethod compile complex delattr dict dir
-syn keyword pythonBuiltin	divmod enumerate eval filter float format
-syn keyword pythonBuiltin	frozenset getattr globals hasattr hash
-syn keyword pythonBuiltin	help hex id input int isinstance
-syn keyword pythonBuiltin	issubclass iter len list locals map max
-syn keyword pythonBuiltin	memoryview min next object oct open ord pow
-syn keyword pythonBuiltin	print property range repr reversed round set
-syn keyword pythonBuiltin	setattr slice sorted staticmethod str
-syn keyword pythonBuiltin	sum super tuple type vars zip __import__
-syn keyword pythonBuiltin	ascii bytes exec
+syn keyword pythonBuiltin       abs all any bin bool bytearray callable chr
+syn keyword pythonBuiltin       classmethod compile complex delattr dict dir
+syn keyword pythonBuiltin       divmod enumerate eval filter float format
+syn keyword pythonBuiltin       frozenset getattr globals hasattr hash
+syn keyword pythonBuiltin       help hex id input int isinstance
+syn keyword pythonBuiltin       issubclass iter len list locals map max
+syn keyword pythonBuiltin       memoryview min next object oct open ord pow
+syn keyword pythonBuiltin       print property range repr reversed round set
+syn keyword pythonBuiltin       setattr slice sorted staticmethod str
+syn keyword pythonBuiltin       sum super tuple type vars zip __import__
+syn keyword pythonBuiltin       ascii bytes exec
 " avoid highlighting attributes as builtins
-syn match   pythonAttribute	/\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin transparent
+syn match   pythonAttribute     /\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin transparent
 
 
 " From the 'Python Library Reference' class hierarchy at the bottom.
 " http://docs.python.org/3/library/exceptions.html
 "
 " builtin base exceptions (used mostly as base classes for other exceptions)
-syn keyword pythonExceptions	BaseException Exception
-syn keyword pythonExceptions	ArithmeticError BufferError
-syn keyword pythonExceptions	LookupError
+syn keyword pythonExceptions    BaseException Exception
+syn keyword pythonExceptions    ArithmeticError BufferError
+syn keyword pythonExceptions    LookupError
 
 " builtin exceptions (actually raised)
-syn keyword pythonExceptions	AssertionError AttributeError
-syn keyword pythonExceptions	EOFError FloatingPointError GeneratorExit
-syn keyword pythonExceptions	ImportError IndentationError
-syn keyword pythonExceptions	IndexError KeyError KeyboardInterrupt
-syn keyword pythonExceptions	MemoryError NameError NotImplementedError
-syn keyword pythonExceptions	OSError OverflowError ReferenceError
-syn keyword pythonExceptions	RuntimeError StopIteration SyntaxError
-syn keyword pythonExceptions	SystemError SystemExit TabError TypeError
-syn keyword pythonExceptions	UnboundLocalError UnicodeError
-syn keyword pythonExceptions	UnicodeDecodeError UnicodeEncodeError
-syn keyword pythonExceptions	UnicodeTranslateError ValueError
-syn keyword pythonExceptions	ZeroDivisionError
+syn keyword pythonExceptions    AssertionError AttributeError
+syn keyword pythonExceptions    EOFError FloatingPointError GeneratorExit
+syn keyword pythonExceptions    ImportError IndentationError
+syn keyword pythonExceptions    IndexError KeyError KeyboardInterrupt
+syn keyword pythonExceptions    MemoryError NameError NotImplementedError
+syn keyword pythonExceptions    OSError OverflowError ReferenceError
+syn keyword pythonExceptions    RuntimeError StopIteration SyntaxError
+syn keyword pythonExceptions    SystemError SystemExit TabError TypeError
+syn keyword pythonExceptions    UnboundLocalError UnicodeError
+syn keyword pythonExceptions    UnicodeDecodeError UnicodeEncodeError
+syn keyword pythonExceptions    UnicodeTranslateError ValueError
+syn keyword pythonExceptions    ZeroDivisionError
 
 " builtin OS exceptions in Python 3
-syn keyword pythonExceptions	BlockingIOError BrokenPipeError
-syn keyword pythonExceptions	ChildProcessError ConnectionAbortedError
-syn keyword pythonExceptions	ConnectionError ConnectionRefusedError
-syn keyword pythonExceptions	ConnectionResetError FileExistsError
-syn keyword pythonExceptions	FileNotFoundError InterruptedError
-syn keyword pythonExceptions	IsADirectoryError NotADirectoryError
-syn keyword pythonExceptions	PermissionError ProcessLookupError
-syn keyword pythonExceptions	RecursionError StopAsyncIteration
-syn keyword pythonExceptions	TimeoutError
+syn keyword pythonExceptions    BlockingIOError BrokenPipeError
+syn keyword pythonExceptions    ChildProcessError ConnectionAbortedError
+syn keyword pythonExceptions    ConnectionError ConnectionRefusedError
+syn keyword pythonExceptions    ConnectionResetError FileExistsError
+syn keyword pythonExceptions    FileNotFoundError InterruptedError
+syn keyword pythonExceptions    IsADirectoryError NotADirectoryError
+syn keyword pythonExceptions    PermissionError ProcessLookupError
+syn keyword pythonExceptions    RecursionError StopAsyncIteration
+syn keyword pythonExceptions    TimeoutError
 
 " builtin warnings
-syn keyword pythonExceptions	BytesWarning DeprecationWarning FutureWarning
-syn keyword pythonExceptions	ImportWarning PendingDeprecationWarning
-syn keyword pythonExceptions	RuntimeWarning SyntaxWarning UnicodeWarning
-syn keyword pythonExceptions	UserWarning Warning ResourceWarning
+syn keyword pythonExceptions    BytesWarning DeprecationWarning FutureWarning
+syn keyword pythonExceptions    ImportWarning PendingDeprecationWarning
+syn keyword pythonExceptions    RuntimeWarning SyntaxWarning UnicodeWarning
+syn keyword pythonExceptions    UserWarning Warning ResourceWarning
 
 " trailing whitespace
-syn match   pythonSpaceError	display excludenl "\s\+$"
+syn match   pythonSpaceError    display excludenl "\s\+$"
 
 " mixed tabs and spaces
-syn match   pythonSpaceError	display " \+\t"
-syn match   pythonSpaceError	display "\t\+ "
+syn match   pythonSpaceError    display " \+\t"
+syn match   pythonSpaceError    display "\t\+ "
 
 
 " Sync at the beginning of class, function, or method definition.
@@ -202,37 +202,39 @@ if version >= 508 || !exists("did_python_syn_inits")
   endif
 
   " The default highlight links.  Can be overridden later.
-  HiLink pythonStatement	Statement
-  HiLink pythonAsync		Statement
-  HiLink pythonConditional	Conditional
-  HiLink pythonRepeat		Repeat
-  HiLink pythonOperator		Operator
-  HiLink pythonKeywordArg	Keyword
-  HiLink pythonException	Exception
+  HiLink pythonStatement        Statement
+  HiLink pythonAsync            Statement
+  HiLink pythonConditional      Conditional
+  HiLink pythonRepeat           Repeat
+  HiLink pythonOperator         Operator
+  HiLink pythonKeywordArg       Keyword
+  HiLink pythonException        Exception
 
-  HiLink pythonInclude		Include
-  HiLink pythonDecorator	Macro
+  HiLink pythonInclude          Include
+  HiLink pythonDecorator        Macro
 
-  HiLink pythonFunction		Function
-  HiLink pythonClass            Type
+  HiLink pythonFunctionCall     Function
+  HiLink pythonDeclFunction     Function
+  HiLink pythonDeclDecorator    Function
+  HiLink pythonDeclClass        Type
 
-  HiLink pythonComment		Comment
-  HiLink pythonNumber		Number
-  HiLink pythonFloat		Float
-  HiLink pythonBoolean		Boolean
+  HiLink pythonComment          Comment
+  HiLink pythonNumber           Number
+  HiLink pythonFloat            Float
+  HiLink pythonBoolean          Boolean
 
-  HiLink pythonString		String
-  HiLink pythonRawString	String
-  HiLink pythonQuotes		String
-  HiLink pythonTodo		Todo
+  HiLink pythonString           String
+  HiLink pythonRawString        String
+  HiLink pythonQuotes           String
+  HiLink pythonTodo             Todo
 
-  HiLink pythonTripleQuotes	pythonQuotes
+  HiLink pythonTripleQuotes     pythonQuotes
   HiLink pythonDocString        Comment
 
-  HiLink pythonEscape		Special
-  HiLink pythonBuiltin		Function
-  HiLink pythonExceptions	pythonBuiltin
-  HiLink pythonSpaceError	Error
+  HiLink pythonEscape           Special
+  HiLink pythonBuiltin          Function
+  HiLink pythonExceptions       pythonBuiltin
+  HiLink pythonSpaceError       Error
 
   delcommand HiLink
 endif
