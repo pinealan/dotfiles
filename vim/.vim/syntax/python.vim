@@ -58,7 +58,7 @@ syn match   pythonDecorator     "@" display nextgroup=pythonFunction skipwhite
 " A dot must be allowed because of @MyClass.myfunc decorators.
 syn match   pythonFunctionCall  "\h\w\+\ze("
 syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\w\+"     " Function declaration
-syn match   pythonDeclDecorator "\%(@\s\+\)\@<=\h\%(\w\|\.\)*" " Decorator declaration
+syn match   pythonDeclDecorator "\%(@\s*\)\@<=\h\%(\w\|\.\)*" " Decorator declaration
 syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 
 syn region  pythonFunctionParen start='(' end=')' display contains=ALL
