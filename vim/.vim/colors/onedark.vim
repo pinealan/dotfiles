@@ -66,6 +66,7 @@ let s:background2   = s:darkgrey
 
 let s:string        = s:teagreen
 let s:numeric       = s:carrot
+let s:macro         = s:carrot
 let s:keyword       = s:purple
 let s:comment       = s:green
 
@@ -92,19 +93,19 @@ call s:h("Operator",        { "fg": s:keyword }) " sizeof, +, *, etc.
 call s:h("Keyword",         { "fg": s:gold }) " any other keyword
 call s:h("Exception",       { "fg": s:keyword }) " try, catch, throw
 
-call s:h("PreProc",         { "fg": s:carrot }) " generic Preprocessor
+call s:h("PreProc",         { "fg": s:macro }) " generic Preprocessor
 call s:h("Include",         { "fg": s:blue }) " preprocessor #include
-call s:h("Define",          { "fg": s:carrot }) " preprocessor #define
-call s:h("Macro",           { "fg": s:carrot }) " same as Define
-call s:h("PreCondit",       { "fg": s:carrot }) " preprocessor #if, #else, #endif, etc.
+call s:h("Define",          { "fg": s:macro }) " preprocessor #define
+call s:h("Macro",           { "fg": s:macro }) " same as Define
+call s:h("PreCondit",       { "fg": s:macro }) " preprocessor #if, #else, #endif, etc.
 
-call s:h("Type",            { "fg": s:gold }) " int, long, char, etc.
+call s:h("Type",            { "fg": s:blue }) " int, long, char, etc.
 call s:h("StorageClass",    { "fg": s:keyword }) " static, register, volatile, etc.
 call s:h("Structure",       { "fg": s:keyword }) " struct, union, enum, etc.
 call s:h("Typedef",         { "fg": s:keyword }) " A typedef
 
-call s:h("Special",         { "fg": s:yellow }) " any special symbol
-call s:h("SpecialChar",     { "fg": s:yellow }) " special character in a constant
+call s:h("Special",         { "fg": s:blue }) " any special symbol
+call s:h("SpecialChar",     { "fg": s:blue }) " special character in a constant
 call s:h("Tag",             { "fg": s:pink }) " you can use CTRL-] on this
 call s:h("Delimiter",       {}) " character that needs attention
 call s:h("SpecialComment",  { "fg": s:pink }) " special things inside a comment
@@ -113,7 +114,7 @@ call s:h("Debug",           {}) " debugging statements
 call s:h("Underlined",      { "gui": "underline", "cterm": "underline" }) " text that stands out, HTML links
 call s:h("Ignore",          { "fg": s:pink }) " left blank, hidden
 call s:h("Error",           { "fg": s:red }) " any erroneous construct
-call s:h("Todo",            { "fg": s:pink }) " anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+call s:h("Todo",            { "fg": s:comment, "cterm": "bold", "gui": "bold" }) " anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
 
 " [ Highlighting Groups (descriptions and ordering from `:h highlight-groups`) ]

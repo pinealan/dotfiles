@@ -87,7 +87,7 @@ call s:h("Boolean",         { "fg": s:numeric }) " a boolean constant: TRUE, fal
 call s:h("Float",           { "fg": s:numeric }) " a floating point constant: 2.3e10
 
 call s:h("Identifier",      { "fg": s:pink }) " any variable name
-call s:h("Function",        { "fg": s:blue }) " function name (also: methods for classes)
+call s:h("Function",        { "fg": s:white }) " function name (also: methods for classes)
 
 call s:h("Statement",       { "fg": s:keyword }) " any statement
 call s:h("Conditional",     { "fg": s:keyword }) " if, then, else, endif, switch, etc.
@@ -103,7 +103,7 @@ call s:h("Define",          { "fg": s:carrot }) " preprocessor #define
 call s:h("Macro",           { "fg": s:carrot }) " same as Define
 call s:h("PreCondit",       { "fg": s:carrot }) " preprocessor #if, #else, #endif, etc.
 
-call s:h("Type",            { "fg": s:gold }) " int, long, char, MyClass etc.
+call s:h("Type",            { }) " int, long, char, MyClass etc.
 call s:h("StorageClass",    { "fg": s:keyword }) " static, register, volatile, etc.
 call s:h("Structure",       { "fg": s:keyword }) " struct, union, enum, etc.
 call s:h("Typedef",         { "fg": s:keyword }) " A typedef
