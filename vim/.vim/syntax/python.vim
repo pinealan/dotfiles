@@ -54,16 +54,24 @@ syn keyword pythonAsync		async await
 
 syn match   pythonDecorator	"@" display nextgroup=pythonFunction skipwhite
 
-" The zero-length non-grouping match before the function name is
-" extremely important in pythonFunction.  Without it, everything is
-" interpreted as a function inside the contained environment of
-" doctests.
+
 " A dot must be allowed because of @MyClass.myfunc decorators.
-syn match   pythonFunction
-      \ "\%(\%(def\s\|class\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained
+syn match   pythonFunction "\h\w\+\ze("
+syn match   pythonFunction "\%(def\s\+\)\@<=\h\w\+"     " Function declaration
+syn match   pythonFunction "\%(@\s\+\)\@<=\h\%(\w\|\)*" " Decorator declaration
+syn match   pythonClass    "\%(class\s\+\)\@<=\h\w\+"
+
+syn region  pythonFunctionCall start='(' end=')' display contains=ALL
+syn match   pythonKeywordArg /\i*\ze=[^=]/ contained
+
+
+" DocStrings
+syn region  pythonDocString start="'''" end="'''" display
+syn region  pythonDocString start='"""' end='"""' display
 
 syn match   pythonComment	"#.*$" contains=pythonTodo,@Spell
 syn keyword pythonTodo		FIXME NOTE NOTES TODO XXX contained
+
 
 " Triple-quoted strings can contain doctests.
 syn region  pythonString matchgroup=pythonQuotes
@@ -86,6 +94,7 @@ syn match   pythonEscape	"\%(\\u\x\{4}\|\\U\x\{8}\)" contained
 " Python allows case-insensitive Unicode IDs: http://www.unicode.org/charts/
 syn match   pythonEscape	"\\N{\a\+\%(\s\a\+\)*}" contained
 syn match   pythonEscape	"\\$"
+
 
 " It is very important to understand all details before changing the
 " regular expressions below or their order.
@@ -114,6 +123,7 @@ syn match   pythonFloat
 syn match   pythonFloat
       \ "\%(^\|\W\)\zs\d*\.\d\+\%([eE][+-]\=\d\+\)\=[jJ]\=\>"
 
+
 " http://docs.python.org/3/library/constants.html
 " http://docs.python.org/3/library/functions.html
 " Python built-in functions are in alphabetical order.
@@ -131,6 +141,7 @@ syn keyword pythonBuiltin	sum super tuple type vars zip __import__
 syn keyword pythonBuiltin	ascii bytes exec
 " avoid highlighting attributes as builtins
 syn match   pythonAttribute	/\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin transparent
+
 
 " From the 'Python Library Reference' class hierarchy at the bottom.
 " http://docs.python.org/3/library/exceptions.html
@@ -178,6 +189,7 @@ syn match   pythonSpaceError	display excludenl "\s\+$"
 syn match   pythonSpaceError	display " \+\t"
 syn match   pythonSpaceError	display "\t\+ "
 
+
 " Sync at the beginning of class, function, or method definition.
 syn sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s\+\h\w*\s*("
 
@@ -195,28 +207,31 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonConditional	Conditional
   HiLink pythonRepeat		Repeat
   HiLink pythonOperator		Operator
+  HiLink pythonKeywordArg	Keyword
   HiLink pythonException	Exception
+
   HiLink pythonInclude		Include
   HiLink pythonDecorator	Macro
 
   HiLink pythonFunction		Function
+  HiLink pythonClass            Type
 
   HiLink pythonComment		Comment
   HiLink pythonNumber		Number
   HiLink pythonFloat		Float
   HiLink pythonBoolean		Boolean
 
-  HiLink pythonStatement	Statement
   HiLink pythonString		String
   HiLink pythonRawString	String
   HiLink pythonQuotes		String
   HiLink pythonTodo		Todo
 
   HiLink pythonTripleQuotes	pythonQuotes
+  HiLink pythonDocString        Comment
 
   HiLink pythonEscape		Special
   HiLink pythonBuiltin		Function
-  HiLink pythonExceptions	Structure
+  HiLink pythonExceptions	pythonBuiltin
   HiLink pythonSpaceError	Error
 
   delcommand HiLink
