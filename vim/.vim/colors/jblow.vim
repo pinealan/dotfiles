@@ -14,7 +14,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name="solarized_cold"
+let g:colors_name="jblow"
 
 " Helper function to match highlight group with colors in all modes
 " gui:      Full RGB, 24 bit
@@ -66,7 +66,6 @@ let s:string        = s:teagreen
 let s:numeric       = s:cyan
 let s:keyword       = s:white
 let s:comment       = s:green
-let s:type          = s:dirt
 
 let s:content0      = s:skin
 let s:content1      = s:lightgrey
@@ -95,7 +94,7 @@ call s:h("Conditional",     { "fg": s:keyword }) " if, then, else, endif, switch
 call s:h("Repeat",          { "fg": s:keyword }) " for, do, while, etc.
 call s:h("Label",           { "fg": s:keyword }) " case, default, etc.
 call s:h("Operator",        { "fg": s:keyword }) " sizeof, +, *, etc.
-call s:h("Keyword",         { "fg": s:keyword }) " any other keyword
+call s:h("Keyword",         { "fg": s:dirt }) " any other keyword
 call s:h("Exception",       { "fg": s:keyword }) " try, catch, throw
 
 call s:h("PreProc",         { "fg": s:carrot }) " generic Preprocessor
@@ -104,15 +103,15 @@ call s:h("Define",          { "fg": s:carrot }) " preprocessor #define
 call s:h("Macro",           { "fg": s:carrot }) " same as Define
 call s:h("PreCondit",       { "fg": s:carrot }) " preprocessor #if, #else, #endif, etc.
 
-call s:h("Type",            { "fg": s:type }) " int, long, char, etc.
+call s:h("Type",            { "fg": s:gold }) " int, long, char, MyClass etc.
 call s:h("StorageClass",    { "fg": s:keyword }) " static, register, volatile, etc.
 call s:h("Structure",       { "fg": s:keyword }) " struct, union, enum, etc.
 call s:h("Typedef",         { "fg": s:keyword }) " A typedef
 
-call s:h("Special",         { "fg": s:yellow }) " any special symbol
-call s:h("SpecialChar",     { "fg": s:yellow }) " special character in a constant
+call s:h("Special",         {}) " any special symbol
+call s:h("SpecialChar",     {}) " special character in a constant
 call s:h("Tag",             { "fg": s:pink }) " you can use CTRL-] on this
-call s:h("Delimiter",       { "fg": s:blue }) " character that needs attention
+call s:h("Delimiter",       {}) " character that needs attention
 call s:h("SpecialComment",  { "fg": s:pink }) " special things inside a comment
 call s:h("Debug",           {}) " debugging statements
 
