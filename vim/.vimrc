@@ -200,7 +200,7 @@ let g:netrw_sort_direction='reverse'
 
 
 "===[ Remap ]===
-let mapleader="-"
+let mapleader=" "
 noremap ; :
 noremap : ;
 
@@ -235,8 +235,8 @@ noremap    U   <c-r>
 noremap <c-r>     U
 
 " Shortcut
-noremap <space>     :setlocal hlsearch!<cr>
-noremap <tab>       :setlocal wrap!<cr>
+noremap <tab>       :setlocal hlsearch!<cr>
+noremap <s-tab>     :setlocal wrap!<cr>
 noremap ['          :vsp<cr>
 noremap ["          :sp<cr>
 noremap [h          <c-w>h
@@ -261,12 +261,13 @@ nnoremap <c-p>      :cprev<cr>
 nnoremap <c-j>      <c-x>
 nnoremap <c-k>      <c-a>
 
-nnoremap <leader>m  :silent make \| redraw! \| cc<cr>
-nnoremap <leader>ec :vsplit /home/alan/.vimrc<cr>
-nnoremap <leader>sc :source /home/alan/.vimrc<cr>
+nnoremap <leader>q      :bdelete<cr>
+nnoremap <leader>m      :silent make \| redraw! \| cc<cr>
+nnoremap <leader>e      :vsplit /home/alan/.vimrc<cr>
+nnoremap <leader>s      :source /home/alan/.vimrc<cr>
+nnoremap <leader><tab>  :call FastEsc()<cr>
 
 noremap <F9>        :call EchoHighlightName()<cr>
-noremap <s-tab>     :call FastEsc()<cr>
 
 function! EchoHighlightName()
     let id  = synID(line("."), col("."), 1)
