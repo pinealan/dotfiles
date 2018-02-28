@@ -98,6 +98,8 @@ hi YcmWarningSection cterm=underline ctermfg=196
 let g:python_no_doctest_highlight = 1
 let g:python_no_builtin_highlight = 1
 
+let g:tex_no_error = 1
+
 
 "===[ UI/UX ]===
 set backspace=eol,start,indent
@@ -235,8 +237,8 @@ noremap    U   <c-r>
 noremap <c-r>     U
 
 " Shortcut
-noremap <tab>       :setlocal hlsearch!<cr>
-noremap <s-tab>     :setlocal wrap!<cr>
+noremap <tab>       :setlocal wrap!<cr>
+noremap <s-tab>     :setlocal hlsearch!<cr>
 noremap ['          :vsp<cr>
 noremap ["          :sp<cr>
 noremap [h          <c-w>h
