@@ -169,7 +169,7 @@ call s:h("TabLine",         { "fg": s:content2 }) " tab pages line, not active t
 call s:h("TabLineFill",     {}) " tab pages line, where there are no labels
 call s:h("TabLineSel",      { "fg": s:content0 }) " tab pages line, active tab page label
 
-call s:h("Title",           { "fg": s:teagreen }) " titles for output from ":set all", ":autocmd" etc.
+call s:h("Title",           { "fg": s:pink }) " titles for output from ':set all', ':autocmd' etc.
 call s:h("Visual",          { "bg": s:background0 }) " Visual mode selection
 call s:h("VisualNOS",       { "bg": s:background1 }) " Visual mode selection when vim is 'Not Owning the Selection'. Only X11 Gui's gui-x11 and xterm-clipboard supports this.
 call s:h("WarningMsg",      { "fg": s:yellow }) " warning messages
