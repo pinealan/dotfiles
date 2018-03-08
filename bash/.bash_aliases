@@ -11,9 +11,13 @@ alias lhid='ls -la | grep \\.'
 
 # System Admin
 alias h='htop'
-alias dd='dd status=progress'
+alias dd='sudo dd status=progress'
 alias df='df -h'
 alias ds='du -sh *'
+alias lsblk='lsblk -o NAME,LABEL,FSTYPE,SIZE,TYPE,MOUNTPOINT'
+alias fdisk='sudo fdisk'
+alias mount='sudo mount'
+
 alias scs='systemctl status'
 alias scstart='sudo systemctl start'
 alias scstop='sudo systemctl stop'
