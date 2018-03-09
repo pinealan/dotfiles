@@ -38,7 +38,7 @@ override_git_prompt_colors() {
   # GIT_PROMPT_UPSTREAM=" {${Blue}_UPSTREAM_${ResetColor}}"
 
   ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
-  GIT_PROMPT_START_USER="${Green}\u${White}@${Green}\h${White}: ${BoldBlue}${PathShort}${ResetColor}"
+  GIT_PROMPT_START_USER="${Green}\u${White}@${Green}\h ${BoldBlue}${PathShort}${ResetColor}"
   GIT_PROMPT_START_ROOT="${GIT_PROMPT_START_USER}"
   GIT_PROMPT_END_USER=" _LAST_COMMAND_INDICATOR_\n${Cyan}${Time12a}${BoldYellow} $ ${ResetColor}"
   GIT_PROMPT_END_ROOT=" _LAST_COMMAND_INDICATOR_\n${Cyan}${Time12a}${ResetColor} # "

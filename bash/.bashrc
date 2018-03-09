@@ -36,16 +36,16 @@ else
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\e[01;32m\]\u\[\e[00m\]@\[\e[01;32m\]\h\[\e[00m\]: \[\e[01;34m\]\w\[\e[00m\]\n\[\e[01;33m\]\$\[\e[00m\] '
+    PS1="\[\e[01;32m\]\u\[\e[00m\]@\[\e[01;32m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\]\n\[\e[01;33m\]\$\[\e[00m\] "
 else
-    PS1='\u@\h:\w\$ '
+    PS1="\u@\h \w\n\$ "
 fi
 unset color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]$PS1"
     ;;
 esac
 
