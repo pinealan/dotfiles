@@ -101,7 +101,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Machine dependent bash files (i.e. local bashrc, local aliases)
-for f in `find ~/.local -maxdepth 1 -name bash*`; do
-    . $f
-done
+if [ -d ~/.local ]; then
+    for f in `find ~/.local -maxdepth 1 -name bash*`; do
+        . $f
+    done
+fi
 
