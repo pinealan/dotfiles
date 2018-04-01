@@ -11,8 +11,8 @@ export HISTCONTROL=ignoreboth:ignoredups:erasedups
 shopt -s histappend
 
 # set history length, see bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

@@ -16,7 +16,8 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# add to PATH directories
+# Extend PATH only for level 1 shells, TMUX shells are level 2 and inhernit
+# their PATH from their parent. This avoids duplicate entries
 if [ -z "$TMUX" ]; then
     # prepend PATH with user's private bin directories
     PATH="$HOME/bin:$HOME/.local/bin:$PATH"
