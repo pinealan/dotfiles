@@ -102,7 +102,7 @@ fi
 
 # Machine dependent bash files (i.e. local bashrc, local aliases)
 if [ -d ~/.local ]; then
-    for f in `find ~/.local -maxdepth 1 -name bash*`; do
+    for f in `find ~/.local -maxdepth 1 -name '.bash*'`; do
         . $f
     done
 fi

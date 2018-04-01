@@ -22,7 +22,7 @@ if [ -z "$TMUX" ]; then
     # prepend PATH with user's private bin directories
     PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-    if [ -f "$HOME/.local/profile" ]; then
-        . "$HOME/.local/profile"
+    if [ -f "$HOME/.local/.profile" ]; then
+        . "$HOME/.local/.profile"
     fi
 fi
