@@ -68,14 +68,14 @@ let s:background2   = s:darkgrey
 let s:string        = s:teagreen
 let s:numeric       = s:carrot
 let s:macro         = s:carrot
-let s:keyword       = s:purple
+let s:statement     = s:purple
 let s:comment       = s:content2
 
 
 " [ Syntax Groups (descriptions and ordering from `:h w18`) ]
 "
 call s:h("Comment",         { "fg": s:comment, "gui": "italic" }) " any comment
-call s:h("Constant",        { "fg": s:string }) " any constant
+call s:h("Constant",        { "fg": s:numeric }) " any constant
 call s:h("String",          { "fg": s:string }) " a string constant: 'this is a string'
 call s:h("Character",       { "fg": s:string }) " a character constant: 'c', '\n'
 call s:h("Number",          { "fg": s:numeric }) " a number constant: 234, 0xff
@@ -85,13 +85,13 @@ call s:h("Float",           { "fg": s:numeric }) " a floating point constant: 2.
 call s:h("Identifier",      { "fg": s:pink }) " any variable name
 call s:h("Function",        { "fg": s:blue }) " function name (also: methods for classes)
 
-call s:h("Statement",       { "fg": s:keyword }) " any statement
-call s:h("Conditional",     { "fg": s:keyword }) " if, then, else, endif, switch, etc.
-call s:h("Repeat",          { "fg": s:keyword }) " for, do, while, etc.
-call s:h("Label",           { "fg": s:keyword }) " case, default, etc.
-call s:h("Operator",        { "fg": s:keyword }) " sizeof, +, *, etc.
-call s:h("Keyword",         { "fg": s:gold }) " any other keyword
-call s:h("Exception",       { "fg": s:keyword }) " try, catch, throw
+call s:h("Statement",       { "fg": s:statement })  " any statement
+call s:h("Conditional",     { "fg": s:statement })  " if, then, else, endif, switch, etc.
+call s:h("Repeat",          { "fg": s:statement })  " for, do, while, etc.
+call s:h("Label",           { "fg": s:statement })  " case, default, etc.
+call s:h("Operator",        { "fg": s:statement })  " sizeof, +, *, etc.
+call s:h("Keyword",         { "fg": s:gold })       " any other statement
+call s:h("Exception",       { "fg": s:statement })  " try, catch, throw
 
 call s:h("PreProc",         { "fg": s:macro }) " generic Preprocessor
 call s:h("Include",         { "fg": s:blue }) " preprocessor #include
@@ -100,9 +100,9 @@ call s:h("Macro",           { "fg": s:macro }) " same as Define
 call s:h("PreCondit",       { "fg": s:macro }) " preprocessor #if, #else, #endif, etc.
 
 call s:h("Type",            { "fg": s:gold }) " int, long, char, etc.
-call s:h("StorageClass",    { "fg": s:keyword }) " static, register, volatile, etc.
-call s:h("Structure",       { "fg": s:keyword }) " struct, union, enum, etc.
-call s:h("Typedef",         { "fg": s:keyword }) " A typedef
+call s:h("StorageClass",    { "fg": s:statement }) " static, register, volatile, etc.
+call s:h("Structure",       { "fg": s:statement }) " struct, union, enum, etc.
+call s:h("Typedef",         { "fg": s:statement }) " A typedef
 
 call s:h("Special",         { "fg": s:content1 }) " any special symbol
 call s:h("SpecialChar",     { "fg": s:content1 }) " special character in a constant
