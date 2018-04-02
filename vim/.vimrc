@@ -12,9 +12,12 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'ap/vim-buftabline'
+
 Plugin 'othree/html5.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'cespare/vim-toml'
+
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
