@@ -90,7 +90,7 @@ call s:h("Conditional",     { "fg": s:statement })  " if, then, else, endif, swi
 call s:h("Repeat",          { "fg": s:statement })  " for, do, while, etc.
 call s:h("Label",           { "fg": s:statement })  " case, default, etc.
 call s:h("Operator",        { "fg": s:statement })  " sizeof, +, *, etc.
-call s:h("Keyword",         { "fg": s:gold })       " any other statement
+call s:h("Keyword",         { "fg": s:statement })       " any other statement
 call s:h("Exception",       { "fg": s:statement })  " try, catch, throw
 
 call s:h("PreProc",         { "fg": s:macro }) " generic Preprocessor

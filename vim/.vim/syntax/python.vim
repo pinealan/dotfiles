@@ -209,7 +209,7 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonConditional      Conditional
   HiLink pythonRepeat           Repeat
   HiLink pythonOperator         Operator
-  HiLink pythonKeywordArg       Keyword
+  HiLink pythonKeywordArg       Type
   HiLink pythonException        Exception
 
   HiLink pythonInclude          Include
