@@ -163,7 +163,7 @@ set smartindent
 set smarttab
 set expandtab
 set shiftwidth=4
-set softtabstop=4
+set softtabstop=-1
 
 exec "set listchars=tab:\u2015\u2015,trail:\uB7"
 set list
