@@ -37,16 +37,17 @@ vmap    <expr> <D>     DVB_Duplicate()
 vmap    <expr> <C-D>   DVB_Duplicate()
 
 " NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup nerdtree_user
+    autocmd!
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 let NERDTreeIgnore=['\.log$', '__pycache__', '\.pyc$', '.exe$', '\.png$', '\.jpg$', '\.jpeg$']
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
-noremap  <c-e> :NERDTreeToggle<cr>
-noremap! <c-e> :NERDTreeToggle<cr>
+nnoremap  <c-e> :NERDTreeToggle<cr>
 
 " YouCompleteMe
 let g:ycm_min_num_of_chars_for_completion = 3
@@ -65,7 +66,7 @@ let g:ycm_filetype_blacklist = {
     \ 'html': 1,
     \ 'gitconfig': 1,
     \ 'tex': 1,
-    \ 'bib': 1,
+    \ 'bib': 0,
     \}
 
 let g:ycm_error_symbol = 'x'
@@ -212,14 +213,13 @@ noremap : ;
 
 " Homerow keys
 noremap H 0
-noremap J L
-noremap K H
+noremap J <c-e>
+noremap K <c-y>
 noremap L $
 
 noremap $ J
 noremap 0 K
 
-" Unset defaults
 inoremap jk         <esc>
 inoremap kj         <esc>
 inoremap JK         <esc>
@@ -243,8 +243,6 @@ noremap <c-r>     U
 " Shortcut
 noremap <tab>       :setlocal wrap!<cr>
 noremap <s-tab>     :setlocal hlsearch!<cr>
-noremap ['          :vsp<cr>
-noremap ["          :sp<cr>
 noremap [h          <c-w>h
 noremap [j          <c-w>j
 noremap [k          <c-w>k
