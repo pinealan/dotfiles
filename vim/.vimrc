@@ -1,6 +1,6 @@
 "===[ Plugin ]===
-set nocompatible
 filetype off
+set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -21,10 +21,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
-
-" reset vundle settings
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 syntax on
 
 " NERDTree
@@ -60,11 +57,16 @@ let g:ycm_filetype_blacklist = {
     \ 'bib': 0,
     \}
 
+" YCM diagnostic
+hi YcmErrorSection cterm=underline ctermfg=196
+hi YcmWarningSection cterm=underline ctermfg=196
+
 let g:ycm_error_symbol = 'x'
 let g:ycm_warning_symbol = '>'
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 
+" YCM paths
 let g:ycm_global_ycm_extra_conf = "/home/alan/.vim/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_filepath_completion_use_working_dir = 1
@@ -82,12 +84,12 @@ hi default link BufTabLineFill TabLineFill
 
 let g:buftabline_numbers = 1
 
+" HTML5
+let g:html_exclude_tags = ['html', 'body', 'head']
+
 
 "===[ Color scheme ]===
 colorscheme onedark
-
-hi YcmErrorSection cterm=underline ctermfg=196
-hi YcmWarningSection cterm=underline ctermfg=196
 
 
 "===[ Syntax ]===
@@ -197,7 +199,7 @@ let g:netrw_sort_by='time'
 let g:netrw_sort_direction='reverse'
 
 
-"===[ Remap ]===
+"===[ Mapping ]===
 let mapleader=" "
 noremap ; :
 noremap : ;
