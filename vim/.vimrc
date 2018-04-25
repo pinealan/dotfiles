@@ -263,8 +263,8 @@ nnoremap <leader>e      :vsplit /home/alan/.vimrc<cr>
 nnoremap <leader>s      :source /home/alan/.vimrc<cr>
 nnoremap <leader><tab>  :call ToggleFastEsc()<cr>
 
-noremap <leader>=   :Tabularize /=
-noremap <leader>\   :Tabularize /|
+noremap <leader>=   :Tabularize /=<cr>
+noremap <leader>\   :Tabularize /\|<cr>
 noremap <F9>        :call EchoHighlightName()<cr>
 
 function! EchoHighlightName()
