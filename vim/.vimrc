@@ -7,11 +7,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'ap/vim-buftabline'
+Plugin 'godlygeek/tabular'
 
 Plugin 'othree/html5.vim'
 Plugin 'leafgarland/typescript-vim'
@@ -26,15 +26,6 @@ call vundle#end()
 filetype plugin on
 filetype indent on
 syntax on
-
-" Dragvisuals
-runtime plugin/dragvisuals.vim
-vmap    <expr> <left>  DVB_Drag('left')
-vmap    <expr> <right> DVB_Drag('right')
-vmap    <expr> <down>  DVB_Drag('down')
-vmap    <expr> <up>    DVB_Drag('up')
-vmap    <expr> <D>     DVB_Duplicate()
-vmap    <expr> <C-D>   DVB_Duplicate()
 
 " NERDTree
 augroup nerdtree_user
@@ -213,8 +204,8 @@ noremap : ;
 
 " Homerow keys
 noremap H 0
-noremap J <c-e>
-noremap K <c-y>
+noremap J <c-e>j
+noremap K <c-y>k
 noremap L $
 
 noremap $ J
@@ -258,7 +249,6 @@ nnoremap <c-q>      :q<cr>
 
 nnoremap <c-l>      :bnext<cr>
 nnoremap <c-h>      :bprev<cr>
-
 nnoremap <c-n>      :cnext<cr>
 nnoremap <c-p>      :cprev<cr>
 
@@ -269,8 +259,10 @@ nnoremap <leader>q      :bdelete<cr>
 nnoremap <leader>m      :silent make \| redraw! \| cc<cr>
 nnoremap <leader>e      :vsplit /home/alan/.vimrc<cr>
 nnoremap <leader>s      :source /home/alan/.vimrc<cr>
-nnoremap <leader><tab>  :call FastEsc()<cr>
+nnoremap <leader><tab>  :call ToggleFastEsc()<cr>
 
+noremap <leader>=   :Tabularize /=
+noremap <leader>\   :Tabularize /|
 noremap <F9>        :call EchoHighlightName()<cr>
 
 function! EchoHighlightName()
@@ -286,7 +278,7 @@ function! EchoHighlightName()
     echo "hi: ".hi." \| lo: ".lo." \| trans: ".tr." \| fg: ".fg." \| bg: ".bg
 endfunction
 
-function! FastEsc()
+function! ToggleFastEsc()
     if mapcheck("jk", "i") ==? ""
         inoremap jk <esc>
         inoremap kj <esc>
