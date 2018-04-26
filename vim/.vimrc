@@ -7,24 +7,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'henrik/vim-indexed-search'
-Plugin 'ap/vim-buftabline'
-Plugin 'godlygeek/tabular'
-
-Plugin 'othree/html5.vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'cespare/vim-toml'
-
-Plugin 'Valloric/YouCompleteMe'
-
-call vundle#end()
-filetype plugin indent on
-syntax on
-
-" NERDTree
+" NERDTree {{{
 augroup nerdtree_user
     autocmd!
     autocmd StdinReadPre * let s:std_in=1
@@ -36,8 +19,33 @@ let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
 nnoremap  <c-e> :NERDTreeToggle<cr>
+" }}}
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'henrik/vim-indexed-search'
+Plugin 'ap/vim-buftabline'
+" BufTabLine {{{
+hi default link BufTabLineCurrent TabLineSel
+hi default link BufTabLineActive TabLine
+hi default link BufTabLineHidden TabLine
+hi default link BufTabLineFill TabLineFill
 
-" YouCompleteMe
+let g:buftabline_numbers = 1
+" }}}
+Plugin 'godlygeek/tabular'
+" Tabularize {{{{{{{{{
+noremap <leader>=   :Tabularize /=<cr>
+noremap <leader>\   :Tabularize /\|<cr>
+" }}}}}}}}}
+Plugin 'othree/html5.vim'
+" HTML5 {{{
+let g:html_exclude_tags = ['html', 'body', 'head']
+" }}}
+Plugin 'leafgarland/typescript-vim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'cespare/vim-toml'
+Plugin 'Valloric/YouCompleteMe'
+" YouCompleteMe {{{
 let g:ycm_min_num_of_chars_for_completion = 3
 let g:ycm_max_num_candidates = 25
 let g:ycm_filetype_blacklist = {
@@ -75,106 +83,67 @@ let g:ycm_python_binary_path = '/usr/bin/python3'
 
 nnoremap <leader>0      :let g:ycm_auto_trigger=0<cr>
 nnoremap <leader>1      :let g:ycm_auto_trigger=1<cr>
+" }}}
 
-" BufTabLine
-hi default link BufTabLineCurrent TabLineSel
-hi default link BufTabLineActive TabLine
-hi default link BufTabLineHidden TabLine
-hi default link BufTabLineFill TabLineFill
-
-let g:buftabline_numbers = 1
-
-" HTML5
-let g:html_exclude_tags = ['html', 'body', 'head']
+call vundle#end()
+filetype plugin indent on
+syntax on
 
 
 "===[ Color scheme ]===
 colorscheme onedark
+set background=dark
 
 
-"===[ Syntax ]===
+"===[ Default Syntax Package Options ]===
 let g:python_no_doctest_highlight = 1
 let g:python_no_builtin_highlight = 1
 
 let g:tex_no_error = 1
 
 
-"===[ UI/UX ]===
+"===[ Options ]===
 set backspace=eol,start,indent
 set cursorline
 set hidden
 set history=500
+set hlsearch
 set incsearch
+set lazyredraw
 set mouse=a
 set noshowmatch
 set number
 set relativenumber
+set scrolloff=7
 set whichwrap+=<,>,h,l
 
-
-"===[ Statusline ]===
 set laststatus=2
-set statusline=
-set statusline+=%#StatusLineGit#
-set statusline+=%{StatusLineGit()}
-set statusline+=%#User{1}#
-set statusline+=\ %{HasPaste()}
-set statusline+=%r%m%t
-set statusline+=%=
-set statusline+=%{GetCwd()}
-set statusline+=\ %y
-set statusline+=\ %l,\%-2c
-set statusline+=\ \|%3p%%
+set statusline=%#StatusLineGit#%{GitBranch()}%#User{1}#\ %{HasPaste()}%r%m%t%=%{ShortCwd()}\ %y\ %l,\%-2c\ \|%3p%%
 
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE'
-    endif
-    return ''
-endfunction
+set splitright
 
-function! GetCwd()
-    let cwd=getcwd()
-    let cwd=substitute(cwd, '/home/.\{-}/', '~/', '')
-    let cwd=substitute(cwd, '[^~].*\(.\{25\}$\)\@=', '/...', '')
-    let cwd=substitute(cwd, '\.\.\.[^/]*', '...', '')
-    return cwd
-endfunction
-
-function! GitBranch()
-    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatusLineGit()
-    let l:branchname=GitBranch()
-    return strlen(l:branchname)>0?'  '.l:branchname.' ':''
-endfunction
-
-
-"===[ Tab, indent, wrap ]===
-set autoindent
-set smartindent
+" Tab, indent, wrap
 set smarttab
-set expandtab
 set shiftwidth=4
 set softtabstop=-1
 
-exec "set listchars=tab:\u2015\u2015,trail:\uB7"
+set autoindent
+set smartindent
+set expandtab
 set list
+exec "set listchars=tab:\u2015\u2015,trail:\uB7"
 
 set colorcolumn=81
 set formatoptions+=t
 set textwidth=100
 set wrap
 
-
-"===[ Regex ]===
+" Regex
 set ignorecase
 set magic
 set smartcase
 
-
-"===[ Files, backups and undo ]===
+" Files, backups and undo
 set fileformat=unix
 set fileencoding=utf8
 set encoding=utf8
@@ -184,39 +153,73 @@ set noswapfile
 " Trim trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-
-"===[ File explorer (netrw) ]===
+" Command-line completion
 set path+=**
 set wildmenu
-set helpheight=35
-
-let g:netrw_banner=0
-let g:netrw_liststyle=3
-let g:netrw_browse_split=1
-let g:netrw_altv=1
-let g:netrw_winsize=25
-let g:netrw_sort_by='time'
-let g:netrw_sort_direction='reverse'
+set wildignore=__pycache__,*.o,*.pyc,*.git,*.exe
+set helpheight=30
 
 
 "===[ Mapping ]===
 let mapleader=" "
+
+" Thank me later
 noremap ; :
 noremap : ;
 
-" Homerow keys
+" Homerow navigation
 noremap H 0
-noremap J <c-e>j
-noremap K <c-y>k
+noremap J L
+noremap K H
 noremap L $
+noremap <c-j> <c-d>
+noremap <c-k> <c-u>
 
 noremap $ J
 noremap 0 K
 
-inoremap jk         <esc>
-inoremap kj         <esc>
-inoremap JK         <esc>
-inoremap KJ         <esc>
+" Fast <esc>
+inoremap jk     <esc>
+inoremap kj     <esc>
+
+" Swap undo
+noremap    U   <c-r>
+noremap <c-r>     U
+
+" Windows navigation
+noremap [h          <c-w>h
+noremap [j          <c-w>j
+noremap [k          <c-w>k
+noremap [l          <c-w>l
+noremap [<s-h>      <c-w>9<
+noremap [<s-j>      <c-w>9-
+noremap [<s-k>      <c-w>9+
+noremap [<s-l>      <c-w>9>
+
+" Buffer/Error list shortcuts
+noremap <c-s>      :update<cr>
+noremap <c-q>      :q<cr>
+noremap <c-l>      :bnext<cr>
+noremap <c-h>      :bprev<cr>
+noremap <c-n>      :cnext<cr>
+noremap <c-p>      :cprev<cr>
+
+" Normal mode command shortchuts
+nnoremap <cr>               o<esc>
+nnoremap <tab>              :setlocal wrap!<cr>
+nnoremap <leader>s          :setlocal spell!<cr>
+nnoremap <leader>w          :w !sudo tee % > /dev/null
+nnoremap <leader><tab>      :call ToggleFastEsc()<cr>
+nnoremap <leader><leader>   :setlocal hlsearch!<cr>
+
+nnoremap <silent> -             :call Underline('-')<cr>
+nnoremap <silent> =             :call Underline('=')<cr>
+nnoremap <silent> <leader>h     :echo HighlightName()<cr>
+nnoremap <silent> <leader>d     :bdelete<cr>
+nnoremap <silent> <leader>m     :silent make \| redraw! \| cc<cr>
+nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
+nnoremap <silent> <leader>e     :vsplit /home/alan/.vimrc<cr>
+nnoremap <silent> <leader>p     :setlocal paste!<cr>
 
 " Fix tmux
 noremap     <esc>OA     <up>
@@ -229,73 +232,6 @@ noremap!    <esc>OD     <left>
 noremap!    <esc>OC     <right>
 noremap!    <esc>[3~    <del>
 
-" Swap undo
-noremap    U   <c-r>
-noremap <c-r>     U
-
-" Shortcut
-noremap <tab>       :setlocal wrap!<cr>
-noremap <s-tab>     :setlocal hlsearch!<cr>
-noremap [h          <c-w>h
-noremap [j          <c-w>j
-noremap [k          <c-w>k
-noremap [l          <c-w>l
-noremap [<s-h>      <c-w>9<
-noremap [<s-j>      <c-w>9-
-noremap [<s-k>      <c-w>9+
-noremap [<s-l>      <c-w>9>
-
-nnoremap <cr>       o<esc>
-nnoremap <c-s>      :update<cr>
-nnoremap <c-q>      :q<cr>
-
-nnoremap <c-l>      :bnext<cr>
-nnoremap <c-h>      :bprev<cr>
-nnoremap <c-n>      :cnext<cr>
-nnoremap <c-p>      :cprev<cr>
-
-nnoremap <c-j>      <c-x>
-nnoremap <c-k>      <c-a>
-
-nnoremap <leader>q      :bdelete<cr>
-nnoremap <leader>m      :silent make \| redraw! \| cc<cr>
-nnoremap <leader>e      :vsplit /home/alan/.vimrc<cr>
-nnoremap <leader>s      :source /home/alan/.vimrc<cr>
-nnoremap <leader><tab>  :call ToggleFastEsc()<cr>
-
-noremap <leader>=   :Tabularize /=<cr>
-noremap <leader>\   :Tabularize /\|<cr>
-noremap <F9>        :call EchoHighlightName()<cr>
-
-function! EchoHighlightName()
-    let id  = synID(line("."), col("."), 1)
-    let tid = synID(line("."), col("."), 0)
-
-    let fg  = synIDattr(synIDtrans(id), "fg")
-    let bg  = synIDattr(synIDtrans(id), "bg")
-    let hi  = synIDattr(id, "name")
-    let lo  = synIDattr(synIDtrans(id), "name")
-    let tr  = synIDattr(tid, "name")
-
-    echo "hi: ".hi." \| lo: ".lo." \| trans: ".tr." \| fg: ".fg." \| bg: ".bg
-endfunction
-
-function! ToggleFastEsc()
-    if mapcheck("jk", "i") ==? ""
-        inoremap jk <esc>
-        inoremap kj <esc>
-        inoremap JK <esc>
-        inoremap KJ <esc>
-        echom "Enabled fast Esc"
-    else
-        iunmap jk
-        iunmap kj
-        iunmap JK
-        iunmap KJ
-        echom "Disabled fast Esc"
-    endif
-endfunction
-
 
 "===[ Abbrevation ]===
 " Common typos
@@ -306,3 +242,60 @@ iabbrev swihtc      switch
 iabbrev siwthc      switch
 iabbrev csae        case
 iabbrev caes        case
+
+
+"===[ Helper functions]===
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE'
+    endif
+    return ''
+endfunction
+
+function! ShortCwd()
+    let cwd=getcwd()
+    let cwd=substitute(cwd, '/home/.\{-}/', '~/', '')
+    let cwd=substitute(cwd, '[^~].*\(.\{25\}$\)\@=', '/...', '')
+    let cwd=substitute(cwd, '\.\.\.[^/]*', '...', '')
+    return cwd
+endfunction
+
+function! GitBranch()
+    let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    return strlen(l:branchname) > 0 ? '  '.l:branchname.' ' : ''
+endfunction
+
+function! HighlightName()
+    let id  = synID(line("."), col("."), 1)
+    let tid = synID(line("."), col("."), 0)
+
+    let fg  = synIDattr(synIDtrans(id), "fg")
+    let bg  = synIDattr(synIDtrans(id), "bg")
+    let hi  = synIDattr(id, "name")
+    let lo  = synIDattr(synIDtrans(id), "name")
+    let tr  = synIDattr(tid, "name")
+
+    return "hi: ".hi." \| lo: ".lo." \| trans: ".tr." \| fg: ".fg." \| bg: ".bg
+endfunction
+
+function! ToggleFastEsc()
+    if mapcheck("jk", "i") ==? ""
+        inoremap jk <esc>
+        inoremap kj <esc>
+        echom "Enabled fast Esc"
+    else
+        iunmap jk
+        iunmap kj
+        echom "Disabled fast Esc"
+    endif
+endfunction
+
+function! Underline(symbol)
+    if strlen(getline('.')) > 0
+        normal! yyp
+        exe 's/./' . a:symbol . '/g'
+        normal! k
+    endif
+endfunction
+
+" vim: foldmethod=marker
