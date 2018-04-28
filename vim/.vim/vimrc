@@ -96,9 +96,6 @@ set background=dark
 
 
 "===[ Default Syntax Package Options ]===
-let g:python_no_doctest_highlight = 1
-let g:python_no_builtin_highlight = 1
-
 let g:tex_no_error = 1
 
 
@@ -207,7 +204,7 @@ noremap <c-p>      :cprev<cr>
 " Normal mode command shortchuts
 nnoremap <cr>               o<esc>
 nnoremap <tab>              :setlocal wrap!<cr>
-nnoremap <leader>h          :echo HighlightName()<cr>
+nnoremap <leader>l          :echo HighlightName()<cr>
 nnoremap <leader>w          :w !sudo tee % > /dev/null
 nnoremap <leader>s          :setlocal spell!<cr>
 nnoremap <leader><tab>      :call ToggleFastEsc()<cr>

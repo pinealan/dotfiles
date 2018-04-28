@@ -5,22 +5,18 @@
 
 " Base on vim's default cpp.vim by vim-jp, combined with semantics matching from
 " https://github.com/octol/vim-cpp-enhanced-highlight by octol
+"
 
-" For version 5.x: Clear all syntax items
-" For version 6.x: Quit when a syntax file was already loaded
-if version < 600
-  syntax clear
-elseif exists("b:current_syntax")
+if exists("b:current_syntax")
   finish
 endif
 
 " Read the C syntax to start with
-if version < 600
-  so <sfile>:p:h/c.vim
-else
-  runtime! syntax/c.vim
-  unlet b:current_syntax
-endif
+runtime! syntax/c.vim
+unlet b:current_syntax
+
+let s:cpo_save = &cpo
+set cpo&vim
 
 syn keyword cppStatement        new delete this friend using
 syn keyword cppModifier         inline virtual explicit export
@@ -107,4 +103,5 @@ hi link cppRawString            String
 
 let b:current_syntax = "cpp"
 
-" vim: ts=8
+let &cpo = s:cpo_save
+unlet s:cpo_save
