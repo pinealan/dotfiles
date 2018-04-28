@@ -207,18 +207,18 @@ noremap <c-p>      :cprev<cr>
 " Normal mode command shortchuts
 nnoremap <cr>               o<esc>
 nnoremap <tab>              :setlocal wrap!<cr>
-nnoremap <leader>s          :setlocal spell!<cr>
+nnoremap <leader>h          :echo HighlightName()<cr>
 nnoremap <leader>w          :w !sudo tee % > /dev/null
+nnoremap <leader>s          :setlocal spell!<cr>
 nnoremap <leader><tab>      :call ToggleFastEsc()<cr>
 nnoremap <leader><leader>   :setlocal hlsearch!<cr>
 
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
-nnoremap <silent> <leader>h     :echo HighlightName()<cr>
 nnoremap <silent> <leader>d     :bdelete<cr>
+nnoremap <silent> <leader>e     :vsplit /home/alan/.vim/vimrc<cr>
 nnoremap <silent> <leader>m     :silent make \| redraw! \| cc<cr>
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
-nnoremap <silent> <leader>e     :vsplit /home/alan/.vimrc<cr>
 nnoremap <silent> <leader>p     :setlocal paste!<cr>
 
 " Fix tmux
