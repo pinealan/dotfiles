@@ -1,3 +1,6 @@
+# Shell
+alias e='exit'
+
 # List
 alias l='ls -lFh'
 alias lt='ls -lth'
