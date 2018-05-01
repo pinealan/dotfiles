@@ -188,7 +188,7 @@ noremap [<s-l>      <c-w>9>
 
 " Buffer/Error list shortcuts
 noremap <c-s>      :update<cr>
-noremap <c-q>      :q<cr>
+noremap <c-q>      :qa<cr>
 noremap <c-l>      :bnext<cr>
 noremap <c-h>      :bprev<cr>
 noremap <c-n>      :cnext<cr>
@@ -211,6 +211,7 @@ nnoremap <silent> <leader>e     :vsplit /home/alan/.vim/vimrc<cr>
 nnoremap <silent> <leader>m     :silent make \| redraw! \| cc<cr>
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
 nnoremap <silent> <leader>p     :setlocal paste!<cr>
+nnoremap <silent> <leader>q     :q<cr>
 
 " Plugin mapping
 noremap <leader>t       :Tabularize /
@@ -294,5 +295,9 @@ function! Underline(symbol)
         normal! k
     endif
 endfunction
+
+
+"===[ Startup setup ]===
+vsp
 
 " vim: foldmethod=marker
