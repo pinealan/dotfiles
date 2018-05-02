@@ -1,4 +1,4 @@
-"===[ Plugin ]===
+"===[ Plugin ]=== {{{
 filetype off
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -8,7 +8,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 " NERDTree {{{
-augroup nerdtree_user
+augroup usr_nerdtree
     autocmd!
     autocmd StdinReadPre * let s:std_in=1
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -83,16 +83,19 @@ filetype plugin indent on
 syntax on
 
 
-"===[ Color scheme ]===
+" }}}
+"===[ Color scheme ]=== {{{
 colorscheme onedark
 set background=dark
 
 
-"===[ Default Syntax Package Options ]===
+" }}}
+"===[ Default Syntax Package Options ]=== {{{
 let g:tex_no_error = 1
 
 
-"===[ Options ]===
+" }}}
+"===[ Options ]=== {{{
 set backspace=eol,start,indent
 set cursorline
 set hidden
@@ -150,7 +153,8 @@ set wildignore=__pycache__,*.o,*.pyc,*.git,*.exe
 set helpheight=30
 
 
-"===[ Mapping ]===
+" }}}
+"===[ Mapping ]=== {{{
 let mapleader=" "
 
 " Thank me later
@@ -231,7 +235,8 @@ noremap!    <esc>OC     <right>
 noremap!    <esc>[3~    <del>
 
 
-"===[ Abbrevation ]===
+" }}}
+"===[ Abbrevation ]=== {{{
 " Common typos
 iabbrev fro         for
 iabbrev adn         and
@@ -242,7 +247,8 @@ iabbrev csae        case
 iabbrev caes        case
 
 
-"===[ Helper functions]===
+" }}}
+"===[ Helper functions]=== {{{
 function! HasPaste()
     if &paste
         return 'PASTE MODE'
@@ -297,7 +303,12 @@ function! Underline(symbol)
 endfunction
 
 
-"===[ Startup setup ]===
-vsp
+" }}}
+"===[ Autocommands setup ]=== {{{
+augroup usr
+    autocmd!
+    autocmd VimEnter *.c,*.cpp,*.py vsp
+augroup END
 
+" }}}
 " vim: foldmethod=marker
