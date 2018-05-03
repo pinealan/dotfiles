@@ -7,12 +7,13 @@ case $- in
 esac
 
 # don't put duplicate lines or lines starting with space in the history
-export HISTCONTROL=ignoreboth:ignoredups:erasedups
-shopt -s histappend
+HISTCONTROL=ignoreboth:ignoredups:erasedups
 
-# set history length, see bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+# set history length in memory for individual shell instance
+HISTSIZE=5000
+
+# history file size, average cmd is 30 characters, should only be ~1.5MB
+HISTFILESIZE=50000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -48,22 +49,6 @@ xterm*|rxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]$PS1"
     ;;
 esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto --group-directories-first'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
