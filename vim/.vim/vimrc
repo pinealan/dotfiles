@@ -67,6 +67,7 @@ hi YcmWarningSection cterm=underline ctermfg=196
 
 let g:ycm_error_symbol = 'x'
 let g:ycm_warning_symbol = '>'
+let g:ycm_open_loclist_on_ycm_diags = 0
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 
@@ -77,6 +78,13 @@ let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_extra_conf_vim_data = ['&filetype']
 let g:ycm_python_binary_path = '/usr/bin/python3'
 " }}}
+Plugin 'zirrostig/vim-schlepp'
+" Schlepp {{{
+let g:Schlepp#allowSquishingLines = 0
+let g:Schlepp#allowSquishingBlock = 0
+let g:Schlepp#trimWS = 0
+" }}}
+
 
 call vundle#end()
 filetype plugin indent on
@@ -210,7 +218,6 @@ nnoremap <leader><leader>   :setlocal hlsearch!<cr>
 
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
-nnoremap <silent> <leader>d     :bdelete<cr>
 nnoremap <silent> <leader>e     :vsplit /home/alan/.vim/vimrc<cr>
 nnoremap <silent> <leader>m     :silent make \| redraw! \| cc<cr>
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
@@ -220,19 +227,25 @@ nnoremap <silent> <leader>q     :q<cr>
 " Plugin mapping
 noremap <leader>t       :Tabularize /
 
-nnoremap <leader>0          :let g:ycm_auto_trigger=0<cr>
-nnoremap <leader>1          :let g:ycm_auto_trigger=1<cr>
+nnoremap <leader>0      :let g:ycm_auto_trigger=0<cr>
+nnoremap <leader>1      :let g:ycm_auto_trigger=1<cr>
+nnoremap <leader>f      :YcmCompleter FixIt<cr>
+
+vmap <unique> <up>      <Plug>SchleppUp
+vmap <unique> <down>    <Plug>SchleppDown
+vmap <unique> <left>    <Plug>SchleppLeft
+vmap <unique> <right>   <Plug>SchleppRight
 
 " Fix tmux
-noremap     <esc>OA     <up>
-noremap     <esc>OB     <down>
-noremap     <esc>OD     <left>
-noremap     <esc>OC     <right>
-noremap!    <esc>OA     <up>
-noremap!    <esc>OB     <down>
-noremap!    <esc>OD     <left>
-noremap!    <esc>OC     <right>
-noremap!    <esc>[3~    <del>
+"noremap     <esc>OA     <up>
+"noremap     <esc>OB     <down>
+"noremap     <esc>OD     <left>
+"noremap     <esc>OC     <right>
+"noremap!    <esc>OA     <up>
+"noremap!    <esc>OB     <down>
+"noremap!    <esc>OD     <left>
+"noremap!    <esc>OC     <right>
+"noremap!    <esc>[3~    <del>
 
 
 " }}}
