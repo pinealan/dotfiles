@@ -137,7 +137,7 @@ exec "set listchars=tab:\u2015\u2015,trail:\uB7"
 set colorcolumn=81
 set formatoptions+=t
 set textwidth=100
-set wrap
+set nowrap
 
 " Regex
 set ignorecase
@@ -155,7 +155,7 @@ set noswapfile
 autocmd BufWritePre * %s/\s\+$//e
 
 " Command-line completion
-set path+=**
+set path=.,,**
 set wildmenu
 set wildignore=__pycache__,*.o,*.pyc,*.git,*.exe
 set helpheight=30
