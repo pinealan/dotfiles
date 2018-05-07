@@ -1,3 +1,17 @@
+# Cheat Sheet: single character aliases
+#
+# a  ranger
+# c  clear
+# d  git diff
+# e  exit
+# f  the fuck
+# g  git log graph with commit messages and stat
+# h  htop
+# l  ls, long form, directory first
+# s  git status
+# t  start tmux with default session
+#
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -13,6 +27,7 @@ else
 fi
 
 # Shell
+alias c='clear'
 alias e='exit'
 
 # List
@@ -65,7 +80,6 @@ alias gll='git log --graph --oneline --decorate --all'
 alias gs='git stash'
 alias gsp='git stash pop'
 alias gsd='git stash drop'
-
 alias gdiff='git diff | grep + | wc && git diff | grep - | wc'
 alias git-list-tags=\
 'for t in `git tag -l | sort -V --reverse`; '\
@@ -73,5 +87,7 @@ alias git-list-tags=\
 'echo "------------------------------------"; '\
 'git cat-file -p `git rev-parse $t`; done;'
 
-# NPM
+# Misc
 alias nlg='npm list -g -depth=0'
+alias a='ranger'
+alias f='fuck'
