@@ -119,7 +119,7 @@ set scrolloff=7
 set whichwrap+=<,>,h,l
 
 set laststatus=2
-set statusline=%#StatusLineGit#%{GitBranch()}%#User{1}#\ %{HasPaste()}%r%m%t%=%{ShortCwd()}\ %y\ %l,\%-2c\ \|%3p%%
+set statusline=%#StatusLineGit#%{GitBranch()}%#User{1}#\ %{HasPaste()}%r%m%t%=%y\ %l,\%-2c\ \|%3p%%
 
 set splitright
 
@@ -236,17 +236,6 @@ vmap <unique> <down>    <Plug>SchleppDown
 vmap <unique> <left>    <Plug>SchleppLeft
 vmap <unique> <right>   <Plug>SchleppRight
 
-" Fix tmux
-"noremap     <esc>OA     <up>
-"noremap     <esc>OB     <down>
-"noremap     <esc>OD     <left>
-"noremap     <esc>OC     <right>
-"noremap!    <esc>OA     <up>
-"noremap!    <esc>OB     <down>
-"noremap!    <esc>OD     <left>
-"noremap!    <esc>OC     <right>
-"noremap!    <esc>[3~    <del>
-
 
 " }}}
 "===[ Abbrevation ]=== {{{
@@ -269,17 +258,18 @@ function! HasPaste()
     return ''
 endfunction
 
-function! ShortCwd()
+" Format home directory into ~ and truncate the beginning of the path.
+function! ShortCwd(len)
     let cwd=getcwd()
-    let cwd=substitute(cwd, '/home/.\{-}/', '~/', '')
-    let cwd=substitute(cwd, '[^~].*\(.\{25\}$\)\@=', '/...', '')
+    let cwd=substitute(cwd, '/home/[^/]\+', '~', '')
+    let cwd=substitute(cwd, '[^~].*\(.\{' . a:len . '\}$\)\@=', '/...', '')
     let cwd=substitute(cwd, '\.\.\.[^/]*', '...', '')
     return cwd
 endfunction
 
 function! GitBranch()
     let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    return strlen(l:branchname) > 0 ? '  '.l:branchname.' ' : ''
+    return strlen(l:branchname) > 0 ? '  ' . l:branchname . ' ' : ''
 endfunction
 
 function! HighlightName()
@@ -322,6 +312,7 @@ augroup usr
     autocmd!
     autocmd VimEnter *.c,*.cpp,*.py vsp
 augroup END
+
 
 " }}}
 " vim: foldmethod=marker
