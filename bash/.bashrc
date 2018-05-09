@@ -25,20 +25,19 @@ shopt -s histappend
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set a fancy prompt (non-color, unless we know we "want" color)
+# check for terminal color capabilities
 case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
-
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     color_prompt=yes
-else
-    color_prompt=
 fi
 
-#
+# set prompt
 if [ "$color_prompt" = yes ]; then
-    PS1="\[\e[01;32m\]\u\[\e[00m\]@\[\e[01;32m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\]\n\[\e[01;33m\]\$\[\e[00m\] "
+    PS1="\[\e[32m\]\u\[\e[00m\]@\[\e[32m\]\h\[\e[00m\]"
+    PS1="$PS1 \[\e[01;34m\]\w\[\e[00m\]\n\[\e[01;33m\]"
+    PS1="$PS1\[\e[0;36m\]$(date +%H:%M)\[\e[1;33m\] \$\[\e[00m\] "
 else
     PS1="\u@\h \w\n\$ "
 fi
@@ -85,10 +84,13 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Machine dependent bash files (i.e. local bashrc, local aliases)
-if [ -d ~/.local ]; then
-    for f in `find ~/.local -maxdepth 1 -name '.bash*'`; do
-        . $f
-    done
+# Machine local bashrc
+if [ -f ~/.local/.bashrc ]; then
+    . ~/.local/.bashrc
+fi
+
+# Machine local aliases
+if [ -f ~/.local/.bash_aliases ]; then
+    . ~/.local/.bash_aliases
 fi
 
