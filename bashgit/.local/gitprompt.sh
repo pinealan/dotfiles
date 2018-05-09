@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+#
+# Source this file to enable git integration in bash
+#
+# Original: https://github.com/magicmonty/bash-git-prompt
+# This copy is heavily optimized and customized for personal use
 
 function async_run() {
   {
@@ -682,7 +687,6 @@ function gp_install_prompt {
   esac
 
   git_prompt_dir
-  source "$__GIT_PROMPT_DIR/git-prompt-help.sh"
 }
 
 gp_install_prompt
