@@ -160,6 +160,9 @@ set wildmenu
 set wildignore=__pycache__,*.o,*.pyc,*.git,*.exe
 set helpheight=30
 
+" Make
+set shellpipe=&>
+
 
 " }}}
 "===[ Mapping ]=== {{{
@@ -218,8 +221,9 @@ nnoremap <leader><leader>   :setlocal hlsearch!<cr>
 
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
+nnoremap <silent> <leader>'     :vsp<cr>
 nnoremap <silent> <leader>e     :vsplit /home/alan/.vim/vimrc<cr>
-nnoremap <silent> <leader>m     :silent make \| redraw! \| cc<cr>
+nnoremap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
 nnoremap <silent> <leader>p     :setlocal paste!<cr>
 nnoremap <silent> <leader>q     :q<cr>
@@ -305,12 +309,23 @@ function! Underline(symbol)
     endif
 endfunction
 
+function! ReportBuildResult()
+    if len(getqflist()) != 0
+        copen | cc
+        echohl Tag
+        echo "Build fail!"
+        echohl None
+    else
+        echo "Build success!"
+    endif
+endfunction
 
 " }}}
 "===[ Autocommands setup ]=== {{{
 augroup usr
     autocmd!
     autocmd VimEnter *.c,*.cpp,*.py vsp
+    autocmd BufNewfile *.php :r ~/.vim/template/template.php
 augroup END
 
 
