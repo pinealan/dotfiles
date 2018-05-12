@@ -1,31 +1,33 @@
 -- vim: ts=4 sw=4 noet ai cindent syntax=lua
 
 conky.config = {
-    alignment = 'top_right',
+    alignment = 'top_left',
 	background = false,
-    update_interval = 2.0,
+    update_interval = 1.0,
     cpu_avg_samples = 2,
     net_avg_samples = 2,
     double_buffer = true,
     no_buffers = true,
-    text_buffer_size = 32768,
+    text_buffer_size = 1024,
     out_to_console = false,
     out_to_stderr = false,
     extra_newline = false,
 
     default_color = 'white',
+    default_bar_height = 10,
     default_outline_color = 'white',
     default_shade_color = 'white',
     font = 'Monospace:normal:size=12',
 
+    border_inner_margin = 10,
+    border_outer_margin = 10,
     draw_borders = false,
     draw_graph_borders = false,
     draw_outline = false,
     draw_shades = false,
-
-    gap_x = 50,
+    gap_x = 1400,
     gap_y = 80,
-    border_inner_margin = 10,
+	minimum_width = 450,
     use_xft = true,
     xftalpha = 1,
 
@@ -44,7 +46,7 @@ conky.config = {
     short_units = true,
     temperature_unit = '°C',
 
-    color5 = 'FFFFFF',
+    color5 = '208806',
     color4 = '896201',
     color3 = 'EEE2A6',
     color2 = 'DBF2C3',
@@ -55,17 +57,15 @@ conky.text = [[
 ${color1}$nodename ${alignr}$kernel
 ${color1}Uptime: ${color}$uptime
 
-${color2}$hr
-${color1}Resources:
+${color1}Resources: ${color2}$hr
 ${color3}CPU 0 : ${color}${execi 10 sensors | grep "Core 0" | cut -c17-23} ${color4}${cpubar cpu0 12}
 ${color3}CPU 1 : ${color}${execi 10 sensors | grep "Core 1" | cut -c17-23} ${color4}${cpubar cpu1 12}
 ${color3}CPU 2 : ${color}${execi 10 sensors | grep "Core 2" | cut -c17-23} ${color4}${cpubar cpu2 12}
 ${color3}CPU 3 : ${color}${execi 10 sensors | grep "Core 3" | cut -c17-23} ${color4}${cpubar cpu3 12}
 ${color3}GPU   : ${color}${execi 10 nvidia-settings -query GPUCoreTemp | head -n 2 | tail -n 1 | tr -s ' ' | cut -d ' ' -f5}0°C
-${color3}MEM   : ${color}${memperc}%    ${color4}${membar 12}
+${color3}MEM: ${color}${mem} / ${memmax}  ${color4}${membar 8}
 
-${color2}$hr
-${color1}Top Processes:
+${color1}Top Processes: ${color2}$hr
 ${color3}Name         ${alignr} PID    CPU%   MEM%
 ${color}${top name 1} ${alignr} ${top pid 1} ${top cpu 1} ${top mem 1}
 ${color}${top name 2} ${alignr} ${top pid 2} ${top cpu 2} ${top mem 2}
@@ -78,14 +78,13 @@ ${color}${top name 8} ${alignr} ${top pid 8} ${top cpu 8} ${top mem 8}
 ${color}${top name 9} ${alignr} ${top pid 9} ${top cpu 9} ${top mem 9}
 ${color}${top name 10} ${alignr} ${top pid 10} ${top cpu 10} ${top mem 10}
 
-${color2}$hr
-${color1}Filesystem:
+${color1}Filesystem: ${color2}$hr
 ${color3}/dev/nvme0: ${color}${fs_used /} / ${fs_size /}
 ${color4}${fs_bar 12 /}
 
-${color2}$hr
-${color1}Network:
-${color3}Inbound: ${color}${tcp_portmon 1 32767 count}  ${color3}Outbound: ${color}${tcp_portmon 32768 65535 count} ${alignr}${color3}ALL: ${color}${tcp_portmon 1 65535 count}
+${color1}Network: ${color2}$hr
+${color3}Default Gateway: ${color}$gw_ip ${alignr} ${color3}Inbound: ${color}${tcp_portmon 1 32767 count}
+${color3}IPv4 Address: ${color}${addr wlp2s0} ${alignr} ${color3}Outbound: ${color}${tcp_portmon 32768 65535 count}
 
 ${color3}Outbound ${alignr} Service/Port${color}
 ${tcp_portmon 32768 60999 rip 0} ${alignr} ${tcp_portmon 32768 60999 rservice 0}
@@ -93,4 +92,6 @@ ${tcp_portmon 32768 60999 rip 1} ${alignr} ${tcp_portmon 32768 60999 rservice 1}
 ${tcp_portmon 32768 60999 rip 2} ${alignr} ${tcp_portmon 32768 60999 rservice 2}
 ${tcp_portmon 32768 60999 rip 3} ${alignr} ${tcp_portmon 32768 60999 rservice 3}
 ${tcp_portmon 32768 60999 rip 4} ${alignr} ${tcp_portmon 32768 60999 rservice 4}
+
+${color1}Battery: ${color}${execi 30 cat /sys/class/power_supply/BAT0/capacity}% ${color5}${execibar 30 cat /sys/class/power_supply/BAT0/capacity}
 ]]
