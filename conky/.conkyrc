@@ -14,7 +14,7 @@ conky.config = {
     extra_newline = false,
 
     default_color = 'white',
-    default_bar_height = 10,
+    default_bar_height = 12,
     default_outline_color = 'white',
     default_shade_color = 'white',
     font = 'Monospace:normal:size=12',
@@ -58,12 +58,12 @@ ${color1}$nodename ${alignr}$kernel
 ${color1}Uptime: ${color}$uptime
 
 ${color1}Resources: ${color2}$hr
-${color3}CPU 0 : ${color}${execi 10 sensors | grep "Core 0" | cut -c17-23} ${color4}${cpubar cpu0 12}
-${color3}CPU 1 : ${color}${execi 10 sensors | grep "Core 1" | cut -c17-23} ${color4}${cpubar cpu1 12}
-${color3}CPU 2 : ${color}${execi 10 sensors | grep "Core 2" | cut -c17-23} ${color4}${cpubar cpu2 12}
-${color3}CPU 3 : ${color}${execi 10 sensors | grep "Core 3" | cut -c17-23} ${color4}${cpubar cpu3 12}
+${color3}CPU 0 : ${color}${execi 10 sensors | grep "Core 0" | cut -c17-23} ${color4}${cpubar cpu0 10}
+${color3}CPU 1 : ${color}${execi 10 sensors | grep "Core 1" | cut -c17-23} ${color4}${cpubar cpu1 10}
+${color3}CPU 2 : ${color}${execi 10 sensors | grep "Core 2" | cut -c17-23} ${color4}${cpubar cpu2 10}
+${color3}CPU 3 : ${color}${execi 10 sensors | grep "Core 3" | cut -c17-23} ${color4}${cpubar cpu3 10}
 ${color3}GPU   : ${color}${execi 10 nvidia-settings -query GPUCoreTemp | head -n 2 | tail -n 1 | tr -s ' ' | cut -d ' ' -f5}0°C
-${color3}MEM: ${color}${mem} / ${memmax}  ${color4}${membar 8}
+${color3}MEM: ${color}${mem} / ${memmax}  ${color4}${membar 10}
 
 ${color1}Top Processes: ${color2}$hr
 ${color3}Name         ${alignr} PID    CPU%   MEM%
@@ -80,7 +80,7 @@ ${color}${top name 10} ${alignr} ${top pid 10} ${top cpu 10} ${top mem 10}
 
 ${color1}Filesystem: ${color2}$hr
 ${color3}/dev/nvme0: ${color}${fs_used /} / ${fs_size /}
-${color4}${fs_bar 12 /}
+${color4}${fs_bar 10 /}
 
 ${color1}Network: ${color2}$hr
 ${color3}Default Gateway: ${color}$gw_ip ${alignr} ${color3}Inbound: ${color}${tcp_portmon 1 32767 count}
