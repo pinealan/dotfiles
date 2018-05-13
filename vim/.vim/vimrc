@@ -212,12 +212,12 @@ noremap <c-p>      :cprev<cr>
 
 " Normal mode command shortchuts
 nnoremap <cr>               o<esc>
-nnoremap <tab>              :setlocal wrap!<cr>
 nnoremap <F9>               :echo HighlightName()<cr>
 nnoremap <leader>l          :echo HighlightName()<cr>
 nnoremap <leader>w          :w !sudo tee % > /dev/null
 nnoremap <leader>s          :setlocal spell!<cr>
-nnoremap <leader><tab>      :call ToggleFastEsc()<cr>
+nnoremap <leader><tab>      :setlocal wrap!<cr>
+nnoremap <leader><esc>      :call ToggleFastEsc()<cr>
 nnoremap <leader><leader>   :setlocal hlsearch!<cr>
 
 nnoremap <silent> -             :call Underline('-')<cr>
@@ -228,6 +228,30 @@ nnoremap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResu
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
 nnoremap <silent> <leader>p     :setlocal paste!<cr>
 nnoremap <silent> <leader>q     :q<cr>
+
+" Insert mode mapping
+inoremap 1 !
+inoremap 2 @
+inoremap 3 #
+inoremap 4 $
+inoremap 5 %
+inoremap 6 ^
+inoremap 7 &
+inoremap 8 *
+inoremap 9 (
+inoremap 0 )
+
+inoremap ! 1
+inoremap @ 2
+inoremap # 3
+inoremap $ 4
+inoremap % 5
+inoremap ^ 6
+inoremap & 7
+inoremap * 8
+inoremap ( 9
+inoremap ) 0
+
 
 " Plugin mapping
 noremap <leader>t       :Tabularize /
