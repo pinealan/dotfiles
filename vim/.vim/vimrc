@@ -14,7 +14,7 @@ augroup usr_nerdtree
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
-let NERDTreeIgnore=['\.log$', '__pycache__', '\.pyc$', '.exe$', '\.png$', '\.jpg$', '\.jpeg$']
+let NERDTreeIgnore=['\.log$', '\.git', '__pycache__', '\.pyc$', '.exe$', '\.png$', '\.jpg$', '\.jpeg$']
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
@@ -192,6 +192,7 @@ noremap    U   <c-r>
 noremap <c-r>     U
 
 " Windows navigation
+noremap [p          <c-w>P
 noremap [h          <c-w>h
 noremap [j          <c-w>j
 noremap [k          <c-w>k
