@@ -64,11 +64,11 @@ let s:background0   = s:grey
 let s:background1   = s:dimgrey
 let s:background2   = s:darkgrey
 
-let s:string        = s:teagreen
+let s:string        = s:green
 let s:numeric       = s:carrot
 let s:macro         = s:carrot
 let s:keyword       = s:content1
-let s:comment       = s:green
+let s:comment       = { "gui": "#e5c07b", "cterm": "184" }
 
 
 " [ Syntax Groups (descriptions and ordering from `:h w18`) ]
@@ -180,6 +180,7 @@ call s:h("WildMenu",        { "fg": s:black, "bg": s:blue }) " current match in 
 " [ Python ]
 "
 call s:h("pythonDeclClass",         { "fg": s:green }) " try, catch, throw
+call s:h("pythonDocString",         { "fg": s:green }) " try, catch, throw
 
 " [ Git Highlighting ]
 "

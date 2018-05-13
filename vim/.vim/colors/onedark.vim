@@ -1,12 +1,13 @@
 " Vim Color File
 "
-" Name:       solarized-cold.vim
+" Name:       one-dark.vim
 " Maintainer: Alan Chan
 " License:    The MIT License (MIT)
 " Based On:   https://github.com/joshdick/onedark.vim/
 " Based On:   https://github.com/MaxSt/FlatColor/
+" @note: GUI colors are not configured
 
-" [ Initialization ]
+" [ Initialization ] {{{
 "
 highlight clear
 
@@ -16,31 +17,30 @@ endif
 
 let g:colors_name="onedark"
 
-" Helper function to match highlight group with colors in all modes
-" gui:      Full RGB, 24 bit
-" cterm:    256 color, 8 bit
-" cterm16:  16 color (ANSI)
+" Helper function to match highlight gruops in all colors modes, i.e.
+"   gui:      Full RGB, 24 bit
+"   cterm:    256 color, 8 bit
+"   term:     no color, (:h highlight-term)
 "
-" This function is based on one from FlatColor: https://github.com/MaxSt/FlatColor/
-" Which in turn was based on one found in hemisu: https://github.com/noahfrederick/vim-hemisu/
+" @Note: It's 2018, I don't care about term and cterm16.
+"
 function! s:h(group, style)
   execute "highlight" a:group
     \ "guifg="   (has_key(a:style, "fg")    ? a:style.fg.gui   : "NONE")
-    \ "guibg="   (has_key(a:style, "bg")    ? a:style.bg.gui   : "NONE")
-    \ "guisp="   (has_key(a:style, "sp")    ? a:style.sp.gui   : "NONE")
-    \ "gui="     (has_key(a:style, "gui")   ? a:style.gui      : "NONE")
     \ "ctermfg=" (has_key(a:style, "fg")    ? a:style.fg.cterm : "NONE")
+    \ "guibg="   (has_key(a:style, "bg")    ? a:style.bg.gui   : "NONE")
     \ "ctermbg=" (has_key(a:style, "bg")    ? a:style.bg.cterm : "NONE")
+    \ "guisp="   (has_key(a:style, "sp")    ? a:style.sp       : "NONE")
+    \ "gui="     (has_key(a:style, "gui")   ? a:style.gui      : "NONE")
     \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
 endfunction
+" }}}
 
-
-" [ Color Variables ]
+" [ Color Variables ] {{{
 "
 let s:red           = { "gui": "#be5046", "cterm": "160" }
 let s:pink          = { "gui": "#e06c75", "cterm": "204" }
 let s:green         = { "gui": "#98c379", "cterm": "70" }
-let s:lightgreen    = { "gui": "#98c379", "cterm": "76" }
 let s:teagreen      = { "gui": "#98c379", "cterm": "114" }
 let s:yellow        = { "gui": "#e5c07b", "cterm": "220" }
 let s:gold          = { "gui": "#e5c07b", "cterm": "179" }
@@ -49,30 +49,22 @@ let s:blue          = { "gui": "#61afef", "cterm": "75" }
 let s:purple        = { "gui": "#c678dd", "cterm": "170" }
 
 let s:transparent   = { "gui": "NONE",    "cterm": "NONE" }
-let s:white         = { "gui": "#bbc2cf", "cterm": "255" }
-let s:whitesmoke    = { "gui": "#bbc2cf", "cterm": "251" }
-let s:lightgrey     = { "gui": "#abb2bf", "cterm": "246" }
-let s:silver        = { "gui": "#abb2bf", "cterm": "241" }
-let s:grey          = { "gui": "#3e4452", "cterm": "237" }
-let s:dimgrey       = { "gui": "#bbc2cf", "cterm": "235" }
-let s:darkgrey      = { "gui": "#bbc2cf", "cterm": "234" }
+let s:content0      = { "gui": "#bbc2cf", "cterm": "253" }
+let s:content1      = { "gui": "#abb2bf", "cterm": "246" }
+let s:content2      = { "gui": "#abb2bf", "cterm": "241" }
+let s:background0   = { "gui": "#3e4452", "cterm": "237" }
+let s:background1   = { "gui": "#bbc2cf", "cterm": "235" }
+let s:background2   = { "gui": "#bbc2cf", "cterm": "234" }
 let s:black         = { "gui": "#bbc2cf", "cterm": "232" }
-
-let s:content0      = s:whitesmoke
-let s:content1      = s:lightgrey
-let s:content2      = s:silver
-let s:background0   = s:grey
-let s:background1   = s:dimgrey
-let s:background2   = s:darkgrey
 
 let s:string        = s:teagreen
 let s:numeric       = s:carrot
 let s:macro         = s:carrot
 let s:statement     = s:purple
 let s:comment       = s:content2
+" }}}
 
-
-" [ Syntax Groups (descriptions and ordering from `:h w18`) ]
+" [ Syntax Groups (:h group-name) ] {{{
 "
 call s:h("Comment",         { "fg": s:comment, "gui": "italic" }) " any comment
 call s:h("Constant",        { "fg": s:numeric }) " any constant
@@ -115,9 +107,9 @@ call s:h("Underlined",      { "gui": "underline", "cterm": "underline" }) " text
 call s:h("Ignore",          { "fg": s:pink }) " left blank, hidden
 call s:h("Error",           { "fg": s:red }) " any erroneous construct
 call s:h("Todo",            { "fg": s:content1 }) " TODO anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+" }}}
 
-
-" [ Highlighting Groups (descriptions and ordering from `:h highlight-groups`) ]
+" [ Default Highlighting Groups (:h highlight-groups) ] {{{
 "
 call s:h("ColorColumn",     { "bg": s:background2 }) " used for the columns set with 'colorcolumn'
 call s:h("Conceal",         {}) " placeholder characters substituted for concealed text (see 'conceallevel')
@@ -127,10 +119,10 @@ call s:h("CursorColumn",    { "bg": s:background2 }) " the screen column that th
 call s:h("CursorLine",      { "bg": s:background2 }) " the screen line that the cursor is in when 'cursorline' is set
 call s:h("Directory",       { "fg": s:blue }) " directory names (and other special names in listings)
 
-call s:h("DiffAdd",         { "bg": s:teagreen, "fg": s:black }) " diff mode: Added line
-call s:h("DiffChange",      { "bg": s:gold,     "fg": s:black }) " diff mode: Changed line
-call s:h("DiffDelete",      { "bg": s:pink,     "fg": s:black }) " diff mode: Deleted line
-call s:h("DiffText",        { "bg": s:black,    "fg": s:gold }) " diff mode: Changed text within a changed line
+call s:h("DiffAdd",         { "bg": s:green, "fg": s:black }) " diff mode: Added line
+call s:h("DiffChange",      { "bg": s:gold, "fg": s:black }) " diff mode: Changed line
+call s:h("DiffDelete",      { "bg": s:pink, "fg": s:black }) " diff mode: Deleted line
+call s:h("DiffText",        { "bg": s:black, "fg": s:gold }) " diff mode: Changed text within a changed line
 
 call s:h("ErrorMsg",        { "fg": s:pink }) " error messages on the command line
 call s:h("VertSplit",       { "fg": s:content2 }) " the column separating vertically split windows
@@ -174,14 +166,14 @@ call s:h("Visual",          { "bg": s:background0 }) " Visual mode selection
 call s:h("VisualNOS",       { "bg": s:background1 }) " Visual mode selection when vim is 'Not Owning the Selection'. Only X11 Gui's gui-x11 and xterm-clipboard supports this.
 call s:h("WarningMsg",      { "fg": s:yellow }) " warning messages
 call s:h("WildMenu",        { "fg": s:black, "bg": s:blue }) " current match in 'wildmenu' completion
+" }}}
 
-
-" [ Python ]
+" [ Python ] {{{
 "
-call s:h("pythonDocString", { "fg": s:green })
+call s:h("pythonDocString", { "fg": { "gui": "#98c379", "cterm": "34" } })
+" }}}
 
-
-" [ Git Highlighting ]
+" [ Git Highlighting ] {{{
 "
 call s:h("gitcommitComment",        { "fg": s:comment })
 call s:h("gitcommitUnmerged",       { "fg": s:teagreen })
@@ -204,9 +196,9 @@ hi link gitcommitSelected gitcommitComment
 hi link gitcommitDiscardedArrow gitcommitDiscardedFile
 hi link gitcommitSelectedArrow gitcommitSelectedFile
 hi link gitcommitUnmergedArrow gitcommitUnmergedFile
+" }}}
 
-
-" [ Plugin Highlighting ]
+" [ Plugin Highlighting ] {{{
 "
 " airblade/vim-gitgutter
 hi link GitGutterAdd    SignifySignAdd
@@ -226,9 +218,9 @@ call s:h("NeomakeInfoSign",         { "fg": s:blue })
 " tpope/vim-fugitive
 call s:h("diffAdded",               { "fg": s:teagreen })
 call s:h("diffRemoved",             { "fg": s:pink })
+" }}}
 
-
-" [ Neovim terminal colors ]
+" [ Neovim terminal colors ] {{{
 "
 "if has("nvim")
 "  let g:terminal_color_0 =  s:black.gui
@@ -250,7 +242,7 @@ call s:h("diffRemoved",             { "fg": s:pink })
 "  let g:terminal_color_background = g:terminal_color_0
 "  let g:terminal_color_foreground = g:terminal_color_7
 "endif
-
+" }}}
 
 " Must appear at the end of the file to work around this oddity:
 " https://groups.google.com/forum/#!msg/vim_dev/afPqwAFNdrU/nqh6tOM87QUJ
