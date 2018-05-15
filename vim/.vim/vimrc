@@ -183,10 +183,6 @@ noremap <c-k> <c-u>
 noremap $ J
 noremap 0 K
 
-" Fast <esc>
-inoremap jk     <esc>
-inoremap kj     <esc>
-
 " Swap undo
 noremap    U   <c-r>
 noremap <c-r>     U
@@ -197,6 +193,7 @@ noremap [h          <c-w>h
 noremap [j          <c-w>j
 noremap [k          <c-w>k
 noremap [l          <c-w>l
+noremap [o          <c-w>o
 noremap [<s-h>      <c-w>9<
 noremap [<s-j>      <c-w>9-
 noremap [<s-k>      <c-w>9+
@@ -204,7 +201,7 @@ noremap [<s-l>      <c-w>9>
 
 " Buffer/Error list shortcuts
 noremap <c-s>      :update<cr>
-noremap <c-q>      :qa<cr>
+noremap <c-q>      :qa!<cr>
 noremap <c-l>      :bnext<cr>
 noremap <c-h>      :bprev<cr>
 noremap <c-n>      :cnext<cr>
@@ -215,10 +212,6 @@ nnoremap <cr>               o<esc>
 nnoremap <F9>               :echo HighlightName()<cr>
 nnoremap <leader>l          :echo HighlightName()<cr>
 nnoremap <leader>w          :w !sudo tee % > /dev/null
-nnoremap <leader>s          :setlocal spell!<cr>
-nnoremap <leader><tab>      :setlocal wrap!<cr>
-nnoremap <leader><esc>      :call ToggleFastEsc()<cr>
-nnoremap <leader><leader>   :setlocal hlsearch!<cr>
 
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
@@ -229,32 +222,15 @@ nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
 nnoremap <silent> <leader>p     :setlocal paste!<cr>
 nnoremap <silent> <leader>q     :q<cr>
 
-" Insert mode mapping
-inoremap 1 !
-inoremap 2 @
-inoremap 3 #
-inoremap 4 $
-inoremap 5 %
-inoremap 6 ^
-inoremap 7 &
-inoremap 8 *
-inoremap 9 (
-inoremap 0 )
-
-inoremap ! 1
-inoremap @ 2
-inoremap # 3
-inoremap $ 4
-inoremap % 5
-inoremap ^ 6
-inoremap & 7
-inoremap * 8
-inoremap ( 9
-inoremap ) 0
-
+" toggles
+nnoremap <leader>s          :setlocal spell!<cr>
+nnoremap <leader><tab>      :setlocal wrap!<cr>
+nnoremap <leader><leader>   :setlocal hlsearch!<cr>
+nnoremap <leader>i          :call ToggleInsSymbols()<cr>
+nnoremap <leader><esc>      :call ToggleFastEsc()<cr>
 
 " Plugin mapping
-noremap <leader>t       :Tabularize /
+noremap <leader>a       :Tabularize /
 
 nnoremap <leader>0      :let g:ycm_auto_trigger=0<cr>
 nnoremap <leader>1      :let g:ycm_auto_trigger=1<cr>
@@ -314,15 +290,69 @@ function! HighlightName()
     return "hi: ".hi." \| lo: ".lo." \| trans: ".tr." \| fg: ".fg." \| bg: ".bg
 endfunction
 
+let g:fastesc=0
 function! ToggleFastEsc()
-    if mapcheck("jk", "i") ==? ""
+    if !g:fastesc
+        let g:fastesc=1
         inoremap jk <esc>
         inoremap kj <esc>
-        echom "Enabled fast Esc"
+        echom "Enabled insert mdoe fast <esc>"
     else
+        unlet g:fastesc
         iunmap jk
         iunmap kj
-        echom "Disabled fast Esc"
+        echom "Disabled insert mdoe fast <esc>"
+    endif
+endfunction
+
+let g:inssymbols=0
+function! ToggleInsSymbols()
+    if !g:inssymbols
+        let g:inssymbols=1
+        inoremap 1 !
+        inoremap 2 @
+        inoremap 3 #
+        inoremap 4 $
+        inoremap 5 %
+        inoremap 6 ^
+        inoremap 7 &
+        inoremap 8 *
+        inoremap 9 (
+        inoremap 0 )
+        inoremap ! 1
+        inoremap @ 2
+        inoremap # 3
+        inoremap $ 4
+        inoremap % 5
+        inoremap ^ 6
+        inoremap & 7
+        inoremap * 8
+        inoremap ( 9
+        inoremap ) 0
+        echom "Enabled insert mode symbols"
+    else
+        unlet g:inssymbols
+        iunmap 1
+        iunmap 2
+        iunmap 3
+        iunmap 4
+        iunmap 5
+        iunmap 6
+        iunmap 7
+        iunmap 8
+        iunmap 9
+        iunmap 0
+        iunmap !
+        iunmap @
+        iunmap #
+        iunmap $
+        iunmap %
+        iunmap ^
+        iunmap &
+        iunmap *
+        iunmap (
+        iunmap )
+        echom "Disabled insert mode fast symbols"
     endif
 endfunction
 
@@ -349,7 +379,9 @@ endfunction
 "===[ Autocommands setup ]=== {{{
 augroup usr
     autocmd!
-    autocmd VimEnter *.c,*.cpp,*.py vsp
+    autocmd VimEnter *.c,*.cpp,*.py :vsp
+    autocmd VimEnter *.c,*.cpp,*.py :call ToggleFastEsc()
+    autocmd VimEnter *.c,*.cpp,*.py :call ToggleInsSymbols()
     autocmd BufNewfile *.php :r ~/.vim/template/template.php
 augroup END
 
