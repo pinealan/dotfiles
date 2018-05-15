@@ -376,9 +376,9 @@ endfunction
 augroup usr
     autocmd!
     autocmd VimEnter *.c,*.cpp,*.py :vsp
-    autocmd BufEnter *.c,*.cpp,*.py :call ToggleFastEsc()
-    autocmd BufEnter *.c,*.cpp,*.py :call ToggleInsSymbols()
-    autocmd BufNewfile *.php :r ~/.vim/template/template.php
+    autocmd BufRead *vimrc,*.vim,.*c,*.cpp,*.py,*.php :silent call ToggleFastEsc()
+    autocmd BufRead *vimrc,*.vim,*.c,*.cpp,*.py,*.php :silent call ToggleInsSymbols()
+    autocmd BufNewfile *.php :r ~/.vim/template/template.php | normal kdd
 augroup END
 
 
