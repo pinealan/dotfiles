@@ -290,48 +290,21 @@ function! HighlightName()
     return "hi: ".hi." \| lo: ".lo." \| trans: ".tr." \| fg: ".fg." \| bg: ".bg
 endfunction
 
-let g:fastesc=0
 function! ToggleFastEsc()
-    if !g:fastesc
-        let g:fastesc=1
-        inoremap jk <esc>
-        inoremap kj <esc>
-        echom "Enabled insert mdoe fast <esc>"
-    else
-        unlet g:fastesc
-        iunmap jk
-        iunmap kj
+    if get(b:, 'fastesc', 0)
+        unlet b:fastesc
+        iunmap jj
         echom "Disabled insert mdoe fast <esc>"
+    else
+        let b:fastesc=1
+        inoremap jj <esc>
+        echom "Enabled insert mdoe fast <esc>"
     endif
 endfunction
 
-let g:inssymbols=0
 function! ToggleInsSymbols()
-    if !g:inssymbols
-        let g:inssymbols=1
-        inoremap 1 !
-        inoremap 2 @
-        inoremap 3 #
-        inoremap 4 $
-        inoremap 5 %
-        inoremap 6 ^
-        inoremap 7 &
-        inoremap 8 *
-        inoremap 9 (
-        inoremap 0 )
-        inoremap ! 1
-        inoremap @ 2
-        inoremap # 3
-        inoremap $ 4
-        inoremap % 5
-        inoremap ^ 6
-        inoremap & 7
-        inoremap * 8
-        inoremap ( 9
-        inoremap ) 0
-        echom "Enabled insert mode symbols"
-    else
-        unlet g:inssymbols
+    if get(b:, 'inssymbols', 0)
+        unlet b:inssymbols
         iunmap 1
         iunmap 2
         iunmap 3
@@ -353,6 +326,29 @@ function! ToggleInsSymbols()
         iunmap (
         iunmap )
         echom "Disabled insert mode fast symbols"
+    else
+        let b:inssymbols=1
+        inoremap 1 !
+        inoremap 2 @
+        inoremap 3 #
+        inoremap 4 $
+        inoremap 5 %
+        inoremap 6 ^
+        inoremap 7 &
+        inoremap 8 *
+        inoremap 9 (
+        inoremap 0 )
+        inoremap ! 1
+        inoremap @ 2
+        inoremap # 3
+        inoremap $ 4
+        inoremap % 5
+        inoremap ^ 6
+        inoremap & 7
+        inoremap * 8
+        inoremap ( 9
+        inoremap ) 0
+        echom "Enabled insert mode symbols"
     endif
 endfunction
 
@@ -380,8 +376,8 @@ endfunction
 augroup usr
     autocmd!
     autocmd VimEnter *.c,*.cpp,*.py :vsp
-    autocmd VimEnter *.c,*.cpp,*.py :call ToggleFastEsc()
-    autocmd VimEnter *.c,*.cpp,*.py :call ToggleInsSymbols()
+    autocmd BufEnter *.c,*.cpp,*.py :call ToggleFastEsc()
+    autocmd BufEnter *.c,*.cpp,*.py :call ToggleInsSymbols()
     autocmd BufNewfile *.php :r ~/.vim/template/template.php
 augroup END
 
