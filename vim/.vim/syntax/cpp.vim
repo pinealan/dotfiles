@@ -45,7 +45,7 @@ syn match cppAccess             "\<private\>"
 syn match cppAccess             "\<public\>"
 syn match cppAccess             "\<protected\>"
 
-syn match cppClassName          "[0-9A-Za-z:_<>*&]\+\ze\s\+\w\+" contains=cppBracket,cppScope
+syn match cppClassName          "\h[0-9A-Za-z:_<>*&]\+\ze\s\+\w\+" contains=cppBracket,cppScope
 syn match cppClassName          "\<class\_s\+\w\+\>" contains=cppStructure
 syn match cppClassName          "\<namespace\_s\+\w\+\>" contains=cppStructure
 syn match cppClassName          "\<template\_s\+\w\+\>" contains=cppStructure
