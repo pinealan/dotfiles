@@ -85,7 +85,6 @@ syn region  pythonRawString matchgroup=pythonTripleQuotes
 
 " DocStrings
 syn region  pythonDocstring start="'''" end="'''" contains=pythonTodo
-syn region  pythonDocstring start='"""' end='"""' contains=pythonTodo
 
 syn match   pythonEscape        +\\[abfnrtv'"\\]+ contained
 syn match   pythonEscape        "\\\o\{1,3}" contained
@@ -95,6 +94,14 @@ syn match   pythonEscape        "\%(\\u\x\{4}\|\\U\x\{8}\)" contained
 syn match   pythonEscape        "\\N{\a\+\%(\s\a\+\)*}" contained
 syn match   pythonEscape        "\\$"
 
+" Inline SQL
+syn keyword pythonSQLKeyword    ALTER ATTACH DETACH CREATE DROP EXPLAIN contained 
+syn keyword pythonSQLKeyword    SELECT INSERT UPDATE DELETE REPLACE ROLLBACK contained 
+syn keyword pythonSQLKeyword    PRIMARY UNIQUE FOREIGN REFERENCES contained
+syn keyword pythonSQLKeyword    IF NOT FROM WITH KEY EXISTS INDEXED BY contained
+syn keyword pythonSQLType       NULL INT INTEGER REAL TEXT STRING FLOAT BLOB contained
+syn keyword pythonSQLType       DATABASE TABLE TRIGGER TRANSACTION INDEX VIEW contained
+syn region  pythonSQLstring start='"""' end='"""' contains=pythonSQLKeyword,pythonSQLType
 
 " It is very important to understand all details before changing the
 " regular expressions below or their order.
@@ -230,6 +237,10 @@ if version >= 508 || !exists("did_python_syn_inits")
 
   HiLink pythonTripleQuotes     pythonQuotes
   HiLink pythonDocString        Comment
+
+  HiLink pythonSQLKeyword       Statement
+  HiLink pythonSQLType          Type
+  HiLink pythonSQLString        Constant
 
   HiLink pythonEscape           Special
   HiLink pythonBuiltin          Function
