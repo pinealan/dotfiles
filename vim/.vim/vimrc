@@ -18,7 +18,6 @@ let NERDTreeIgnore=['\.log$', '\.git', '__pycache__', '\.pyc$', '.exe$', '\.png$
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
-nnoremap  <c-e> :NERDTreeToggle<cr>
 " }}}
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
@@ -60,11 +59,11 @@ let g:ycm_filetype_blacklist = {
     \ 'tex': 1,
     \ 'bib': 0,
     \}
+let g:ycm_use_ultisnips_completer = 1
 
 " YCM diagnostic
 hi YcmErrorSection cterm=underline ctermfg=196
 hi YcmWarningSection cterm=underline ctermfg=196
-
 let g:ycm_error_symbol = 'x'
 let g:ycm_warning_symbol = '>'
 let g:ycm_open_loclist_on_ycm_diags = 0
@@ -78,13 +77,14 @@ let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_extra_conf_vim_data = ['&filetype']
 let g:ycm_python_binary_path = '/usr/bin/python3'
 " }}}
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'zirrostig/vim-schlepp'
 " Schlepp {{{
 let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
 " }}}
-
 
 call vundle#end()
 filetype plugin indent on
@@ -151,9 +151,6 @@ set encoding=utf8
 set nowritebackup
 set noswapfile
 
-" Trim trailing whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
-
 " Command-line completion
 set path=.,,**
 set wildmenu
@@ -177,8 +174,6 @@ noremap H 0
 noremap J L
 noremap K H
 noremap L $
-noremap <c-j> <c-d>
-noremap <c-k> <c-u>
 
 noremap $ J
 noremap 0 K
@@ -230,11 +225,15 @@ nnoremap <leader>i          :call ToggleInsSymbols()<cr>
 nnoremap <leader><esc>      :call ToggleFastEsc()<cr>
 
 " Plugin mapping
+nnoremap  <c-e> :NERDTreeToggle<cr>
+
 noremap <leader>a       :Tabularize /
 
-nnoremap <leader>0      :let g:ycm_auto_trigger=0<cr>
-nnoremap <leader>1      :let g:ycm_auto_trigger=1<cr>
 nnoremap <leader>f      :YcmCompleter FixIt<cr>
+
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 vmap <unique> <up>      <Plug>SchleppUp
 vmap <unique> <down>    <Plug>SchleppDown
@@ -375,10 +374,11 @@ endfunction
 "===[ Autocommands setup ]=== {{{
 augroup usr
     autocmd!
-    autocmd VimEnter *.c,*.cpp,*.py :vsp
-    autocmd BufRead *vimrc,*.vim,.*c,*.cpp,*.py,*.php :silent call ToggleFastEsc()
-    autocmd BufRead *vimrc,*.vim,*.c,*.cpp,*.py,*.php :silent call ToggleInsSymbols()
-    autocmd BufNewfile *.php :r ~/.vim/template/template.php | normal kdd
+
+    autocmd BufWritePre [^\.md,^\.html] %s/\s\+$//e
+    autocmd VimEnter    *.c,*.cpp,*.py :vsp
+    autocmd VimEnter    *.c,*.cpp,*.py,*.md :silent call ToggleFastEsc()
+    autocmd BufNewfile  *.php :r ~/.vim/template/template.php | normal kdd
 augroup END
 
 
