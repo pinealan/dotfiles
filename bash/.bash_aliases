@@ -1,16 +1,20 @@
 # Cheat Sheet: single character aliases
-#
 # a  ranger
 # c  clear
 # d  git diff
 # e  exit
 # f  the fuck
-# g  git log graph with commit messages and stat
+# g  git log, with graph, commit messages, and stat
 # h  htop
 # l  ls, long form, directory first
+# m  man
+# n  ranger
 # s  git status
 # t  start tmux with default session
+# v  vim
+# w  <posix>
 #
+# Still available: b, i-k, o-r, u, x-z
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -91,3 +95,6 @@ alias git-list-tags=\
 alias nlg='npm list -g -depth=0'
 alias a='ranger'
 alias f='fuck'
+alias m='man'
+alias n='ranger'
+alias v='vim'
