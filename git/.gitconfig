@@ -1,6 +1,7 @@
 [user]
-    name = pinealan
-    email = achan961117@gmail.com
+	name = Alan Chan
+	email = achan961117@gmail.com
+	username = pinealan
 [alias]
 	cm = commit -m
 	b = branch
@@ -10,13 +11,19 @@
 	la = log --graph --oneline --all --decorate --date-order
 	ll = log --graph --oneline --decorate
 	ls = log --graph --stat
-    pull = pull -v
+	pull = pull -v
 [pull]
-    rebase = true
+	rebase = true
 [push]
-	default = tracking
+	default = matching
 [credential]
 	helper = cache
 [core]
+	editory = vim
 	fileMode = false
 	autocrlf = false
+[rerere]
+	enabled = 1
+	autoupdate = 1
+[github]
+	user = pinealan
