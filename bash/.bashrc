@@ -79,6 +79,21 @@ export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
 
 stty -ixon
 
+# Functions
+frequent_commands () {
+    n=10
+
+    while getopts "n:" opt; do
+        case "$opt" in
+        n)
+            n=$OPTARG
+            ;;
+        esac
+    done
+
+    history | awk '{print $2}' | sort | uniq -c | sort -nr | head -n"$n" | nl
+}
+
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
