@@ -37,22 +37,13 @@ syn match cppScope              "::"
 syn match cppFunc               "\w\+\s*(\@="
 
 " Class name declaration
-syn match cppStructure          "\<class\>"
-syn match cppStructure          "\<namespace\>"
-syn match cppStructure          "\<template\>"
-syn match cppStructure          "\<typename\>"
-syn match cppAccess             "\<private\>"
-syn match cppAccess             "\<public\>"
-syn match cppAccess             "\<protected\>"
+syn keyword cppStructure          class namespace template typename
+syn keyword cppAccess             public protected private
 
-syn match cppClassName          "\h[0-9A-Za-z:_<>*&]\+\ze\s\+\w\+" contains=cppBracket,cppScope
-syn match cppClassName          "\<class\_s\+\w\+\>" contains=cppStructure
-syn match cppClassName          "\<namespace\_s\+\w\+\>" contains=cppStructure
-syn match cppClassName          "\<template\_s\+\w\+\>" contains=cppStructure
-syn match cppClassName          "\<typename\_s\+\w\+\>" contains=cppStructure
-syn match cppClassName          "\<private\_s\+\w\+\>" contains=cppAccess
-syn match cppClassName          "\<public\_s\+\w\+\>" contains=cppAccess
-syn match cppClassName          "\<protected\_s\+\w\+\>" contains=cppAccess
+"syn match cppClassName          "\h[0-9A-Za-z:_<>*&]\+\ze\s\+\w\+:" contains=cppBracket,cppScope
+
+syn match cppClassName          "\%(class\|namespace\|template\|typename\)\@<=\s\+\(\w\+\s\+\)*\zs\w\+\ze\s*" contains=cppStructure
+syn match cppClassName          "\%(public\|protected\|private\)\@<=\s\+\(\w\+\s\+\)*\zs\w\+\ze\s*" contains=cppStructure
 
 syn match   cppTemplate         "<[0-9A-Za-z:_ <>*&]\+>" contains=cppScope,cppBracket
 syn match   cppTemplateFunc     "[0-9A-Za-z_]\+\ze\s*<[0-9A-Za-z_:<>*]\+\s*(" contains=cppTemplate
@@ -81,25 +72,25 @@ endif
 " The minimum and maximum operators in GNU C++
 syn match cppMinMax "[<>]?"
 
-hi link cppAccess               cppStatement
-hi link cppModifier             cppStorageClass
-hi link cppClassName            cppType
-hi link cppTemplate             cppType
+hi def link cppAccess               cppStatement
+hi def link cppModifier             cppStorageClass
+hi def link cppClassName            cppType
+hi def link cppTemplate             cppType
 
-hi link cppFunc                 Function
-hi link cppCast                 Function
-hi link cppTemplateFunc         Function
+hi def link cppFunc                 Function
+hi def link cppCast                 Function
+hi def link cppTemplateFunc         Function
 
-hi link cppExceptions           Exception
-hi link cppOperator             Operator
-hi link cppStatement            Statement
-hi link cppType                 Type
-hi link cppStorageClass         StorageClass
-hi link cppStructure            Structure
-hi link cppBoolean              Boolean
-hi link cppConstant             Constant
-hi link cppRawStringDelimiter   Delimiter
-hi link cppRawString            String
+hi def link cppExceptions           Exception
+hi def link cppOperator             Operator
+hi def link cppStatement            Statement
+hi def link cppType                 Type
+hi def link cppStorageClass         StorageClass
+hi def link cppStructure            Structure
+hi def link cppBoolean              Boolean
+hi def link cppConstant             Constant
+hi def link cppRawStringDelimiter   Delimiter
+hi def link cppRawString            String
 
 let b:current_syntax = "cpp"
 
