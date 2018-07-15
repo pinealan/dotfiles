@@ -101,12 +101,6 @@ endif
 syn match markdownEscape "\\[][\\`*_{}()<>#+.!-]"
 syn match markdownError "\w\@<=_\w\@="
 
-hi def link markdownH1                    htmlH1
-hi def link markdownH2                    htmlH2
-hi def link markdownH3                    htmlH3
-hi def link markdownH4                    htmlH4
-hi def link markdownH5                    htmlH5
-hi def link markdownH6                    htmlH6
 hi def link markdownHeadingRule           markdownRule
 hi def link markdownHeadingDelimiter      Delimiter
 hi def link markdownOrderedListMarker     markdownListMarker
@@ -127,26 +121,33 @@ hi def link markdownIdDelimiter           markdownLinkDelimiter
 hi def link markdownUrlDelimiter          htmlTag
 hi def link markdownUrlTitleDelimiter     Delimiter
 
-hi def link markdownItalic                htmlItalic
-hi def link markdownItalicDelimiter       markdownItalic
-hi def link markdownBold                  htmlBold
-hi def link markdownBoldDelimiter         markdownBold
-hi def link markdownBoldItalic            htmlBoldItalic
-hi def link markdownBoldItalicDelimiter   markdownBoldItalic
-hi def link markdownCodeDelimiter         Delimiter
-
 hi def link markdownEscape                Special
 hi def link markdownError                 Error
+
+hi link markdownItalicDelimiter         markdownItalic
+hi link markdownBoldDelimiter           markdownBold
+hi link markdownBoldItalicDelimiter     markdownBoldItalic
+hi link markdownCodeDelimiter           Delimiter
+
+hi link markdownH1                      Title
+hi link markdownH2                      Title
+hi link markdownH3                      Title
+hi link markdownH4                      Title
+hi link markdownH5                      Title
+hi link markdownH6                      Title
+
+hi link markdownHeadingDelimiter        Statement
+hi link markdownError                   Normal
+hi link htmlError                       Normal
+hi link htmlTagId                       Normal
+
+hi markdownBold                 term=bold cterm=bold gui=bold
+hi markdownBold                 term=bold,italic cterm=bold,italic gui=bold,italic
+hi markdownItalic               term=italic cterm=italic gui=italic
 
 let b:current_syntax = "markdown"
 if main_syntax ==# 'markdown'
   unlet main_syntax
 endif
-
-" Fixes
-hi link markdownHeadingDelimiter    Statement
-hi link markdownError               Normal
-hi link htmlError                   Normal
-hi link htmlTagId                   Normal
 
 " vim:set sw=2:
