@@ -66,32 +66,30 @@ ${color3}GPU   : ${color}${execi 10 nvidia-settings -query GPUCoreTemp | head -n
 ${color3}MEM: ${color}${mem} / ${memmax}  ${color4}${membar 10}
 
 ${color1}Top Processes: ${color2}$hr
-${color3}Name         ${alignr} PID    CPU%   MEM%
-${color}${top name 1} ${alignr} ${top pid 1} ${top cpu 1} ${top mem 1}
-${color}${top name 2} ${alignr} ${top pid 2} ${top cpu 2} ${top mem 2}
-${color}${top name 3} ${alignr} ${top pid 3} ${top cpu 3} ${top mem 3}
-${color}${top name 4} ${alignr} ${top pid 4} ${top cpu 4} ${top mem 4}
-${color}${top name 5} ${alignr} ${top pid 5} ${top cpu 5} ${top mem 5}
-${color}${top name 6} ${alignr} ${top pid 6} ${top cpu 6} ${top mem 6}
-${color}${top name 7} ${alignr} ${top pid 7} ${top cpu 7} ${top mem 7}
-${color}${top name 8} ${alignr} ${top pid 8} ${top cpu 8} ${top mem 8}
-${color}${top name 9} ${alignr} ${top pid 9} ${top cpu 9} ${top mem 9}
-${color}${top name 10} ${alignr} ${top pid 10} ${top cpu 10} ${top mem 10}
+${color3}  PID ${alignr} Name               CPU%   MEM%
+${color2}${alignc}--- CPU Usage ---
+${color}${top pid 1} ${alignr} ${top name 1} ${top cpu 1} ${top mem 1}
+${color}${top pid 2} ${alignr} ${top name 2} ${top cpu 2} ${top mem 2}
+${color}${top pid 3} ${alignr} ${top name 3} ${top cpu 3} ${top mem 3}
+${color2}${alignc}--- RAM Usage ---
+${color}${top_mem pid 1} ${alignr} ${top_mem name 1} ${top_mem cpu 1} ${top_mem mem 1}
+${color}${top_mem pid 2} ${alignr} ${top_mem name 2} ${top_mem cpu 2} ${top_mem mem 2}
+${color}${top_mem pid 3} ${alignr} ${top_mem name 3} ${top_mem cpu 3} ${top_mem mem 3}
 
 ${color1}Filesystem: ${color2}$hr
 ${color3}/dev/nvme0: ${color}${fs_used /} / ${fs_size /}
 ${color4}${fs_bar 10 /}
 
 ${color1}Network: ${color2}$hr
+${color2}[ Wireless ]
 ${color3}Default Gateway: ${color}$gw_ip ${alignr} ${color3}Inbound: ${color}${tcp_portmon 1 32767 count}
 ${color3}IPv4 Address: ${color}${addr wlp2s0} ${alignr} ${color3}Outbound: ${color}${tcp_portmon 32768 65535 count}
+${color3}Network Name: ${color}${execi 60 iwgetid -r}
 
 ${color3}Outbound ${alignr} Service/Port${color}
 ${tcp_portmon 32768 60999 rip 0} ${alignr} ${tcp_portmon 32768 60999 rservice 0}
 ${tcp_portmon 32768 60999 rip 1} ${alignr} ${tcp_portmon 32768 60999 rservice 1}
 ${tcp_portmon 32768 60999 rip 2} ${alignr} ${tcp_portmon 32768 60999 rservice 2}
-${tcp_portmon 32768 60999 rip 3} ${alignr} ${tcp_portmon 32768 60999 rservice 3}
-${tcp_portmon 32768 60999 rip 4} ${alignr} ${tcp_portmon 32768 60999 rservice 4}
 
 ${color1}Battery: ${color}${execi 30 cat /sys/class/power_supply/BAT0/capacity}% ${color5}${execibar 30 cat /sys/class/power_supply/BAT0/capacity}
 ]]
