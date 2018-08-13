@@ -14,7 +14,7 @@ augroup usr_nerdtree
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
-let NERDTreeIgnore=['\.log$', '\.git', '__pycache__', '\.pyc$', '.exe$', '\.png$', '\.jpg$', '\.jpeg$', '\.ipynb_checkpoints']
+let NERDTreeIgnore=['\.log$', '\.git', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints']
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
@@ -34,14 +34,14 @@ let g:buftabline_numbers = 1
 Plugin 'godlygeek/tabular'
 Plugin 'othree/html5.vim'
 " HTML5 {{{
-let g:html_exclude_tags = ['html', 'body', 'head']
+"let g:html_exclude_tags = ['html', 'body', 'head']
 " }}}
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'cespare/vim-toml'
 Plugin 'Valloric/YouCompleteMe'
 " YouCompleteMe {{{
-let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_max_num_candidates = 25
 let g:ycm_filetype_blacklist = {
     \ 'tagbar': 1,
@@ -126,7 +126,8 @@ set splitright
 " Tab, indent, wrap
 set smarttab
 set shiftwidth=4
-set softtabstop=-1
+set softtabstop=4
+set tabstop=8
 
 set autoindent
 set smartindent
@@ -205,8 +206,9 @@ noremap <c-p>      :cprev<cr>
 " Normal mode command shortchuts
 nnoremap <cr>               o<esc>
 nnoremap <F9>               :echo HighlightName()<cr>
-nnoremap <leader>l          :echo HighlightName()<cr>
+nnoremap <leader>h          :echo HighlightName()<cr>
 nnoremap <leader>w          :w !sudo tee % > /dev/null
+nnoremap <leader>f          :set filetype=
 
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
@@ -227,9 +229,7 @@ nnoremap <leader><esc>      :call ToggleFastEsc()<cr>
 " Plugin mapping
 nnoremap  <c-e> :NERDTreeToggle<cr>
 
-noremap <leader>a       :Tabularize /
-
-nnoremap <leader>f      :YcmCompleter FixIt<cr>
+nnoremap <leader>t      :Tabularize /
 
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -370,15 +370,19 @@ function! ReportBuildResult()
     endif
 endfunction
 
+function! TrimSpace()
+    %s/\s\+$//e
+endfunction
+
 " }}}
 "===[ Autocommands setup ]=== {{{
 augroup usr
     autocmd!
 
-    autocmd BufWritePre [^\.md,^\.html] %s/\s\+$//e
-    autocmd VimEnter    *.c,*.cpp,*.py :vsp
-    autocmd VimEnter    *.c,*.cpp,*.py,*.md :silent call ToggleFastEsc()
-    autocmd BufNewfile  *.php :r ~/.vim/template/template.php | normal kdd
+    autocmd BufWritePre *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.s,*.sh,*.bash,*.rs,*.go,*.f,*.r,*.mat,*.tex,*.json call TrimSpace()
+    autocmd VimEnter    *.c,*.cpp,*.py vsp
+    autocmd VimEnter    *.c,*.cpp,*.py,*.md silent call ToggleFastEsc()
+    autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
 augroup END
 
 
