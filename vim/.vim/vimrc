@@ -206,7 +206,7 @@ noremap <c-p>      :cprev<cr>
 " Normal mode command shortchuts
 nnoremap <cr>               o<esc>
 nnoremap <F9>               :echo HighlightName()<cr>
-nnoremap <leader>h          :echo HighlightName()<cr>
+nnoremap <leader>c          :echo HighlightName()<cr>
 nnoremap <leader>w          :w !sudo tee % > /dev/null
 nnoremap <leader>f          :set filetype=
 
