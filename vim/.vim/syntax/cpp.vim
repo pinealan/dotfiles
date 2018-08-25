@@ -42,7 +42,7 @@ syn keyword cppAccess             public protected private
 
 "syn match cppClassName          "\h[0-9A-Za-z:_<>*&]\+\ze\s\+\w\+:" contains=cppBracket,cppScope
 
-syn match cppClassName          "\%(class\|namespace\|template\|typename\)\@<=\s\+\(\w\+\s\+\)*\zs\w\+\ze\s*" contains=cppStructure
+syn match cppClassName          "\%(class\|struct\|namespace\|template\|typename\)\@<=\s\+\(\w\+\s\+\)*\zs\w\+\ze\s*" contains=cppStructure
 syn match cppClassName          "\%(public\|protected\|private\)\@<=\s\+\(\w\+\s\+\)*\zs\w\+\ze\s*" contains=cppStructure
 
 syn match   cppTemplate         "<[0-9A-Za-z:_ <>*&]\+>" contains=cppScope,cppBracket
