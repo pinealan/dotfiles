@@ -91,7 +91,7 @@ frequent_commands () {
         esac
     done
 
-    history | awk '{print $2}' | sort | uniq -c | sort -nr | head -n"$n" | nl
+    history | awk '{ if (length($2) > 1) print $2}' | sort | uniq -c | sort -nr | head -n"$n" | nl
 }
 
 # Alias definitions.
