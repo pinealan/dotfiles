@@ -337,9 +337,11 @@ augroup usr
     autocmd!
 
     autocmd BufWritePre *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.s,*.sh,*.bash,*.rs,*.go,*.f,*.r,*.mat,*.tex,*.json call TrimSpace()
-    autocmd VimEnter    *.c,*.cpp,*.py vsp
-    autocmd VimEnter    *.c,*.cpp,*.py,*.md,*.vim,vimrc silent call EnableFastEsc()
+    autocmd BufRead     *.c,*.cpp,*.py,*.md,*.vim,vimrc silent call EnableFastEsc()
+    autocmd BufRead     * syn keyword Todo Todo Note TODO NOTE
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
+
+    autocmd VimEnter    *.c,*.cpp,*.py vsp
 augroup END
 
 

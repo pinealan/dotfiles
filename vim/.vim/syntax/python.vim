@@ -64,8 +64,7 @@ syn match   pythonKeywordArg /\i*\ze=[^=]/ contained
 
 
 " Comments
-syn match   pythonComment       "#.*$" contains=pythonTodo,@Spell
-syn match   pythonTodo          "@\w\+" contained
+syn match   pythonComment       "#.*$" contains=@Spell,Todo
 
 
 " Triple-quoted strings can contain doctests.
@@ -84,7 +83,7 @@ syn region  pythonRawString matchgroup=pythonTripleQuotes
 
 
 " DocStrings
-syn region  pythonDocstring start='"""' end='"""' contains=pythonTodo
+syn region  pythonDocstring start='"""' end='"""'
 
 syn match   pythonEscape        +\\[abfnrtv'"\\]+ contained
 syn match   pythonEscape        "\\\o\{1,3}" contained
@@ -233,7 +232,6 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonString           String
   HiLink pythonRawString        String
   HiLink pythonQuotes           String
-  HiLink pythonTodo             Todo
 
   HiLink pythonTripleQuotes     pythonQuotes
   HiLink pythonDocString        Comment
