@@ -84,7 +84,7 @@ ${color1}Network: ${color2}$hr
 ${color2}[ Wireless ]
 ${color3}Default Gateway: ${color}$gw_ip ${alignr} ${color3}Inbound: ${color}${tcp_portmon 1 32767 count}
 ${color3}IPv4 Address: ${color}${addr wlp2s0} ${alignr} ${color3}Outbound: ${color}${tcp_portmon 32768 65535 count}
-${color3}Network Name: ${color}${execi 60 iwgetid -r}
+${color3}Network Name: ${color}${execi 30 iwgetid -r} ${alignr} ${downspeed wlp2s0}
 
 ${color3}Outbound ${alignr} Service/Port${color}
 ${tcp_portmon 32768 60999 rip 0} ${alignr} ${tcp_portmon 32768 60999 rservice 0}
