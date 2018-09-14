@@ -14,7 +14,7 @@ augroup usr_nerdtree
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
-let NERDTreeIgnore=['\.log$', '\.git', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints']
+let NERDTreeIgnore=['\.log$', '\.git', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints', '\.pytest_cache']
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
@@ -22,14 +22,14 @@ let NERDTreeShowHidden=1
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'henrik/vim-indexed-search'
-Plugin 'ap/vim-buftabline'
+"Plugin 'ap/vim-buftabline'
 " BufTabLine {{{
-hi default link BufTabLineCurrent TabLineSel
-hi default link BufTabLineActive TabLine
-hi default link BufTabLineHidden TabLine
-hi default link BufTabLineFill TabLineFill
-
-let g:buftabline_numbers = 1
+"hi default link BufTabLineCurrent TabLineSel
+"hi default link BufTabLineActive TabLine
+"hi default link BufTabLineHidden TabLine
+"hi default link BufTabLineFill TabLineFill
+"
+"let g:buftabline_numbers = 1
 " }}}
 Plugin 'godlygeek/tabular'
 Plugin 'othree/html5.vim'
@@ -121,6 +121,9 @@ set whichwrap+=<,>,h,l
 set laststatus=2
 set statusline=%#StatusLineGit#%{GitBranch()}%#User{1}#\ %{HasPaste()}%r%m%t%=%y\ %l,\%-2c\ \|%3p%%
 
+set showtabline=1
+set tabline=%!MyTabLine()
+
 set splitright
 
 " Tab, indent, wrap
@@ -198,8 +201,10 @@ noremap [<s-l>      <c-w>9>
 " Buffer/Error list shortcuts
 noremap <c-s>      :update<cr>
 noremap <c-q>      :qa!<cr>
-noremap <c-l>      :bnext<cr>
-noremap <c-h>      :bprev<cr>
+noremap <c-h>      :tabprev<cr>
+noremap <c-l>      :tabnext<cr>
+noremap <c-j>      :bnext<cr>
+noremap <c-k>      :bprev<cr>
 noremap <c-n>      :cnext<cr>
 noremap <c-p>      :cprev<cr>
 
@@ -270,9 +275,43 @@ function! ShortCwd(len)
     return cwd
 endfunction
 
+function! PathFilename(path)
+    let name=split(a:path, '/')
+    if len(name) == 0
+        return '[no name]'
+    else
+        return name[-1]
+endfunction
+
 function! GitBranch()
     let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
     return strlen(l:branchname) > 0 ? '  ' . l:branchname . ' ' : ''
+endfunction
+
+function! MyTabLine()
+    let s = ''
+    for i in range(tabpagenr('$'))
+        if i + 1 == tabpagenr()
+            let s .= '%#TabLineSel#'
+        else
+            let s .= '%#TabLine#'
+        endif
+        let s .= '%' . (i + 1) . 'T'
+        let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+    endfor
+
+    let s .= '%#TabLineFill#%T'
+
+    if tabpagenr('$') > 1
+        let s .= '%=%#TabLine#%999Xclose'
+    endif
+    return s
+endfunction
+
+function! MyTabLabel(n)
+    let winnr = tabpagewinnr(a:n, '$')
+    let bufls = tabpagebuflist(a:n)
+    return a:n . ':' . '(' . winnr . ') ' . PathFilename(bufname(bufls[winnr - 1]))
 endfunction
 
 function! HighlightName()
