@@ -99,6 +99,15 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Scripts 
+if [ -d ~/.bash_plugins ]; then
+    for f in ~/.bash_plugins/*; do
+        if [ -f $f ]; then
+            . $f
+        fi
+    done
+fi
+
 # Machine local bashrc
 if [ -f ~/.local/.bashrc ]; then
     . ~/.local/.bashrc
