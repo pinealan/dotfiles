@@ -11,19 +11,19 @@
 # 2. gp_set_dir
 #    -  set $__GIT_PROMPT_DIR
 # 3  gp_load_colors
-# 4. gp_load_theme
-#    - call gp_get_theme
-#    - source theme files
+#    - source prompt-colors.sh
+# 4  gp_load_base_theme
+#    - source theme.sh
+# 5. gp_load_theme
+#    - source theme from themes/
 #
 # ---[ Bash PROMPT_COMMAND procedure ]---
 # 1. gp_set_last_exit
 # 2. gp_set_prompt
 #    1. gp_keep_old_prompt
-#    2. gp_config
-#    3. gp_maybe_set_envar_to_path
-#    4. updatePrompt
-#    5. gp_config
-#    6. gp_add_virtualenv_to_prompt
+#    2. gp_maybe_set_envar_to_path
+#    3. gp_update
+#    4. gp_add_virtualenv_to_prompt
 
 
 # ---------------------
@@ -77,8 +77,6 @@ function gp_toggle() {
 }
 
 function gp_list_themes() {
-  gp_load_colors
-
   for themefile in "${__GIT_PROMPT_DIR}/themes/"*; do
     local basename=${themefile##*/}
     local theme="${basename%.sh}"
@@ -103,7 +101,7 @@ function gp_make_custom_theme() {
 # unsets installation related GIT_PROMPT variables
 function gp_uninstall() {
   local var
-  for var in GIT_PROMPT_DIR __GIT_PROMPT_COLORS_FILE __PROMPT_COLORS_FILE __GIT_STATUS_CMD GIT_PROMPT_THEME_NAME; do
+  for var in GIT_PROMPT_DIR __GIT_PROMPT_COLORS_FILE __GIT_STATUS_CMD GIT_PROMPT_THEME_NAME; do
     unset $var
   done
 }
@@ -114,53 +112,23 @@ function gp_uninstall() {
 # -----------------
 
 function gp_load_colors() {
-  if gp_set_file_var __PROMPT_COLORS_FILE prompt-colors.sh ; then
-    # outsource the color defs
-    source "$__PROMPT_COLORS_FILE"
-  else
-    echo 1>&2 "Cannot find prompt-colors.sh!"
-  fi
+  # outsource the color defs
+  source "${__GIT_PROMPT_DIR}/prompt-colors.sh"
 }
 
-function gp_get_theme() {
+function gp_load_base_theme() {
+  # outsource the skeleton theme defs
+  source "${__GIT_PROMPT_DIR}/theme.sh"
+}
+
+function gp_load_theme() {
   if [[ -n $GIT_PROMPT_THEME ]]; then
     __GIT_PROMPT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/${GIT_PROMPT_THEME}.sh"
   else
     __GIT_PROMPT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.sh}"
   fi
-}
 
-function gp_load_theme() {
-  gp_get_theme
-  local DEFAULT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.sh"
-  source "${DEFAULT_THEME_FILE}"
-  source "${__GIT_PROMPT_THEME_FILE}"
-}
-
-# gp_set_file_var ENVAR SOMEFILE
-#
-# If ENVAR is set, check that it's value exists as a readable file.  Otherwise,
-# Set ENVAR to the path to SOMEFILE, based on $HOME, $__GIT_PROMPT_DIR, and the
-# directory of the current script.  The SOMEFILE can be prefixed with '.', or
-# not.
-#
-# Return 0 (success) if ENVAR not already defined, 1 (failure) otherwise.
-#
-function gp_set_file_var() {
-  local envar="$1"
-  local file="$2"
-  if eval "[[ -n \"\$$envar\" && -r \"\$$envar\" ]]" ; then # is envar set to a readable file?
-    local basefile
-    eval "basefile=\"\`basename \\\"\$$envar\\\"\`\""   # assign basefile
-    if [[ "$basefile" = "$file" || "$basefile" = ".$file" ]]; then
-      return 0
-    fi
-  else  # envar is not set, or it's set to a different file than requested
-    eval "$envar="      # set empty envar
-    gp_maybe_set_envar_to_path "$envar" "$HOME/.$file" "$HOME/$file" "$HOME/lib/$file" && return 0
-    gp_maybe_set_envar_to_path "$envar" "$__GIT_PROMPT_DIR/$file" "${0##*/}/$file"     && return 0
-  fi
-  return 1
+  source "$__GIT_PROMPT_THEME_FILE"
 }
 
 # gp_maybe_set_envar_to_path ENVAR FILEPATH ...
@@ -197,79 +165,6 @@ function gp_format_exit_status() {
   else
     echo "${RETVAL}"
   fi
-}
-
-function gp_config() {
-  #Checking if root to change output
-  _isroot=false
-  [[ $UID -eq 0 ]] && _isroot=true
-
-  if is_function prompt_callback; then
-    prompt_callback="prompt_callback"
-  else
-    prompt_callback=:
-  fi
-
-  if [ "$GIT_PROMPT_LAST_COMMAND_STATE" == 0 ]; then
-    LAST_COMMAND_INDICATOR="$GIT_PROMPT_COMMAND_OK";
-  else
-    LAST_COMMAND_INDICATOR="$GIT_PROMPT_COMMAND_FAIL";
-  fi
-
-  # replace _LAST_COMMAND_STATE_ token with the actual state
-  GIT_PROMPT_LAST_COMMAND_STATE=$(gp_format_exit_status ${GIT_PROMPT_LAST_COMMAND_STATE})
-  LAST_COMMAND_INDICATOR="${LAST_COMMAND_INDICATOR//_LAST_COMMAND_STATE_/${GIT_PROMPT_LAST_COMMAND_STATE}}"
-
-  # Do this only once to define PROMPT_START and PROMPT_END
-
-  if [[ -z "$PROMPT_START" || -z "$PROMPT_END" ]]; then
-
-    if [[ -z "$GIT_PROMPT_START" ]] ; then
-      if $_isroot; then
-        PROMPT_START="$GIT_PROMPT_START_ROOT"
-      else
-        PROMPT_START="$GIT_PROMPT_START_USER"
-      fi
-    else
-      PROMPT_START="$GIT_PROMPT_START"
-    fi
-
-    if [[ -z "$GIT_PROMPT_END" ]] ; then
-      if $_isroot; then
-        PROMPT_END="$GIT_PROMPT_END_ROOT"
-      else
-        PROMPT_END="$GIT_PROMPT_END_USER"
-      fi
-    else
-      PROMPT_END="$GIT_PROMPT_END"
-    fi
-  fi
-
-  # set GIT_PROMPT_LEADING_SPACE to 0 if you want to have no leading space in front of the GIT prompt
-  if [[ "$GIT_PROMPT_LEADING_SPACE" = 0 ]]; then
-    PROMPT_LEADING_SPACE=""
-  else
-    PROMPT_LEADING_SPACE=" "
-  fi
-
-  if [[ "$GIT_PROMPT_ONLY_IN_REPO" = 1 ]]; then
-    EMPTY_PROMPT="$OLD_PROMPT"
-  else
-    local ps="$(gp_add_virtualenv_to_prompt)$PROMPT_START$($prompt_callback)$PROMPT_END"
-    EMPTY_PROMPT="${ps//_LAST_COMMAND_INDICATOR_/${LAST_COMMAND_INDICATOR}}"
-  fi
-
-  # fetch remote revisions every other $GIT_PROMPT_FETCH_TIMEOUT (default 5) minutes
-  if [[ -z "$GIT_PROMPT_FETCH_TIMEOUT" ]]; then
-    GIT_PROMPT_FETCH_TIMEOUT="5"
-  fi
-  if [[ -z "$__GIT_STATUS_CMD" ]] ; then          # if GIT_STATUS_CMD not defined..
-    if ! gp_maybe_set_envar_to_path __GIT_STATUS_CMD "$__GIT_PROMPT_DIR/$GIT_PROMPT_STATUS_COMMAND" ; then
-      echo 1>&2 "Cannot find $GIT_PROMPT_STATUS_COMMAND!"
-    fi
-    # __GIT_STATUS_CMD defined
-  fi
-  unset GIT_BRANCH
 }
 
 
@@ -321,8 +216,6 @@ function olderThanMinutes() {
 
 function checkUpstream() {
   local GIT_PROMPT_FETCH_TIMEOUT
-  gp_config
-
   local FETCH_HEAD="$repo/.git/FETCH_HEAD"
   # Fech repo if local is stale for more than $GIT_FETCH_TIMEOUT minutes
   if [[ ! -e "$FETCH_HEAD" ]] || olderThanMinutes "$FETCH_HEAD" "$GIT_PROMPT_FETCH_TIMEOUT"
@@ -373,13 +266,80 @@ function createPrivateIndex {
 # | Prompt update routine |
 # -------------------------
 
-function updatePrompt() {
+function gp_config() {
+  #Checking if root to change output
+  _isroot=false
+  [[ $UID -eq 0 ]] && _isroot=true
+
+  if is_function prompt_callback; then
+    prompt_callback="prompt_callback"
+  else
+    prompt_callback=:
+  fi
+
+  if [ "$GIT_PROMPT_LAST_COMMAND_STATE" == 0 ]; then
+    LAST_COMMAND_INDICATOR="$GIT_PROMPT_COMMAND_OK";
+  else
+    LAST_COMMAND_INDICATOR="$GIT_PROMPT_COMMAND_FAIL";
+  fi
+
+  # replace _LAST_COMMAND_STATE_ token with the actual state
+  GIT_PROMPT_LAST_COMMAND_STATE=$(gp_format_exit_status ${GIT_PROMPT_LAST_COMMAND_STATE})
+  LAST_COMMAND_INDICATOR="${LAST_COMMAND_INDICATOR//_LAST_COMMAND_STATE_/${GIT_PROMPT_LAST_COMMAND_STATE}}"
+
+  if [[ -z "$GIT_PROMPT_START" ]] ; then
+    if $_isroot; then
+      PROMPT_START="$GIT_PROMPT_START_ROOT"
+    else
+      PROMPT_START="$GIT_PROMPT_START_USER"
+    fi
+  else
+    PROMPT_START="$GIT_PROMPT_START"
+  fi
+
+  if [[ -z "$GIT_PROMPT_END" ]] ; then
+    if $_isroot; then
+      PROMPT_END="$GIT_PROMPT_END_ROOT"
+    else
+      PROMPT_END="$GIT_PROMPT_END_USER"
+    fi
+  else
+    PROMPT_END="$GIT_PROMPT_END"
+  fi
+
+  # set GIT_PROMPT_LEADING_SPACE to 0 if you want to have no leading space in front of the GIT prompt
+  if [[ "$GIT_PROMPT_LEADING_SPACE" = 0 ]]; then
+    PROMPT_LEADING_SPACE=""
+  else
+    PROMPT_LEADING_SPACE=" "
+  fi
+
+  if [[ "$GIT_PROMPT_ONLY_IN_REPO" = 1 ]]; then
+    EMPTY_PROMPT="$OLD_PROMPT"
+  else
+    local ps="$(gp_add_virtualenv_to_prompt)$PROMPT_START$($prompt_callback)$PROMPT_END"
+    EMPTY_PROMPT="${ps//_LAST_COMMAND_INDICATOR_/${LAST_COMMAND_INDICATOR}}"
+  fi
+
+  # fetch remote revisions every other $GIT_PROMPT_FETCH_TIMEOUT (default 5) minutes
+  if [[ -z "$GIT_PROMPT_FETCH_TIMEOUT" ]]; then
+    GIT_PROMPT_FETCH_TIMEOUT="5"
+  fi
+  if [[ -z "$__GIT_STATUS_CMD" ]] ; then          # if GIT_STATUS_CMD not defined..
+    if ! gp_maybe_set_envar_to_path __GIT_STATUS_CMD "$__GIT_PROMPT_DIR/$GIT_PROMPT_STATUS_COMMAND" ; then
+      echo 1>&2 "Cannot find $GIT_PROMPT_STATUS_COMMAND!"
+    fi
+    # __GIT_STATUS_CMD defined
+  fi
+  unset GIT_BRANCH
+}
+
+function gp_update() {
   local LAST_COMMAND_INDICATOR
   local PROMPT_LEADING_SPACE
   local PROMPT_START
   local PROMPT_END
   local EMPTY_PROMPT
-  local Blue="\[\033[0;34m\]"
 
   gp_config
 
@@ -578,7 +538,7 @@ function gp_set_prompt() {
     checkUpstream
   fi
 
-  updatePrompt
+  gp_update
 }
 
 function gp_set_last_exit() {
@@ -647,4 +607,5 @@ function gp_install_prompt {
 gp_install_prompt
 gp_set_dir
 gp_load_colors
+gp_load_base_theme
 gp_load_theme
