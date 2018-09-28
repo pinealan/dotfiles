@@ -7,22 +7,22 @@
 #
 # ---[ Installation procedure ]---
 # 1. gp_install_prompt
-#    >  set $PROMPT_COMMAND
+#    -  set $PROMPT_COMMAND
 # 2. gp_set_dir
-#    >  set $__GIT_PROMPT_DIR
+#    -  set $__GIT_PROMPT_DIR
+# 3  gp_load_colors
+# 4. gp_load_theme
+#    - call gp_get_theme
+#    - source theme files
 #
 # ---[ Bash PROMPT_COMMAND procedure ]---
 # 1. gp_set_last_exit
 # 2. gp_set_prompt
-#    1. update_old_gp
+#    1. gp_keep_old_prompt
 #    2. gp_config
-#       1  gp_load_colors -> gp_set_file_var
-#       2. gp_load_theme -> gp_get_theme -> source theme files
 #    3. gp_maybe_set_envar_to_path
 #    4. updatePrompt
 #    5. gp_config
-#       1  gp_load_colors -> gp_set_file_var
-#       2. gp_load_theme -> gp_get_theme
 #    6. gp_add_virtualenv_to_prompt
 
 
@@ -49,7 +49,7 @@ function is_function() {
 }
 
 function echoc() {
-  echo -e "${1}$2${ResetColor}" | sed 's/\\\]//g'  | sed 's/\\\[//g'
+  echo -e "$1$2$ResetColor" | sed 's/\\\]//g'  | sed 's/\\\[//g'
 }
 
 # Helper function that truncates $PWD depending on window width
@@ -60,10 +60,6 @@ function truncate_pwd {
   local pwdmaxlen=${1:-$((${COLUMNS:-80}/3))}
   [ ${#newPWD} -gt $pwdmaxlen ] && newPWD="...${newPWD:3-$pwdmaxlen}"
   echo -n "$newPWD"
-}
-
-function prompt_callback_default() {
-  return
 }
 
 
@@ -82,55 +78,30 @@ function gp_toggle() {
 
 function gp_list_themes() {
   gp_load_colors
-  gp_get_theme
 
   for themefile in "${__GIT_PROMPT_DIR}/themes/"*; do
     local basename=${themefile##*/}
-    local theme="${basename%.bgptheme}"
-    if [[ "${GIT_PROMPT_THEME}" = "${theme}" ]]; then
-      echoc ${Red} "*${theme}"
+    local theme="${basename%.sh}"
+    if [[ "$GIT_PROMPT_THEME" = "$theme" ]]; then
+      echoc $Magenta "* $theme"
     else
-      echo $theme
+      echo "  $theme"
     fi
   done
-
-  if [[ "${GIT_PROMPT_THEME}" = "Custom" ]]; then
-    echoc ${Magenta} "*Custom"
-  else
-    echoc ${Blue} "Custom"
-  fi
 }
 
 function gp_make_custom_theme() {
-  if [[ -r "${HOME}/.git-prompt-colors.sh" ]]; then
-    echoc ${Red} "You have already created a custom theme!"
+  if [[ -r "${__GIT_PROMPT_DIR}/themes/${1}.sh" ]]; then
+    echoc $Red "You have already created a ${1} theme!"
   else
-
-    local base="Default"
-    if [[ -n $1 && -r "${__GIT_PROMPT_DIR}/themes/${1}.bgptheme" ]]; then
-      base=$1
-      echoc ${Green} "Using theme ${Magenta}\"${base}\"${Green} as base theme!"
-    else
-      echoc ${Green} "Using theme ${Magenta}\"Default\"${Green} as base theme!"
-    fi
-
-    if [[ "${base}" = "Custom" ]]; then
-      echoc ${Red} "You cannot use the custom theme as base"
-    else
-      echoc ${Green} "Creating new custom theme in \"${HOME}/.git-prompt-colors.sh\""
-      echoc ${DimYellow} "Please add ${Magenta}\"GIT_PROMPT_THEME=Custom\"${DimYellow} to your .bashrc to use this theme"
-      if [[ "${base}" == "Default" ]]; then
-        cp "${__GIT_PROMPT_DIR}/themes/Custom.bgptemplate" "${HOME}/.git-prompt-colors.sh"
-      else
-        cp "${__GIT_PROMPT_DIR}/themes/${base}.bgptheme" "${HOME}/.git-prompt-colors.sh"
-      fi
-    fi
+    echoc $Green     "Using theme ${Magenta}\"Default\"${Green} as base theme!"
+    echoc $DimYellow "Please add ${Magenta}\"GIT_PROMPT_THEME=${1}\"${DimYellow} to your .bashrc to use this theme"
+    cp "${__GIT_PROMPT_DIR}/themes/Default.sh" "${__GIT_PROMPT_DIR}/themes/${1}.sh"
   fi
 }
 
-# unsets selected GIT_PROMPT variables, causing the next prompt callback to
-# recalculate them from scratch.
-function gp_reset() {
+# unsets installation related GIT_PROMPT variables
+function gp_uninstall() {
   local var
   for var in GIT_PROMPT_DIR __GIT_PROMPT_COLORS_FILE __PROMPT_COLORS_FILE __GIT_STATUS_CMD GIT_PROMPT_THEME_NAME; do
     unset $var
@@ -138,9 +109,9 @@ function gp_reset() {
 }
 
 
-# ------------------
-# | Theme routines |
-# ------------------
+# -----------------
+# | Theme routine |
+# -----------------
 
 function gp_load_colors() {
   if gp_set_file_var __PROMPT_COLORS_FILE prompt-colors.sh ; then
@@ -152,53 +123,16 @@ function gp_load_colors() {
 }
 
 function gp_get_theme() {
-  local DEFAULT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.bgptheme"
-  local CUSTOM_THEME_FILE="${HOME}/.git-prompt-colors.sh"
-  if [[ ! (-z ${GIT_PROMPT_THEME_FILE} ) ]]; then
-    CUSTOM_THEME_FILE=$GIT_PROMPT_THEME_FILE
-  fi
-
-  if [[ -z ${GIT_PROMPT_THEME} ]]; then
-    if [[ -r $CUSTOM_THEME_FILE ]]; then
-      GIT_PROMPT_THEME="Custom"
-      __GIT_PROMPT_THEME_FILE=$CUSTOM_THEME_FILE
-    else
-      GIT_PROMPT_THEME="Default"
-      __GIT_PROMPT_THEME_FILE=$DEFAULT_THEME_FILE
-    fi
+  if [[ -n $GIT_PROMPT_THEME ]]; then
+    __GIT_PROMPT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/${GIT_PROMPT_THEME}.sh"
   else
-    if [[ "${GIT_PROMPT_THEME}" = "Custom" ]]; then
-      GIT_PROMPT_THEME="Custom"
-      __GIT_PROMPT_THEME_FILE=$CUSTOM_THEME_FILE
-
-      if [[ ! (-r $__GIT_PROMPT_THEME_FILE) ]]; then
-        GIT_PROMPT_THEME="Default"
-        __GIT_PROMPT_THEME_FILE=$DEFAULT_THEME_FILE
-      fi
-    else
-      local theme=""
-
-      # use default theme, if theme was not found
-      for themefile in "${__GIT_PROMPT_DIR}/themes/"*.bgptheme; do
-        local basename=${themefile##*/}
-        if [[ "${basename%.bgptheme}" = "${GIT_PROMPT_THEME}" ]]; then
-          theme=$GIT_PROMPT_THEME
-          break
-        fi
-      done
-
-      if [[ "${theme}" = "" ]]; then
-        GIT_PROMPT_THEME="Default"
-      fi
-
-      __GIT_PROMPT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/${GIT_PROMPT_THEME}.bgptheme"
-    fi
+    __GIT_PROMPT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.sh}"
   fi
 }
 
 function gp_load_theme() {
   gp_get_theme
-  local DEFAULT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.bgptheme"
+  local DEFAULT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.sh"
   source "${DEFAULT_THEME_FILE}"
   source "${__GIT_PROMPT_THEME_FILE}"
 }
@@ -270,20 +204,10 @@ function gp_config() {
   _isroot=false
   [[ $UID -eq 0 ]] && _isroot=true
 
-  # There are two files related to colors:
-  #
-  #  prompt-colors.sh -- sets generic color names suitable for bash 'PS1' prompt
-  #  git-prompt-colors.sh -- sets the GIT_PROMPT color scheme, using names from prompt-colors.sh
-  gp_load_colors
-
-  # source the user's ~/.git-prompt-colors.sh file, or the one that should be
-  # sitting in the same directory as this script
-  gp_load_theme
-
   if is_function prompt_callback; then
     prompt_callback="prompt_callback"
   else
-    prompt_callback="prompt_callback_default"
+    prompt_callback=:
   fi
 
   if [ "$GIT_PROMPT_LAST_COMMAND_STATE" == 0 ]; then
@@ -329,7 +253,7 @@ function gp_config() {
   fi
 
   if [[ "$GIT_PROMPT_ONLY_IN_REPO" = 1 ]]; then
-    EMPTY_PROMPT="$OLD_GITPROMPT"
+    EMPTY_PROMPT="$OLD_PROMPT"
   else
     local ps="$(gp_add_virtualenv_to_prompt)$PROMPT_START$($prompt_callback)$PROMPT_END"
     EMPTY_PROMPT="${ps//_LAST_COMMAND_INDICATOR_/${LAST_COMMAND_INDICATOR}}"
@@ -349,9 +273,9 @@ function gp_config() {
 }
 
 
-# ----------------
-# | Git routines |
-# ----------------
+# ---------------
+# | Git routine |
+# ---------------
 
 # some versions of find do not have -mmin
 _have_find_mmin=1
@@ -443,6 +367,11 @@ function createPrivateIndex {
   command cp "$__GIT_INDEX_FILE" "$__GIT_INDEX_PRIVATE" 2>/dev/null
   echo "$__GIT_INDEX_PRIVATE"
 }
+
+
+# -------------------------
+# | Prompt update routine |
+# -------------------------
 
 function updatePrompt() {
   local LAST_COMMAND_INDICATOR
@@ -581,22 +510,20 @@ function gp_add_virtualenv_to_prompt {
   echo "$ACCUMULATED_VENV_PROMPT"
 }
 
-function update_old_gp() {
-  local in_repo=$(we_are_on_repo)
-  if [[ $GIT_PROMPT_OLD_DIR_WAS_GIT = 0 ]]; then
-    OLD_GITPROMPT=$PS1
+function gp_keep_old_prompt() {
+  if [[ -z $GIT_PROMPT_OLD_DIR_WAS_GIT ]]; then
+    OLD_PROMPT=$PS1
   fi
-
-  GIT_PROMPT_OLD_DIR_WAS_GIT=$in_repo
+  GIT_PROMPT_OLD_DIR_WAS_GIT=$(we_are_on_repo)
 }
 
 function gp_set_prompt() {
-  update_old_gp
+  gp_keep_old_prompt
 
   local repo=$(git rev-parse --show-toplevel 2> /dev/null)
   if [[ ! -e "$repo" ]] && [[ "$GIT_PROMPT_ONLY_IN_REPO" = 1 ]]; then
     # we do not permit bash-git-prompt outside git repos, so nothing to do
-    PS1="$OLD_GITPROMPT"
+    PS1="$OLD_PROMPT"
     return
   fi
 
@@ -678,8 +605,8 @@ function gp_set_dir() {
 }
 
 function gp_install_prompt {
-  if [ -z "$OLD_GITPROMPT" ]; then
-    OLD_GITPROMPT=$PS1
+  if [ -z "$OLD_PROMPT" ]; then
+    OLD_PROMPT=$PS1
   fi
 
   if [ -z "$GIT_PROMPT_OLD_DIR_WAS_GIT" ]; then
@@ -715,7 +642,9 @@ function gp_install_prompt {
       ;;
   esac
 
-  gp_set_dir
 }
 
 gp_install_prompt
+gp_set_dir
+gp_load_colors
+gp_load_theme
