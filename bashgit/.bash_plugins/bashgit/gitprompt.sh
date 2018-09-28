@@ -21,9 +21,8 @@
 # 1. gp_set_last_exit
 # 2. gp_set_prompt
 #    1. gp_keep_old_prompt
-#    2. gp_maybe_set_envar_to_path
-#    3. gp_update
-#    4. gp_add_virtualenv_to_prompt
+#    2. gp_update
+#    3. gp_add_virtualenv_to_prompt
 
 
 # ---------------------
@@ -129,24 +128,6 @@ function gp_load_theme() {
   fi
 
   source "$__GIT_PROMPT_THEME_FILE"
-}
-
-# gp_maybe_set_envar_to_path ENVAR FILEPATH ...
-#
-# return 0 (true) if any FILEPATH is readable, set ENVAR to it
-# return 1 (false) if not
-#
-function gp_maybe_set_envar_to_path() {
-  local envar="$1"
-  shift
-  local file
-  for file in "$@" ; do
-    if [[ -r "$file" ]]; then
-      eval "$envar=\"$file\""
-      return 0
-    fi
-  done
-  return 1
 }
 
 # gp_format_exit_status RETVAL
@@ -287,24 +268,16 @@ function gp_config() {
   GIT_PROMPT_LAST_COMMAND_STATE=$(gp_format_exit_status ${GIT_PROMPT_LAST_COMMAND_STATE})
   LAST_COMMAND_INDICATOR="${LAST_COMMAND_INDICATOR//_LAST_COMMAND_STATE_/${GIT_PROMPT_LAST_COMMAND_STATE}}"
 
-  if [[ -z "$GIT_PROMPT_START" ]] ; then
-    if $_isroot; then
-      PROMPT_START="$GIT_PROMPT_START_ROOT"
-    else
-      PROMPT_START="$GIT_PROMPT_START_USER"
-    fi
+  if $_isroot; then
+    PROMPT_START="$GIT_PROMPT_START_ROOT"
   else
-    PROMPT_START="$GIT_PROMPT_START"
+    PROMPT_START="$GIT_PROMPT_START_USER"
   fi
 
-  if [[ -z "$GIT_PROMPT_END" ]] ; then
-    if $_isroot; then
-      PROMPT_END="$GIT_PROMPT_END_ROOT"
-    else
-      PROMPT_END="$GIT_PROMPT_END_USER"
-    fi
+  if $_isroot; then
+    PROMPT_END="$GIT_PROMPT_END_ROOT"
   else
-    PROMPT_END="$GIT_PROMPT_END"
+    PROMPT_END="$GIT_PROMPT_END_USER"
   fi
 
   # set GIT_PROMPT_LEADING_SPACE to 0 if you want to have no leading space in front of the GIT prompt
@@ -325,12 +298,7 @@ function gp_config() {
   if [[ -z "$GIT_PROMPT_FETCH_TIMEOUT" ]]; then
     GIT_PROMPT_FETCH_TIMEOUT="5"
   fi
-  if [[ -z "$__GIT_STATUS_CMD" ]] ; then          # if GIT_STATUS_CMD not defined..
-    if ! gp_maybe_set_envar_to_path __GIT_STATUS_CMD "$__GIT_PROMPT_DIR/$GIT_PROMPT_STATUS_COMMAND" ; then
-      echo 1>&2 "Cannot find $GIT_PROMPT_STATUS_COMMAND!"
-    fi
-    # __GIT_STATUS_CMD defined
-  fi
+
   unset GIT_BRANCH
 }
 
@@ -359,13 +327,13 @@ function gp_update() {
     export __GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=${GIT_PROMPT_SHOW_CHANGED_FILES_COUNT}
   fi
 
-  local GIT_INDEX_PRIVATE="$(createPrivateIndex)"
-  #important to define GIT_INDEX_FILE as local: This way it only affects this function (and below) - even with the export afterwards
+  #important to define GIT_INDEX_FILE as local
   local GIT_INDEX_FILE
+  local GIT_INDEX_PRIVATE="$(createPrivateIndex)"
   export GIT_INDEX_FILE="$GIT_INDEX_PRIVATE"
 
   local -a git_status_fields
-  git_status_fields=($("$__GIT_STATUS_CMD" 2>/dev/null))
+  git_status_fields=($(${__GIT_PROMPT_DIR}/gitstatus.sh 2>/dev/null))
 
   export GIT_BRANCH=$(replaceSymbols ${git_status_fields[0]})
   local GIT_REMOTE="$(replaceSymbols ${git_status_fields[1]})"
