@@ -59,7 +59,7 @@ syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\w\+"     " Function declarat
 syn match   pythonDeclDecorator "\%(@\s*\)\@<=\h\%(\w\|\.\)*" " Decorator declaration
 syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 
-syn region  pythonFunctionParen start='(' end=')' display contains=ALL
+syn region  pythonFunctionParen start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
 syn match   pythonKeywordArg /\i*\ze=[^=]/ contained
 
 

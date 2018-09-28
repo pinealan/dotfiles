@@ -85,6 +85,8 @@ let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
 " }}}
+Plugin 'jlanzarotta/bufexplorer'
+
 
 call vundle#end()
 filetype plugin indent on
@@ -376,7 +378,7 @@ augroup usr
     autocmd!
 
     autocmd BufWritePre *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.s,*.sh,*.bash,*.rs,*.go,*.f,*.r,*.mat,*.tex,*.json call TrimSpace()
-    autocmd BufRead     *.c,*.cpp,*.py,*.md,*.vim,vimrc silent call EnableFastEsc()
+    autocmd BufRead     *.c,*.cpp,*.md,*.py,*.sh,*.vim,vimrc silent call EnableFastEsc()
     autocmd BufRead     * syn keyword Todo Todo Note TODO NOTE
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
 

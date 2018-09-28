@@ -6,7 +6,10 @@ snippet shdiv
 ---[ $1 ]---
 endsnippet
 
-# get log
-snippet glog
+snippet glog "Get logger"
 log = logging.getLogger(${0:__name__})
+endsnippet
+
+snippet vargs "variable args"
+*args, **kwargs
 endsnippet
