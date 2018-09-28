@@ -4,6 +4,38 @@
 #
 # Original: https://github.com/magicmonty/bash-git-prompt
 # This copy is heavily optimized and customized for personal use
+#
+# ---[ Installation procedure ]---
+# 1. gp_install_prompt
+#    >  set $PROMPT_COMMAND
+# 2. gp_set_dir
+#    >  set $__GIT_PROMPT_DIR
+#
+# ---[ Bash PROMPT_COMMAND procedure ]---
+# 1. gp_set_last_exit
+# 2. gp_set_prompt
+#    1. update_old_gp
+#    2. gp_config
+#       1  gp_load_colors -> gp_set_file_var
+#       2. gp_load_theme -> gp_get_theme -> source theme files
+#    3. gp_maybe_set_envar_to_path
+#    4. updatePrompt
+#    5. gp_config
+#       1  gp_load_colors -> gp_set_file_var
+#       2. gp_load_theme -> gp_get_theme
+#    6. gp_add_virtualenv_to_prompt
+
+
+# ---------------------
+# | Utility functions |
+# ---------------------
+
+function we_are_on_repo() {
+  if [[ -e "$(git rev-parse --git-dir 2> /dev/null)" ]]; then
+    echo 1
+  fi
+  echo 0
+}
 
 function async_run() {
   {
@@ -11,30 +43,120 @@ function async_run() {
   }&
 }
 
-function git_prompt_dir() {
-  # assume the gitstatus.sh is in the same directory as this script
-  # code thanks to http://stackoverflow.com/questions/59895
-  if [ -z "$__GIT_PROMPT_DIR" ]; then
-    local SOURCE="${BASH_SOURCE[0]}"
-    while [ -h "$SOURCE" ]; do
-      local DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-      SOURCE="$(readlink "$SOURCE")"
-      [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
-    done
-    __GIT_PROMPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-  fi
+# Use exit status from declare command to determine if input is a bash function
+function is_function() {
+  declare -Ff "$1" >/dev/null;
 }
 
 function echoc() {
   echo -e "${1}$2${ResetColor}" | sed 's/\\\]//g'  | sed 's/\\\[//g'
 }
 
-function get_theme() {
+# Helper function that truncates $PWD depending on window width
+# Optionally specify maximum length as parameter (defaults to 1/3 of terminal)
+function truncate_pwd {
+  local tilde="~"
+  local newPWD="${PWD/#${HOME}/${tilde}}"
+  local pwdmaxlen=${1:-$((${COLUMNS:-80}/3))}
+  [ ${#newPWD} -gt $pwdmaxlen ] && newPWD="...${newPWD:3-$pwdmaxlen}"
+  echo -n "$newPWD"
+}
+
+function prompt_callback_default() {
+  return
+}
+
+
+# ------------------
+# | User interface |
+# ------------------
+
+function gp_toggle() {
+  if [[ "$GIT_PROMPT_DISABLE" = 1 ]]; then
+    GIT_PROMPT_DISABLE=0
+  else
+    GIT_PROMPT_DISABLE=1
+  fi
+  return
+}
+
+function gp_list_themes() {
+  gp_load_colors
+  gp_get_theme
+
+  for themefile in "${__GIT_PROMPT_DIR}/themes/"*; do
+    local basename=${themefile##*/}
+    local theme="${basename%.bgptheme}"
+    if [[ "${GIT_PROMPT_THEME}" = "${theme}" ]]; then
+      echoc ${Red} "*${theme}"
+    else
+      echo $theme
+    fi
+  done
+
+  if [[ "${GIT_PROMPT_THEME}" = "Custom" ]]; then
+    echoc ${Magenta} "*Custom"
+  else
+    echoc ${Blue} "Custom"
+  fi
+}
+
+function gp_make_custom_theme() {
+  if [[ -r "${HOME}/.git-prompt-colors.sh" ]]; then
+    echoc ${Red} "You have already created a custom theme!"
+  else
+
+    local base="Default"
+    if [[ -n $1 && -r "${__GIT_PROMPT_DIR}/themes/${1}.bgptheme" ]]; then
+      base=$1
+      echoc ${Green} "Using theme ${Magenta}\"${base}\"${Green} as base theme!"
+    else
+      echoc ${Green} "Using theme ${Magenta}\"Default\"${Green} as base theme!"
+    fi
+
+    if [[ "${base}" = "Custom" ]]; then
+      echoc ${Red} "You cannot use the custom theme as base"
+    else
+      echoc ${Green} "Creating new custom theme in \"${HOME}/.git-prompt-colors.sh\""
+      echoc ${DimYellow} "Please add ${Magenta}\"GIT_PROMPT_THEME=Custom\"${DimYellow} to your .bashrc to use this theme"
+      if [[ "${base}" == "Default" ]]; then
+        cp "${__GIT_PROMPT_DIR}/themes/Custom.bgptemplate" "${HOME}/.git-prompt-colors.sh"
+      else
+        cp "${__GIT_PROMPT_DIR}/themes/${base}.bgptheme" "${HOME}/.git-prompt-colors.sh"
+      fi
+    fi
+  fi
+}
+
+# unsets selected GIT_PROMPT variables, causing the next prompt callback to
+# recalculate them from scratch.
+function gp_reset() {
+  local var
+  for var in GIT_PROMPT_DIR __GIT_PROMPT_COLORS_FILE __PROMPT_COLORS_FILE __GIT_STATUS_CMD GIT_PROMPT_THEME_NAME; do
+    unset $var
+  done
+}
+
+
+# ------------------
+# | Theme routines |
+# ------------------
+
+function gp_load_colors() {
+  if gp_set_file_var __PROMPT_COLORS_FILE prompt-colors.sh ; then
+    # outsource the color defs
+    source "$__PROMPT_COLORS_FILE"
+  else
+    echo 1>&2 "Cannot find prompt-colors.sh!"
+  fi
+}
+
+function gp_get_theme() {
+  local DEFAULT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.bgptheme"
   local CUSTOM_THEME_FILE="${HOME}/.git-prompt-colors.sh"
   if [[ ! (-z ${GIT_PROMPT_THEME_FILE} ) ]]; then
     CUSTOM_THEME_FILE=$GIT_PROMPT_THEME_FILE
   fi
-  local DEFAULT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.bgptheme"
 
   if [[ -z ${GIT_PROMPT_THEME} ]]; then
     if [[ -r $CUSTOM_THEME_FILE ]]; then
@@ -74,70 +196,11 @@ function get_theme() {
   fi
 }
 
-function git_prompt_load_colors() {
-  if gp_set_file_var __PROMPT_COLORS_FILE prompt-colors.sh ; then
-    # outsource the color defs
-    source "$__PROMPT_COLORS_FILE"
-  else
-    echo 1>&2 "Cannot find prompt-colors.sh!"
-  fi
-}
-
-function git_prompt_load_theme() {
-  get_theme
+function gp_load_theme() {
+  gp_get_theme
   local DEFAULT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.bgptheme"
   source "${DEFAULT_THEME_FILE}"
   source "${__GIT_PROMPT_THEME_FILE}"
-}
-
-function git_prompt_list_themes() {
-  git_prompt_load_colors
-  git_prompt_dir
-  get_theme
-
-  for themefile in "${__GIT_PROMPT_DIR}/themes/"*.bgptheme; do
-    local basename=${themefile##*/}
-    local theme="${basename%.bgptheme}"
-    if [[ "${GIT_PROMPT_THEME}" = "${theme}" ]]; then
-      echoc ${Red} "*${theme}"
-    else
-      echo $theme
-    fi
-  done
-
-  if [[ "${GIT_PROMPT_THEME}" = "Custom" ]]; then
-    echoc ${Magenta} "*Custom"
-  else
-    echoc ${Blue} "Custom"
-  fi
-}
-
-function git_prompt_make_custom_theme() {
-  if [[ -r "${HOME}/.git-prompt-colors.sh" ]]; then
-    echoc ${Red} "You have already created a custom theme!"
-  else
-    git_prompt_dir
-
-    local base="Default"
-    if [[ -n $1 && -r "${__GIT_PROMPT_DIR}/themes/${1}.bgptheme" ]]; then
-      base=$1
-      echoc ${Green} "Using theme ${Magenta}\"${base}\"${Green} as base theme!"
-    else
-      echoc ${Green} "Using theme ${Magenta}\"Default\"${Green} as base theme!"
-    fi
-
-    if [[ "${base}" = "Custom" ]]; then
-      echoc ${Red} "You cannot use the custom theme as base"
-    else
-      echoc ${Green} "Creating new custom theme in \"${HOME}/.git-prompt-colors.sh\""
-      echoc ${DimYellow} "Please add ${Magenta}\"GIT_PROMPT_THEME=Custom\"${DimYellow} to your .bashrc to use this theme"
-      if [[ "${base}" == "Default" ]]; then
-        cp "${__GIT_PROMPT_DIR}/themes/Custom.bgptemplate" "${HOME}/.git-prompt-colors.sh"
-      else
-        cp "${__GIT_PROMPT_DIR}/themes/${base}.bgptheme" "${HOME}/.git-prompt-colors.sh"
-      fi
-    fi
-  fi
 }
 
 # gp_set_file_var ENVAR SOMEFILE
@@ -148,7 +211,7 @@ function git_prompt_make_custom_theme() {
 # not.
 #
 # Return 0 (success) if ENVAR not already defined, 1 (failure) otherwise.
-
+#
 function gp_set_file_var() {
   local envar="$1"
   local file="$2"
@@ -161,7 +224,6 @@ function gp_set_file_var() {
   else  # envar is not set, or it's set to a different file than requested
     eval "$envar="      # set empty envar
     gp_maybe_set_envar_to_path "$envar" "$HOME/.$file" "$HOME/$file" "$HOME/lib/$file" && return 0
-    git_prompt_dir
     gp_maybe_set_envar_to_path "$envar" "$__GIT_PROMPT_DIR/$file" "${0##*/}/$file"     && return 0
   fi
   return 1
@@ -171,7 +233,7 @@ function gp_set_file_var() {
 #
 # return 0 (true) if any FILEPATH is readable, set ENVAR to it
 # return 1 (false) if not
-
+#
 function gp_maybe_set_envar_to_path() {
   local envar="$1"
   shift
@@ -185,24 +247,12 @@ function gp_maybe_set_envar_to_path() {
   return 1
 }
 
-# git_prompt_reset
-#
-# unsets selected GIT_PROMPT variables, causing the next prompt callback to
-# recalculate them from scratch.
-
-git_prompt_reset() {
-  local var
-  for var in GIT_PROMPT_DIR __GIT_PROMPT_COLORS_FILE __PROMPT_COLORS_FILE __GIT_STATUS_CMD GIT_PROMPT_THEME_NAME; do
-    unset $var
-  done
-}
-
 # gp_format_exit_status RETVAL
 #
 # echos the symbolic signal name represented by RETVAL if the process was
 # signalled, otherwise echos the original value of RETVAL
-
-gp_format_exit_status() {
+#
+function gp_format_exit_status() {
   local RETVAL="$1"
   local SIGNAL
   # Suppress STDERR in case RETVAL is not an integer (in such cases, RETVAL
@@ -215,7 +265,7 @@ gp_format_exit_status() {
   fi
 }
 
-function git_prompt_config() {
+function gp_config() {
   #Checking if root to change output
   _isroot=false
   [[ $UID -eq 0 ]] && _isroot=true
@@ -224,13 +274,11 @@ function git_prompt_config() {
   #
   #  prompt-colors.sh -- sets generic color names suitable for bash 'PS1' prompt
   #  git-prompt-colors.sh -- sets the GIT_PROMPT color scheme, using names from prompt-colors.sh
-
-  git_prompt_load_colors
+  gp_load_colors
 
   # source the user's ~/.git-prompt-colors.sh file, or the one that should be
   # sitting in the same directory as this script
-
-  git_prompt_load_theme
+  gp_load_theme
 
   if is_function prompt_callback; then
     prompt_callback="prompt_callback"
@@ -238,7 +286,7 @@ function git_prompt_config() {
     prompt_callback="prompt_callback_default"
   fi
 
-  if [ $GIT_PROMPT_LAST_COMMAND_STATE = 0 ]; then
+  if [ "$GIT_PROMPT_LAST_COMMAND_STATE" == 0 ]; then
     LAST_COMMAND_INDICATOR="$GIT_PROMPT_COMMAND_OK";
   else
     LAST_COMMAND_INDICATOR="$GIT_PROMPT_COMMAND_FAIL";
@@ -292,7 +340,6 @@ function git_prompt_config() {
     GIT_PROMPT_FETCH_TIMEOUT="5"
   fi
   if [[ -z "$__GIT_STATUS_CMD" ]] ; then          # if GIT_STATUS_CMD not defined..
-    git_prompt_dir
     if ! gp_maybe_set_envar_to_path __GIT_STATUS_CMD "$__GIT_PROMPT_DIR/$GIT_PROMPT_STATUS_COMMAND" ; then
       echo 1>&2 "Cannot find $GIT_PROMPT_STATUS_COMMAND!"
     fi
@@ -301,89 +348,10 @@ function git_prompt_config() {
   unset GIT_BRANCH
 }
 
-function setLastCommandState() {
-  GIT_PROMPT_LAST_COMMAND_STATE=$?
-}
 
-function we_are_on_repo() {
-  if [[ -e "$(git rev-parse --git-dir 2> /dev/null)" ]]; then
-    echo 1
-  fi
-  echo 0
-}
-
-function update_old_git_prompt() {
-  local in_repo=$(we_are_on_repo)
-  if [[ $GIT_PROMPT_OLD_DIR_WAS_GIT = 0 ]]; then
-    OLD_GITPROMPT=$PS1
-  fi
-
-  GIT_PROMPT_OLD_DIR_WAS_GIT=$in_repo
-}
-
-function setGitPrompt() {
-  update_old_git_prompt
-
-  local repo=$(git rev-parse --show-toplevel 2> /dev/null)
-  if [[ ! -e "$repo" ]] && [[ "$GIT_PROMPT_ONLY_IN_REPO" = 1 ]]; then
-    # we do not permit bash-git-prompt outside git repos, so nothing to do
-    PS1="$OLD_GITPROMPT"
-    return
-  fi
-
-  local EMPTY_PROMPT
-  local __GIT_STATUS_CMD
-
-  git_prompt_config
-
-  if [[ ! -e "$repo" ]] || [[ "$GIT_PROMPT_DISABLE" = 1 ]]; then
-    PS1="$EMPTY_PROMPT"
-    return
-  fi
-
-  local FETCH_REMOTE_STATUS=1
-  if [[ "$GIT_PROMPT_FETCH_REMOTE_STATUS" = 0 ]]; then
-    FETCH_REMOTE_STATUS=0
-  fi
-
-  unset GIT_PROMPT_IGNORE
-  OLD_GIT_PROMPT_SHOW_UNTRACKED_FILES=${GIT_PROMPT_SHOW_UNTRACKED_FILES}
-  unset GIT_PROMPT_SHOW_UNTRACKED_FILES
-
-  OLD_GIT_PROMPT_IGNORE_SUBMODULES=${GIT_PROMPT_IGNORE_SUBMODULES}
-  unset GIT_PROMPT_IGNORE_SUBMODULES
-
-  if [[ -e "$repo/.bash-git-rc" ]]; then
-    # The config file can only contain variable declarations on the form A_B=0 or G_P=all
-    local CONFIG_SYNTAX="^(FETCH_REMOTE_STATUS|GIT_PROMPT_SHOW_UNTRACKED_FILES|GIT_PROMPT_IGNORE_SUBMODULES|GIT_PROMPT_IGNORE)=[0-9a-z]+$"
-    if egrep -q -v "$CONFIG_SYNTAX" "$repo/.bash-git-rc"; then
-      echo ".bash-git-rc can only contain variable values on the form NAME=value. Ignoring file." >&2
-    else
-      source "$repo/.bash-git-rc"
-    fi
-  fi
-
-  if [ -z "${GIT_PROMPT_SHOW_UNTRACKED_FILES}" ]; then
-    GIT_PROMPT_SHOW_UNTRACKED_FILES=${OLD_GIT_PROMPT_SHOW_UNTRACKED_FILES}
-  fi
-  unset OLD_GIT_PROMPT_SHOW_UNTRACKED_FILES
-
-  if [ -z "${GIT_PROMPT_IGNORE_SUBMODULES}" ]; then
-    GIT_PROMPT_IGNORE_SUBMODULES=${OLD_GIT_PROMPT_IGNORE_SUBMODULES}
-  fi
-  unset OLD_GIT_PROMPT_IGNORE_SUBMODULES
-
-  if [[ "$GIT_PROMPT_IGNORE" = 1 ]]; then
-    PS1="$EMPTY_PROMPT"
-    return
-  fi
-
-  if [[ "$FETCH_REMOTE_STATUS" = 1 ]]; then
-    checkUpstream
-  fi
-
-  updatePrompt
-}
+# ----------------
+# | Git routines |
+# ----------------
 
 # some versions of find do not have -mmin
 _have_find_mmin=1
@@ -429,7 +397,7 @@ function olderThanMinutes() {
 
 function checkUpstream() {
   local GIT_PROMPT_FETCH_TIMEOUT
-  git_prompt_config
+  gp_config
 
   local FETCH_HEAD="$repo/.git/FETCH_HEAD"
   # Fech repo if local is stale for more than $GIT_FETCH_TIMEOUT minutes
@@ -484,7 +452,7 @@ function updatePrompt() {
   local EMPTY_PROMPT
   local Blue="\[\033[0;34m\]"
 
-  git_prompt_config
+  gp_config
 
   export __GIT_PROMPT_IGNORE_STASH=${GIT_PROMPT_IGNORE_STASH}
   export __GIT_PROMPT_SHOW_UPSTREAM=${GIT_PROMPT_SHOW_UPSTREAM}
@@ -593,7 +561,7 @@ function updatePrompt() {
   command rm "$GIT_INDEX_PRIVATE" 2>/dev/null
 }
 
-# Helper function that returns virtual env information to be set in prompt
+# Returns virtual env information to be set in prompt
 # Honors virtualenvs own setting VIRTUAL_ENV_DISABLE_PROMPT
 function gp_add_virtualenv_to_prompt {
   local ACCUMULATED_VENV_PROMPT=""
@@ -613,39 +581,100 @@ function gp_add_virtualenv_to_prompt {
   echo "$ACCUMULATED_VENV_PROMPT"
 }
 
-# Use exit status from declare command to determine whether input argument is a
-# bash function
-function is_function {
-  declare -Ff "$1" >/dev/null;
-}
-
-# Helper function that truncates $PWD depending on window width
-# Optionally specify maximum length as parameter (defaults to 1/3 of terminal)
-function gp_truncate_pwd {
-  local tilde="~"
-  local newPWD="${PWD/#${HOME}/${tilde}}"
-  local pwdmaxlen=${1:-$((${COLUMNS:-80}/3))}
-  [ ${#newPWD} -gt $pwdmaxlen ] && newPWD="...${newPWD:3-$pwdmaxlen}"
-  echo -n "$newPWD"
-}
-
-# Sets the window title to the given argument string
-function gp_set_window_title {
-  echo -ne "\[\033]0;"$@"\007\]"
-}
-
-function prompt_callback_default {
-  return
-}
-
-# toggle gitprompt
-function git_prompt_toggle() {
-  if [[ "$GIT_PROMPT_DISABLE" = 1 ]]; then
-    GIT_PROMPT_DISABLE=0
-  else
-    GIT_PROMPT_DISABLE=1
+function update_old_gp() {
+  local in_repo=$(we_are_on_repo)
+  if [[ $GIT_PROMPT_OLD_DIR_WAS_GIT = 0 ]]; then
+    OLD_GITPROMPT=$PS1
   fi
-  return
+
+  GIT_PROMPT_OLD_DIR_WAS_GIT=$in_repo
+}
+
+function gp_set_prompt() {
+  update_old_gp
+
+  local repo=$(git rev-parse --show-toplevel 2> /dev/null)
+  if [[ ! -e "$repo" ]] && [[ "$GIT_PROMPT_ONLY_IN_REPO" = 1 ]]; then
+    # we do not permit bash-git-prompt outside git repos, so nothing to do
+    PS1="$OLD_GITPROMPT"
+    return
+  fi
+
+  local EMPTY_PROMPT
+  local __GIT_STATUS_CMD
+
+  gp_config
+
+  if [[ ! -e "$repo" ]] || [[ "$GIT_PROMPT_DISABLE" = 1 ]]; then
+    PS1="$EMPTY_PROMPT"
+    return
+  fi
+
+  local FETCH_REMOTE_STATUS=1
+  if [[ "$GIT_PROMPT_FETCH_REMOTE_STATUS" = 0 ]]; then
+    FETCH_REMOTE_STATUS=0
+  fi
+
+  unset GIT_PROMPT_IGNORE
+  OLD_GIT_PROMPT_SHOW_UNTRACKED_FILES=${GIT_PROMPT_SHOW_UNTRACKED_FILES}
+  unset GIT_PROMPT_SHOW_UNTRACKED_FILES
+
+  OLD_GIT_PROMPT_IGNORE_SUBMODULES=${GIT_PROMPT_IGNORE_SUBMODULES}
+  unset GIT_PROMPT_IGNORE_SUBMODULES
+
+  if [[ -e "$repo/.bash-git-rc" ]]; then
+    # The config file can only contain variable declarations on the form A_B=0 or G_P=all
+    local CONFIG_SYNTAX="^(FETCH_REMOTE_STATUS|GIT_PROMPT_SHOW_UNTRACKED_FILES|GIT_PROMPT_IGNORE_SUBMODULES|GIT_PROMPT_IGNORE)=[0-9a-z]+$"
+    if egrep -q -v "$CONFIG_SYNTAX" "$repo/.bash-git-rc"; then
+      echo ".bash-git-rc can only contain variable values on the form NAME=value. Ignoring file." >&2
+    else
+      source "$repo/.bash-git-rc"
+    fi
+  fi
+
+  if [ -z "${GIT_PROMPT_SHOW_UNTRACKED_FILES}" ]; then
+    GIT_PROMPT_SHOW_UNTRACKED_FILES=${OLD_GIT_PROMPT_SHOW_UNTRACKED_FILES}
+  fi
+  unset OLD_GIT_PROMPT_SHOW_UNTRACKED_FILES
+
+  if [ -z "${GIT_PROMPT_IGNORE_SUBMODULES}" ]; then
+    GIT_PROMPT_IGNORE_SUBMODULES=${OLD_GIT_PROMPT_IGNORE_SUBMODULES}
+  fi
+  unset OLD_GIT_PROMPT_IGNORE_SUBMODULES
+
+  if [[ "$GIT_PROMPT_IGNORE" = 1 ]]; then
+    PS1="$EMPTY_PROMPT"
+    return
+  fi
+
+  if [[ "$FETCH_REMOTE_STATUS" = 1 ]]; then
+    checkUpstream
+  fi
+
+  updatePrompt
+}
+
+function gp_set_last_exit() {
+  GIT_PROMPT_LAST_COMMAND_STATE=$?
+}
+
+
+# ------------------------
+# | Installation routine |
+# ------------------------
+
+function gp_set_dir() {
+  # assume the gitstatus.sh is in the same directory as this script
+  # code thanks to http://stackoverflow.com/questions/59895
+  if [ -z "$__GIT_PROMPT_DIR" ]; then
+    local SOURCE="${BASH_SOURCE[0]}"
+    while [ -h "$SOURCE" ]; do
+      local DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+      SOURCE="$(readlink "$SOURCE")"
+      [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+    done
+    __GIT_PROMPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  fi
 }
 
 function gp_install_prompt {
@@ -658,35 +687,35 @@ function gp_install_prompt {
   fi
 
   if [ -z "$PROMPT_COMMAND" ]; then
-    PROMPT_COMMAND=setGitPrompt
+    PROMPT_COMMAND=gp_set_prompt
   else
     PROMPT_COMMAND=${PROMPT_COMMAND%% }; # remove trailing spaces
     PROMPT_COMMAND=${PROMPT_COMMAND%\;}; # remove trailing semi-colon
-
-    local new_entry="setGitPrompt"
-    case ";$PROMPT_COMMAND;" in
-      *";$new_entry;"*)
-        # echo "PROMPT_COMMAND already contains: $new_entry"
-        :;;
-      *)
-        PROMPT_COMMAND="$PROMPT_COMMAND;$new_entry"
-        # echo "PROMPT_COMMAND does not contain: $new_entry"
-        ;;
-    esac
   fi
 
-  local setLastCommandStateEntry="setLastCommandState"
+  local new_entry="gp_set_prompt"
   case ";$PROMPT_COMMAND;" in
-    *";$setLastCommandStateEntry;"*)
+    *";$new_entry;"*)
+      # echo "PROMPT_COMMAND already contains: $new_entry"
+      :;;
+    *)
+      PROMPT_COMMAND="$PROMPT_COMMAND;$new_entry"
+      # echo "PROMPT_COMMAND does not contain: $new_entry"
+      ;;
+  esac
+
+  local set_last_exit="gp_set_last_exit"
+  case ";$PROMPT_COMMAND;" in
+    *";$set_last_exit;"*)
       # echo "PROMPT_COMMAND already contains: $setLastCommandStateEntry"
       :;;
     *)
-      PROMPT_COMMAND="$setLastCommandStateEntry;$PROMPT_COMMAND"
+      PROMPT_COMMAND="$set_last_exit;$PROMPT_COMMAND"
       # echo "PROMPT_COMMAND does not contain: $setLastCommandStateEntry"
       ;;
   esac
 
-  git_prompt_dir
+  gp_set_dir
 }
 
 gp_install_prompt

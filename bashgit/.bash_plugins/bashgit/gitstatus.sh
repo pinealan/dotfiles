@@ -29,7 +29,7 @@ gitstatus=$( LC_ALL=C git status ${_ignore_submodules} --untracked-files=${__GIT
 git_dir="$(git rev-parse --git-dir 2>/dev/null)"
 [[ -z "$git_dir" ]] && exit 0
 
-__git_prompt_read ()
+__gp_read ()
 {
 	local f="$1"
 	shift
@@ -40,8 +40,8 @@ state=""
 step=""
 total=""
 if [ -d "${git_dir}/rebase-merge" ]; then
-  __git_prompt_read "${git_dir}/rebase-merge/msgnum" step
-  __git_prompt_read "${git_dir}/rebase-merge/end" total
+  __gp_read "${git_dir}/rebase-merge/msgnum" step
+  __gp_read "${git_dir}/rebase-merge/end" total
   if [ -f "${git_dir}/rebase-merge/interactive" ]; then
     state="|REBASE-i"
   else
@@ -49,8 +49,8 @@ if [ -d "${git_dir}/rebase-merge" ]; then
   fi
 else
   if [ -d "${git_dir}/rebase-apply" ]; then
-    __git_prompt_read "${git_dir}/rebase-apply/next" step
-    __git_prompt_read "${git_dir}/rebase-apply/last" total
+    __gp_read "${git_dir}/rebase-apply/next" step
+    __gp_read "${git_dir}/rebase-apply/last" total
     if [ -f "${git_dir}/rebase-apply/rebasing" ]; then
       state="|REBASE"
     elif [ -f "${git_dir}/rebase-apply/applying" ]; then
