@@ -14,7 +14,7 @@ augroup usr_nerdtree
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
-let NERDTreeIgnore=['\.log$', '\.git', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints', '\.pytest_cache']
+let NERDTreeIgnore=['\.log$', '\.git', '\.egg-info', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints', '\.pytest_cache']
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
@@ -331,13 +331,13 @@ endfunction
 
 function! EnableFastEsc()
     let b:fastesc=1
-    inoremap jj <esc>
+    inoremap <buffer> jj <esc>
     echom "Enabled insert mdoe fast <esc>"
 endfunction!
 
 function! DisableFastEsc()
     unlet b:fastesc
-    iunmap jj
+    iunmap <buffer> jj
     echom "Disabled insert mdoe fast <esc>"
 endfunction!
 
@@ -377,9 +377,9 @@ endfunction
 augroup usr
     autocmd!
 
-    autocmd BufWritePre *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.s,*.sh,*.bash,*.rs,*.go,*.f,*.r,*.mat,*.tex,*.json call TrimSpace()
-    autocmd BufRead     *.c,*.cpp,*.md,*.py,*.sh,*.vim,vimrc silent call EnableFastEsc()
-    autocmd BufRead     * syn keyword Todo Todo Note TODO NOTE
+    autocmd BufWrite    *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.s,*.sh,*.bash,*.rst,*.go,*.f,*.r,*.mat,*.tex,*.json call TrimSpace()
+    autocmd BufEnter    *.c,*.cpp,*.md,*.py,*.rst,*.sh,*.vim,vimrc silent call EnableFastEsc()
+    autocmd BufRead     * syn keyword TODO NOTE
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
 
     autocmd VimEnter    *.c,*.cpp,*.py vsp
