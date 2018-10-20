@@ -94,10 +94,10 @@ syn match   pythonEscape        "\\N{\a\+\%(\s\a\+\)*}" contained
 syn match   pythonEscape        "\\$"
 
 " Inline SQL
-syn keyword pythonSQLKeyword    ALTER ATTACH DETACH CREATE DROP EXPLAIN contained 
+syn keyword pythonSQLKeyword    ALTER ATTACH DETACH CREATE DROP EXPLAIN ? contained 
 syn keyword pythonSQLKeyword    SELECT INSERT UPDATE DELETE REPLACE ROLLBACK contained 
-syn keyword pythonSQLKeyword    PRIMARY UNIQUE FOREIGN REFERENCES contained
-syn keyword pythonSQLKeyword    IF NOT FROM WITH KEY EXISTS INDEXED BY contained
+syn keyword pythonSQLKeyword    PRIMARY UNIQUE FOREIGN REFERENCES VALUES contained
+syn keyword pythonSQLKeyword    IF NOT FROM WITH KEY EXISTS INDEXED INTO BY contained
 syn keyword pythonSQLType       NULL INT INTEGER REAL TEXT STRING FLOAT BLOB contained
 syn keyword pythonSQLType       DATABASE TABLE TRIGGER TRANSACTION INDEX VIEW contained
 syn region  pythonSQLstring start="'''" end="'''" contains=pythonSQLKeyword,pythonSQLType

@@ -1,3 +1,5 @@
+set cc=101
+
 nnoremap <leader>d  :call ToggleDocstring()<cr>
 
 function! ToggleDocstring()
