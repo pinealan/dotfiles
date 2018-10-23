@@ -2,26 +2,51 @@
 	name = Alan Chan
 	email = achan961117@gmail.com
 	username = pinealan
-[alias]
-	cm = commit -m
-	b = branch
-	c = checkout
-	s = status
-	bb = branch -vva
-	la = log --graph --oneline --all --decorate --date-order
-	ll = log --graph --oneline --decorate
-	ls = log --graph --stat
-	pull = pull -v
-[pull]
-	rebase = true
-[push]
-	default = matching
-[credential]
-	helper = cache
 [core]
 	editory = vim
 	fileMode = false
 	autocrlf = false
+[credential]
+	helper = cache
+[color "decorate"]
+	branch = 10 bold
+	remoteBranch = 1
+	tag = 3 bold
+	HEAD = 14
+[alias]
+	cm = commit -m
+	can = commit --amend --no-edit
+	b = branch
+	c = checkout
+	s = status
+	bb = branch -vva
+
+	# log
+	l = log --pretty=ps --graph --date-order
+	lo = log --pretty=po --graph --date-order
+	ls = log --pretty=pl --graph --stat
+	lp = log --pretty=pl --graph --patch
+
+	# log, --all
+	la = log --pretty=ps --graph --all
+	lao = log --pretty=po --graph --all --date-order
+	las = log --pretty=pl --graph --all --stat
+	lap = log --pretty=pl --graph --all --patch
+[log]
+	abbrevCommit = true
+	date = format:%a, %Y-%m-%d %R (%z)
+	showRoot = true
+[fetch]
+	prunn = true
+[pull]
+	rebase = interactive
+[push]
+	default = matching
+	followTags = true
+[pretty]
+	po = tformat:%C(auto)%h%d %s %C(241)- %an  # oneline
+	ps = tformat:%C(auto)%h %C(244)- %C(67)%ad %C(108)(%ar)%C(auto)%d%n          %s %C(241)- %an%n  # summary
+	pl = format:%C(3)%h %p%C(auto)%d%n%C(67)%ad %C(108)(%ar)%n%w(0, 4, 4)%C(230)%B  # long
 [rerere]
 	enabled = 1
 	autoupdate = 1
