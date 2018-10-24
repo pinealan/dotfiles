@@ -1,54 +1,102 @@
 [user]
 	name = Alan Chan
 	email = achan961117@gmail.com
-	username = pinealan
+
 [core]
 	editory = vim
 	fileMode = false
 	autocrlf = false
+
 [credential]
 	helper = cache
+
 [color "decorate"]
 	branch = 10 bold
 	remoteBranch = 1
 	tag = 3 bold
 	HEAD = 14
+
+[color "diff"]
+	meta = 4
+	frag = 5
+
 [alias]
+	ec = config --global --edit
+
+	a = add
+	ap = add --patch
+
 	cm = commit -m
+	ca = commit --amend
 	can = commit --amend --no-edit
+
 	b = branch
-	c = checkout
-	s = status
 	bb = branch -vva
+	bd = branch -d
+
+	co = checkout
+	com = checkout master
+
+	m = merge
+	mc = merge --continue
+	mnf = merge --no-ff
+	mff = merge --ff-only
+
+	r = rebase
+	ra = rebase --abort
+	rc = rebase --continue
+	ri = rebase --interactive
+	rms = rebase master
+
+	s = status
+	f = fetch --tags
+	p = pull -v
+	pu = push
+	cp = cherry-pick
+
+	mark = tag tmp
+	unmark = tag -d tmp
+	nuke = reset --hard HEAD
 
 	# log
-	l = log --pretty=ps --graph --date-order
-	lo = log --pretty=po --graph --date-order
+	l = log --pretty=ps --graph
+	lo = log --pretty=po --graph
 	ls = log --pretty=pl --graph --stat
 	lp = log --pretty=pl --graph --patch
 
 	# log, --all
 	la = log --pretty=ps --graph --all
-	lao = log --pretty=po --graph --all --date-order
+	lao = log --pretty=po --graph --all
 	las = log --pretty=pl --graph --all --stat
 	lap = log --pretty=pl --graph --all --patch
+
+	# log, --all --date-order
+	ld = log --pretty=ps --graph --all --date-order
+	ldo = log --pretty=po --graph --all --date-order
+	
 [log]
 	abbrevCommit = true
 	date = format:%a, %Y-%m-%d %R (%z)
 	showRoot = true
+
 [fetch]
 	prunn = true
+
 [pull]
 	rebase = interactive
+
 [push]
 	default = matching
 	followTags = true
+
 [pretty]
 	po = tformat:%C(auto)%h%d %s %C(241)- %an  # oneline
 	ps = tformat:%C(auto)%h %C(244)- %C(67)%ad %C(108)(%ar)%C(auto)%d%n          %s %C(241)- %an%n  # summary
-	pl = format:%C(3)%h %p%C(auto)%d%n%C(67)%ad %C(108)(%ar)%n%w(0, 4, 4)%C(230)%B  # long
+	pl = format:%C(3)%h %p%C(auto)%d%n%C(67)%ad %C(108)(%ar)%n%C(6)%an <%ae>%n%n%w(0, 4, 4)%C(230)%B  # long
+
 [rerere]
 	enabled = 1
 	autoupdate = 1
+
 [github]
 	user = pinealan
