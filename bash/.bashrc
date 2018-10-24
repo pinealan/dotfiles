@@ -94,6 +94,14 @@ frequent_commands () {
     history | awk '{ if (length($2) > 1) print $2}' | sort | uniq -c | sort -nr | head -n"$n" | nl
 }
 
+mooo () {
+    while true; do
+        str=`fortune -a`
+        echo $str | cowsay
+        sleep $((`echo $str | wc -c` / 40 + 2))
+    done
+}
+
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
