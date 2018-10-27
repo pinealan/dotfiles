@@ -33,6 +33,7 @@
 	b = branch
 	bb = branch -vva
 	bd = branch -d
+	bm = branch -m
 
 	co = checkout
 	com = checkout master
@@ -83,7 +84,7 @@
 	prunn = true
 
 [pull]
-	rebase = interactive
+	rebase = true
 
 [push]
 	default = matching
