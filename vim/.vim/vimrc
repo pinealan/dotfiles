@@ -351,10 +351,19 @@ function! ToggleFastEsc()
 endfunction
 
 function! Underline(symbol)
-    if strlen(getline('.')) > 0
-        normal! yyp
-        exe 's/./' . a:symbol . '/g'
-        normal! k
+    let line = getline('.')
+    let llen = strlen(line)
+    let str = ''
+    if llen > 0
+        let widx = match(line, '\S')
+        for ii in range(widx)
+            let str = str . " "
+        endfor
+        for ii in range(llen - widx)
+            let str = str . a:symbol
+        endfor
+        call setreg("y", str)
+        exec "normal! o\<esc>\"yp"
     endif
 endfunction
 
