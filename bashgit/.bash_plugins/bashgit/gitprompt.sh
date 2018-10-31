@@ -418,7 +418,11 @@ function gp_update() {
   command rm "$GIT_INDEX_PRIVATE" 2>/dev/null
 }
 
-# Returns virtual env information to be set in prompt
+# Returns env information to be set in prompt
+# Supports the following environment management tools:
+# - virtualenv
+# - nodeenv
+# - conda
 # Honors virtualenvs own setting VIRTUAL_ENV_DISABLE_PROMPT
 function gp_add_virtualenv_to_prompt {
   local ACCUMULATED_VENV_PROMPT=""
