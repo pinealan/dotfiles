@@ -38,6 +38,8 @@
 	co = checkout
 	com = checkout master
 
+	cp = cherry-pick
+
 	m = merge
 	mc = merge --continue
 	mnf = merge --no-ff
