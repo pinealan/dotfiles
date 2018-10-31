@@ -1,7 +1,7 @@
 -- vim: ts=4 sw=4 noet ai cindent syntax=lua
 
 conky.config = {
-    alignment = 'top_left',
+    alignment = 'top_right',
 	background = true,
     update_interval = 1.0,
     cpu_avg_samples = 2,
@@ -25,7 +25,7 @@ conky.config = {
     draw_graph_borders = false,
     draw_outline = false,
     draw_shades = false,
-    gap_x = 1400,
+    gap_x = 70,
     gap_y = 80,
 	minimum_width = 450,
     use_xft = true,
