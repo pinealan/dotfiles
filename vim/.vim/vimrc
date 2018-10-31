@@ -14,7 +14,7 @@ augroup usr_nerdtree
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
-let NERDTreeIgnore=['\.log$', '\.git', '\.egg-info', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints', '\.pytest_cache']
+let NERDTreeIgnore=['\.log$', '\.git', '\.egg-info', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints', '\.pytest_cache', 'log$']
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
@@ -108,6 +108,7 @@ let g:tex_no_error = 1
 "===[ Options ]=== {{{
 set backspace=eol,start,indent
 set cursorline
+set nofoldenable
 set hidden
 set history=500
 set hlsearch
@@ -154,8 +155,8 @@ set smartcase
 set fileformat=unix
 set fileencoding=utf8
 set encoding=utf8
-set nowritebackup
 set noswapfile
+set nowritebackup
 
 " Command-line completion
 set path=.,,**
@@ -378,7 +379,7 @@ augroup usr
     autocmd!
 
     autocmd BufWrite    *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.s,*.sh,*.bash,*.rst,*.go,*.f,*.r,*.mat,*.tex,*.json call TrimSpace()
-    autocmd BufEnter    *.c,*.cpp,*.md,*.py,*.rst,*.sh,*.vim,vimrc silent call EnableFastEsc()
+    autocmd BufEnter    *.c,*.cpp,*.md,*.py,*.rst,*.sh,*.vim,*.gitconfig,vimrc silent call EnableFastEsc()
     autocmd BufRead     * syn keyword TODO NOTE
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
 
