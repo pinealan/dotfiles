@@ -380,7 +380,7 @@ augroup usr
 
     autocmd BufWrite    *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.s,*.sh,*.bash,*.rst,*.go,*.f,*.r,*.mat,*.tex,*.json call TrimSpace()
     autocmd BufEnter    *.c,*.cpp,*.md,*.py,*.rst,*.sh,*.vim,*.gitconfig,vimrc silent call EnableFastEsc()
-    autocmd BufRead     * syn keyword TODO NOTE
+    autocmd BufRead     *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.sh syn keyword TODO NOTE Todo Note todo note
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
 
     autocmd VimEnter    *.c,*.cpp,*.py vsp
