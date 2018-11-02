@@ -42,6 +42,7 @@ let s:red           = { "gui": "#be5046", "cterm": "160" }
 let s:pink          = { "gui": "#e06c75", "cterm": "204" }
 let s:green         = { "gui": "#98c379", "cterm": "70" }
 let s:teagreen      = { "gui": "#98c379", "cterm": "114" }
+let s:teal          = { "gui": "#61afef", "cterm": "30" }
 let s:yellow        = { "gui": "#e5c07b", "cterm": "220" }
 let s:gold          = { "gui": "#e5c07b", "cterm": "179" }
 let s:carrot        = { "gui": "#d19a66", "cterm": "173" }
@@ -59,14 +60,12 @@ let s:black         = { "gui": "#bbc2cf", "cterm": "232" }
 
 let s:string        = s:teagreen
 let s:numeric       = s:carrot
-let s:macro         = s:carrot
 let s:statement     = s:purple
-let s:comment       = s:content2
 " }}}
 
 " [ Syntax Groups (:h group-name) ] {{{
 "
-call s:h("Comment",         { "fg": s:comment, "gui": "italic" }) " any comment
+call s:h("Comment",         { "fg": s:teal, "gui": "italic" }) " any comment
 call s:h("Constant",        { "fg": s:numeric }) " any constant
 call s:h("String",          { "fg": s:string }) " a string constant: 'this is a string'
 call s:h("Character",       { "fg": s:string }) " a character constant: 'c', '\n'
@@ -85,11 +84,11 @@ call s:h("Operator",        { "fg": s:statement })  " sizeof, +, *, etc.
 call s:h("Keyword",         { "fg": s:statement })       " any other statement
 call s:h("Exception",       { "fg": s:statement })  " try, catch, throw
 
-call s:h("PreProc",         { "fg": s:macro }) " generic Preprocessor
+call s:h("PreProc",         { "fg": s:gold }) " generic Preprocessor
 call s:h("Include",         { "fg": s:blue }) " preprocessor #include
-call s:h("Define",          { "fg": s:macro }) " preprocessor #define
-call s:h("Macro",           { "fg": s:macro }) " same as Define
-call s:h("PreCondit",       { "fg": s:macro }) " preprocessor #if, #else, #endif, etc.
+call s:h("Define",          { "fg": s:blue }) " preprocessor #define
+call s:h("Macro",           { "fg": s:blue }) " same as Define
+call s:h("PreCondit",       { "fg": s:statement }) " preprocessor #if, #else, #endif, etc.
 
 call s:h("Type",            { "fg": s:gold }) " int, long, char, etc.
 call s:h("StorageClass",    { "fg": s:statement }) " static, register, volatile, etc.
@@ -175,7 +174,7 @@ call s:h("pythonDocString", { "fg": { "gui": "#98c379", "cterm": "34" } })
 
 " [ Git Highlighting ] {{{
 "
-call s:h("gitcommitComment",        { "fg": s:comment })
+call s:h("gitcommitComment",        { "fg": s:content2 })
 call s:h("gitcommitUnmerged",       { "fg": s:teagreen })
 call s:h("gitcommitOnBranch",       {})
 call s:h("gitcommitBranch",         { "fg": s:purple })
