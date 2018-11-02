@@ -26,6 +26,7 @@
 	a = add
 	ap = add --patch
 
+	c = commit
 	cm = commit -m
 	ca = commit --amend
 	can = commit --amend --no-edit
@@ -39,6 +40,7 @@
 	com = checkout master
 
 	cp = cherry-pick
+	d = diff
 
 	m = merge
 	mc = merge --continue
@@ -55,7 +57,6 @@
 	f = fetch --tags
 	p = pull -v
 	pu = push
-	cp = cherry-pick
 
 	mark = tag tmp
 	unmark = tag -d tmp
@@ -83,7 +84,7 @@
 	showRoot = true
 
 [fetch]
-	prunn = true
+	prune = true
 
 [pull]
 	rebase = true
