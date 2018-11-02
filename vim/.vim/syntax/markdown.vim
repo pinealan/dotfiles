@@ -142,7 +142,6 @@ hi link htmlError                       Normal
 hi link htmlTagId                       Normal
 
 hi markdownBold                 term=bold cterm=bold gui=bold
-hi markdownBold                 term=bold,italic cterm=bold,italic gui=bold,italic
 hi markdownItalic               term=italic cterm=italic gui=italic
 
 let b:current_syntax = "markdown"
