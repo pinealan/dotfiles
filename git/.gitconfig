@@ -70,13 +70,13 @@
 
 	# log, --all
 	la = log --pretty=ps --graph --all
-	lao = log --pretty=po --graph --all
-	las = log --pretty=pl --graph --all --stat
-	lap = log --pretty=pl --graph --all --patch
+	loa = log --pretty=po --graph --all
+	lsa = log --pretty=pl --graph --all --stat
+	lpa = log --pretty=pl --graph --all --patch
 
 	# log, --all --date-order
 	ld = log --pretty=ps --graph --all --date-order
-	ldo = log --pretty=po --graph --all --date-order
+	lod = log --pretty=po --graph --all --date-order
 	
 [log]
 	abbrevCommit = true
