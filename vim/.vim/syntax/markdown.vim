@@ -105,7 +105,7 @@ hi def link markdownHeadingRule           markdownRule
 hi def link markdownHeadingDelimiter      Delimiter
 hi def link markdownOrderedListMarker     markdownListMarker
 hi def link markdownListMarker            htmlTagName
-hi def link markdownBlockquote            Comment
+hi def link markdownBlockquote            Special
 hi def link markdownRule                  PreProc
 
 hi def link markdownFootnote              Typedef

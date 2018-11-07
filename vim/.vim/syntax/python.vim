@@ -40,16 +40,16 @@ set cpo&vim
 " - async and await were added in Python 3.5 and are soft keywords.
 "
 syn keyword pythonBoolean       False None True
-syn keyword pythonStatement     as assert break continue del global self cls
-syn keyword pythonStatement     lambda nonlocal pass print return with yield
-syn keyword pythonStatement     class def nextgroup=pythonFunction skipwhite
 syn keyword pythonConditional   elif else if
 syn keyword pythonRepeat        for while
 syn keyword pythonOperator      and in is not or
+syn keyword pythonKeyword       as assert break continue del global self cls
+syn keyword pythonKeyword       lambda nonlocal pass return with yield
 syn keyword pythonException     except finally raise try
-syn keyword pythonInclude       from import
 syn keyword pythonAsync         async await
 
+syn keyword pythonStructure     class def nextgroup=pythonFunction skipwhite
+syn keyword pythonInclude       from import
 syn match   pythonDecorator     "@" display nextgroup=pythonFunction skipwhite
 
 
@@ -208,26 +208,28 @@ if version >= 508 || !exists("did_python_syn_inits")
   endif
 
   " The default highlight links.  Can be overridden later.
-  HiLink pythonStatement        Statement
-  HiLink pythonAsync            Statement
+  HiLink pythonComment          Comment
+  HiLink pythonNumber           Number
+  HiLink pythonFloat            Float
+  HiLink pythonBoolean          Boolean
+
   HiLink pythonConditional      Conditional
+  HiLink pythonStructure        Structure
   HiLink pythonRepeat           Repeat
   HiLink pythonOperator         Operator
+  HiLink pythonKeyword          Keyword
+  HiLink pythonAsync            Statement
+
   HiLink pythonKeywordArg       Type
   HiLink pythonException        Exception
 
-  HiLink pythonInclude          Include
-  HiLink pythonDecorator        Macro
+  HiLink pythonInclude          Statement
+  HiLink pythonDecorator        Constant
 
   HiLink pythonFunctionCall     Function
   HiLink pythonDeclFunction     Function
   HiLink pythonDeclDecorator    Function
   HiLink pythonDeclClass        Function
-
-  HiLink pythonComment          Comment
-  HiLink pythonNumber           Number
-  HiLink pythonFloat            Float
-  HiLink pythonBoolean          Boolean
 
   HiLink pythonString           String
   HiLink pythonRawString        String
