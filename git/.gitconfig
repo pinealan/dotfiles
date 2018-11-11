@@ -61,6 +61,7 @@
 	mark = tag tmp
 	unmark = tag -d tmp
 	nuke = reset --hard HEAD
+	dev = checkout -b dev
 
 	# log
 	l = log --pretty=ps --graph
