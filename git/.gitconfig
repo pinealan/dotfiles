@@ -37,6 +37,7 @@
 	bm = branch -m
 
 	co = checkout
+	cob = checkout -b
 	com = checkout master
 
 	cp = cherry-pick
