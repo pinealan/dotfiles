@@ -26,7 +26,7 @@ stow bash
 ```
 
 
-## Packages details
+## Packages config
 ### Bash
 Bash's main configuration (and often default) files are `~/.bashrc` and
 `.bash_aliases`. This repo's bash dotfiles provide sensible defaults for a
@@ -39,3 +39,26 @@ faciliate such logging settings, `.bashrc` sources `~/.local/.bashrc` and
 A heavily modified version of
 [bash-git-prompt](https://github.com/magicmonty/bash-git-prompt) comes with this
 repo. This version supports only bash shells.
+
+
+### Conky
+The conky config is heavily machine dependent since it requires various hardware
+IDs to report on their status such as IO and Networking.
+
+Notably, here are things you might want to change:
+- CPU/GPU numbers   (line 61-64)
+- Filesystems       (line 80-81)
+- WiFi              (line 85-89)
+- Ethernet          (line 90-94)
+
+
+### Git
+Remember to change the user name, email, and github (or other git hosting
+services) account.
+
+
+### Vim
+You would have to set up [Vundle](https://github.com/VundleVim/Vundle.vim) to
+enable the many configured vim plugins that comes with the dotfiles. A helper
+script `vim/.vim/setupvundle.sh` can help you to setup vundle and download all
+plugins in one go.
