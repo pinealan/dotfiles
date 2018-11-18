@@ -85,7 +85,7 @@ call s:h("Keyword",         { "fg": s:statement })       " any other statement
 call s:h("Exception",       { "fg": s:statement })  " try, catch, throw
 
 call s:h("PreProc",         { "fg": s:gold }) " generic Preprocessor
-call s:h("Include",         { "fg": s:blue }) " preprocessor #include
+call s:h("Include",         { "fg": s:statement }) " preprocessor #include
 call s:h("Define",          { "fg": s:blue }) " preprocessor #define
 call s:h("Macro",           { "fg": s:blue }) " same as Define
 call s:h("PreCondit",       { "fg": s:statement }) " preprocessor #if, #else, #endif, etc.

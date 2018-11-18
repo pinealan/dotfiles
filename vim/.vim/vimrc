@@ -14,7 +14,7 @@ augroup usr_nerdtree
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
-let NERDTreeIgnore=['\.log$', '\.git', '\.egg-info', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints', '\.pytest_cache', 'log$']
+let NERDTreeIgnore=['\.log$', '\.git', '\.egg-info', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints', '\.pytest_cache', 'log$', '\.vscode']
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
@@ -86,6 +86,7 @@ let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
 " }}}
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'pangloss/vim-javascript'
 
 
 call vundle#end()
@@ -397,4 +398,7 @@ augroup END
 
 
 " }}}
+
+hi link Noise Special
+
 " vim: foldmethod=marker
