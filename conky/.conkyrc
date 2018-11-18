@@ -55,7 +55,7 @@ conky.config = {
 
 conky.text = [[
 ${color1}$nodename ${alignr}$kernel
-${color1}Uptime: ${color}$uptime
+${color1}Uptime: ${color}$uptime ${alignr}${time %a, %d %b, %H:%M}
 
 ${color1}Resources: ${color2}$hr
 ${color3}CPU 0 : ${color}${execi 10 sensors | grep "Core 0" | cut -c17-23} ${color4}${cpubar cpu0 10}
@@ -99,5 +99,6 @@ ${tcp_portmon 32768 60999 rip 0} ${alignr} ${tcp_portmon 32768 60999 rservice 0}
 ${tcp_portmon 32768 60999 rip 1} ${alignr} ${tcp_portmon 32768 60999 rservice 1}
 ${tcp_portmon 32768 60999 rip 2} ${alignr} ${tcp_portmon 32768 60999 rservice 2}
 
+${color1}Volume:  ${color}${execi 1 amixer -D pulse get Master | tail -n 1 | cut -d ' ' -f 7 | tr -d []%}%
 ${color1}Battery: ${color}${execi 30 cat /sys/class/power_supply/BAT0/capacity}% ${color5}${execibar 30 cat /sys/class/power_supply/BAT0/capacity}
 ]]
