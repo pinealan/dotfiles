@@ -15,9 +15,7 @@ let s:cpo_save = &cpo
 set cpo&vim
 syn case ignore
 
-" Common patterns used:
-" ^\s\@!    A newline without leading whitespace (\@! null matches preceding atom with zero-width)
-" ^$        Empty line
+" Delimiters
 syn keyword     rstTodo             contained FIXME TODO XXX NOTE
 syn match rstDelimiter /`/ contained
 syn match rstDelimiter /:/ contained
@@ -26,10 +24,16 @@ syn match rstAngle />/ contained
 syn match rstSquare /\[/ contained
 syn match rstSquare /\]/ contained
 
+" Sections
 syn region rstComment start=/^\s*\.\.\s*.*/ end=/^\s\@!/ contains=rstTodo
 syn region rstLabel start=/^\s*\.\.\s*_.*:/ end=/^\s\@!/
 syn match rstTransition  /^[=`:.'"~^_*+#-]\{4,}\s*$/
+syn match   rstSections "\v^%(([=`:.'"~^_*+#-])\1+\n)?\zs.{1,2}\ze\n([=`:.'"~^_*+#-])\2+$"
+    \ contains=@Spell
+syn match   rstSections "\v^%(([=`:.'"~^_*+#-])\1{2,}\n)?\zs.{3,}\ze\n([=`:.'"~^_*+#-])\2{2,}$"
+    \ contains=@Spell
 
+" Roles, Directives, Fields
 syn match rstField /^\s*:[^:]\+:`\@!/ contains=rstDelimiter
 syn match rstDirectiveName /::\zs\s\+.*/ contains=rstDelimiter
 syn region rstDirective start=/^\s*\.\.\s*.*\ze::/ end=/^\s\@!/ contains=rstField,rstDirectiveName
@@ -55,12 +59,6 @@ syn match   rstSimpleTableLines     contained display
       \ '^\%(\s*\)\@>\%(\%(=\+\)\@>\%(\s\+\)\@>\)\%(\%(\%(=\+\)\@>\%(\s*\)\@>\)\+\)\@>$'
 syn match   rstSimpleTableLines     contained display
       \ '^\%(\s*\)\@>\%(\%(-\+\)\@>\%(\s\+\)\@>\)\%(\%(\%(-\+\)\@>\%(\s*\)\@>\)\+\)\@>$'
-
-" Sections
-syn match   rstSections "\v^%(([=`:.'"~^_*+#-])\1+\n)?\zs.{1,2}\ze\n([=`:.'"~^_*+#-])\2+$"
-    \ contains=@Spell
-syn match   rstSections "\v^%(([=`:.'"~^_*+#-])\1{2,}\n)?\zs.{3,}\ze\n([=`:.'"~^_*+#-])\2{2,}$"
-    \ contains=@Spell
 
 " Code literals
 syn region  rstLiteralBlock         matchgroup=rstDelimiter
