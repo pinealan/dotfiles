@@ -87,6 +87,7 @@ let g:Schlepp#trimWS = 0
 " }}}
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 
 call vundle#end()
