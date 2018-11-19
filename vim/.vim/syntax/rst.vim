@@ -42,6 +42,8 @@ syn match rstRole /\v(:[^:`]+)?:[^:`]+:`[[:alnum:]~\.\/_<> \s]+`/ contains=rstRo
 syn match rstRoleName /\v(:[^:`]+)?:[^:`]+:/ contained contains=rstDelimiter
 syn match rstRoleTarget /`\v[[:alnum:]~\.\/_<> \s]+`/ contained contains=rstDelimiter
 
+syn match rstEmphasis /\*[^\*]*\*/
+syn match rstStrongEmphasis /\*\*[^\(\*\*\)]*\*\*/
 syn match rstInlinelink /<.*>/ contains=rstAngle
 syn match rstInlineLink /\[.*\]/ contains=rstSquare
 syn match rstInlineCode /``[[:alnum:]=\(\)\[\]{}\_s \.,:#\$\\_]\+``/
