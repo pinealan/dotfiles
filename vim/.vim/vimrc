@@ -393,14 +393,22 @@ function! TrimSpace()
     %s/\s\+$//e
 endfunction
 
+function! TryTrimSpace()
+    if &ft =~ 'markdown'
+        return
+    else
+        call TrimSpace()
+    endif
+endfunction
+
+
 " }}}
 "===[ Autocommands setup ]=== {{{
 augroup usr
     autocmd!
 
-    " Todo use functions to blacklist filetypes instead
-    autocmd BufWrite    *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.s,*.sh,*.bash,*.rst,*.go,*.f,*.r,*.mat,*.tex,*.json call TrimSpace()
-    autocmd BufEnter    *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.md,*.rst,*.sh,*.vim,*.gitconfig,vimrc,Makefile silent call EnableFastEsc()
+    autocmd BufWrite    * call TryTrimSpace()
+    autocmd BufEnter    * silent call EnableFastEsc()
     autocmd BufRead     *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.sh syn keyword TODO NOTE Todo Note todo note
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
 
