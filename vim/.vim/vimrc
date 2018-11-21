@@ -124,7 +124,7 @@ set scrolloff=7
 set whichwrap+=<,>,h,l
 
 set laststatus=2
-set statusline=%#StatusLineGit#%{GitBranch()}%#User{1}#\ %{HasPaste()}%r%m%t%=%y\ %l,\%-2c\ \|%3p%%
+set statusline=%!MyStatusLine('t')
 
 set showtabline=1
 set tabline=%!MyTabLine()
@@ -234,6 +234,8 @@ nnoremap <leader>s          :setlocal spell!<cr>
 nnoremap <leader><tab>      :setlocal wrap!<cr>
 nnoremap <leader><leader>   :setlocal hlsearch!<cr>
 nnoremap <leader><esc>      :call ToggleFastEsc()<cr>
+nnoremap <leader>1          :setl statusline=%!MyStatusLine('f')<cr>
+nnoremap <leader>2          :setl statusline=%!MyStatusLine('t')<cr>
 
 " Plugin mapping
 nnoremap  <c-e> :NERDTreeToggle<cr>
@@ -380,6 +382,13 @@ function! ReportBuildResult()
     endif
 endfunction
 
+function! MyStatusLine(path)
+    let gitbr = "%#StatusLineGit#%{GitBranch()}%#User{1}#\ "
+    let flags = "%{HasPaste()}%r%m"
+    let index = "%l,\%-2c\ \|%3p%%"
+    return gitbr . flags . "%" . a:path . "%=%y\ " . index
+endfunction
+
 function! TrimSpace()
     %s/\s\+$//e
 endfunction
@@ -389,8 +398,9 @@ endfunction
 augroup usr
     autocmd!
 
+    " Todo use functions to blacklist filetypes instead
     autocmd BufWrite    *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.s,*.sh,*.bash,*.rst,*.go,*.f,*.r,*.mat,*.tex,*.json call TrimSpace()
-    autocmd BufEnter    *.c,*.cpp,*.md,*.py,*.rst,*.sh,*.vim,*.gitconfig,vimrc silent call EnableFastEsc()
+    autocmd BufEnter    *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.md,*.rst,*.sh,*.vim,*.gitconfig,vimrc,Makefile silent call EnableFastEsc()
     autocmd BufRead     *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.sh syn keyword TODO NOTE Todo Note todo note
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
 
