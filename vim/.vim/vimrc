@@ -14,7 +14,20 @@ augroup usr_nerdtree
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
-let NERDTreeIgnore=['\.log$', '\.git', '\.egg-info', '__pycache__', '\.pyc$', '.exe$', '\.ipynb_checkpoints', '\.pytest_cache', 'log$', '\.vscode']
+let NERDTreeIgnore = [
+    \'.exe$',
+    \'log$',
+    \'__pycache__',
+    \'node_modules'
+    \'\.log$',
+    \'\.git',
+    \'\.egg-info',
+    \'\.pyc$',
+    \'\.ipynb_checkpoints',
+    \'\.pytest_cache',
+    \'\.vscode',
+    \'\.venv'
+\]
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
