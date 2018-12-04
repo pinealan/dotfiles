@@ -79,7 +79,7 @@
 	# log, --all --date-order
 	ld = log --pretty=ps --graph --all --date-order
 	lod = log --pretty=po --graph --all --date-order
-	
+
 [log]
 	abbrevCommit = true
 	date = format:%a, %Y-%m-%d %R (%z)
@@ -92,7 +92,7 @@
 	rebase = true
 
 [push]
-	default = matching
+	default = upstream
 	followTags = true
 
 [pretty]
