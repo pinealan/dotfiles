@@ -39,6 +39,7 @@
 	co = checkout
 	cob = checkout -b
 	com = checkout master
+	cod = checkout dev
 
 	cp = cherry-pick
 	d = diff
@@ -57,12 +58,12 @@
 	s = status
 	f = fetch --tags
 	p = pull -v
-	pu = push
 
 	mark = tag tmp
 	unmark = tag -d tmp
 	nuke = reset --hard HEAD
 	dev = checkout -b dev
+	move = reset --hard
 
 	# log
 	l = log --pretty=ps --graph
