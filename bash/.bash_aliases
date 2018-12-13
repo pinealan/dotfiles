@@ -92,6 +92,7 @@ alias git-list-tags=\
 
 # Misc
 alias nlg='npm list -g -depth=0'
+alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
 alias a='ranger'
 alias f='fuck'
 alias m='man'

@@ -20,7 +20,7 @@ fi
 # Fixes TMUX shell duplicate paths which are level 2 shells
 if [ $SHLVL == 1 ]; then
     # prepend PATH with user's private bin directories
-    PATH="$HOME/.local/bin:$PATH"
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
     if [ -f "$HOME/.local/.profile" ]; then
         . "$HOME/.local/.profile"

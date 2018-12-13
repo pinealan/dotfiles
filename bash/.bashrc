@@ -66,7 +66,6 @@ bind 'TAB:menu-complete'
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export GLOBIGNORE=__pycache__
-export PYTHONDONTWRITEBYTECODE=true
 
 export LESS_TERMCAP_mb=$'\e[1;31m'          # begin bold
 export LESS_TERMCAP_md=$'\e[38;5;77m'       # begin blink
@@ -107,7 +106,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Scripts 
+# Scripts
 if [ -d ~/.bash_plugins ]; then
     for f in ~/.bash_plugins/*; do
         if [ -f $f ]; then
