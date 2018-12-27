@@ -60,10 +60,6 @@ alias scenable='sudo systemctl enable'
 alias scdisable='sudo systemctl disable'
 alias scdr='sudo systemctl daemon-reload'
 
-# Fun
-alias mo='fortune | cowsay'
-alias moo='mo'
-
 # Tmux
 alias t='tmux new -A -n shell -s default'
 alias ta='tmux attach -t'
@@ -90,6 +86,25 @@ alias git-list-tags=\
 'echo "------------------------------------"; '\
 'git cat-file -p `git rev-parse $t`; done;'
 
+# Python
+alias p='python'
+alias p3='python3'
+
+alias venv='python3 -m venv'
+ativ() {
+    if [[ -z $1 ]]; then
+        # find local venv
+        . .venv/bin/activate
+    else
+        # use global venvs from $HOME
+        . ~/venv/$1/bin/activate
+    fi
+}
+
+# Fun
+alias mo='fortune | cowsay'
+alias moo='mo'
+
 # Misc
 alias nlg='npm list -g -depth=0'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
@@ -98,3 +113,5 @@ alias f='fuck'
 alias m='man'
 alias n='ranger'
 alias v='vim'
+alias gg='git la'
+alias serve='python3 -m http.server 5000'
