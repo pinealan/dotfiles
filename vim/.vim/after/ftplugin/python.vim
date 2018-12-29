@@ -1,4 +1,4 @@
-set cc=81,101
+set cc=88
 
 nnoremap <leader>d  :call ToggleDocstring()<cr>
 
