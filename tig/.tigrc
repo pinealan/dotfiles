@@ -1,0 +1,79 @@
+set main-view    = line-number:no id:yes date:relative author:abbreviated commit-title:yes,graph,refs,overflow=yes
+set mouse        = yes
+set refresh-mode = auto
+
+color "---"                     yellow  default
+color "diff --"			blue	default
+color "--- "			blue	default
+color "+++ "			blue	default
+color "@@"			magenta	default
+color "+"			green	default
+color " +"			green	default
+color "-"			red	default
+color " -"			red	default
+color "index "			blue    default
+color "old file mode "		red     default
+color "new file mode "		green   default
+color "deleted file mode "	red     default
+color "copy from "		red     default
+color "copy to "		green   default
+color "rename from "		red     default
+color "rename to "		green   default
+color "similarity "		yellow	default
+color "dissimilarity "		yellow	default
+color "diff-tree "		yellow  default
+color "Author: "		cyan    default
+color "Commit: "		white   default
+color "Tagger: "		white   default
+color "Merge: "			cyan	default
+color "Date: "			white   default
+color "AuthorDate: "		white   default
+color "CommitDate: "		white   default
+color "TaggerDate: "		white   default
+color "Refs: "			magenta default
+color "Reflog: "		magenta default
+color "Reflog message: "	white   default
+color "stash@{"			yellow  default
+color "commit "			yellow  default
+color "parent "			yellow  default
+color "tree "			yellow  default
+color "author "			green	default
+color "committer "		magenta	default
+color "    Signed-off-by"	cyan    default
+color "    Acked-by"		cyan	default
+color "    Tested-by"		cyan	default
+color "    Reviewed-by"		cyan	default
+color default			default	default	normal
+color cursor			default black
+color status			green	default
+color delimiter			magenta	default
+color date			white	default
+color mode			cyan	default
+color id			magenta	default
+color overflow			red	default
+color header			yellow	default
+color section			cyan	default
+color directory			blue    default bold
+color file			default default
+color grep.file			blue	default
+color file-size			cyan    default
+color line-number		cyan	default
+color title-blur		white	black
+color title-focus		white	black   bold
+color main-commit		default	default
+color main-tag			magenta	default	bold
+color main-local-tag		magenta	default
+color main-remote		yellow	default
+color main-replace		cyan	default
+color main-tracked		yellow	default	bold
+color main-ref			cyan	default
+color main-head			cyan	default	bold
+color stat-none			default	default
+color stat-staged		magenta	default
+color stat-unstaged		magenta	default
+color stat-untracked		magenta	default
+color help-group		blue	default
+color help-action		yellow	default
+color diff-stat			white   default
+color graph-commit		blue    default
+color search-result		black	yellow
