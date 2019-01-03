@@ -57,7 +57,11 @@
 
 	s = status
 	f = fetch --tags
+	fo = fetch origin --tags
+	fg = fetch github --tags
 	p = pull -v
+	pg = push github
+	po = push origin
 
 	mark = tag tmp
 	unmark = tag -d tmp
