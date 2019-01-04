@@ -93,8 +93,21 @@ alias p3='python3'
 alias venv='python3 -m venv'
 ativ() {
     if [[ -z $1 ]]; then
+        not_found=1
+
         # find local venv
-        . .venv/bin/activate
+        for dir in "venv" ".venv" "env" ".env"; do
+            if [[ -d $dir ]]; then
+                . $dir/bin/activate
+                unset not_found
+                break
+            fi
+        done
+
+        if [[ -v not_found ]]; then
+            echo ERROR: Unable to find local environment >&2
+            return 127
+        fi
     else
         # use global venvs from $HOME
         . ~/venv/$1/bin/activate
