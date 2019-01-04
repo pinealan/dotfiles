@@ -102,7 +102,7 @@
 
 [pretty]
 	po = tformat:%C(auto)%h%d %s %C(241)- %an  # oneline
-	ps = tformat:%C(auto)%h %C(244)- %C(67)%ad %C(108)(%ar)%C(auto)%d%n          %s %C(241)- %an%n  # summary
+	ps = tformat:%C(auto)%h %C(244)- %C(67)%ad %C(108)(%ar)%C(auto)%d%n%C(241)          @%an %C(reset)%<(52,trunc)%s %n  # summary
 	pl = format:%C(3)%h %p%C(auto)%d%n%C(67)%ad %C(108)(%ar)%n%C(6)%an <%ae>%n%n%w(0, 4, 4)%C(230)%B  # long
 
 [rerere]
