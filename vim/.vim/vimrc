@@ -261,8 +261,8 @@ nnoremap <leader>t      :Tabularize /
 nnoremap <silent> <F8>  :MarkdownPreview<cr>
 
 nnoremap <leader>x      :YcmCompleter Fixit<cr>
-nnoremap <leader>g      :YcmCompleter GotoDefinition<cr>
-nnoremap <leader>r      :YcmCompleter GotoReferences<cr>
+nnoremap <leader>g      :YcmCompleter GoToDefinition<cr>
+nnoremap <leader>r      :YcmCompleter GoToReferences<cr>
 
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
