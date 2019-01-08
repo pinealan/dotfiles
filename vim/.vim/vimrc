@@ -236,6 +236,9 @@ nnoremap <leader>c          :echo HighlightName()<cr>
 nnoremap <leader>w          :w !sudo tee % > /dev/null
 nnoremap <leader>f          :set filetype=
 
+" create a fold for the pair of parenthesis/brackets under the cursor
+nnoremap <leader>o          v%zF
+
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
 nnoremap <silent> <leader>'     :vsp<cr>
