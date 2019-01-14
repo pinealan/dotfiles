@@ -61,6 +61,7 @@ syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 
 syn region  pythonFunctionParen start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
 syn match   pythonKeywordArg /\i*\ze=[^=]/ contained
+syn match   pythonKeywordArg /\i*\ze *:\? *\i*=[^=]/ contained
 
 
 " Comments
@@ -94,8 +95,8 @@ syn match   pythonEscape        "\\N{\a\+\%(\s\a\+\)*}" contained
 syn match   pythonEscape        "\\$"
 
 " Inline SQL
-syn keyword pythonSQLKeyword    ALTER ATTACH DETACH CREATE DROP EXPLAIN ? contained 
-syn keyword pythonSQLKeyword    SELECT INSERT UPDATE DELETE REPLACE ROLLBACK contained 
+syn keyword pythonSQLKeyword    ALTER ATTACH DETACH CREATE DROP EXPLAIN ? contained
+syn keyword pythonSQLKeyword    SELECT INSERT UPDATE DELETE REPLACE ROLLBACK contained
 syn keyword pythonSQLKeyword    PRIMARY UNIQUE FOREIGN REFERENCES VALUES contained
 syn keyword pythonSQLKeyword    IF NOT FROM WITH KEY EXISTS INDEXED INTO BY contained
 syn keyword pythonSQLType       NULL INT INTEGER REAL TEXT STRING FLOAT BLOB contained
