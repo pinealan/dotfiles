@@ -35,6 +35,7 @@
 	bb = branch -vva
 	bd = branch -d
 	bm = branch -m
+	bdr = branch -dr
 
 	co = checkout
 	cob = checkout -b
