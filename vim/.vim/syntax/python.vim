@@ -215,8 +215,6 @@ syn match   pythonSpaceError    display "\t\+ "
 " Sync at the beginning of class, function, or method definition.
 syn sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s\+\h\w*\s*("
 
-    command -nargs=+ HiLink hi link <args>
-
 " Override everything. This is suppose to be the canonical highlighting anyway
 hi link pythonComment          Comment
 hi link pythonNumber           Number
