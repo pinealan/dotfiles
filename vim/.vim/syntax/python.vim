@@ -92,7 +92,16 @@ syn match   pythonEscape        "\\x\x\{2}" contained
 syn match   pythonEscape        "\%(\\u\x\{4}\|\\U\x\{8}\)" contained
 " Python allows case-insensitive Unicode IDs: http://www.unicode.org/charts/
 syn match   pythonEscape        "\\N{\a\+\%(\s\a\+\)*}" contained
-syn match   pythonEscape        "\\$"
+syn match   pythonEscape        "\\$" contained
+" format strings
+syn match   pythonEscape        /%\((.*)\)\?[diouxXeEfFgGcrsa]/ contained contains=pythonStringField
+syn match   pythonEscape        /{[^{:]*:\?}/ contained contains=pythonStringField
+syn match   pythonOldStringField    /(\zs.*\ze)/ containedin=pythonEscape
+syn match   pythonFStringField      /{\zs[^{}:]*/ containedin=pythonEscape
+
+hi link pythonOldStringField    pythonStringField
+hi link pythonFStringField      pythonStringField
+hi link pythonStringField       pythonKeywordArg
 
 " Inline SQL
 syn keyword pythonSQLKeyword    ALTER ATTACH DETACH CREATE DROP EXPLAIN ? contained
@@ -189,6 +198,12 @@ syn keyword pythonExceptions    ImportWarning PendingDeprecationWarning
 syn keyword pythonExceptions    RuntimeWarning SyntaxWarning UnicodeWarning
 syn keyword pythonExceptions    UserWarning Warning ResourceWarning
 
+" stdlib typing module (since Python 3.5)
+syn keyword pythonBuiltin       Any Union Tuple Callable TypeVar Generic
+syn keyword pythonBuiltin       AnyStr Awaitable AsyncIterable AsyncIterator
+syn keyword pythonBuiltin       List Dict Deque Set IO Hashable Type Sized
+syn keyword pythonBuiltin       Generator Optional Iterable Iterator NamedTuple
+
 " trailing whitespace
 syn match   pythonSpaceError    display excludenl "\s\+$"
 
@@ -200,56 +215,47 @@ syn match   pythonSpaceError    display "\t\+ "
 " Sync at the beginning of class, function, or method definition.
 syn sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s\+\h\w*\s*("
 
-if version >= 508 || !exists("did_python_syn_inits")
-  if version <= 508
-    let did_python_syn_inits = 1
     command -nargs=+ HiLink hi link <args>
-  else
-    command -nargs=+ HiLink hi def link <args>
-  endif
 
-  " The default highlight links.  Can be overridden later.
-  HiLink pythonComment          Comment
-  HiLink pythonNumber           Number
-  HiLink pythonFloat            Float
-  HiLink pythonBoolean          Boolean
+" Override everything. This is suppose to be the canonical highlighting anyway
+hi link pythonComment          Comment
+hi link pythonNumber           Number
+hi link pythonFloat            Float
+hi link pythonBoolean          Boolean
 
-  HiLink pythonConditional      Conditional
-  HiLink pythonStructure        Structure
-  HiLink pythonRepeat           Repeat
-  HiLink pythonOperator         Operator
-  HiLink pythonKeyword          Keyword
-  HiLink pythonAsync            Statement
+hi link pythonConditional      Conditional
+hi link pythonStructure        Structure
+hi link pythonRepeat           Repeat
+hi link pythonOperator         Operator
+hi link pythonKeyword          Keyword
+hi link pythonAsync            Statement
 
-  HiLink pythonKeywordArg       Type
-  HiLink pythonException        Exception
+hi link pythonKeywordArg       Type
+hi link pythonException        Exception
 
-  HiLink pythonInclude          Statement
-  HiLink pythonDecorator        Constant
+hi link pythonInclude          Statement
+hi link pythonDecorator        Constant
 
-  HiLink pythonFunctionCall     Function
-  HiLink pythonDeclFunction     Function
-  HiLink pythonDeclDecorator    Function
-  HiLink pythonDeclClass        Function
+hi link pythonFunctionCall     Function
+hi link pythonDeclFunction     Function
+hi link pythonDeclDecorator    Function
+hi link pythonDeclClass        Function
 
-  HiLink pythonString           String
-  HiLink pythonRawString        String
-  HiLink pythonQuotes           String
+hi link pythonString           String
+hi link pythonRawString        String
+hi link pythonQuotes           String
 
-  HiLink pythonTripleQuotes     pythonQuotes
-  HiLink pythonDocString        Comment
+hi link pythonTripleQuotes     pythonQuotes
+hi link pythonDocString        Comment
 
-  HiLink pythonSQLKeyword       Statement
-  HiLink pythonSQLType          Type
-  HiLink pythonSQLString        Constant
+hi link pythonSQLKeyword       Statement
+hi link pythonSQLType          Type
+hi link pythonSQLString        Constant
 
-  HiLink pythonEscape           Special
-  HiLink pythonBuiltin          Function
-  HiLink pythonExceptions       pythonBuiltin
-  HiLink pythonSpaceError       Error
-
-  delcommand HiLink
-endif
+hi link pythonEscape           Special
+hi link pythonBuiltin          Function
+hi link pythonExceptions       pythonBuiltin
+hi link pythonSpaceError       Error
 
 let b:current_syntax = "python"
 
