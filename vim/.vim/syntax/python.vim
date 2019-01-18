@@ -60,8 +60,7 @@ syn match   pythonDeclDecorator "\%(@\s*\)\@<=\h\%(\w\|\.\)*" " Decorator declar
 syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 
 syn region  pythonFunctionParen start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
-syn match   pythonKeywordArg /\i*\ze=[^=]/ contained
-syn match   pythonKeywordArg /\i*\ze *:\? *\i*=[^=]/ contained
+syn match   pythonKeywordArg /\i*\ze\(: \?\i* \?\)\?= \?[^=]/ containedin=pythonFunctionParen
 
 
 " Comments
@@ -215,45 +214,44 @@ syn match   pythonSpaceError    display "\t\+ "
 " Sync at the beginning of class, function, or method definition.
 syn sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s\+\h\w*\s*("
 
-" Override everything. This is suppose to be the canonical highlighting anyway
-hi link pythonComment          Comment
-hi link pythonNumber           Number
-hi link pythonFloat            Float
-hi link pythonBoolean          Boolean
+hi def link pythonComment          Comment
+hi def link pythonNumber           Number
+hi def link pythonFloat            Float
+hi def link pythonBoolean          Boolean
 
-hi link pythonConditional      Conditional
-hi link pythonStructure        Structure
-hi link pythonRepeat           Repeat
-hi link pythonOperator         Operator
-hi link pythonKeyword          Keyword
-hi link pythonAsync            Statement
+hi def link pythonConditional      Conditional
+hi def link pythonStructure        Structure
+hi def link pythonRepeat           Repeat
+hi def link pythonOperator         Operator
+hi def link pythonKeyword          Keyword
+hi def link pythonAsync            Statement
 
-hi link pythonKeywordArg       Type
-hi link pythonException        Exception
+hi def link pythonKeywordArg       Type
+hi def link pythonException        Exception
 
-hi link pythonInclude          Statement
-hi link pythonDecorator        Constant
+hi def link pythonInclude          Statement
+hi def link pythonDecorator        Constant
 
-hi link pythonFunctionCall     Function
-hi link pythonDeclFunction     Function
-hi link pythonDeclDecorator    Function
-hi link pythonDeclClass        Function
+hi def link pythonFunctionCall     Function
+hi def link pythonDeclFunction     Function
+hi def link pythonDeclDecorator    Function
+hi def link pythonDeclClass        Function
 
-hi link pythonString           String
-hi link pythonRawString        String
-hi link pythonQuotes           String
+hi def link pythonString           String
+hi def link pythonRawString        String
+hi def link pythonQuotes           String
 
-hi link pythonTripleQuotes     pythonQuotes
-hi link pythonDocString        Comment
+hi def link pythonTripleQuotes     pythonQuotes
+hi def link pythonDocString        Comment
 
-hi link pythonSQLKeyword       Statement
-hi link pythonSQLType          Type
-hi link pythonSQLString        Constant
+hi def link pythonSQLKeyword       Statement
+hi def link pythonSQLType          Type
+hi def link pythonSQLString        Constant
 
-hi link pythonEscape           Special
-hi link pythonBuiltin          Function
-hi link pythonExceptions       pythonBuiltin
-hi link pythonSpaceError       Error
+hi def link pythonEscape           Special
+hi def link pythonBuiltin          Function
+hi def link pythonExceptions       pythonBuiltin
+hi def link pythonSpaceError       Error
 
 let b:current_syntax = "python"
 
