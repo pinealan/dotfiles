@@ -19,6 +19,8 @@ let NERDTreeIgnore = [
     \'log$',
     \'__pycache__',
     \'node_modules'
+    \'vendor',
+    \'_site',
     \'\.log$',
     \'\.git',
     \'\.egg-info',
@@ -26,6 +28,7 @@ let NERDTreeIgnore = [
     \'\.ipynb_checkpoints',
     \'\.pytest_cache',
     \'\.vscode',
+    \'\.sass-cache',
     \'\.venv'
 \]
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
@@ -446,7 +449,7 @@ augroup usr
     autocmd BufRead     *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.sh syn keyword TODO NOTE Todo Note todo note
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
 
-    autocmd VimEnter    *.c,*.cpp,*.py vsp
+    "autocmd VimEnter    *.c,*.cpp,*.py vsp
 augroup END
 
 
