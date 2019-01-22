@@ -1,2 +1,2 @@
-set noexpandtab
-set shiftwidth=8
+setl noexpandtab
+setl shiftwidth=8

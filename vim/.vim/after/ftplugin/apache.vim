@@ -1,4 +1,4 @@
-set noexpandtab
-set ts=8
-set sw=8
-set sts=8
+setl noexpandtab
+setl ts=8
+setl sw=8
+setl sts=8
