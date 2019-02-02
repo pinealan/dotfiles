@@ -93,14 +93,13 @@ syn match   pythonEscape        "\%(\\u\x\{4}\|\\U\x\{8}\)" contained
 syn match   pythonEscape        "\\N{\a\+\%(\s\a\+\)*}" contained
 syn match   pythonEscape        "\\$" contained
 " format strings
-syn match   pythonEscape        /%\((.*)\)\?[diouxXeEfFgGcrsa]/ contained contains=pythonStringField
-syn match   pythonEscape        /{[^{:]*:\?}/ contained contains=pythonStringField
-syn match   pythonOldStringField    /(\zs.*\ze)/ containedin=pythonEscape
-syn match   pythonFStringField      /{\zs[^{}:]*/ containedin=pythonEscape
+syn match   pythonEscape        /%\((.*)\)\?[diouxXeEfFgGcrsa]/ contained contains=pythonOldStringField
+syn match   pythonEscape        /{[^{:]*:\?}/ contained contains=pythonFStringField
+syn match   pythonOldStringField    /(\zs.*\ze)/ contained
+syn match   pythonFStringField      /{\zs[^{}:]*/ contained
 
-hi link pythonOldStringField    pythonStringField
-hi link pythonFStringField      pythonStringField
-hi link pythonStringField       pythonKeywordArg
+hi link pythonOldStringField    pythonKeywordArg
+hi link pythonFStringField      pythonKeywordArg
 
 " Inline SQL
 syn keyword pythonSQLKeyword    ALTER ATTACH DETACH CREATE DROP EXPLAIN ? contained
