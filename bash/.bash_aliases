@@ -87,6 +87,10 @@ alias git-list-tags=\
 'echo "------------------------------------"; '\
 'git cat-file -p `git rev-parse $t`; done;'
 
+# Docker
+
+alias dps='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
+
 # Python
 alias p='python'
 alias p3='python3'
