@@ -38,7 +38,7 @@ let NERDTreeShowHidden=1
 " }}}
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'henrik/vim-indexed-search'
+Plugin 'google/vim-searchindex'
 "Plugin 'ap/vim-buftabline'
 " BufTabLine {{{
 "hi default link BufTabLineCurrent TabLineSel
