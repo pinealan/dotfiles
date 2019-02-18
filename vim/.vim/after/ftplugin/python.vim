@@ -1,5 +1,5 @@
-set cc=88
-set tw=88
+setl cc=88
+setl tw=88
 
 nnoremap <leader>k  :vimgrep /^ *class/g @%
 nnoremap <leader>d  :call ToggleDocstring()<cr>
