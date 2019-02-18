@@ -113,3 +113,5 @@
 
 [github]
 	user = pinealan
+[color]
+	ui = auto
