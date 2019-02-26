@@ -95,8 +95,7 @@ alias dps='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
 alias p='python'
 alias p3='python3'
 
-alias venv='python3 -m venv'
-ativ() {
+venv() {
     if [[ -z $1 ]]; then
         not_found=1
 
