@@ -34,6 +34,9 @@ fi
 # Shell
 alias c='clear'
 alias e='exit'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 # List
 alias l='ls -lFh'
@@ -44,7 +47,7 @@ alias las='ls -lASF'
 alias ll='ls -l'
 alias lha='ls -lAFSh'
 alias lss='ls --color | less -R'
-alias lhid='ls -la | grep \\.'
+alias lhid='ls -la | grep " \\."'
 
 # System Admin
 alias h='htop'
