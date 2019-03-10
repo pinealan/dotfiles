@@ -47,6 +47,7 @@
 	d = diff
 
 	m = merge
+	ma = merge --abort
 	mc = merge --continue
 	mnf = merge --no-ff
 	mff = merge --ff-only
@@ -74,6 +75,7 @@
 	# log
 	l = log --pretty=ps --graph
 	lo = log --pretty=po --graph
+	ll = log --pretty=pl --graph
 	ls = log --pretty=pl --graph --stat
 	lp = log --pretty=pl --graph --patch
 
@@ -86,6 +88,8 @@
 	# log, --all --date-order
 	ld = log --pretty=ps --graph --all --date-order
 	lod = log --pretty=po --graph --all --date-order
+
+	g = grep --break --heading --line-number
 
 [log]
 	abbrevCommit = true
@@ -115,3 +119,6 @@
 	user = pinealan
 [color]
 	ui = auto
+[grep]
+	extendRegexp = true
+	lineNumber = true
