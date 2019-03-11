@@ -40,22 +40,22 @@ endfunction
 "
 let s:red           = { "gui": "#be5046", "cterm": "160" }
 let s:pink          = { "gui": "#e06c75", "cterm": "204" }
-let s:green         = { "gui": "#98c379", "cterm": "70" }
-let s:teagreen      = { "gui": "#98c379", "cterm": "114" }
+let s:green         = { "gui": "#98c379", "cterm": "28" }
+let s:teagreen      = { "gui": "#98c379", "cterm": "34" }
 let s:teal          = { "gui": "#61afef", "cterm": "30" }
 let s:yellow        = { "gui": "#e5c07b", "cterm": "220" }
-let s:gold          = { "gui": "#e5c07b", "cterm": "179" }
-let s:carrot        = { "gui": "#d19a66", "cterm": "173" }
-let s:blue          = { "gui": "#61afef", "cterm": "75" }
-let s:purple        = { "gui": "#c678dd", "cterm": "170" }
+let s:gold          = { "gui": "#e5c07b", "cterm": "130" }
+let s:carrot        = { "gui": "#d19a66", "cterm": "202" }
+let s:blue          = { "gui": "#61afef", "cterm": "27" }
+let s:purple        = { "gui": "#c678dd", "cterm": "129" }
 
 let s:transparent   = { "gui": "NONE",    "cterm": "NONE" }
-let s:content0      = { "gui": "#bbc2cf", "cterm": "253" }
-let s:content1      = { "gui": "#abb2bf", "cterm": "246" }
-let s:content2      = { "gui": "#abb2bf", "cterm": "241" }
-let s:background0   = { "gui": "#3e4452", "cterm": "237" }
-let s:background1   = { "gui": "#bbc2cf", "cterm": "235" }
-let s:background2   = { "gui": "#bbc2cf", "cterm": "234" }
+let s:background0   = { "gui": "#abb2bf", "cterm": "255" }
+let s:background1   = { "gui": "#f9f9f9", "cterm": "254" }
+let s:background2   = { "gui": "#abb2bf", "cterm": "251" }
+let s:content0      = { "gui": "#3e4452", "cterm": "237" }
+let s:content1      = { "gui": "#bbc2cf", "cterm": "235" }
+let s:content2      = { "gui": "#bbc2cf", "cterm": "234" }
 let s:black         = { "gui": "#bbc2cf", "cterm": "232" }
 
 let s:string        = s:teagreen
@@ -105,17 +105,17 @@ call s:h("Debug",           { "fg": s:content1 }) " debugging statements
 call s:h("Underlined",      { "gui": "underline", "cterm": "underline" }) " text that stands out, HTML links
 call s:h("Ignore",          { "fg": s:pink }) " left blank, hidden
 call s:h("Error",           { "fg": s:red }) " any erroneous construct
-call s:h("Todo",            { "fg": s:content1 }) " TODO anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+call s:h("Todo",            { "fg": s:content0 }) " TODO anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 " }}}
 
 " [ Default Highlighting Groups (:h highlight-groups) ] {{{
 "
-call s:h("ColorColumn",     { "bg": s:background2 }) " used for the columns set with 'colorcolumn'
+call s:h("ColorColumn",     { "bg": s:background0 }) " used for the columns set with 'colorcolumn'
 call s:h("Conceal",         {}) " placeholder characters substituted for concealed text (see 'conceallevel')
-call s:h("Cursor",          { "fg": s:black, "bg": s:blue }) " the character under the cursor
+call s:h("Cursor",          { "fg": s:background1, "bg": s:blue }) " the character under the cursor
 call s:h("CursorIM",        {}) " like Cursor, but used when in IME mode
-call s:h("CursorColumn",    { "bg": s:background2 }) " the screen column that the cursor is in when 'cursorcolumn' is set
-call s:h("CursorLine",      { "bg": s:background2 }) " the screen line that the cursor is in when 'cursorline' is set
+call s:h("CursorColumn",    { "bg": s:background0 }) " the screen column that the cursor is in when 'cursorcolumn' is set
+call s:h("CursorLine",      { "bg": s:background0 }) " the screen line that the cursor is in when 'cursorline' is set
 call s:h("Directory",       { "fg": s:blue }) " directory names (and other special names in listings)
 
 call s:h("DiffAdd",         { "bg": s:green, "fg": s:black }) " diff mode: Added line
@@ -135,7 +135,7 @@ call s:h("MatchParen",      { "fg": s:blue, "gui": "underline" }) " The characte
 call s:h("ModeMsg",         {}) " 'showmode' message (e.g., -- INSERT --)
 call s:h("MoreMsg",         {}) " more-prompt
 call s:h("NonText",         { "fg": s:background0 }) " '~' and '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., '>' displayed when a double-wide character doesn't fit at the end of the line).
-call s:h("Normal",          { "fg": s:content0, "bg": s:background1  }) " normal text
+call s:h("Normal",          { "fg": s:black, "bg": s:background1  }) " normal text
 
 call s:h("Pmenu",           { "bg": s:background0 }) " Popup menu: normal item.
 call s:h("PmenuSel",        { "fg": s:black, "bg": s:blue }) " Popup menu: selected item.
@@ -153,8 +153,8 @@ call s:h("SpellLocal",      { "fg": s:carrot }) " Word that is recognized by the
 call s:h("SpellRare",       { "fg": s:carrot }) " Word that is recognized by the spellchecker as one that is hardly ever used. spell This will be combined with the highlighting used otherwise.
 
 call s:h("StatusLine",      { "fg": s:content0, "bg": s:background0 }) " status line of current window
-call s:h("StatusLineGit",   { "fg": s:black, "bg": s:content2 }) " status line of current window
-call s:h("StatusLineNC",    { "fg": s:content2, "bg": s:black }) " status lines of not-current windows Note: if this is equal to 'StatusLine' Vim will use '^^^' in the status line of the current window.
+call s:h("StatusLineGit",   { "fg": s:black, "bg": s:background2 }) " status line of current window
+call s:h("StatusLineNC",    { "fg": s:content2, "bg": s:background0 }) " status lines of not-current windows Note: if this is equal to 'StatusLine' Vim will use '^^^' in the status line of the current window.
 
 call s:h("TabLine",         { "fg": s:content2 }) " tab pages line, not active tab page label
 call s:h("TabLineFill",     { "fg": s:content1 }) " tab pages line, where there are no labels
@@ -169,7 +169,7 @@ call s:h("WildMenu",        { "fg": s:black, "bg": s:blue }) " current match in 
 
 " [ Python ] {{{
 "
-call s:h("pythonDocString", { "fg": { "gui": "#98c379", "cterm": "34" } })
+call s:h("pythonDocString", { "fg": s:green })
 " }}}
 
 " [ Git Highlighting ] {{{
