@@ -1,6 +1,10 @@
-set main-view    = line-number:no id:yes date:relative author:abbreviated commit-title:yes,graph,refs,overflow=yes
-set mouse        = yes
-set refresh-mode = auto
+set editor-line-number = yes
+set line-graphics = utf-8
+set main-view = line-number:no id:yes date:relative author:abbreviated commit-title:yes,graph,refs,overflow=yes
+set mouse = yes
+set show-changes = no
+set refresh-interval = 1
+set refresh-mode = periodic
 
 color "---"                     yellow  default
 color "diff --"			blue	default
