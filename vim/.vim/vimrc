@@ -173,6 +173,7 @@ set magic
 set smartcase
 
 " Files, backups and undo
+set autoread
 set fileformat=unix
 set fileencoding=utf8
 set encoding=utf8
