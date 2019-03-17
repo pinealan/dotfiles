@@ -90,6 +90,8 @@ alias git-list-tags=\
 'echo "------------------------------------"; '\
 'git cat-file -p `git rev-parse $t`; done;'
 
+alias tig='tig --all'
+
 # Docker
 
 alias dps='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
