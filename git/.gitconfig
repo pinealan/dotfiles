@@ -34,6 +34,7 @@
 	b = branch
 	bb = branch -vva
 	bd = branch -d
+	bD = branch -D
 	bm = branch -m
 	bdr = branch -dr
 
@@ -90,6 +91,8 @@
 	lod = log --pretty=po --graph --all --date-order
 
 	g = grep --break --heading --line-number
+
+	wk = worktree
 
 [log]
 	abbrevCommit = true
