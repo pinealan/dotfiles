@@ -36,18 +36,10 @@ let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
 " }}}
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'google/vim-searchindex'
-"Plugin 'ap/vim-buftabline'
-" BufTabLine {{{
-"hi default link BufTabLineCurrent TabLineSel
-"hi default link BufTabLineActive TabLine
-"hi default link BufTabLineHidden TabLine
-"hi default link BufTabLineFill TabLineFill
-"
-"let g:buftabline_numbers = 1
-" }}}
 Plugin 'godlygeek/tabular'
 Plugin 'othree/html5.vim'
 " HTML5 {{{
@@ -262,7 +254,7 @@ nnoremap <leader>1          :setl statusline=%!MyStatusLine('t')<cr>
 nnoremap <leader>2          :setl statusline=%!MyStatusLine('f')<cr>
 
 " Plugin mapping
-nnoremap <c-e>          :NERDTreeToggle<cr>
+nnoremap <c-e>          :NERDTreeTabsToggle<cr>
 
 nnoremap <leader>t      :Tabularize /
 
