@@ -67,18 +67,23 @@ syn match   pythonKeywordArg /\i*\ze\(: \?\i* \?\)\?= \?[^=]/ containedin=python
 syn match   pythonComment       "#.*$" contains=@Spell,Todo
 
 
-" Triple-quoted strings can contain doctests.
+" Strings
 syn region  pythonString matchgroup=pythonQuotes
       \ start=+[fuU]\=\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
       \ contains=pythonEscape,@Spell
+" Triple-quoted strings can contain doctests.
 syn region  pythonString matchgroup=pythonTripleQuotes
-      \ start=+[uU]\=\z('''\|"""\)+ end="\z1" keepend
+      \ start=+[fuU]\=\z('''\)+ end="\z1" keepend
       \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell
-syn region  pythonRawString matchgroup=pythonQuotes
+" Buffers expressions
+syn region  pythonBufferString
+      \ start=+b\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
+" Raw string expressions (often used for Regex)
+syn region  pythonRawString
       \ start=+[fuU]\=[rR]\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
       \ contains=@Spell
-syn region  pythonRawString matchgroup=pythonTripleQuotes
-      \ start=+[uU]\=[rR]\z('''\|"""\)+ end="\z1" keepend
+syn region  pythonRawString
+      \ start=+[fuU]\=[rR]\z('''\|"""\)+ end="\z1" keepend
       \ contains=pythonSpaceError,pythonDoctest,@Spell
 
 
@@ -236,16 +241,17 @@ hi def link pythonDeclFunction     Function
 hi def link pythonDeclDecorator    Function
 hi def link pythonDeclClass        Function
 
-hi def link pythonString           String
-hi def link pythonRawString        String
 hi def link pythonQuotes           String
-
-hi def link pythonTripleQuotes     pythonQuotes
-hi def link pythonDocString        Comment
+hi def link pythonString           String
+hi def link pythonRawString        Constant
+hi def link pythonSQLString        Constant
+hi def link pythonBufferString     Constant
 
 hi def link pythonSQLKeyword       Statement
 hi def link pythonSQLType          Type
-hi def link pythonSQLString        Constant
+
+hi def link pythonTripleQuotes     pythonQuotes
+hi def link pythonDocString        Comment
 
 hi def link pythonEscape           Special
 hi def link pythonBuiltin          Function
