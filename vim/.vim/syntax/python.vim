@@ -218,45 +218,45 @@ syn match   pythonSpaceError    display "\t\+ "
 " Sync at the beginning of class, function, or method definition.
 syn sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s\+\h\w*\s*("
 
-hi def link pythonComment          Comment
-hi def link pythonNumber           Number
-hi def link pythonFloat            Float
-hi def link pythonBoolean          Boolean
+hi def link pythonComment           Comment
+hi def link pythonNumber            Number
+hi def link pythonFloat             Float
+hi def link pythonBoolean           Boolean
 
-hi def link pythonConditional      Conditional
-hi def link pythonStructure        Structure
-hi def link pythonRepeat           Repeat
-hi def link pythonOperator         Operator
-hi def link pythonKeyword          Keyword
-hi def link pythonAsync            Statement
+hi def link pythonConditional       Conditional
+hi def link pythonStructure         Structure
+hi def link pythonRepeat            Repeat
+hi def link pythonOperator          Operator
+hi def link pythonKeyword           Keyword
+hi def link pythonAsync             Statement
 
-hi def link pythonKeywordArg       Type
-hi def link pythonException        Exception
+hi def link pythonKeywordArg        Type
+hi def link pythonException         Exception
 
-hi def link pythonInclude          Statement
-hi def link pythonDecorator        Constant
+hi def link pythonInclude           Statement
+hi def link pythonDecorator         Constant
 
-hi def link pythonFunctionCall     Function
-hi def link pythonDeclFunction     Function
-hi def link pythonDeclDecorator    Function
-hi def link pythonDeclClass        Function
+hi def link pythonFunctionCall      Function
+hi def link pythonDeclFunction      Function
+hi def link pythonDeclDecorator     Function
+hi def link pythonDeclClass         Function
 
-hi def link pythonQuotes           String
-hi def link pythonString           String
-hi def link pythonRawString        Constant
-hi def link pythonSQLString        Constant
-hi def link pythonBufferString     Constant
+hi def link pythonQuotes            String
+hi def link pythonString            String
+hi def link pythonRawString         Constant
+hi def link pythonSQLString         Constant
+hi def link pythonBufferString      Constant
 
-hi def link pythonSQLKeyword       Statement
-hi def link pythonSQLType          Type
+hi def link pythonSQLKeyword        Statement
+hi def link pythonSQLType           Type
 
-hi def link pythonTripleQuotes     pythonQuotes
-hi def link pythonDocString        Comment
+hi def link pythonTripleQuotes      pythonQuotes
+hi def link pythonDocString         Comment
 
-hi def link pythonEscape           Special
-hi def link pythonBuiltin          Function
-hi def link pythonExceptions       pythonBuiltin
-hi def link pythonSpaceError       Error
+hi def link pythonEscape            Special
+hi def link pythonBuiltin           Function
+hi def link pythonExceptions        pythonBuiltin
+hi def link pythonSpaceError        Error
 
 let b:current_syntax = "python"
 
