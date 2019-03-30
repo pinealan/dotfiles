@@ -37,6 +37,7 @@ alias e='exit'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias .....='cd ../../../..'
 
 # List
 alias l='ls -lFh'
@@ -130,10 +131,7 @@ alias moo='mo'
 # Misc
 alias nlg='npm list -g -depth=0'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
-alias a='ranger'
-alias f='fuck'
 alias m='man'
-alias n='ranger'
 alias v='vim'
 alias gg='git la'
 alias serve='python3 -m http.server 5000'
