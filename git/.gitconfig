@@ -34,7 +34,7 @@
 	b = branch
 	bb = branch -vva
 	bd = branch -d
-	bD = branch -D
+	bdd = branch -D
 	bm = branch -m
 	bdr = branch -dr
 
