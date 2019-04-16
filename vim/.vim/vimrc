@@ -10,7 +10,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeTabsToggle'] }
 " NERDTree {{{
 augroup usr_nerdtree
     autocmd!
@@ -100,7 +100,7 @@ let g:Schlepp#trimWS = 0
 " }}}
 Plug 'jlanzarotta/bufexplorer'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 Plug '/usr/local/opt/fzf'
@@ -244,7 +244,7 @@ nnoremap <leader>o          v%zF
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
 nnoremap <silent> <leader>'     :vsp<cr>
-nnoremap <silent> <leader>e     :vsplit /home/alan/.vim/vimrc<cr>
+nnoremap <silent> <leader>e     :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
 nnoremap <silent> <leader>p     :setlocal paste!<cr>
