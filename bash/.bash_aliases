@@ -95,7 +95,7 @@ alias tig='tig --all'
 
 # Docker
 
-alias dps='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dps='docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
 
 # Python
 alias p='python'
