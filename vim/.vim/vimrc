@@ -1,12 +1,16 @@
 "===[ Plugin ]=== {{{
 filetype off
 set nocompatible
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
+" Download vim-plug if it's not installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !mkdir -p ~/.vim/autoload
+    silent !curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin('~/.vim/plugged')
 
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " NERDTree {{{
 augroup usr_nerdtree
     autocmd!
@@ -36,19 +40,19 @@ let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 
 " }}}
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'google/vim-searchindex'
-Plugin 'godlygeek/tabular'
-Plugin 'othree/html5.vim'
+Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'google/vim-searchindex'
+Plug 'godlygeek/tabular'
+Plug 'othree/html5.vim', { 'for': 'html' }
 " HTML5 {{{
 "let g:html_exclude_tags = ['html', 'body', 'head']
 " }}}
-Plugin 'leafgarland/typescript-vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'cespare/vim-toml'
-Plugin 'Valloric/YouCompleteMe'
+Plug 'leafgarland/typescript-vim', { 'for': 'ts' }
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'Valloric/YouCompleteMe'
 " YouCompleteMe {{{
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_max_num_candidates = 25
@@ -86,22 +90,21 @@ let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_extra_conf_vim_data = ['&filetype']
 let g:ycm_python_binary_path = '/usr/bin/python3'
 " }}}
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'zirrostig/vim-schlepp'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'zirrostig/vim-schlepp'
 " Schlepp {{{
 let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
 " }}}
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'iamcco/markdown-preview.vim'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx'
+Plug 'jiangmiao/auto-pairs'
+Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 
-
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 syntax on
 

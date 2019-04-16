@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ ! -d ~/.vim/plugged ]; then
+    rm -rf ~/.vim/bundle
+    vim +PlugInstall
+    cd ~/.vim/plugged/YouCompleteMe/ && ./install.py $@
+fi
