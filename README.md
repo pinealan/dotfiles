@@ -58,7 +58,12 @@ services) account.
 
 
 ### Vim
-You would have to set up [Vundle](https://github.com/VundleVim/Vundle.vim) to
-enable the many configured vim plugins that comes with the dotfiles. A helper
-script `vim/.vim/setupvundle.sh` can help you to setup vundle and download all
-plugins in one go.
+Vim packages are managed with [vim-plug](https://github.com/junegunn/vim-plug).
+If it's your first time adopting this repository for your vim setup, upon first
+launch of vim it will automatically detect vim-plug to be missing and install
+both vim-plug and plugins specificed in the vimrc.
+
+To migrate existing vundle setups, you may use the provided 
+`vim/.vim/migrate-vundle-plug` script to clean up old `bunlde` directory and
+install the plugins with vim-plug. Note that you will have to re-install
+YouCompleteMe in `plugged/YouoCompleteMe` after the migration.
