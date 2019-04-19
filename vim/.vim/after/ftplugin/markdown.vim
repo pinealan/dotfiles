@@ -1,2 +1,3 @@
 set nosmarttab
-set tw=80
+set tw=100
+set cc=100
