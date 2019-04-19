@@ -125,3 +125,7 @@
 [grep]
 	extendRegexp = true
 	lineNumber = true
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
