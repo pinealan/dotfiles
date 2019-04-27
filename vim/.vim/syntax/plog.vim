@@ -9,7 +9,7 @@ set cpo&vim
 syn keyword pytestDebug         DEBUG
 syn keyword pytestInfo          INFO
 syn keyword pytestWarning       WARNING
-syn keyword pytestError         ERROR
+syn keyword pytestError         ERROR CRITICAL
 
 syn keyword pythonBoolean       False None True
 syn match   pythonNumber        "\<0[oO]\=\o\+[Ll]\=\>"
