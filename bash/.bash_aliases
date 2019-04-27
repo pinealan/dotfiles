@@ -1,20 +1,6 @@
-# Cheat Sheet: single character aliases
-# a  ranger
-# c  clear
-# d  git diff
-# e  exit
-# f  the fuck
-# g  git log, with graph, commit messages, and stat
-# h  htop
-# l  ls, long form, directory first
-# m  man
-# n  ranger
-# s  git status
-# t  start tmux with default session
-# v  vim
-# w  <posix>
-#
-# Still available: b, i-k, o-r, u, x-z
+# Single character that are taken (either alias or posix command)
+# > __cd_fgh___lm_____st_vw___
+# > abcdefghijklmnopqrstuvwxyz
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -33,7 +19,6 @@ fi
 
 # Shell
 alias c='clear'
-alias e='exit'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -94,7 +79,6 @@ alias git-list-tags=\
 alias tig='tig --all'
 
 # Docker
-
 alias dps='docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
 
 # Python
@@ -133,5 +117,7 @@ alias nlg='npm list -g -depth=0'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
 alias m='man'
 alias v='vim'
+alias nv='nvim'
 alias gg='git la'
 alias serve='python3 -m http.server 5000'
+alias f='fzf'
