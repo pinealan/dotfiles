@@ -60,7 +60,9 @@ syn match   pythonDeclDecorator "\%(@\s*\)\@<=\h\%(\w\|\.\)*" " Decorator declar
 syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 
 syn region  pythonFunctionParen start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
-syn match   pythonKeywordArg /\i*\ze\(: \?\i* \?\)\?= \?[^=]/ containedin=pythonFunctionParen
+syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ contained containedin=pythonFunctionParen
+syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ contained containedin=pythonFunctionParen
+syn match   pythonTypeHint /: *\zs\i\+/ containedin=pythonFunctionParen,pythonKeywordArg
 
 
 " Comments
@@ -230,6 +232,7 @@ hi def link pythonOperator          Operator
 hi def link pythonKeyword           Keyword
 hi def link pythonAsync             Statement
 
+hi def link pythonTypeHint          pythonDeclClass
 hi def link pythonKeywordArg        Type
 hi def link pythonException         Exception
 
