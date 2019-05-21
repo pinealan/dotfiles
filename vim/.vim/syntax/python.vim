@@ -60,8 +60,8 @@ syn match   pythonDeclDecorator "\%(@\s*\)\@<=\h\%(\w\|\.\)*" " Decorator declar
 syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 
 syn region  pythonFunctionParen start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
-syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ contained containedin=pythonFunctionParen
-syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ contained containedin=pythonFunctionParen
+syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ containedin=pythonFunctionParen contained
+syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ containedin=pythonFunctionParen contained
 syn match   pythonTypeHint /: *\zs\i\+/ containedin=pythonFunctionParen,pythonKeywordArg
 
 
@@ -161,7 +161,7 @@ syn keyword pythonBuiltin       setattr slice sorted staticmethod str
 syn keyword pythonBuiltin       sum super tuple type vars zip __import__
 syn keyword pythonBuiltin       ascii bytes exec
 " avoid highlighting attributes as builtins
-syn match   pythonAttribute     /\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin transparent
+syn match   pythonAttribute     /\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin,pythonKeywordArg transparent
 
 
 " From the 'Python Library Reference' class hierarchy at the bottom.
