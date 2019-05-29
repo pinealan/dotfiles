@@ -24,6 +24,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+cl() {
+    cd $@ && ls -G;
+}
+
 # List
 alias l='ls -lFh'
 alias lt='ls -lth'
