@@ -1,6 +1,5 @@
 # Single character that are taken (either alias or posix command)
-# > __cd_fgh___lm_____st_vw___
-# > abcdefghijklmnopqrstuvwxyz
+# > a-cd-fgh---lmn-p--st-vw---
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -23,7 +22,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-
 cl() {
     cd $@ && ls -G;
 }
@@ -41,10 +39,24 @@ alias lhid='ls -la | grep " \\."'
 
 # System Admin
 alias h='htop'
-alias cut='cut -d " "'
 alias df='df -h'
 alias ds='du -sh *'
+alias cut='cut -d " "'
+alias svim='sudo -E vim'
 alias lsblk='lsblk -o NAME,LABEL,FSTYPE,SIZE,TYPE,MOUNTPOINT'
+frequent_commands () {
+    n=10
+
+    while getopts "n:" opt; do
+        case "$opt" in
+        n)
+            n=$OPTARG
+            ;;
+        esac
+    done
+
+    history | awk '{ if (length($2) > 1) print $2}' | sort | uniq -c | sort -nr | head -n"$n" | nl
+}
 
 alias scs='systemctl status'
 alias scstart='sudo systemctl start'
@@ -62,10 +74,10 @@ alias tl='tmux ls'
 alias tk='tmux kill-server'
 
 # Git
-alias svim='sudo -E vim'
 alias d='git diff'
 alias s='git status'
 alias g='git'
+alias gg='git la'
 alias ga='git add .'
 alias gp='git log --graph --stat --decorate --patch'
 alias gl='git log --graph --oneline --decorate'
@@ -89,7 +101,6 @@ alias dps='docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
 # Python
 alias p='python'
 alias p3='python3'
-
 venv() {
     if [[ -z $1 ]]; then
         not_found=1
@@ -113,16 +124,26 @@ venv() {
     fi
 }
 
-# Fun
-alias mo='fortune | cowsay'
-alias moo='mo'
-
-# Misc
+# JS
 alias nlg='npm list -g -depth=0'
-alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
+
+# CLI tools
+alias a='ranger'
+alias f='fzf'
 alias m='man'
 alias v='vim'
 alias nv='nvim'
-alias gg='git la'
 alias serve='python3 -m http.server 5000'
-alias f='fzf'
+alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
+
+# Fun
+alias mo='fortune | cowsay'
+alias moo='mo'
+mooo () {
+    while true; do
+        str=`fortune -a`
+        echo $str | cowsay
+        sleep $((`echo $str | wc -c` / 40 + 2))
+    done
+}
+
