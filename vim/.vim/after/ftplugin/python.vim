@@ -1,4 +1,4 @@
-setl cc=88
+setl cc=89
 setl tw=88
 
 nnoremap <leader>k  :vimgrep /^ *class/g @%
