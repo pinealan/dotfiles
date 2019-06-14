@@ -1,16 +1,18 @@
-set -x VISUAL=vim
-set -x EDITOR="$VISUAL"
-set -x GLOBIGNORE=__pycache__
+# === Envvar ===
+set -x VISUAL vim
+set -x EDITOR "$VISUAL"
+set -x GLOBIGNORE __pycache__
 
-set -x LESS_TERMCAP_mb=$'\e[1;31m'          # begin bold
-set -x LESS_TERMCAP_md=$'\e[38;5;77m'       # begin blink
-set -x LESS_TERMCAP_us=$'\e[38;5;185m'      # begin underline
-set -x LESS_TERMCAP_me=$'\e[0m'             # end bold/blink
-set -x LESS_TERMCAP_ue=$'\e[0m'             # end underline
+set -x LESS_TERMCAP_mb \e'[1;31m'          # begin bold
+set -x LESS_TERMCAP_md \e'[38;5;77m'       # begin blink
+set -x LESS_TERMCAP_us \e'[38;5;185m'      # begin underline
+set -x LESS_TERMCAP_me \e'[0m'             # end bold/blink
+set -x LESS_TERMCAP_ue \e'[0m'             # end underline
 
-set -x LESS_TERMCAP_so=$'\e[30;48;5;214m'   # standout-mode, dunno what this do
-set -x LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
+set -x LESS_TERMCAP_so \e'[30;48;5;214m'   # standout-mode, dunno what this do
+set -x LESS_TERMCAP_se \e'[0m'             # end standout-mode
 
+# === Alias ===
 alias ls='ls --color=auto --group-directories-first -h'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
