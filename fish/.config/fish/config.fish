@@ -69,8 +69,8 @@ alias gpg='git push github'
 alias gs='git stash'
 alias gsp='git stash pop'
 alias gsd='git stash drop'
-alias gdiff='git diff | grep + | wc && git diff | grep - | wc'
-alias gupdate='git stash && git checkout master && git pull'
+alias gdiff='git diff | grep + | wc; git diff | grep - | wc'
+alias gupdate='git stash; git checkout master; git pull'
 
 alias tig='tig --all'
 
