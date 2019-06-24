@@ -66,6 +66,7 @@
 	p = pull -v
 	pg = push github
 	po = push origin
+	pf = push -f
 
 	mark = tag tmp
 	unmark = tag -d tmp
