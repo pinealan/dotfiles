@@ -27,13 +27,12 @@ cl() {
 }
 
 # List
-alias l='ls -lFh'
-alias lt='ls -lth'
-alias la='ls -lAFh'
+alias l='ls -l'
+alias lt='ls -t'
+alias la='ls -lA'
 alias ld='ls -al | grep " \."'
 alias las='ls -lASF'
-alias ll='ls -l'
-alias lha='ls -lAFSh'
+alias ll='LC_COLLATE=en_US.ascii ls -l'
 alias lss='ls --color | less -R'
 alias lhid='ls -la | grep " \\."'
 
