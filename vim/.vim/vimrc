@@ -105,7 +105,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'lepture/vim-jinja'
 " Goyo {{{
-let g:goyo_width = 101
+let g:goyo_width = 105
 " }}}
 
 Plug 'dag/vim-fish'
