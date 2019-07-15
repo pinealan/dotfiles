@@ -67,6 +67,7 @@
 	pg = push github
 	po = push origin
 	pf = push -f
+	pug = push -u github HEAD
 
 	mark = tag tmp
 	unmark = tag -d tmp
