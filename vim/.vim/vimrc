@@ -41,14 +41,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'google/vim-searchindex'
 Plug 'godlygeek/tabular'
-Plug 'othree/html5.vim', { 'for': 'html' }
-" HTML5 {{{
-"let g:html_exclude_tags = ['html', 'body', 'head']
-" }}}
-Plug 'leafgarland/typescript-vim', { 'for': 'ts' }
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'Valloric/YouCompleteMe'
 " YouCompleteMe {{{
 let g:ycm_min_num_of_chars_for_completion = 2
@@ -96,19 +88,30 @@ let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
 " }}}
 Plug 'jlanzarotta/bufexplorer'
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'lepture/vim-jinja'
 " Goyo {{{
 let g:goyo_width = 105
 " }}}
+Plug 'lepture/vim-jinja'
 
+" Languages {{{
 Plug 'dag/vim-fish'
+Plug 'othree/html5.vim', { 'for': 'html' }
+" HTML5 {{{
+"let g:html_exclude_tags = ['html', 'body', 'head']
+" }}}
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'leafgarland/typescript-vim', { 'for': 'ts' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'jparise/vim-graphql'
+" }}}
 
 call plug#end()
 filetype plugin indent on
