@@ -329,13 +329,17 @@ function! PathFilename(path)
     let name=split(a:path, '/')
     if len(name) == 0
         return '[no name]'
+    elseif len(name) < 4
+        return a:path
     else
-        return name[-1]
+        return name[0] . '/.../' . name[-2] . '/' . name[-1]
 endfunction
 
-function! GitBranch()
-    let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    return strlen(l:branchname) > 0 ? '  ' . l:branchname . ' ' : ''
+function! MyTabLabel(n)
+    let wincount = tabpagewinnr(a:n, '$')
+    let winnr = tabpagewinnr(a:n)
+    let bufls = tabpagebuflist(a:n)
+    return PathFilename(bufname(bufls[winnr - 1])) . ' (' . wincount . ')'
 endfunction
 
 function! MyTabLine()
@@ -356,12 +360,6 @@ function! MyTabLine()
         let s .= '%=%#TabLine#%999Xclose'
     endif
     return s
-endfunction
-
-function! MyTabLabel(n)
-    let winnr = tabpagewinnr(a:n, '$')
-    let bufls = tabpagebuflist(a:n)
-    return a:n . ':' . '(' . winnr . ') ' . PathFilename(bufname(bufls[winnr - 1]))
 endfunction
 
 function! HighlightName()
@@ -423,6 +421,11 @@ function! ReportBuildResult()
     else
         echo "Build success!"
     endif
+endfunction
+
+function! GitBranch()
+    let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    return strlen(l:branchname) > 0 ? '  ' . l:branchname . ' ' : ''
 endfunction
 
 function! MyStatusLine(path)

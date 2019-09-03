@@ -156,7 +156,7 @@ call s:h("StatusLine",      { "fg": s:content0, "bg": s:background0 }) " status 
 call s:h("StatusLineGit",   { "fg": s:black, "bg": s:content2 }) " status line of current window
 call s:h("StatusLineNC",    { "fg": s:content2, "bg": s:black }) " status lines of not-current windows Note: if this is equal to 'StatusLine' Vim will use '^^^' in the status line of the current window.
 
-call s:h("TabLine",         { "fg": s:content2 }) " tab pages line, not active tab page label
+call s:h("TabLine",         { "fg": s:content1 }) " tab pages line, not active tab page label
 call s:h("TabLineFill",     { "fg": s:content1 }) " tab pages line, where there are no labels
 call s:h("TabLineSel",      { "fg": s:content0 }) " tab pages line, active tab page label
 
