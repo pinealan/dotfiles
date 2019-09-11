@@ -33,20 +33,34 @@ define_undefined_git_prompt_colors() {
   if [ -z ${GIT_PROMPT_THEME_NAME+x} ]; then GIT_PROMPT_THEME_NAME="Default"; fi
 
   # These are the color definitions used by gitprompt.sh
-  if [ -z ${GIT_PROMPT_PREFIX+x} ]; then GIT_PROMPT_PREFIX="["; fi                 # start of the git info string
-  if [ -z ${GIT_PROMPT_SUFFIX+x} ]; then GIT_PROMPT_SUFFIX="]"; fi                 # the end of the git info string
-  if [ -z ${GIT_PROMPT_SEPARATOR+x} ]; then GIT_PROMPT_SEPARATOR="|"; fi              # separates each item
+  # start of the git info string
+  if [ -z ${GIT_PROMPT_PREFIX+x} ]; then GIT_PROMPT_PREFIX="["; fi
+  # the end of the git info string
+  if [ -z ${GIT_PROMPT_SUFFIX+x} ]; then GIT_PROMPT_SUFFIX="]"; fi
+  # separates each item
+  if [ -z ${GIT_PROMPT_SEPARATOR+x} ]; then GIT_PROMPT_SEPARATOR="|"; fi
 
-  if [ -z ${GIT_PROMPT_BRANCH+x} ]; then GIT_PROMPT_BRANCH="${Magenta}"; fi        # the git branch that is active in the current directory
-  if [ -z ${GIT_PROMPT_MASTER_BRANCH+x} ]; then GIT_PROMPT_MASTER_BRANCH="${GIT_PROMPT_BRANCH}"; fi  # used if the git branch that is active in the current directory is $GIT_PROMPT_MASTER_BRANCHES
-  if [ -z ${GIT_PROMPT_STAGED+x} ]; then GIT_PROMPT_STAGED="${Red}●"; fi           # the number of staged files/directories
-  if [ -z ${GIT_PROMPT_CONFLICTS+x} ]; then GIT_PROMPT_CONFLICTS="${Red}✖ "; fi       # the number of files in conflict
-  if [ -z ${GIT_PROMPT_CHANGED+x} ]; then GIT_PROMPT_CHANGED="${Blue}✚ "; fi        # the number of changed files
+  # git branch that is active in the current directory
+  if [ -z ${GIT_PROMPT_BRANCH+x} ]; then GIT_PROMPT_BRANCH="${Magenta}"; fi
+  # used if the git branch that is active in the current directory is $GIT_PROMPT_MASTER_BRANCHES
+  if [ -z ${GIT_PROMPT_MASTER_BRANCH+x} ]; then
+    GIT_PROMPT_MASTER_BRANCH="${GIT_PROMPT_BRANCH}"
+  fi
+  # number of staged files/directories
+  if [ -z ${GIT_PROMPT_STAGED+x} ]; then GIT_PROMPT_STAGED="${Red}●"; fi
+  # number of files in conflict
+  if [ -z ${GIT_PROMPT_CONFLICTS+x} ]; then GIT_PROMPT_CONFLICTS="${Red}✖ "; fi
+  # number of changed files
+  if [ -z ${GIT_PROMPT_CHANGED+x} ]; then GIT_PROMPT_CHANGED="${Blue}✚ "; fi
 
-  if [ -z ${GIT_PROMPT_REMOTE+x} ]; then GIT_PROMPT_REMOTE=" "; fi                 # the remote branch name (if any) and the symbols for ahead and behind
-  if [ -z ${GIT_PROMPT_UNTRACKED+x} ]; then GIT_PROMPT_UNTRACKED="${Cyan}…"; fi       # the number of untracked files/dirs
-  if [ -z ${GIT_PROMPT_STASHED+x} ]; then GIT_PROMPT_STASHED="${BoldBlue}⚑ "; fi    # the number of stashed files/dir
-  if [ -z ${GIT_PROMPT_CLEAN+x} ]; then GIT_PROMPT_CLEAN="${BoldGreen}✔"; fi      # a colored flag indicating a "clean" repo
+  # remote branch name (if any) and the symbols for ahead and behind
+  if [ -z ${GIT_PROMPT_REMOTE+x} ]; then GIT_PROMPT_REMOTE=" "; fi
+  # number of untracked files/dirs
+  if [ -z ${GIT_PROMPT_UNTRACKED+x} ]; then GIT_PROMPT_UNTRACKED="${Cyan}…"; fi
+  # the number of stashed files/dir
+  if [ -z ${GIT_PROMPT_STASHED+x} ]; then GIT_PROMPT_STASHED="${BoldBlue}⚑ "; fi
+  # a colored flag indicating a "clean" repo
+  if [ -z ${GIT_PROMPT_CLEAN+x} ]; then GIT_PROMPT_CLEAN="${BoldGreen}✔"; fi
 
   # For the command indicator, the placeholder _LAST_COMMAND_STATE_
   # will be replaced with the exit code of the last command
@@ -102,3 +116,5 @@ reload_git_prompt_colors() {
 }
 
 define_helpers
+
+# vim: shiftwidth=2

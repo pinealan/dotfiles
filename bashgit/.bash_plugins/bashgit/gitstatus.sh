@@ -22,7 +22,14 @@ else
   _ignore_submodules=
 fi
 
-gitstatus=$( LC_ALL=C git status ${_ignore_submodules} --untracked-files=${__GIT_PROMPT_SHOW_UNTRACKED_FILES:-all} --porcelain --branch )
+gitstatus=$(
+  LC_ALL=C \
+  git status \
+  ${_ignore_submodules} \
+  --untracked-files=${__GIT_PROMPT_SHOW_UNTRACKED_FILES:-all} \
+  --porcelain \
+  --branch \
+)
 
 # if the status is fatal, exit now
 [[ "$?" -ne 0 ]] && exit 0
@@ -32,9 +39,9 @@ git_dir="$(git rev-parse --git-dir 2>/dev/null)"
 
 __gp_read ()
 {
-	local f="$1"
-	shift
-	test -r "$f" && read "$@" <"$f"
+  local f="$1"
+  shift
+  test -r "$f" && read "$@" <"$f"
 }
 
 state=""
@@ -113,7 +120,13 @@ if [[ "$__GIT_PROMPT_IGNORE_STASH" != "1" ]]; then
 fi
 
 clean=0
-if (( num_changed == 0 && num_staged == 0 && num_untracked == 0 && num_stashed == 0 && num_conflicts == 0)) ; then
+if ((
+  num_changed == 0
+  && num_staged == 0
+  && num_untracked == 0
+  && num_stashed == 0
+  && num_conflicts == 0
+)) ; then
   clean=1
 fi
 
