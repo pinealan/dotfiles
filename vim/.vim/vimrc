@@ -96,7 +96,6 @@ Plug 'junegunn/goyo.vim'
 " Goyo {{{
 let g:goyo_width = 105
 " }}}
-Plug 'lepture/vim-jinja'
 
 " Languages {{{
 Plug 'dag/vim-fish'
@@ -111,6 +110,8 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'jparise/vim-graphql'
+Plug 'lepture/vim-jinja'
+Plug 'mechatroner/rainbow_csv'
 " }}}
 
 call plug#end()
