@@ -1,35 +1,47 @@
-# This is the custom theme template for gitprompt.sh
+## These are the color and format definitions used by gitprompt.sh
 
-# These are the defaults from the "Default" theme
-# You just need to override what you want to have changed
 override_git_prompt_colors() {
   GIT_PROMPT_THEME_NAME="Custom"
 
   Time12a="\$(date +%H:%M)"
   PathShort="\w"
 
-  ## These are the color definitions used by gitprompt.sh
-  GIT_PROMPT_PREFIX="["                     # start of the git info string
-  GIT_PROMPT_SUFFIX="]"                     # the end of the git info string
-  GIT_PROMPT_SEPARATOR=" |"                 # separates each item
+  # start of the git info string
+  GIT_PROMPT_PREFIX="["
+  # the end of the git info string
+  GIT_PROMPT_SUFFIX="]"
+  # separates each item
+  GIT_PROMPT_SEPARATOR=" |"
 
-  GIT_PROMPT_BRANCH="${Yellow}"             # the git branch that is active in the current directory
-  GIT_PROMPT_MASTER_BRANCH="${DimYellow}"   # used if the git branch that is active in the current directory is $GIT_PROMPT_MASTER_BRANCHES
-  GIT_PROMPT_STAGED=" ${Green}+"       # the number of staged files/directories •
-  GIT_PROMPT_CHANGED=" ${Red}+"        # the number of changed files
-  GIT_PROMPT_CONFLICTS=" ${BoldRed}✖"       # the number of files in conflict
+  # the git branch that is active in the current directory
+  GIT_PROMPT_BRANCH="${Yellow}"
+  # used if the git branch that is active in the current directory is $GIT_PROMPT_MASTER_BRANCHES
+  GIT_PROMPT_MASTER_BRANCH="${DimYellow}"
+  # the number of staged files/directories •
+  GIT_PROMPT_STAGED=" ${Green}+"
+  # the number of changed files
+  GIT_PROMPT_CHANGED=" ${Red}+"
+  # the number of files in conflict
+  GIT_PROMPT_CONFLICTS=" ${BoldRed}✖"
 
-  GIT_PROMPT_UNTRACKED=" ${Yellow}∗"       # the number of untracked files/dirs
-  GIT_PROMPT_STASHED=" ${BoldMagenta}☗"    # the number of stashed files/dir
-  GIT_PROMPT_CLEAN=""
-  # GIT_PROMPT_REMOTE=" "                 # the remote branch name (if any) and the symbols for ahead and behind
+  # the number of untracked files/dirs
+  GIT_PROMPT_UNTRACKED=" ${Yellow}∗"
+  # the number of stashed files/dir
+  GIT_PROMPT_STASHED=" ${BoldMagenta}☗"
+  # a colored flag indicating a "clean" repo
+  GIT_PROMPT_CLEAN="${BoldGreen}✔"
+  # the remote branch name (if any) and the symbols for ahead and behind
+  # GIT_PROMPT_REMOTE=" "
 
-  GIT_PROMPT_COMMAND_OK=""    # indicator if the last command returned with an exit code of 0
-  GIT_PROMPT_COMMAND_FAIL="${Red}✘ _LAST_COMMAND_STATE_"    # indicator if the last command returned with an exit code of other than 0
+  # indicator if the last command returned with an exit code of 0
+  GIT_PROMPT_COMMAND_OK=""
+  # indicator if the last command returned with an exit code of other than 0
+  GIT_PROMPT_COMMAND_FAIL="${Red}✘ _LAST_COMMAND_STATE_"
 
   ## template for displaying the current virtual environment
   ## use the placeholder _VIRTUALENV_ will be replaced with
-  ## the name of the current virtual environment (currently CONDA and VIRTUAL_ENV)
+  ## the name of the current virtual environment
+  # (currently CONDA and VIRTUAL_ENV)
   GIT_PROMPT_VIRTUALENV="${DimWhite}(_VIRTUALENV_)${ResetColor} "
 
   # template for displaying the current remote tracking branch
@@ -51,3 +63,5 @@ override_git_prompt_colors() {
 }
 
 reload_git_prompt_colors "Custom"
+
+# vim: shiftwidth=2

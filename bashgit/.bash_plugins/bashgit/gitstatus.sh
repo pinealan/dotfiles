@@ -1,20 +1,6 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 # gitstatus.sh -- produce the current git repo status on STDOUT
-# Functionally equivalent to 'gitstatus.py', but written in bash (not python).
-# This file must set as executable.
-#
-# Alan K. Stebbens <aks@stebbens.org> [http://github.com/aks]
-
-if [ -z "${__GIT_PROMPT_DIR}" ]; then
-  SOURCE="${BASH_SOURCE[0]}"
-  while [ -h "${SOURCE}" ]; do
-    DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
-    SOURCE="$(readlink "${SOURCE}")"
-    [[ $SOURCE != /* ]] && SOURCE="${DIR}/${SOURCE}"
-  done
-  __GIT_PROMPT_DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
-fi
 
 if [[ "${__GIT_PROMPT_IGNORE_SUBMODULES}" == "1" ]]; then
   _ignore_submodules=--ignore-submodules

@@ -3,24 +3,15 @@
 # Source this file to enable git integration in bash
 #
 # Original: https://github.com/magicmonty/bash-git-prompt
-# This copy is heavily optimized and customized for personal use
-#
-# ---[ Installation procedure ]---
-# 1. gp-install-prompt
-#    - set $PROMPT_COMMAND
-# 2. gp-set-dir
-#    - set $__GIT_PROMPT_DIR
-# 3  gp-load-colors
-#    - source prompt-colors.sh
-# 4. gp-load-theme
-#    - source theme from themes/
+# This copy is heavily stripped down, refactored, and customized for personal use
 #
 # ---[ Bash PROMPT_COMMAND procedure ]---
 # 1. gp-set-last-exit
 # 2. gp-set-prompt
 #    a. gp-keep-old-prompt
-#    b. gp-update
-#    c. gp-add-env-to-prompt
+#    b. gp-config
+#    c. gp-update
+#    d. gp-add-env-to-prompt
 
 
 # ---------------------
@@ -59,51 +50,8 @@ function truncate_pwd {
 # ------------------
 
 function gp-toggle() {
-  if [[ "$GIT_PROMPT_DISABLE" = 1 ]]; then
-    GIT_PROMPT_DISABLE=0
-  else
-    GIT_PROMPT_DISABLE=1
-  fi
+  [[ "$GIT_PROMPT_DISABLE" = 1 ]] && GIT_PROMPT_DISABLE=0 || GIT_PROMPT_DISABLE=1
   return
-}
-
-# -----------------
-# | Theme routine |
-# -----------------
-
-function gp-load-colors() {
-  # outsource the color defs
-  source "${__GIT_PROMPT_DIR}/prompt-colors.sh"
-}
-
-function gp-load-theme() {
-  source "${__GIT_PROMPT_DIR}/theme.sh"
-
-  if [[ -n $GIT_PROMPT_THEME ]]; then
-    __GIT_PROMPT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/${GIT_PROMPT_THEME}.sh"
-  else
-    __GIT_PROMPT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.sh}"
-  fi
-
-  source "$__GIT_PROMPT_THEME_FILE"
-}
-
-# gp-format-exit-status RETVAL
-#
-# echos the symbolic signal name represented by RETVAL if the process was
-# signalled, otherwise echos the original value of RETVAL
-#
-function gp-format-exit-status() {
-  local RETVAL="$1"
-  local SIGNAL
-  # Suppress STDERR in case RETVAL is not an integer (in such cases, RETVAL
-  # is echoed verbatim)
-  if [ "${RETVAL}" -gt 128 ] 2>/dev/null; then
-    SIGNAL=$(( ${RETVAL} - 128 ))
-    kill -l "${SIGNAL}" 2>/dev/null || echo "${RETVAL}"
-  else
-    echo "${RETVAL}"
-  fi
 }
 
 
@@ -147,6 +95,24 @@ function createPrivateIndex {
 # -------------------------
 # | Prompt update routine |
 # -------------------------
+
+# gp-format-exit-status RETVAL
+#
+# echos the symbolic signal name represented by RETVAL if the process was
+# signalled, otherwise echos the original value of RETVAL
+#
+function gp-format-exit-status() {
+  local RETVAL="$1"
+  local SIGNAL
+  # Suppress STDERR in case RETVAL is not an integer (in such cases, RETVAL
+  # is echoed verbatim)
+  if [ "${RETVAL}" -gt 128 ] 2>/dev/null; then
+    SIGNAL=$(( ${RETVAL} - 128 ))
+    kill -l "${SIGNAL}" 2>/dev/null || echo "${RETVAL}"
+  else
+    echo "${RETVAL}"
+  fi
+}
 
 function gp-config() {
   #Checking if root to change output
@@ -350,7 +316,12 @@ function gp-keep-old-prompt() {
   GIT_PROMPT_OLD_DIR_WAS_GIT=$(we_are_on_repo)
 }
 
+function gp-set-last-exit() {
+  GIT_PROMPT_LAST_COMMAND_STATE=$?
+}
+
 function gp-set-prompt() {
+  gp-set-last-exit
   gp-keep-old-prompt
 
   local repo=$(git rev-parse --show-toplevel 2> /dev/null)
@@ -370,48 +341,7 @@ function gp-set-prompt() {
     return
   fi
 
-  local FETCH_REMOTE_STATUS=1
-  if [[ "$GIT_PROMPT_FETCH_REMOTE_STATUS" = 0 ]]; then
-    FETCH_REMOTE_STATUS=0
-  fi
-
-  unset GIT_PROMPT_IGNORE
-  OLD_GIT_PROMPT_SHOW_UNTRACKED_FILES=${GIT_PROMPT_SHOW_UNTRACKED_FILES}
-  unset GIT_PROMPT_SHOW_UNTRACKED_FILES
-
-  OLD_GIT_PROMPT_IGNORE_SUBMODULES=${GIT_PROMPT_IGNORE_SUBMODULES}
-  unset GIT_PROMPT_IGNORE_SUBMODULES
-
-  if [[ -e "$repo/.bash-git-rc" ]]; then
-    # The config file can only contain variable declarations on the form A_B=0 or G_P=all
-    local CONFIG_SYNTAX="^(FETCH_REMOTE_STATUS|GIT_PROMPT_SHOW_UNTRACKED_FILES|GIT_PROMPT_IGNORE_SUBMODULES|GIT_PROMPT_IGNORE)=[0-9a-z]+$"
-    if egrep -q -v "$CONFIG_SYNTAX" "$repo/.bash-git-rc"; then
-      echo ".bash-git-rc can only contain variable values on the form NAME=value. Ignoring file." >&2
-    else
-      source "$repo/.bash-git-rc"
-    fi
-  fi
-
-  if [ -z "${GIT_PROMPT_SHOW_UNTRACKED_FILES}" ]; then
-    GIT_PROMPT_SHOW_UNTRACKED_FILES=${OLD_GIT_PROMPT_SHOW_UNTRACKED_FILES}
-  fi
-  unset OLD_GIT_PROMPT_SHOW_UNTRACKED_FILES
-
-  if [ -z "${GIT_PROMPT_IGNORE_SUBMODULES}" ]; then
-    GIT_PROMPT_IGNORE_SUBMODULES=${OLD_GIT_PROMPT_IGNORE_SUBMODULES}
-  fi
-  unset OLD_GIT_PROMPT_IGNORE_SUBMODULES
-
-  if [[ "$GIT_PROMPT_IGNORE" = 1 ]]; then
-    PS1="$EMPTY_PROMPT"
-    return
-  fi
-
   gp-update
-}
-
-function gp-set-last-exit() {
-  GIT_PROMPT_LAST_COMMAND_STATE=$?
 }
 
 
@@ -419,60 +349,35 @@ function gp-set-last-exit() {
 # | Installation routine |
 # ------------------------
 
+function gp-load-theme() {
+  # outsource the color defs
+  source "${__GIT_PROMPT_DIR}/prompt-colors.sh"
+  source "${__GIT_PROMPT_DIR}/theme.sh"
+  source "${__GIT_PROMPT_DIR}/themes/Custom.sh"
+}
+
 function gp-set-dir() {
   # assume the gitstatus.sh is in the same directory as this script
   # code thanks to http://stackoverflow.com/questions/59895
-  if [ -z "$__GIT_PROMPT_DIR" ]; then
-    local SOURCE="${BASH_SOURCE[0]}"
-    while [ -h "$SOURCE" ]; do
-      local DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-      SOURCE="$(readlink "$SOURCE")"
-      [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
-    done
-    __GIT_PROMPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-  fi
+  local SOURCE="${BASH_SOURCE[0]}"
+  while [ -h "$SOURCE" ]; do
+    local DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+  done
+  __GIT_PROMPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 }
 
 function gp-install-prompt {
-  if [ -z "$OLD_PROMPT" ]; then
-    OLD_PROMPT=$PS1
-  fi
+  OLD_PROMPT=$PS1
+  OLD_PROMPT_COMMAND=$PROMPT_COMMAND
+  GIT_PROMPT_OLD_DIR_WAS_GIT=$(we_are_on_repo)
+  PROMPT_COMMAND='gp-set-prompt'
 
-    GIT_PROMPT_OLD_DIR_WAS_GIT=$(we_are_on_repo)
-
-  if [ -z "$PROMPT_COMMAND" ]; then
-    PROMPT_COMMAND=gp-set-prompt
-  else
-    PROMPT_COMMAND=${PROMPT_COMMAND%% }; # remove trailing spaces
-    PROMPT_COMMAND=${PROMPT_COMMAND%\;}; # remove trailing semi-colon
-  fi
-
-  local new_entry="gp-set-prompt"
-  case ";$PROMPT_COMMAND;" in
-    *";$new_entry;"*)
-      # echo "PROMPT_COMMAND already contains: $new_entry"
-      :;;
-    *)
-      PROMPT_COMMAND="$PROMPT_COMMAND;$new_entry"
-      # echo "PROMPT_COMMAND does not contain: $new_entry"
-      ;;
-  esac
-
-  local set_last_exit="gp-set-last-exit"
-  case ";$PROMPT_COMMAND;" in
-    *";$set_last_exit;"*)
-      # echo "PROMPT_COMMAND already contains: $setLastCommandStateEntry"
-      :;;
-    *)
-      PROMPT_COMMAND="$set_last_exit;$PROMPT_COMMAND"
-      # echo "PROMPT_COMMAND does not contain: $setLastCommandStateEntry"
-      ;;
-  esac
+  gp-set-dir
+  gp-load-theme
 }
 
 gp-install-prompt
-gp-set-dir
-gp-load-colors
-gp-load-theme
 
 # vim: shiftwidth=2
