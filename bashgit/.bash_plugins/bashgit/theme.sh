@@ -44,7 +44,7 @@ GIT_PROMPT_COMMAND_FAIL="${Red}✘ _LAST_COMMAND_STATE_"
 # template for displaying the current virtual environment
 # use the placeholder _VIRTUALENV_ will be replaced with
 # the name of the current virtual environment (currently CONDA and VIRTUAL_ENV)
-GIT_PROMPT_VIRTUALENV="(${Blue}_VIRTUALENV_${ResetColor}) "
+GIT_PROMPT_VIRTUALENV="${BrightBlack}(_VIRTUALENV_)${ResetColor} "
 
 # template for displaying the current remote tracking branch
 # use the placeholder _UPSTREAM_ will be replaced with
@@ -73,6 +73,3 @@ GIT_PROMPT_SYMBOLS_NO_REMOTE_TRACKING=""
 #   shopt -s extglob
 #   GIT_PROMPT_MASTER_BRANCHES='@(master|production)'
 GIT_PROMPT_MASTER_BRANCHES="master"
-
-##### [[ Custom theme ]] ######
-GIT_PROMPT_VIRTUALENV="${DimWhite}(_VIRTUALENV_)${ResetColor} "
