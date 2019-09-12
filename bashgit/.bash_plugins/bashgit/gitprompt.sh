@@ -353,7 +353,6 @@ function gp-load-theme() {
   # outsource the color defs
   source "${__GIT_PROMPT_DIR}/prompt-colors.sh"
   source "${__GIT_PROMPT_DIR}/theme.sh"
-  source "${__GIT_PROMPT_DIR}/themes/Custom.sh"
 }
 
 function gp-set-dir() {
