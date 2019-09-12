@@ -28,7 +28,7 @@ GIT_PROMPT_UNTRACKED=" ${Yellow}∗"
 # number of stashed files/dir
 GIT_PROMPT_STASHED=" ${BoldMagenta}☗"
 # a colored flag indicating a "clean" repo
-GIT_PROMPT_CLEAN="${BoldGreen}✔"
+GIT_PROMPT_CLEAN="" # "${Green}✔"
 
 # For the command indicator, the placeholder _LAST_COMMAND_STATE_
 # will be replaced with the exit code of the last command
@@ -49,7 +49,7 @@ GIT_PROMPT_VIRTUALENV="(${Blue}_VIRTUALENV_${ResetColor}) "
 # template for displaying the current remote tracking branch
 # use the placeholder _UPSTREAM_ will be replaced with
 # the name of the current remote tracking branch
-GIT_PROMPT_UPSTREAM=" {${Blue}_UPSTREAM_${ResetColor}}"
+GIT_PROMPT_UPSTREAM=" (${Red}_UPSTREAM_${ResetColor})"
 
 ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
 GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_  ${BoldBlue}${PathShort}${ResetColor}"
@@ -66,7 +66,7 @@ GIT_PROMPT_SYMBOLS_BEHIND="↓·"
 # Written before hash of commit, if no name could be found
 GIT_PROMPT_SYMBOLS_PREHASH=":"
 # This symbol is written after the branch, if the branch is not tracked
-# GIT_PROMPT_SYMBOLS_NO_REMOTE_TRACKING="L"
+GIT_PROMPT_SYMBOLS_NO_REMOTE_TRACKING=""
 
 # branch name(s) that will use $GIT_PROMPT_MASTER_BRANCH color
 # To specify multiple branches, use
