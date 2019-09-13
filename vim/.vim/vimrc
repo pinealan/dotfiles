@@ -34,7 +34,6 @@ let NERDTreeIgnore = [
 \]
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
-
 " }}}
 " Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }
 Plug 'airblade/vim-gitgutter'
@@ -97,7 +96,7 @@ Plug 'junegunn/goyo.vim'
 let g:goyo_width = 105
 " }}}
 
-" Languages {{{
+" Languages
 Plug 'dag/vim-fish'
 Plug 'othree/html5.vim', { 'for': 'html' }
 " HTML5 {{{
@@ -112,29 +111,26 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'jparise/vim-graphql'
 Plug 'lepture/vim-jinja'
 Plug 'mechatroner/rainbow_csv'
-" }}}
 
 call plug#end()
 filetype plugin indent on
 syntax on
-
-
 " }}}
+
 "===[ Color scheme ]=== {{{
 colorscheme onedark
 set background=dark
-
-
 " }}}
+
 "===[ Default Syntax Package Options ]=== {{{
 let g:tex_no_error = 1
-
-
 " }}}
+
 "===[ Options ]=== {{{
 set backspace=eol,start,indent
 set cursorline
 set nofoldenable
+set foldmethod=marker
 set hidden
 set history=500
 set hlsearch
@@ -194,8 +190,8 @@ set helpheight=30
 " Make
 set shellpipe=&>
 
-
 " }}}
+
 "===[ Mapping ]=== {{{
 let mapleader=" "
 
@@ -285,9 +281,8 @@ vmap <unique> <up>      <Plug>SchleppUp
 vmap <unique> <down>    <Plug>SchleppDown
 vmap <unique> <left>    <Plug>SchleppLeft
 vmap <unique> <right>   <Plug>SchleppRight
-
-
 " }}}
+
 "===[ Abbrevation ]=== {{{
 " Common typos
 iabbrev fro         for
@@ -306,9 +301,8 @@ iabbrev caes        case
 "inoremap { {}<left>
 "inoremap {<CR> {<CR>}<ESC>O
 "inoremap {;<CR> {<CR>};<ESC>O
-
-
 " }}}
+
 "===[ Helper functions]=== {{{
 function! HasPaste()
     if &paste
@@ -447,9 +441,8 @@ function! TryTrimSpace()
         call TrimSpace()
     endif
 endfunction
-
-
 " }}}
+
 "===[ Autocommands setup ]=== {{{
 augroup usr
     autocmd!
@@ -461,8 +454,6 @@ augroup usr
 
     "autocmd VimEnter    *.c,*.cpp,*.py vsp
 augroup END
-
-
 " }}}
 
 hi link Noise Special
