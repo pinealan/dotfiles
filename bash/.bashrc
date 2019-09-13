@@ -78,28 +78,18 @@ export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
 
 stty -ixon
 
-# Functions
-# Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+# Functions or alias definitions.
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 # Scripts
 if [ -d ~/.bash_plugins ]; then
     for f in ~/.bash_plugins/*; do
-        if [ -f $f ]; then
-            . $f
-        fi
+        [ -f $f ] && . $f
     done
 fi
 
 # Machine local bashrc
-if [ -f ~/.local/.bashrc ]; then
-    . ~/.local/.bashrc
-fi
+[ -f ~/.local/.bashrc ] && . ~/.local/.bashrc
 
 # Machine local aliases
-if [ -f ~/.local/.bash_aliases ]; then
-    . ~/.local/.bash_aliases
-fi
-
+[ -f ~/.local/.bash_aliases ] && . ~/.local/.bash_aliases

@@ -30,9 +30,22 @@ stow bash
 ### Bash
 Bash's main configuration (and often default) files are `~/.bashrc` and
 `.bash_aliases`. This repo's bash dotfiles provide sensible defaults for a
-modern shell, but machine specific configs or aliases is often needed. To help
-faciliate such logging settings, `.bashrc` sources `~/.local/.bashrc` and
-`~/.local/.bash_aliases` at the end.
+modern shell. For machine specific configs or aliases, scripts in `~/.local`
+directory such as `~/.local/.bashrc` and `~/.local/.bash_aliases` be sourced is
+they exist. Plugins can also be put in a `~/.bash_plugins/` directory, where all
+files will be sourced as bash scripts.
+
+The following is the complete order in which bash scripts are source. Later
+scripts inherit and can override the environment set up by earlier scripts.
+
+  .profile
+  .bashrc
+  .bash_profile
+  .bash_aliases
+  .bash_plugins/*
+  .local/.bashrc
+  .local/.bash_aliases
+  .local/.profile
 
 
 ### Bashgit
