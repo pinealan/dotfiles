@@ -69,7 +69,7 @@ syn match   pythonTypeHint /: *\zs\i\+/ containedin=pythonFunctionParen,pythonKe
 syn match   pythonComment       "#.*$" contains=@Spell,Todo
 
 
-" Strings
+" Strings {{{
 syn region  pythonString matchgroup=pythonQuotes
       \ start=+[fuU]\=\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
       \ contains=pythonEscape,@Spell
@@ -107,8 +107,9 @@ syn match   pythonFStringField      /{\zs[^{}:]*/ contained
 
 hi link pythonOldStringField    pythonKeywordArg
 hi link pythonFStringField      pythonKeywordArg
+" }}}
 
-" Inline SQL
+" Inline SQL {{{
 syn keyword pythonSQLKeyword    ALTER ATTACH DETACH CREATE DROP EXPLAIN ? contained
 syn keyword pythonSQLKeyword    SELECT INSERT UPDATE DELETE REPLACE ROLLBACK contained
 syn keyword pythonSQLKeyword    PRIMARY UNIQUE FOREIGN REFERENCES VALUES contained
@@ -116,7 +117,9 @@ syn keyword pythonSQLKeyword    IF NOT FROM WITH KEY EXISTS INDEXED INTO BY cont
 syn keyword pythonSQLType       NULL INT INTEGER REAL TEXT STRING FLOAT BLOB contained
 syn keyword pythonSQLType       DATABASE TABLE TRIGGER TRANSACTION INDEX VIEW contained
 syn region  pythonSQLstring start="'''" end="'''" contains=pythonSQLKeyword,pythonSQLType
+" }}}
 
+" Numbers {{{
 " It is very important to understand all details before changing the
 " regular expressions below or their order.
 " The word boundaries are *not* the floating-point number boundaries
@@ -143,11 +146,11 @@ syn match   pythonFloat
       \ "\<\d\+\.\%([eE][+-]\=\d\+\)\=[jJ]\=\%(\W\|$\)\@="
 syn match   pythonFloat
       \ "\%(^\|\W\)\zs\d*\.\d\+\%([eE][+-]\=\d\+\)\=[jJ]\=\>"
+" }}}
 
-
+" Python built-in functions are in alphabetical order. {{{
 " http://docs.python.org/3/library/constants.html
 " http://docs.python.org/3/library/functions.html
-" Python built-in functions are in alphabetical order.
 "
 syn keyword pythonBuiltin       abs all any bin bool bytearray callable chr
 syn keyword pythonBuiltin       classmethod compile complex delattr dict dir
@@ -162,12 +165,13 @@ syn keyword pythonBuiltin       sum super tuple type vars zip __import__
 syn keyword pythonBuiltin       ascii bytes exec
 " avoid highlighting attributes as builtins
 syn match   pythonAttribute     /\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin,pythonKeywordArg transparent
+" }}}
 
-
+" Builtin exceptions {{{
 " From the 'Python Library Reference' class hierarchy at the bottom.
 " http://docs.python.org/3/library/exceptions.html
-"
-" builtin base exceptions (used mostly as base classes for other exceptions)
+
+" builtin base exceptions (used mostly as base classes for other exceptions) {{{
 syn keyword pythonExceptions    BaseException Exception
 syn keyword pythonExceptions    ArithmeticError BufferError
 syn keyword pythonExceptions    LookupError
@@ -196,18 +200,39 @@ syn keyword pythonExceptions    IsADirectoryError NotADirectoryError
 syn keyword pythonExceptions    PermissionError ProcessLookupError
 syn keyword pythonExceptions    RecursionError StopAsyncIteration
 syn keyword pythonExceptions    TimeoutError
+" }}}
 
-" builtin warnings
+" builtin warnings {{{
 syn keyword pythonExceptions    BytesWarning DeprecationWarning FutureWarning
 syn keyword pythonExceptions    ImportWarning PendingDeprecationWarning
 syn keyword pythonExceptions    RuntimeWarning SyntaxWarning UnicodeWarning
 syn keyword pythonExceptions    UserWarning Warning ResourceWarning
+" }}}
+" }}}
 
-" stdlib typing module (since Python 3.5)
-syn keyword pythonBuiltin       Any Union Tuple Callable TypeVar Generic
-syn keyword pythonBuiltin       AnyStr Awaitable AsyncIterable AsyncIterator
-syn keyword pythonBuiltin       List Dict Deque Set IO Hashable Type Sized
-syn keyword pythonBuiltin       Generator Optional Iterable Iterator NamedTuple
+" stdlib typing module (since Python 3.5) {{{
+" special typing primitives
+syn keyword pythonBuiltin       Any Callable ClassVar ForwardRef Generic
+syn keyword pythonBuiltin       Optional Text Tuple Type TypeVar Union
+
+" ABCs
+syn keyword pythonBuiltin       AbstractSet ByteString Container ContextManager
+syn keyword pythonBuiltin       Hashable ItemsView Iterable Iterator KeysView
+syn keyword pythonBuiltin       Mapping MappingView MutableMapping
+syn keyword pythonBuiltin       MutableSequence MutableSet Sequence Sized
+syn keyword pythonBuiltin       ValuesView
+
+" async types
+syn keyword pythonBuiltin       Awaitable AsyncIterator AsyncIterable Coroutine
+syn keyword pythonBuiltin       Collection AsyncGenerator AsyncContextManager
+
+" concrete collection types
+syn keyword pythonBuiltin       ChainMap Counter Deque Dict DefaultDict List
+syn keyword pythonBuiltin       OrderedDict Set FrozenSet NamedTuple Generator
+
+" other types
+syn keyword pythonBuiltin       AnyStr NewType NoReturn
+" }}}
 
 " trailing whitespace
 syn match   pythonSpaceError    display excludenl "\s\+$"
@@ -220,6 +245,7 @@ syn match   pythonSpaceError    display "\t\+ "
 " Sync at the beginning of class, function, or method definition.
 syn sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s\+\h\w*\s*("
 
+" Highlights {{{
 hi def link pythonComment           Comment
 hi def link pythonNumber            Number
 hi def link pythonFloat             Float
@@ -260,6 +286,7 @@ hi def link pythonEscape            Special
 hi def link pythonBuiltin           Function
 hi def link pythonExceptions        pythonBuiltin
 hi def link pythonSpaceError        Error
+" }}}
 
 let b:current_syntax = "python"
 
