@@ -284,7 +284,7 @@ function gp-update() {
 
 # Returns env information to be set in prompt
 # Supports the following environment management tools:
-# - virtualenv
+# - virtualenv / venv
 # - nodeenv
 # - conda
 # Honors virtualenvs own setting VIRTUAL_ENV_DISABLE_PROMPT
