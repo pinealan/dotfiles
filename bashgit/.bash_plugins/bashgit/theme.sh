@@ -52,7 +52,7 @@ GIT_PROMPT_VIRTUALENV="${BrightBlack}(_VIRTUALENV_)${ResetColor} "
 GIT_PROMPT_UPSTREAM=" (${Red}_UPSTREAM_${ResetColor})"
 
 ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
-GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_  ${BoldBlue}${PathShort}${ResetColor}"
+GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_ ${BoldBlue}${PathShort}${ResetColor}"
 GIT_PROMPT_END_USER="\n${Cyan}${Time12a}${BoldYellow} $ ${ResetColor}"
 
 GIT_PROMPT_START_ROOT="${GIT_PROMPT_START_USER}"
