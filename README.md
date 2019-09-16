@@ -1,7 +1,4 @@
 # Dotfiles - Alan Chan
-_Disclaimer: These dotilfes were written with only myself in mind. Use at your
-own risk_
-
 These dotfiles are organised to be managed with [GNU
 stow](https://www.gnu.org/software/stow/manual/stow.html). Here's my short
 summary of stow, inspired by the stow homepage description:
@@ -70,6 +67,9 @@ Notably, here are things you might want to change:
 
 
 ### Git
+Mainly provides aliases for common git commands like `commit`, `branch`, `log`.
+Configures a global `core.excludesfile` at `~/.gitignore_global`.
+
 Remember to change the user name, email, and github (or other git hosting
 services) account.
 

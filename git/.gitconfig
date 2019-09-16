@@ -6,6 +6,7 @@
 	editory = vim
 	fileMode = false
 	autocrlf = false
+	excludesfile = ~/.gitignore_global
 
 [credential]
 	helper = cache

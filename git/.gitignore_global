@@ -1,0 +1,9 @@
+# OS
+.DS_Store
+.envrc
+*.swp
+
+# Editors
+.idea
+.netrwhist
+.vscode

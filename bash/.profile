@@ -19,8 +19,5 @@ fi
 if [ $SHLVL == 1 ]; then
     # prepend PATH with user's private bin directories
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-
-    if [ -f "$HOME/.local/.profile" ]; then
-        . "$HOME/.local/.profile"
-    fi
+    [ -f "$HOME/.local/.profile" ] && . "$HOME/.local/.profile"
 fi
