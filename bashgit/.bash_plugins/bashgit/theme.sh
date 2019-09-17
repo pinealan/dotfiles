@@ -8,7 +8,7 @@ GIT_PROMPT_PREFIX="["
 # the end of the git info string
 GIT_PROMPT_SUFFIX="]"
 # separates each item
-GIT_PROMPT_SEPARATOR="|"
+GIT_PROMPT_SEPARATOR=" |"
 
 # the git branch that is active in the current directory
 GIT_PROMPT_BRANCH="${Yellow}"
