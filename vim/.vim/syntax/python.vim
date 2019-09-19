@@ -62,7 +62,7 @@ syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 syn region  pythonFunctionParen start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
 syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ containedin=pythonFunctionParen contained
 syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ containedin=pythonFunctionParen contained
-syn match   pythonTypeHint /: *\zs\i\+/ containedin=pythonFunctionParen,pythonKeywordArg
+syn match   pythonTypeHint /: *\zs\i\+/ containedin=pythonFunctionParen,pythonKeywordArg contained
 
 
 " Comments
@@ -222,6 +222,11 @@ syn keyword pythonBuiltin       Mapping MappingView MutableMapping
 syn keyword pythonBuiltin       MutableSequence MutableSet Sequence Sized
 syn keyword pythonBuiltin       ValuesView
 
+" protocols
+syn keyword pythonBuiltin       Reversible SupportsAbs SupportsBytes
+syn keyword pythonBuiltin       SupportsComplex SupportsFloat SupportsInt
+syn keyword pythonBuiltin       SupportsRound
+
 " async types
 syn keyword pythonBuiltin       Awaitable AsyncIterator AsyncIterable Coroutine
 syn keyword pythonBuiltin       Collection AsyncGenerator AsyncContextManager
@@ -232,6 +237,7 @@ syn keyword pythonBuiltin       OrderedDict Set FrozenSet NamedTuple Generator
 
 " other types
 syn keyword pythonBuiltin       AnyStr NewType NoReturn
+syn keyword pythonBuiltin       Pattern Match IO TextIO BinaryIO
 " }}}
 
 " trailing whitespace

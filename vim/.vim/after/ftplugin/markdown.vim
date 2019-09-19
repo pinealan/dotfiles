@@ -1,3 +1,3 @@
-set nosmarttab
-set tw=100
-set cc=101
+setl nosmarttab
+setl tw=80
+setl cc=81
