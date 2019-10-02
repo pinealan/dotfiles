@@ -273,7 +273,7 @@ nnoremap <leader>t      :Tabularize /
 
 nnoremap <silent> <F8>  :MarkdownPreview<cr>
 
-nnoremap <leader>x      :YcmCompleter Fixit<cr>
+nnoremap <leader>x      :YcmCompleter FixIt<cr>
 nnoremap <leader>g      :YcmCompleter GoToDefinition<cr>
 nnoremap <leader>r      :YcmCompleter GoToReferences<cr>
 
