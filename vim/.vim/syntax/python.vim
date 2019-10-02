@@ -62,7 +62,7 @@ syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 syn region  pythonFunctionParen start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
 syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ containedin=pythonFunctionParen contained
 syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ containedin=pythonFunctionParen contained
-syn match   pythonTypeHint /: *\zs\i\+/ containedin=pythonFunctionParen,pythonKeywordArg contained
+syn match   pythonTypeHint /\v(lambda( +\w+(, \w+)*)?)@<!: *\zs\i+/ containedin=pythonFunctionParen,pythonKeywordArg contained
 
 
 " Comments
@@ -156,13 +156,15 @@ syn keyword pythonBuiltin       abs all any bin bool bytearray callable chr
 syn keyword pythonBuiltin       classmethod compile complex delattr dict dir
 syn keyword pythonBuiltin       divmod enumerate eval filter float format
 syn keyword pythonBuiltin       frozenset getattr globals hasattr hash
-syn keyword pythonBuiltin       help hex id input int isinstance
+syn keyword pythonBuiltin       hex input int isinstance
 syn keyword pythonBuiltin       issubclass iter len list locals map max
 syn keyword pythonBuiltin       memoryview min next object oct open ord pow
 syn keyword pythonBuiltin       print property range repr reversed round set
 syn keyword pythonBuiltin       setattr slice sorted staticmethod str
 syn keyword pythonBuiltin       sum super tuple type vars zip __import__
 syn keyword pythonBuiltin       ascii bytes exec
+" allow shadowing of these built-ins
+"syn keyword pythonBuiltin       help id
 " avoid highlighting attributes as builtins
 syn match   pythonAttribute     /\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin,pythonKeywordArg transparent
 " }}}
