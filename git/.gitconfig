@@ -46,6 +46,8 @@
 	cod = checkout dev
 
 	cp = cherry-pick
+	cpa = cherry-pick --abort
+	cpc = cherry-pick --continue
 	d = diff
 
 	m = merge
