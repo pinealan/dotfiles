@@ -115,6 +115,7 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'jparise/vim-graphql'
 Plug 'lepture/vim-jinja'
 Plug 'mechatroner/rainbow_csv'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 filetype plugin indent on
