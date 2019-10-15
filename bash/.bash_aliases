@@ -72,28 +72,6 @@ alias tn='tmux new -s'
 alias tl='tmux ls'
 alias tk='tmux kill-server'
 
-# Git
-alias d='git diff'
-alias s='git status'
-alias g='git'
-alias gg='git la'
-alias ga='git add .'
-alias gp='git log --graph --stat --decorate --patch'
-alias gl='git log --graph --oneline --decorate'
-alias gla='git log --graph --oneline --decorate --all'
-alias gll='git log --graph --oneline --decorate --all -30'
-alias gpg='git push github'
-alias gs='git stash'
-alias gsp='git stash pop'
-alias gsd='git stash drop'
-alias gdiff='git diff | grep + | wc && git diff | grep - | wc'
-alias gupdate='git stash && git checkout master && git pull'
-alias git-list-tags=\
-'for t in `git tag -l | sort -V --reverse`; '\
-'do echo ""; '\
-'echo "------------------------------------"; '\
-'git cat-file -p `git rev-parse $t`; done;'
-
 alias tig='tig --all'
 
 # Docker
@@ -135,6 +113,7 @@ alias f='fzf'
 alias m='man'
 alias v='vim'
 alias nv='nvim'
+alias vd='vimdiff'
 alias serve='python3 -m http.server 5000'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
 
