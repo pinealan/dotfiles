@@ -225,10 +225,10 @@ noremap [j          <c-w>j
 noremap [k          <c-w>k
 noremap [l          <c-w>l
 noremap [o          <c-w>o
-noremap [<s-h>      <c-w>9<
-noremap [<s-j>      <c-w>9-
-noremap [<s-k>      <c-w>9+
-noremap [<s-l>      <c-w>9>
+noremap {<s-h>      <c-w>9<
+noremap {<s-j>      <c-w>9-
+noremap {<s-k>      <c-w>9+
+noremap {<s-l>      <c-w>9>
 
 " Buffer/Error list shortcuts
 noremap <c-q>      :qa<cr>
