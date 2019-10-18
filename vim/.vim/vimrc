@@ -37,6 +37,7 @@ let NERDTreeIgnore = [
 \]
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
+let NERDTreeSortHiddenFirst=1
 " }}}
 " Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }
 Plug 'airblade/vim-gitgutter'
