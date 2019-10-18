@@ -90,6 +90,13 @@ let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
 " }}}
 Plug 'jlanzarotta/bufexplorer'
+" BufExplorer {{{
+let g:bufExplorerFindActive=0
+let g:bufExplorerShowNoName=1
+let g:bufExplorerShowRelativePath=1
+let g:bufExplorerSortBy='name'
+let g:bufExplorerSplitVertSize=51
+" }}}
 Plug 'jiangmiao/auto-pairs'
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 Plug '/usr/local/opt/fzf'
@@ -155,6 +162,7 @@ set statusline=%!MyStatusLine('f')
 set showtabline=1
 set tabline=%!MyTabLine()
 
+set splitbelow
 set splitright
 
 " Tab, indent, wrap
