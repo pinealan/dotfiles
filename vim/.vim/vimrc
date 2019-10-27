@@ -24,7 +24,7 @@ let NERDTreeIgnore = [
     \'\.DS_Store',
     \'\.direnv',
     \'\.egg-info',
-    \'\.git',
+    \'\.git$',
     \'\.idea',
     \'\.ipynb_checkpoints',
     \'\.mypy_cache',
