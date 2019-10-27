@@ -26,7 +26,7 @@ GIT_PROMPT_REMOTE=" "
 # number of untracked files/dirs
 GIT_PROMPT_UNTRACKED=" ${Yellow}∗"
 # number of stashed files/dir
-GIT_PROMPT_STASHED=" ${BoldMagenta}☗"
+GIT_PROMPT_STASHED=" ${BoldMagenta}☖ "
 # a colored flag indicating a "clean" repo
 GIT_PROMPT_CLEAN="" # "${Green}✔"
 
