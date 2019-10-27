@@ -61,6 +61,9 @@
 	rc = rebase --continue
 	ri = rebase --interactive
 	rms = rebase master
+	rgm = rebase github/master
+	rom = rebase origin/master
+	rum = rebase upstream/master
 
 	s = status
 	f = fetch --tags
