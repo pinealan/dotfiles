@@ -42,6 +42,7 @@ let NERDTreeSortHiddenFirst=1
 " Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'google/vim-searchindex'
 Plug 'godlygeek/tabular'
 Plug 'Valloric/YouCompleteMe'
@@ -123,7 +124,7 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'jparise/vim-graphql'
 Plug 'lepture/vim-jinja'
 Plug 'mechatroner/rainbow_csv'
-Plug 'tpope/vim-surround'
+Plug 'LnL7/vim-nix'
 
 call plug#end()
 filetype plugin indent on
