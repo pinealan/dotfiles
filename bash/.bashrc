@@ -76,6 +76,15 @@ export LESS_TERMCAP_ue=$'\e[0m'             # end underline
 export LESS_TERMCAP_so=$'\e[30;48;5;214m'   # standout-mode, dunno what this do
 export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
 
+export FZF_DEFAULT_COMMAND="find . -type f -not -path '*node_modules*' -not -path '*coverage*'"
+export FZF_DEFAULT_OPTS="\
+    --height=30% \
+    --min-height=10 \
+    --cycle \
+    --reverse \
+    --border \
+    --preview='head -n $COLUMNS {}'"
+
 stty -ixon
 
 # Functions or alias definitions.

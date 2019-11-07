@@ -108,7 +108,7 @@ alias f='fzf'
 alias m='man'
 alias v='vim'
 alias nv='nvim'
-alias vd='vimdiff'
+alias vd='vim -d'
 alias serve='python3 -m http.server 5000'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
 
@@ -123,3 +123,4 @@ mooo () {
     done
 }
 
+alias vz='vim $(fzf)'
