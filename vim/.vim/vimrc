@@ -43,6 +43,7 @@ let NERDTreeSortHiddenFirst=1
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-obsession'
 Plug 'google/vim-searchindex'
 Plug 'godlygeek/tabular'
 Plug 'Valloric/YouCompleteMe'
