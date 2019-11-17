@@ -82,25 +82,17 @@
 	move = reset --hard
 
 	# log
-	l = log --pretty=ps --graph
-	lo = log --pretty=po --graph
-	ll = log --pretty=pl --graph
-	ls = log --pretty=pl --graph --stat
-	lp = log --pretty=pl --graph --patch
-
-	# log, --all
-	la = log --pretty=ps --graph --all
-	loa = log --pretty=po --graph --all
-	lsa = log --pretty=pl --graph --all --stat
-	lpa = log --pretty=pl --graph --all --patch
-
-	# log, --all --date-order
-	ld = log --pretty=ps --graph --all --date-order
-	lod = log --pretty=po --graph --all --date-order
+	l   = log --pretty=fo --graph
+	ll  = log --pretty=fl --graph
+	la  = log --pretty=fo --graph --all
+	lla = log --pretty=fl --graph --all
+	ls  = log --pretty=fl --graph --stat
+	lp  = log --pretty=fl --graph --patch
 
 	g = grep --break --heading --line-number
 
 	wk = worktree
+	wkl = worktree list
 
 [log]
 	abbrevCommit = true
@@ -118,9 +110,10 @@
 	followTags = true
 
 [pretty]
-	po = tformat:%C(auto)%h%d %s %C(241)- %an  # oneline
-	ps = tformat:%C(auto)%h %C(244)- %C(67)%ad %C(108)(%ar)%C(auto)%d%n%C(241)          @%an %C(reset)%<(72,trunc)%s %n  # summary
-	pl = format:%C(3)%h %p%C(auto)%d%n%C(67)%ad %C(108)(%ar)%n%C(6)%an <%ae>%n%n%w(0, 4, 4)%C(230)%B  # long
+	# oneline
+	fo = %C(auto)%h %s %C(241)@%an %C(67)(%ar)%C(auto)%d
+	# full
+	fl = format:%C(auto)%h %p%d%n%C(110)%ar %C(67)- %ad%n%C(37)%an %C(241)<%ae>%n%n%w(0, 1, 1)%C(230)%s%n%+b
 
 [rerere]
 	enabled = 1
