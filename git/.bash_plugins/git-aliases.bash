@@ -18,3 +18,5 @@ alias git-list-tags=\
 'do echo ""; '\
 'echo "------------------------------------"; '\
 'git cat-file -p `git rev-parse $t`; done;'
+
+alias gw='ls .git/index | entr -c git l'
