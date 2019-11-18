@@ -111,7 +111,7 @@
 
 [pretty]
 	# oneline
-	fo = %C(auto)%h %s %C(241)@%an %C(67)(%ar)%C(auto)%d
+	fo = %C(auto)%h%d %s %C(241)@%an %C(67)(%ar)%C(auto)
 	# full
 	fl = format:%C(auto)%h %p%d%n%C(110)%ar %C(67)- %ad%n%C(37)%an %C(241)<%ae>%n%n%w(0, 1, 1)%C(230)%s%n%+b
 
