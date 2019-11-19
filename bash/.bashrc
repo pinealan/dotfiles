@@ -67,6 +67,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export GLOBIGNORE=__pycache__
 
+# Assumes 256 colors (8 bit)
 export LESS_TERMCAP_mb=$'\e[1;31m'          # begin bold
 export LESS_TERMCAP_md=$'\e[38;5;77m'       # begin blink
 export LESS_TERMCAP_us=$'\e[38;5;185m'      # begin underline
@@ -89,10 +90,7 @@ stty -ixon
 
 # ----- Aliases -----
 
-# Single character that are taken (either alias or posix command)
-# > a-cd-fgh---lmn-p--st-vw---
-
-# enable color support of ls and also add handy aliases
+# Colors
 alias ls='ls --color=auto --group-directories-first -h'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -101,6 +99,22 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias rgrep='rgrep --color=auto'
+
+rainbow () {
+    awk 'BEGIN{
+        s="/\\/\\/\\/\\/\\"; s=s s s s s s s s;
+        for (colnum = 0; colnum<77; colnum++) {
+            r = 255-(colnum*255/76);
+            g = (colnum*510/76);
+            b = (colnum*255/76);
+            if (g>255) g = 510-g;
+            printf "\033[48;2;%d;%d;%dm", r,g,b;
+            printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
+            printf "%s\033[0m", substr(s,colnum+1,1);
+        }
+        printf "\n";
+    }'
+}
 
 # Shell
 alias c='clear'
