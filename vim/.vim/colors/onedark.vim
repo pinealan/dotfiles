@@ -26,37 +26,40 @@ let g:colors_name="onedark"
 "
 function! s:h(group, style)
   execute "highlight" a:group
-    \ "guifg="   (has_key(a:style, "fg")    ? a:style.fg.gui   : "NONE")
-    \ "ctermfg=" (has_key(a:style, "fg")    ? a:style.fg.cterm : "NONE")
-    \ "guibg="   (has_key(a:style, "bg")    ? a:style.bg.gui   : "NONE")
-    \ "ctermbg=" (has_key(a:style, "bg")    ? a:style.bg.cterm : "NONE")
-    \ "guisp="   (has_key(a:style, "sp")    ? a:style.sp       : "NONE")
-    \ "gui="     (has_key(a:style, "gui")   ? a:style.gui      : "NONE")
-    \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
+    \ "guifg="   (has_key(a:style, "fg")    ? a:style.fg.x24 : "NONE")
+    \ "guibg="   (has_key(a:style, "bg")    ? a:style.bg.x24 : "NONE")
+    \ "guisp="   (has_key(a:style, "sp")    ? a:style.sp     : "NONE")
+    \ "gui="     (has_key(a:style, "gui")   ? a:style.gui    : "NONE")
+    \ "ctermfg=" (has_key(a:style, "fg")    ? a:style.fg.x8  : "NONE")
+    \ "ctermbg=" (has_key(a:style, "bg")    ? a:style.bg.x8  : "NONE")
+    \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm  : "NONE")
 endfunction
 " }}}
 
 " [ Color Variables ] {{{
 "
-let s:red           = { "gui": "#be5046", "cterm": "160" }
-let s:pink          = { "gui": "#e06c75", "cterm": "204" }
-let s:green         = { "gui": "#98c379", "cterm": "70" }
-let s:teagreen      = { "gui": "#98c379", "cterm": "114" }
-let s:teal          = { "gui": "#61afef", "cterm": "30" }
-let s:yellow        = { "gui": "#e5c07b", "cterm": "220" }
-let s:gold          = { "gui": "#e5c07b", "cterm": "179" }
-let s:carrot        = { "gui": "#d19a66", "cterm": "173" }
-let s:blue          = { "gui": "#61afef", "cterm": "75" }
-let s:purple        = { "gui": "#c678dd", "cterm": "170" }
+let s:red           = { "x24": "#be5046", "x8": "160" }
+let s:pink          = { "x24": "#e06c75", "x8": "204" }
+let s:green         = { "x24": "#78a339", "x8": "70" }
+let s:teagreen      = { "x24": "#98c379", "x8": "114" }
+let s:teal          = { "x24": "#56b6c2", "x8": "30" }
+let s:yellow        = { "x24": "#e5c07b", "x8": "220" }
+let s:gold          = { "x24": "#d19a66", "x8": "179" }
+let s:carrot        = { "x24": "#d19a66", "x8": "173" }
+let s:blue          = { "x24": "#61afef", "x8": "75" }
+let s:purple        = { "x24": "#c678dd", "x8": "170" }
+let s:docstring     = { "x24": "#98c379", "x8": "34" }
 
-let s:transparent   = { "gui": "NONE",    "cterm": "NONE" }
-let s:content0      = { "gui": "#bbc2cf", "cterm": "253" }
-let s:content1      = { "gui": "#abb2bf", "cterm": "246" }
-let s:content2      = { "gui": "#abb2bf", "cterm": "241" }
-let s:background0   = { "gui": "#3e4452", "cterm": "237" }
-let s:background1   = { "gui": "#bbc2cf", "cterm": "235" }
-let s:background2   = { "gui": "#bbc2cf", "cterm": "234" }
-let s:black         = { "gui": "#bbc2cf", "cterm": "232" }
+" grey scale
+let s:transparent   = { "x24": "NONE",    "x8": "NONE" }
+let s:white         = { "x24": "#dbd2df", "x8": "253" }
+let s:content1      = { "x24": "#999999", "x8": "246" }
+let s:content2      = { "x24": "#777777", "x8": "241" }
+let s:background0   = { "x24": "#333333", "x8": "237" }
+let s:black         = { "x24": "#28292c", "x8": "235" }
+let s:dark          = { "x24": "#222222", "x8": "234" }
+let s:_white        = { "x24": "#FFFFFF", "x8": "232" }
+let s:_black        = { "x24": "#000000", "x8": "232" }
 
 let s:string        = s:teagreen
 let s:numeric       = s:carrot
@@ -110,18 +113,18 @@ call s:h("Todo",            { "fg": s:content1 }) " TODO anything that needs ext
 
 " [ Default Highlighting Groups (:h highlight-groups) ] {{{
 "
-call s:h("ColorColumn",     { "bg": s:background2 }) " used for the columns set with 'colorcolumn'
+call s:h("ColorColumn",     { "bg": s:dark }) " used for the columns set with 'colorcolumn'
 call s:h("Conceal",         {}) " placeholder characters substituted for concealed text (see 'conceallevel')
-call s:h("Cursor",          { "fg": s:black, "bg": s:blue }) " the character under the cursor
+call s:h("Cursor",          { "fg": s:_black, "bg": s:blue }) " the character under the cursor
 call s:h("CursorIM",        {}) " like Cursor, but used when in IME mode
-call s:h("CursorColumn",    { "bg": s:background2 }) " the screen column that the cursor is in when 'cursorcolumn' is set
-call s:h("CursorLine",      { "bg": s:background2 }) " the screen line that the cursor is in when 'cursorline' is set
+call s:h("CursorColumn",    { "bg": s:dark }) " the screen column that the cursor is in when 'cursorcolumn' is set
+call s:h("CursorLine",      { "bg": s:dark }) " the screen line that the cursor is in when 'cursorline' is set
 call s:h("Directory",       { "fg": s:blue }) " directory names (and other special names in listings)
 
-call s:h("DiffAdd",         { "bg": s:green, "fg": s:black }) " diff mode: Added line
-call s:h("DiffChange",      { "bg": s:gold, "fg": s:black }) " diff mode: Changed line
-call s:h("DiffDelete",      { "bg": s:pink, "fg": s:black }) " diff mode: Deleted line
-call s:h("DiffText",        { "bg": s:black, "fg": s:gold }) " diff mode: Changed text within a changed line
+call s:h("DiffAdd",         { "bg": s:green, "fg": s:_black }) " diff mode: Added line
+call s:h("DiffChange",      { "bg": s:gold, "fg": s:_black }) " diff mode: Changed line
+call s:h("DiffDelete",      { "bg": s:pink, "fg": s:_black }) " diff mode: Deleted line
+call s:h("DiffText",        { "bg": s:_black, "fg": s:gold }) " diff mode: Changed text within a changed line
 
 call s:h("ErrorMsg",        { "fg": s:pink }) " error messages on the command line
 call s:h("VertSplit",       { "fg": s:content2 }) " the column separating vertically split windows
@@ -135,41 +138,41 @@ call s:h("MatchParen",      { "fg": s:blue, "gui": "underline" }) " The characte
 call s:h("ModeMsg",         {}) " 'showmode' message (e.g., -- INSERT --)
 call s:h("MoreMsg",         {}) " more-prompt
 call s:h("NonText",         { "fg": s:background0 }) " '~' and '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., '>' displayed when a double-wide character doesn't fit at the end of the line).
-call s:h("Normal",          { "fg": s:content0, "bg": s:background1  }) " normal text
+call s:h("Normal",          { "fg": s:white, "bg": s:black  }) " normal text
 
 call s:h("Pmenu",           { "bg": s:background0 }) " Popup menu: normal item.
-call s:h("PmenuSel",        { "fg": s:black, "bg": s:blue }) " Popup menu: selected item.
-call s:h("PmenuSbar",       { "bg": s:content0 }) " Popup menu: scrollbar.
-call s:h("PmenuThumb",      { "bg": s:content0 }) " Popup menu: Thumb of the scrollbar.
+call s:h("PmenuSel",        { "fg": s:_black, "bg": s:blue }) " Popup menu: selected item.
+call s:h("PmenuSbar",       { "bg": s:white }) " Popup menu: scrollbar.
+call s:h("PmenuThumb",      { "bg": s:white }) " Popup menu: Thumb of the scrollbar.
 
 call s:h("Question",        { "fg": s:purple }) " hit-enter prompt and yes/no questions
-call s:h("Search",          { "fg": s:black, "bg": s:yellow }) " Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-call s:h("QuickFixLine",    { "fg": s:black, "bg": s:gold }) " Current quickfix item in the quickfix window.
-call s:h("SpecialKey",      { "fg": s:background1 }) " Meta and special keys listed with ':map', also for text used to show unprintable characters in the text, 'listchars'. Generally: text that is displayed differently from what it really is.
+call s:h("Search",          { "fg": s:_black, "bg": s:yellow }) " Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+call s:h("QuickFixLine",    { "fg": s:_black, "bg": s:gold }) " Current quickfix item in the quickfix window.
+call s:h("SpecialKey",      { "fg": s:black }) " Meta and special keys listed with ':map', also for text used to show unprintable characters in the text, 'listchars'. Generally: text that is displayed differently from what it really is.
 
 call s:h("SpellBad",        { "fg": s:pink, "gui": "underline", "cterm": "underline" }) " Word that is not recognized by the spellchecker. This will be combined with the highlighting used otherwise.
 call s:h("SpellCap",        { "fg": s:carrot }) " Word that should start with a capital. This will be combined with the highlighting used otherwise.
 call s:h("SpellLocal",      { "fg": s:carrot }) " Word that is recognized by the spellchecker as one that is used in another region. This will be combined with the highlighting used otherwise.
 call s:h("SpellRare",       { "fg": s:carrot }) " Word that is recognized by the spellchecker as one that is hardly ever used. spell This will be combined with the highlighting used otherwise.
 
-call s:h("StatusLine",      { "fg": s:content0, "bg": s:background0 }) " status line of current window
-call s:h("StatusLineGit",   { "fg": s:black, "bg": s:content2 }) " status line of current window
-call s:h("StatusLineNC",    { "fg": s:content2, "bg": s:black }) " status lines of not-current windows Note: if this is equal to 'StatusLine' Vim will use '^^^' in the status line of the current window.
+call s:h("StatusLine",      { "fg": s:white, "bg": s:background0 }) " status line of current window
+call s:h("StatusLineGit",   { "fg": s:_black, "bg": s:content2 }) " status line of current window
+call s:h("StatusLineNC",    { "fg": s:content2, "bg": s:_black }) " status lines of not-current windows Note: if this is equal to 'StatusLine' Vim will use '^^^' in the status line of the current window.
 
 call s:h("TabLine",         { "fg": s:content1 }) " tab pages line, not active tab page label
 call s:h("TabLineFill",     { "fg": s:content1 }) " tab pages line, where there are no labels
-call s:h("TabLineSel",      { "fg": s:content0 }) " tab pages line, active tab page label
+call s:h("TabLineSel",      { "fg": s:white }) " tab pages line, active tab page label
 
 call s:h("Title",           { "fg": s:pink }) " titles for output from ':set all', ':autocmd' etc.
 call s:h("Visual",          { "bg": s:background0 }) " Visual mode selection
-call s:h("VisualNOS",       { "bg": s:background1 }) " Visual mode selection when vim is 'Not Owning the Selection'. Only X11 Gui's gui-x11 and xterm-clipboard supports this.
+call s:h("VisualNOS",       { "bg": s:black }) " Visual mode selection when vim is 'Not Owning the Selection'. Only X11 Gui's gui-x11 and xterm-clipboard supports this.
 call s:h("WarningMsg",      { "fg": s:gold }) " warning messages
-call s:h("WildMenu",        { "fg": s:black, "bg": s:blue }) " current match in 'wildmenu' completion
+call s:h("WildMenu",        { "fg": s:_black, "bg": s:blue }) " current match in 'wildmenu' completion
 " }}}
 
 " [ Python ] {{{
 "
-call s:h("pythonDocString", { "fg": { "gui": "#98c379", "cterm": "34" } })
+call s:h("pythonDocString", { "fg": s:docstring })
 " }}}
 
 " [ Git Highlighting ] {{{
@@ -186,7 +189,7 @@ call s:h("gitcommitDiscardedFile",  { "fg": s:red })
 call s:h("gitcommitSelectedFile",   { "fg": s:green })
 call s:h("gitcommitUnmergedFile",   { "fg": s:gold })
 call s:h("gitcommitFile",           {})
-call s:h("gitcommitSummary",        { "fg": s:content0 })
+call s:h("gitcommitSummary",        { "fg": s:white })
 call s:h("gitcommitOverflow",       { "fg": s:pink })
 hi link gitcommitNoBranch gitcommitBranch
 hi link gitcommitUntracked gitcommitComment
