@@ -1,4 +1,7 @@
-# Git
+# Bash aliases for Git
+# Some depends on git-aliases from the gitconfig
+#
+
 alias d='git diff'
 alias s='git status'
 alias g='git'
@@ -19,4 +22,9 @@ alias git-list-tags=\
 'echo "------------------------------------"; '\
 'git cat-file -p `git rev-parse $t`; done;'
 
+alias glatest='git l -n 50 master HEAD'
+alias glocal='glatest --branches master HEAD'
+alias gall='glatest --all'
+
 alias gw='ls .git/index | entr -c git l'
+alias gwlatest='gw -n 50'
