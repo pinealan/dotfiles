@@ -25,12 +25,12 @@ stow bash
 
 ## Packages config
 ### Bash
-Contains `.profile`, `.bashrc`, and `.bash_profile`. These sets up `PATH`
-environment variables, tmux integration, and various bash configurations.
+Contains `.profile`, `.bashrc`. These sets up `PATH` environment variables, tmux
+integration, and various bash configurations.
 
-`~/.local/.profile`, `~/.local/.bashrc` and `~/.local/.bash_aliases` will be
-sourced if they exist. These are for machine specific configs or aliases, and
-should not be committed to this repo.
+`~/.local/.profile` and `~/.local/.bashrc` will be sourced if they exist. These
+are for machine specific configs or aliases, and should not be committed to this
+repo.
 
 All files in directory `~/.bash_plugins/` will be sourced by bash. This is used
 by the [bashgit](#bashgit) plugin that adds a git prompt to bash.
@@ -40,12 +40,9 @@ scripts inherit and can override the environment set up by earlier scripts.
 
     .profile
     .bashrc
-    .bash_profile
-    .bash_aliases
-    .bash_plugins/*
     .local/.bashrc
-    .local/.bash_aliases
     .local/.profile
+    .bash_plugins/*
 
 
 ### Bashgit
@@ -84,10 +81,19 @@ server.
 
 ### Vim
 Vim packages are managed with [vim-plug](https://github.com/junegunn/vim-plug).
-If it's your first time adopting this repository for your vim setup, upon first
-launch of vim it will automatically detect vim-plug to be missing and install
-both vim-plug and plugins specificed in the vimrc.
+The script [plug.vim](https://github.com/junegunn/vim-plug#installation) comes
+with the dotfiles and is in "autoload/" directory. To install the plugins simply
+run on your terminal
 
+    vim +PlugInstall
+
+#### YouCompleteMe
+For code-completion, these config uses [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
+as plugin, which might require additional steps to setup compiled components.
+Instructions can be found on the YCM Github README.
+
+
+#### Migrate from vundle
 To migrate existing vundle setups, you may use the provided 
 `vim/.vim/migrate-vundle-plug` script to clean up old `bunlde` directory and
 install the plugins with vim-plug. Note that you will have to re-install
