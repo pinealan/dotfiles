@@ -126,6 +126,7 @@ Plug 'jparise/vim-graphql'
 Plug 'lepture/vim-jinja'
 Plug 'mechatroner/rainbow_csv'
 Plug 'LnL7/vim-nix'
+Plug 'tpope/vim-fireplace'
 
 call plug#end()
 filetype plugin indent on
