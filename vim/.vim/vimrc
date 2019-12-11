@@ -156,17 +156,20 @@ set noshowmatch
 set number
 set relativenumber
 set scrolloff=7
+set shortmess=aoOscF
+set sidescrolloff=3
 set timeoutlen=220
 set whichwrap+=<,>,h,l
 
+set splitbelow
+set splitright
+
+" Statusline, Tabline,
 set laststatus=2
 set statusline=%!MyStatusLine('f')
 
 set showtabline=1
 set tabline=%!MyTabLine()
-
-set splitbelow
-set splitright
 
 " Tab, indent, wrap
 set smarttab
