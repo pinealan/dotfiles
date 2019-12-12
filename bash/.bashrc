@@ -60,8 +60,12 @@ if ! shopt -oq posix; then
 fi
 
 # add zsh like Tab Completion to bash
+bind 'set menu-complete-display-prefix off'
 bind 'set show-all-if-ambiguous on'
+bind 'set show-all-if-unmodifed on'
+bind 'set print-completions-horizontally on'
 bind 'TAB:menu-complete'
+bind '"\e[Z":menu-complete-backward'
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
@@ -229,6 +233,7 @@ mooo () {
 }
 
 alias vz='vim $(fzf)'
+alias vs='vim -S Session.vim'
 
 # ----- Source more -----
 
