@@ -1,31 +1,19 @@
-;; The deps.edn file describes the information needed to build a classpath.
-;;
-;; When using the `clojure` or `clj` script, there are several deps.edn files
-;; that are combined:
-;; - install-level
-;; - user level (this file)
-;; - project level (current directory when invoked)
-;;
-;; For all attributes other than :paths, these config files are merged left to right.
-;; Only the last :paths is kept and others are dropped.
-
 {
-  ;; External dependencies
   :deps {
     org.clojure/clojure {:mvn/version "1.10.1"}
+    nrepl {:mvn/version "0.6.0"}
+    reply {:mvn/version "0.4.3"}
   }
 
-  ;; Aliases
   :aliases {
-    :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.22.4"}
-                             nrepl/nrepl {:mvn/version "0.6.0"}}
-                :main-opts ["-m" "nrepl.cmdline" "--middleware" "[cider.nrepl/cider-middleware]"]}
+    :nrepl {
+      :extra-deps {cider/cider-nrepl {:mvn/version "0.22.4"}}
+      :main-opts [
+        "-m" "nrepl.cmdline"
+        "--middleware" "[cider.nrepl/cider-middleware]"
+        "-i"
+        "-C"
+      ]
+    }
   }
-
-  ;; Provider attributes
-
-  ;; :mvn/repos {
-  ;;   "central" {:url "https://repo1.maven.org/maven2/"}
-  ;;   "clojars" {:url "https://repo.clojars.org/"}
-  ;; }
 }
