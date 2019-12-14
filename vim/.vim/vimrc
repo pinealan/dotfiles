@@ -282,8 +282,8 @@ nnoremap <leader>s          :setlocal spell!<cr>
 nnoremap <leader><tab>      :setlocal wrap!<cr>
 nnoremap <leader><leader>   :setlocal hlsearch!<cr>
 nnoremap <leader><esc>      :call ToggleFastEsc()<cr>
-nnoremap <leader>1          :setl statusline=%!MyStatusLine('t')<cr>
-nnoremap <leader>2          :setl statusline=%!MyStatusLine('f')<cr>
+nnoremap <leader>1          :setl statusline=%!MyStatusLine('t') \| echohl Debug \| echo "Base name (statusline)"<cr>
+nnoremap <leader>2          :setl statusline=%!MyStatusLine('f') \| echohl Debug \| echo "Relative path (statusline)"<cr>
 
 " Plugin mapping
 nnoremap <c-e>          :NERDTreeToggle<cr>
@@ -454,11 +454,15 @@ function! GitBranch()
     return strlen(l:branchname) > 0 ? '  ' . l:branchname . ' ' : ''
 endfunction
 
-function! MyStatusLine(path)
-    let gitbr = "%#StatusLineGit#%{GitBranch()}%#User{1}#\ "
-    let flags = "%{HasPaste()}%r%m"
-    let index = "%l,\%-2c\ \|%3p%%"
-    return gitbr . flags . "%" . a:path . "%=%y\ " . index
+function! MyStatusLine(pathformat)
+    return join([
+        \'%#StatusLineGit#',
+        \'%{GitBranch()}',
+        \'%#User{1}#',
+        \' %{HasPaste()}%r%m%n:%' . a:pathformat,
+        \'%=',
+        \'%y %l,\%-2c\ \|%3p%% '
+        \], '')
 endfunction
 
 function! TrimSpace()
