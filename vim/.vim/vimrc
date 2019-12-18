@@ -303,15 +303,15 @@ let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-vmap <unique> <up>      <Plug>SchleppUp
-vmap <unique> <down>    <Plug>SchleppDown
-vmap <unique> <left>    <Plug>SchleppLeft
-vmap <unique> <right>   <Plug>SchleppRight
+vmap <up>      <Plug>SchleppUp
+vmap <down>    <Plug>SchleppDown
+vmap <left>    <Plug>SchleppLeft
+vmap <right>   <Plug>SchleppRight
 " }}}
 
 "===[ Commands ]=== {{{
-command Bhs BufExplorerHorizontalSplit
-command Bvs BufExplorerVerticalSplit
+command! Bhs BufExplorerHorizontalSplit
+command! Bvs BufExplorerVerticalSplit
 " }}}
 
 "===[ Abbrevation ]=== {{{
@@ -461,7 +461,7 @@ function! MyStatusLine(pathformat)
         \'%#User{1}#',
         \' %{HasPaste()}%r%m%n:%' . a:pathformat,
         \'%=',
-        \'%y %l,\%-2c\ \|%3p%% '
+        \'%y %l,%-2c |%3p%% '
         \], '')
 endfunction
 
