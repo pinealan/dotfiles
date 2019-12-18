@@ -6,6 +6,13 @@
   }
 
   :aliases {
+    :needle {
+      :extra-deps {needleware {:local/root "/Volumes/Data/alan/lab/needleware"}}
+      :main-opts [
+        "-m" "nrepl.cmdline"
+        "--middleware" "[needleware.print/print-eval]"
+      ]
+    }
     :nrepl {
       :extra-deps {cider/cider-nrepl {:mvn/version "0.22.4"}}
       :main-opts [
