@@ -12,31 +12,35 @@ augroup usr_nerdtree
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
-let NERDTreeIgnore = [
-    \'__pycache__',
-    \'_site',
-    \'.exe$',
-    \'.out$',
-    \'Session.vim',
-    \'coverage',
-    \'node_modules',
-    \'vendor',
-    \'venv',
-    \'\.DS_Store',
-    \'\.cpcache',
-    \'\.direnv',
-    \'\.egg-info',
-    \'\.git$',
-    \'\.idea',
-    \'\.ipynb_checkpoints',
-    \'\.mypy_cache',
-    \'\.pyc$',
-    \'\.pytest_cache',
-    \'\.sass-cache',
-    \'\.serverless',
-    \'\.venv',
-    \'\.vscode'
+let exact_dir_names = [
+\   '^\.cpcache$[[dir]]',
+\   '^\.direnv$[[dir]]',
+\   '^\.egg-info$[[dir]]',
+\   '^\.git$[[dir]]',
+\   '^\.idea$[[dir]]',
+\   '^\.ipynb_checkpoints$[[dir]]',
+\   '^\.mypy_cache[[dir]]$',
+\   '^\.pytest_cache$[[dir]]',
+\   '^\.sass-cache$[[dir]]',
+\   '^\.serverless$[[dir]]',
+\   '^\.venv$[[dir]]',
+\   '^\.vscode$[[dir]]',
+\   '^__pycache__$[[dir]]',
+\   '^coverage$[[dir]]',
+\   '^node_modules$[[dir]]',
+\   '^vendor$[[dir]]',
+\   '^venv$[[dir]]'
 \]
+let exact_file_names = [
+\   '^Session.vim$[[file]]',
+\   '^\.DS_Store$[[file]]'
+\]
+let file_suffixes = [
+\   '\.exe$[[file]]',
+\   '\.out$[[file]]',
+\   '\.pyc$[[file]]'
+\]
+let NERDTreeIgnore = exact_dir_names + exact_file_names + file_suffixes
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 let NERDTreeSortHiddenFirst=1
