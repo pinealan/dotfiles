@@ -7,3 +7,4 @@ tmux/.tmux/resurrect/
 *.aux
 *.log
 *.txt
+.cpcache
