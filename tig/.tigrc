@@ -1,6 +1,6 @@
 set editor-line-number = yes
 set line-graphics = utf-8
-set main-view = line-number:no id:yes date:relative author:abbreviated commit-title:yes,graph,refs,overflow=yes
+set main-view = line-number:no id:yes date:relative author:abbreviated commit-title:yes,graph=v2,refs,overflow=yes
 set mouse = yes
 set show-changes = no
 set refresh-interval = 1
@@ -34,14 +34,14 @@ color "Date: "			white   default
 color "AuthorDate: "		white   default
 color "CommitDate: "		white   default
 color "TaggerDate: "		white   default
-color "Refs: "			magenta default
+color "Refs: "			yellow  default
 color "Reflog: "		magenta default
 color "Reflog message: "	white   default
 color "stash@{"			yellow  default
 color "commit "			yellow  default
 color "parent "			yellow  default
 color "tree "			yellow  default
-color "author "			green	default
+color "author "			color241	default
 color "committer "		magenta	default
 color "    Signed-off-by"	cyan    default
 color "    Acked-by"		cyan	default
@@ -51,10 +51,10 @@ color default			default	default	normal
 color cursor			default black
 color status			green	default
 color delimiter			magenta	default
-color date			white	default
+color date			color67 default
 color mode			cyan	default
-color id			magenta	default
-color overflow			red	default
+color id			yellow  default
+color overflow			color244	default
 color header			yellow	default
 color section			cyan	default
 color directory			blue    default bold
@@ -65,12 +65,12 @@ color line-number		cyan	default
 color title-blur		white	black
 color title-focus		white	black   bold
 color main-commit		default	default
-color main-tag			magenta	default	bold
-color main-local-tag		magenta	default
-color main-remote		yellow	default
+color main-tag			yellow default	bold
+color main-local-tag		yellow default
+color main-remote		red     default
 color main-replace		cyan	default
 color main-tracked		yellow	default	bold
-color main-ref			cyan	default
+color main-ref			green	default bold
 color main-head			cyan	default	bold
 color stat-none			default	default
 color stat-staged		magenta	default
