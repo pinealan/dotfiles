@@ -67,8 +67,8 @@ bind 'set print-completions-horizontally on'
 bind 'TAB:menu-complete'
 bind '"\e[Z":menu-complete-backward'
 
-export VISUAL=vim
-export EDITOR="$VISUAL"
+# export VISUAL=vim
+# export EDITOR="$VISUAL"
 export GLOBIGNORE=__pycache__
 
 # Assumes 256 colors (8 bit)
@@ -143,10 +143,18 @@ alias lhid='ls -la | grep " \\."'
 # System Admin
 alias h='htop'
 alias df='df -h'
-alias ds='du -sh *'
 alias cut='cut -d " "'
 alias svim='sudo -E vim'
 alias lsblk='lsblk -o NAME,LABEL,FSTYPE,SIZE,TYPE,MOUNTPOINT'
+ds () {
+    if [[ -z $@ ]]; then
+        args='*'
+    else
+        args=$@
+    fi
+    du -sh $args | sort -h
+}
+
 frequent_commands () {
     n=10
 
