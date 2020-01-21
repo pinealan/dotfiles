@@ -84,11 +84,11 @@ let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " YCM paths
-let g:ycm_global_ycm_extra_conf = "/home/alan/.vim/.ycm_extra_conf.py"
+"let g:ycm_global_ycm_extra_conf = '/home/alan/.vim/.ycm_extra_conf.py'
+"let g:ycm_server_python_interpreter = '/Volumes/Data/alan/venv/g/bin/python3'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_extra_conf_vim_data = ['&filetype']
-let g:ycm_python_binary_path = '/usr/bin/python3'
 " }}}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
