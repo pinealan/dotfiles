@@ -26,6 +26,7 @@ alias glatest='git l -n 50 master HEAD'
 alias glocal='glatest --branches master HEAD'
 alias gall='glatest --all'
 
-alias gw='ls .git/index | entr -c git l'
+alias gw='{ ls .git/{index,FETCH_HEAD,HEAD}; find .git/refs; } | entr -c git l'
 alias gwlatest='gw -n 50'
 alias gwlocal='gw -n 50 --branches master HEAD'
+alias gwan='gw --all -n'
