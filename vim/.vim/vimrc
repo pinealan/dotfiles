@@ -152,7 +152,7 @@ let g:tex_no_error = 1
 set backspace=eol,start,indent
 set cursorline
 set nofoldenable
-set foldmethod=marker
+set foldmethod=indent
 set hidden
 set history=500
 set hlsearch
