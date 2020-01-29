@@ -194,26 +194,23 @@ alias dpsa='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}\t{{
 alias p='python'
 alias p3='python3'
 venv() {
-    if [[ -z $1 ]]; then
-        not_found=1
-
-        # find local venv
-        for dir in "venv" ".venv" "env" ".env"; do
-            if [[ -d $dir ]]; then
-                . $dir/bin/activate
-                unset not_found
-                break
-            fi
-        done
-
-        if [[ -n $not_found ]]; then
-            echo ERROR: Unable to find local environment >&2
-            return 127
-        fi
-    else
-        # use global venvs from $HOME
+    # use global venvs from $HOME if arg is provided
+    if [[ -n $1 ]]; then
         . ~/venv/$1/bin/activate
+        return
     fi
+
+    # look for a venv in current directory
+    for dir in "venv" ".venv" "env" ".env"; do
+        if [[ -d $dir ]]; then
+            . $dir/bin/activate
+            return
+        fi
+    done
+
+    # exit with error
+    echo ERROR: Unable to find local environment >&2
+    return 127
 }
 
 # JS
