@@ -5,7 +5,6 @@
 " License:    The MIT License (MIT)
 " Based On:   https://github.com/joshdick/onedark.vim/
 " Based On:   https://github.com/MaxSt/FlatColor/
-" @note: GUI colors are not configured
 
 " [ Initialization ] {{{
 "
@@ -44,8 +43,8 @@ let s:green         = { "x24": "#78a339", "x8": "70" }
 let s:teagreen      = { "x24": "#98c379", "x8": "114" }
 let s:teal          = { "x24": "#56b6c2", "x8": "30" }
 let s:yellow        = { "x24": "#e5c07b", "x8": "220" }
-let s:gold          = { "x24": "#d19a66", "x8": "179" }
-let s:carrot        = { "x24": "#d19a66", "x8": "173" }
+let s:gold          = { "x24": "#d7af5f", "x8": "179" }
+let s:carrot        = { "x24": "#d7875f", "x8": "173" }
 let s:blue          = { "x24": "#61afef", "x8": "75" }
 let s:purple        = { "x24": "#c678dd", "x8": "170" }
 let s:docstring     = { "x24": "#98c379", "x8": "34" }
@@ -87,14 +86,14 @@ call s:h("Operator",        { "fg": s:statement })  " sizeof, +, *, etc.
 call s:h("Keyword",         { "fg": s:statement })       " any other statement
 call s:h("Exception",       { "fg": s:statement })  " try, catch, throw
 
-call s:h("PreProc",         { "fg": s:gold }) " generic Preprocessor
+call s:h("PreProc",         { "fg": s:statement }) " generic Preprocessor
 call s:h("Include",         { "fg": s:statement }) " preprocessor #include
 call s:h("Define",          { "fg": s:blue }) " preprocessor #define
 call s:h("Macro",           { "fg": s:blue }) " same as Define
 call s:h("PreCondit",       { "fg": s:statement }) " preprocessor #if, #else, #endif, etc.
 
 call s:h("Type",            { "fg": s:gold }) " int, long, char, etc.
-call s:h("StorageClass",    { "fg": s:gold }) " static, register, volatile, etc.
+call s:h("StorageClass",    { "fg": s:yellow }) " static, register, volatile, etc.
 call s:h("Structure",       { "fg": s:statement }) " struct, union, enum, etc.
 call s:h("Typedef",         { "fg": s:statement }) " A typedef
 
