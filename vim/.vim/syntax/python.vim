@@ -1,12 +1,9 @@
 " Vim syntax file
 " Language:     Python
 " Maintainer:   Alan Chan
-" Credits:      Zvezdan Petkovic <zpetkovic@acm.org>
-"               Neil Schemenauer <nas@python.ca>
-"               Dmitry Vasiliev
 "
-" Highly customized for my own use (Alan Chan). Python3 only. The original
-" version was much easier to tweak. Use at your own risk.
+" Highly customized for my own eyes. Python 3 only, with support up to 3.7
+" features, such as f-strings, async keywords, etc.
 "
 
 if exists("b:current_syntax")
@@ -18,35 +15,20 @@ set cpo&vim
 
 " Keep Python keywords in alphabetical order inside groups for easy
 " comparison with the table in the 'Python Language Reference'
-" https://docs.python.org/2/reference/lexical_analysis.html#keywords,
 " https://docs.python.org/3/reference/lexical_analysis.html#keywords.
 " Groups are in the order presented in NAMING CONVENTIONS in syntax.txt.
 " Exceptions come last at the end of each group (class and def below).
-"
-" Keywords 'with' and 'as' are new in Python 2.6
-" (use 'from __future__ import with_statement' in Python 2.5).
-"
-" Some compromises had to be made to support both Python 3 and 2.
-" We include Python 3 features, but when a definition is duplicated,
-" the last definition takes precedence.
-"
-" - 'False', 'None', and 'True' are keywords in Python 3 but they are
-"   built-ins in 2 and will be highlighted as built-ins below.
-" - 'exec' is a built-in in Python 3 and will be highlighted as
-"   built-in below.
-" - 'nonlocal' is a keyword in Python 3 and will be highlighted.
-" - 'print' is a built-in in Python 3 and will be highlighted as
-"   built-in below (use 'from __future__ import print_function' in 2)
-" - async and await were added in Python 3.5 and are soft keywords.
 "
 syn keyword pythonBoolean       False None True
 syn keyword pythonConditional   elif else if
 syn keyword pythonRepeat        for while
 syn keyword pythonOperator      and in is not or
-syn keyword pythonKeyword       as assert break continue del global self cls
+syn keyword pythonKeyword       as assert break continue del global
 syn keyword pythonKeyword       lambda nonlocal pass return with yield
 syn keyword pythonException     except finally raise try
 syn keyword pythonAsync         async await
+
+syn keyword pythonSelf          self cls
 
 syn keyword pythonStructure     class def nextgroup=pythonFunction skipwhite
 syn keyword pythonInclude       from import
@@ -55,11 +37,13 @@ syn match   pythonDecorator     "@" display nextgroup=pythonFunction skipwhite
 
 " A dot must be allowed because of @MyClass.myfunc decorators.
 syn match   pythonFunctionCall  "\h\w\+\ze("
-syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\w\+"     " Function declaration
-syn match   pythonDeclDecorator "\%(@\s*\)\@<=\h\%(\w\|\.\)*" " Decorator declaration
+syn match   pythonDecoratorCall  "\%(@\s*\)\@<=\h\%(\k\)*"
+syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\w\+"
 syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 
-syn region  pythonFunctionParen start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
+syn region  pythonFunctionParen matchgroup=pythonParen
+        \ start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
+
 syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ containedin=pythonFunctionParen contained
 syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ containedin=pythonFunctionParen contained
 syn match   pythonTypeHint /\v(lambda( +\w+(, \w+)*)?)@<!: *\zs\i+/ containedin=pythonFunctionParen,pythonKeywordArg contained
@@ -73,13 +57,16 @@ syn match   pythonComment       "#.*$" contains=@Spell,Todo
 syn region  pythonString matchgroup=pythonQuotes
       \ start=+[fuU]\=\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
       \ contains=pythonEscape,@Spell
+
 " Triple-quoted strings can contain doctests.
 syn region  pythonString matchgroup=pythonTripleQuotes
       \ start=+[fuU]\=\z('''\)+ end="\z1" keepend
       \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell
+
 " Buffers expressions
 syn region  pythonBufferString
       \ start=+b\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
+
 " Raw string expressions (often used for Regex)
 syn region  pythonRawString
       \ start=+[fuU]\=[rR]\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
@@ -88,7 +75,6 @@ syn region  pythonRawString
       \ start=+[fuU]\=[rR]\z('''\|"""\)+ end="\z1" keepend
       \ contains=pythonSpaceError,pythonDoctest,@Spell
 
-
 " DocStrings
 syn region  pythonDocstring start='"""' end='"""'
 
@@ -96,9 +82,11 @@ syn match   pythonEscape        +\\[abfnrtv'"\\]+ contained
 syn match   pythonEscape        "\\\o\{1,3}" contained
 syn match   pythonEscape        "\\x\x\{2}" contained
 syn match   pythonEscape        "\%(\\u\x\{4}\|\\U\x\{8}\)" contained
+
 " Python allows case-insensitive Unicode IDs: http://www.unicode.org/charts/
 syn match   pythonEscape        "\\N{\a\+\%(\s\a\+\)*}" contained
 syn match   pythonEscape        "\\$" contained
+
 " format strings
 syn match   pythonEscape        /%\(([^\)]*)\)\?[diouxXeEfFgGcrsa]/ contained contains=pythonOldStringField
 syn match   pythonEscape        /{[^{:]*:\?}/ contained contains=pythonFStringField
@@ -214,32 +202,32 @@ syn keyword pythonExceptions    UserWarning Warning ResourceWarning
 
 " stdlib typing module (since Python 3.5) {{{
 " special typing primitives
-syn keyword pythonBuiltin       Any Callable ClassVar ForwardRef Generic
-syn keyword pythonBuiltin       Optional Text Tuple Type TypeVar Union
+syn keyword pythonBuiltinType   Any Callable ClassVar ForwardRef Generic
+syn keyword pythonBuiltinType   Optional Text Tuple Type TypeVar Union
 
 " ABCs
-syn keyword pythonBuiltin       AbstractSet ByteString Container ContextManager
-syn keyword pythonBuiltin       Hashable ItemsView Iterable Iterator KeysView
-syn keyword pythonBuiltin       Mapping MappingView MutableMapping
-syn keyword pythonBuiltin       MutableSequence MutableSet Sequence Sized
-syn keyword pythonBuiltin       ValuesView
+syn keyword pythonBuiltinType   AbstractSet ByteString Container ContextManager
+syn keyword pythonBuiltinType   Hashable ItemsView Iterable Iterator KeysView
+syn keyword pythonBuiltinType   Mapping MappingView MutableMapping
+syn keyword pythonBuiltinType   MutableSequence MutableSet Sequence Sized
+syn keyword pythonBuiltinType   ValuesView
 
 " protocols
-syn keyword pythonBuiltin       Reversible SupportsAbs SupportsBytes
-syn keyword pythonBuiltin       SupportsComplex SupportsFloat SupportsInt
-syn keyword pythonBuiltin       SupportsRound
+syn keyword pythonBuiltinType   Reversible SupportsAbs SupportsBytes
+syn keyword pythonBuiltinType   SupportsComplex SupportsFloat SupportsInt
+syn keyword pythonBuiltinType   SupportsRound
 
 " async types
-syn keyword pythonBuiltin       Awaitable AsyncIterator AsyncIterable Coroutine
-syn keyword pythonBuiltin       Collection AsyncGenerator AsyncContextManager
+syn keyword pythonBuiltinType   Awaitable AsyncIterator AsyncIterable Coroutine
+syn keyword pythonBuiltinType   Collection AsyncGenerator AsyncContextManager
 
 " concrete collection types
-syn keyword pythonBuiltin       ChainMap Counter Deque Dict DefaultDict List
-syn keyword pythonBuiltin       OrderedDict Set FrozenSet NamedTuple Generator
+syn keyword pythonBuiltinType   ChainMap Counter Deque Dict DefaultDict List
+syn keyword pythonBuiltinType   OrderedDict Set FrozenSet NamedTuple Generator
 
 " other types
-syn keyword pythonBuiltin       AnyStr NewType NoReturn
-syn keyword pythonBuiltin       Pattern Match IO TextIO BinaryIO
+syn keyword pythonBuiltinType   AnyStr NewType NoReturn
+syn keyword pythonBuiltinType   Pattern Match IO TextIO BinaryIO
 " }}}
 
 " trailing whitespace
@@ -266,18 +254,20 @@ hi def link pythonOperator          Operator
 hi def link pythonKeyword           Keyword
 hi def link pythonAsync             Statement
 
-hi def link pythonTypeHint          pythonDeclClass
-hi def link pythonKeywordArg        Type
 hi def link pythonException         Exception
 
 hi def link pythonInclude           Statement
 hi def link pythonDecorator         Constant
 
 hi def link pythonFunctionCall      Function
+hi def link pythonDecoratorCall     Function
 hi def link pythonDeclFunction      Function
-hi def link pythonDeclDecorator     Function
-hi def link pythonDeclClass         Function
 
+hi def link pythonKeywordArg        None
+hi def link pythonTypeHint          Type
+hi def link pythonDeclClass         Type
+
+hi def link pythonSelf              Identifier
 hi def link pythonQuotes            String
 hi def link pythonString            String
 hi def link pythonRawString         Constant
@@ -292,8 +282,13 @@ hi def link pythonDocString         Comment
 
 hi def link pythonEscape            Special
 hi def link pythonBuiltin           Function
+hi def link pythonBuiltinType       Type
 hi def link pythonExceptions        pythonBuiltin
 hi def link pythonSpaceError        Error
+
+hi def link pythonParen             Delimiter
+hi def link pythonPunctuation       Delimiter
+
 " }}}
 
 let b:current_syntax = "python"
