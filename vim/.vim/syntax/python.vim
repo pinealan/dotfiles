@@ -32,21 +32,29 @@ syn keyword pythonSelf          self cls
 
 syn keyword pythonStructure     class def nextgroup=pythonFunction skipwhite
 syn keyword pythonInclude       from import
-syn match   pythonDecorator     "@" display nextgroup=pythonFunction skipwhite
 
+syn match   pythonPunctuation   "="
+syn match   pythonPunctuation   ":"
+syn match   pythonPunctuation   ","
 
-" A dot must be allowed because of @MyClass.myfunc decorators.
-syn match   pythonFunctionCall  "\h\w\+\ze("
-syn match   pythonDecoratorCall  "\%(@\s*\)\@<=\h\%(\k\)*"
+" For copy-pasta, python primary is `\h\k\+\(\.\h\k\+\)*` or with magic `\v\h\k+(\.\h\k+)*`
+syn match   pythonFunctionCall  "\h\k\+\ze("
+" syn match   pythonDecoratorCall  "\%(@\s*\)\@<=\h\%(\k\)*"
 syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\w\+"
 syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
 
 syn region  pythonFunctionParen matchgroup=pythonParen
-        \ start='(' end=')' display contains=ALLBUT,pythonSQLKeyword
+        \ start='(' end=')' display contains=ALLBUT,pythonPrimaryT,pythonPrimaryD,pythonSQLKeyword
 
-syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ containedin=pythonFunctionParen contained
-syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ containedin=pythonFunctionParen contained
-syn match   pythonTypeHint /\v(lambda( +\w+(, \w+)*)?)@<!: *\zs\i+/ containedin=pythonFunctionParen,pythonKeywordArg contained
+syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ containedin=pythonFunctionParen contains=pythonPunctuation contained
+syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ containedin=pythonFunctionParen contains=pythonPunctuation contained
+
+syn match   pythonPrimaryD      /\v\h\k+(\.\h\k+)*/ display contained
+syn match   pythonPrimaryT      /\v\h\k+(\.\h\k+)*/ display contained
+syn match   pythonDecorator     "@" display nextgroup=pythonPrimaryD skipwhite
+syn match   pythonTypeHint      /\v(lambda( +\k+(, *\k+)*)?)@<!:/ display contains=pythonPunctuation nextgroup=pythonPrimaryT skipwhite
+
+"syn match   pythonTypeHint /\v(lambda.\{-})@<!: *\zs[\k\.]+/
 
 
 " Comments
@@ -93,8 +101,8 @@ syn match   pythonEscape        /{[^{:]*:\?}/ contained contains=pythonFStringFi
 syn match   pythonOldStringField    /(\zs[^\)]*\ze)/ contained
 syn match   pythonFStringField      /{\zs[^{}:]*/ contained
 
-hi link pythonOldStringField    pythonKeywordArg
-hi link pythonFStringField      pythonKeywordArg
+hi link pythonOldStringField    pythonStringField
+hi link pythonFStringField      pythonStringField
 " }}}
 
 " Inline SQL {{{
@@ -154,7 +162,7 @@ syn keyword pythonBuiltin       ascii bytes exec
 " allow shadowing of these built-ins
 "syn keyword pythonBuiltin       help id
 " avoid highlighting attributes as builtins
-syn match   pythonAttribute     /\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin,pythonKeywordArg transparent
+"syn match   pythonAttribute     /\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin,pythonKeywordArg transparent
 " }}}
 
 " Builtin exceptions {{{
@@ -264,8 +272,12 @@ hi def link pythonDecoratorCall     Function
 hi def link pythonDeclFunction      Function
 
 hi def link pythonKeywordArg        None
+hi def link pythonStringField       Type
 hi def link pythonTypeHint          Type
 hi def link pythonDeclClass         Type
+
+hi def link pythonPrimaryD          Function
+hi def link pythonPrimaryT          Type
 
 hi def link pythonSelf              Identifier
 hi def link pythonQuotes            String
