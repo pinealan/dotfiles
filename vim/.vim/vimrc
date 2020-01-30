@@ -140,7 +140,7 @@ syntax on
 " }}}
 
 "===[ Color scheme ]=== {{{
-colorscheme onedark
+colorscheme my-onedark
 set background=dark
 " }}}
 

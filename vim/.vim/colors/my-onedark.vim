@@ -14,7 +14,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name="onedark"
+let g:colors_name="my-onedark"
 
 " Helper function to match highlight gruops in all colors modes, i.e.
 "   gui:      Full RGB, 24 bit
