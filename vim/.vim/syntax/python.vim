@@ -272,14 +272,14 @@ hi def link pythonDecoratorCall     Function
 hi def link pythonDeclFunction      Function
 
 hi def link pythonKeywordArg        None
-hi def link pythonStringField       Type
+hi def link pythonStringField       Identifier
 hi def link pythonTypeHint          Type
 hi def link pythonDeclClass         Type
 
 hi def link pythonPrimaryD          Function
 hi def link pythonPrimaryT          Type
 
-hi def link pythonSelf              Identifier
+hi def link pythonSelf              Special
 hi def link pythonQuotes            String
 hi def link pythonString            String
 hi def link pythonRawString         Constant
