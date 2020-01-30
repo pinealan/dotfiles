@@ -30,31 +30,33 @@ syn keyword pythonAsync         async await
 
 syn keyword pythonSelf          self cls
 
-syn keyword pythonStructure     class def nextgroup=pythonFunction skipwhite
+syn keyword pythonStructure     class skipwhite
+syn keyword pythonStructure     def nextgroup=pythonFunctionCall skipwhite
 syn keyword pythonInclude       from import
 
 syn match   pythonPunctuation   "="
 syn match   pythonPunctuation   ":"
 syn match   pythonPunctuation   ","
 
-" For copy-pasta, python primary is `\h\k\+\(\.\h\k\+\)*` or with magic `\v\h\k+(\.\h\k+)*`
-syn match   pythonFunctionCall  "\h\k\+\ze("
-" syn match   pythonDecoratorCall  "\%(@\s*\)\@<=\h\%(\k\)*"
-syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\w\+"
-syn match   pythonDeclClass     "\%(class\s\+\)\@<=\h\w\+"
+" For copy-pasta, python primary is `\h\k*\(\.\h\k*\)*`
 
-syn region  pythonFunctionParen matchgroup=pythonParen
+syn match   pythonFunctionCall  "\h\k*\ze("
+syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\k*"
+syn match   pythonDeclClass     "\s*\%(class\s\+\)\@<=\h\k*"
+
+syn region  pythonParen display matchgroup=pythonPunctuation
         \ start='(' end=')' display contains=ALLBUT,pythonPrimaryT,pythonPrimaryD,pythonSQLKeyword
 
-syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ containedin=pythonFunctionParen contains=pythonPunctuation contained
-syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ containedin=pythonFunctionParen contains=pythonPunctuation contained
+syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ containedin=pythonParen contains=pythonPunctuation contained
+syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ containedin=pythonParen contains=pythonPunctuation contained
 
-syn match   pythonPrimaryD      /\v\h\k+(\.\h\k+)*/ display contained
-syn match   pythonPrimaryT      /\v\h\k+(\.\h\k+)*/ display contained
-syn match   pythonDecorator     "@" display nextgroup=pythonPrimaryD skipwhite
-syn match   pythonTypeHint      /\v(lambda( +\k+(, *\k+)*)?)@<!:/ display contains=pythonPunctuation nextgroup=pythonPrimaryT skipwhite
+" Helper matchers
+syn match   pythonPrimaryD      /\v\h\k*(\.\h\k*)*/ contained
+syn match   pythonPrimaryT      /\v\h\k*(\.\h\k*)*/ contained
 
-"syn match   pythonTypeHint /\v(lambda.\{-})@<!: *\zs[\k\.]+/
+syn match   pythonDecorator     "^ *@" nextgroup=pythonPrimaryD skipwhite
+syn match   pythonTypeHint      /\v(lambda( +\h\k*(, *\h\k*)*)?)@<!:/ display contains=pythonPunctuation nextgroup=pythonPrimaryT skipwhite
+syn match   pythonPunctuation   "->" display contains=pythonPunctuation nextgroup=pythonPrimaryT skipwhite
 
 
 " Comments
@@ -298,7 +300,6 @@ hi def link pythonBuiltinType       Type
 hi def link pythonExceptions        pythonBuiltin
 hi def link pythonSpaceError        Error
 
-hi def link pythonParen             Delimiter
 hi def link pythonPunctuation       Delimiter
 
 " }}}
