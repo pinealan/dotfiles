@@ -1,10 +1,12 @@
 " Vim Color File
 "
-" Name:       solarized-cold.vim
+" Name:       jblow.vim
 " Maintainer: Alan Chan
 " License:    The MIT License (MIT)
-" Based On:   https://github.com/joshdick/onedark.vim/
-" Based On:   https://github.com/MaxSt/FlatColor/
+"
+" An attempt at emulating Jonathan Blow's editor colorscheme. Based on vim
+" default distributed solarized-cold.vim theme.
+"
 
 " [ Initialization ]
 "
@@ -16,13 +18,10 @@ endif
 
 let g:colors_name="jblow"
 
-" Helper function to match highlight group with colors in all modes
-" gui:      Full RGB, 24 bit
+" Helper function to match highlight group with colors in varying color support
+" gui:      Full RGB, 24 bit (TODO)
 " cterm:    256 color, 8 bit
-" cterm16:  16 color (ANSI)
 "
-" This function is based on one from FlatColor: https://github.com/MaxSt/FlatColor/
-" Which in turn was based on one found in hemisu: https://github.com/noahfrederick/vim-hemisu/
 function! s:h(group, style)
   execute "highlight" a:group
     \ "guifg="   (has_key(a:style, "fg")    ? a:style.fg.gui   : "NONE")

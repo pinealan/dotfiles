@@ -116,13 +116,13 @@ endfunction
 
 " public {{{
 
-function! onedark#set_highlight(group, style)
-  call s:h(a:group, a:style)
-endfunction
+"function! onedark#set_highlight(group, style)
+"  call s:h(a:group, a:style)
+"endfunction
 
-function! onedark#extend_highlight(group, style)
-  call s:h(a:group, a:style, 1)
-endfunction
+"function! onedark#extend_highlight(group, style)
+"  call s:h(a:group, a:style, 1)
+"endfunction
 
 " }}}
 
