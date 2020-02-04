@@ -1,4 +1,5 @@
 "===[ Plugin ]=== {{{
+"
 filetype off
 set nocompatible
 
@@ -137,18 +138,24 @@ Plug 'tpope/vim-fireplace'
 call plug#end()
 filetype plugin indent on
 syntax on
+
 " }}}
 
 "===[ Color scheme ]=== {{{
+"
 colorscheme my-onedark
 set background=dark
+
 " }}}
 
 "===[ Default Syntax Package Options ]=== {{{
+"
 let g:tex_no_error = 1
+
 " }}}
 
 "===[ Options ]=== {{{
+"
 set backspace=eol,start,indent
 set cursorline
 set nofoldenable
@@ -159,13 +166,16 @@ set hlsearch
 set incsearch
 set lazyredraw
 set mouse=a
-set noshowmatch
 set number
 set relativenumber
 set scrolloff=7
 set shortmess=aoOscF
+let &showbreak='> '
+set showcmd
+set noshowmatch
+set showmode
 set sidescrolloff=3
-set timeoutlen=220
+set timeoutlen=240
 set whichwrap+=<,>,h,l
 
 set splitbelow
@@ -220,6 +230,7 @@ set shellpipe=&>
 " }}}
 
 "===[ Mapping ]=== {{{
+"
 let mapleader=" "
 
 " Thank me later
@@ -251,7 +262,7 @@ noremap {<s-j>      <c-w>9-
 noremap {<s-k>      <c-w>9+
 noremap {<s-l>      <c-w>9>
 
-" Buffer/Error list shortcuts
+" Buffer/Tab/Quickfix navigation
 noremap <c-q>      :qa<cr>
 noremap <c-s>      :update<cr>
 noremap <c-r>      :edit<cr>
@@ -261,8 +272,9 @@ noremap <c-j>      :bnext<cr>
 noremap <c-k>      :bprev<cr>
 noremap <c-n>      :cnext<cr>
 noremap <c-p>      :cprev<cr>
+noremap <leader>k  :FZF<cr>
 
-" Normal mode command shortchuts
+" Command shortchuts
 nnoremap <cr>               o<esc>
 nnoremap <F9>               :echo HighlightName()<cr>
 nnoremap <leader>c          :echo HighlightName()<cr>
@@ -270,6 +282,7 @@ nnoremap <leader>w          :w !sudo tee % > /dev/null
 nnoremap <leader>f          :set filetype=
 
 " create a fold for the pair of parenthesis/brackets under the cursor
+" Todo make this command into a safer function and with validation under cursor
 nnoremap <leader>o          v%zF
 
 nnoremap <silent> -             :call Underline('-')<cr>
@@ -286,19 +299,22 @@ nnoremap <leader>s          :setlocal spell!<cr>
 nnoremap <leader><tab>      :setlocal wrap!<cr>
 nnoremap <leader><leader>   :setlocal hlsearch!<cr>
 nnoremap <leader><esc>      :call ToggleFastEsc()<cr>
-nnoremap <leader>1          :setl statusline=%!MyStatusLine('t') \| echohl Debug \| echo "Base name (statusline)"<cr>
-nnoremap <leader>2          :setl statusline=%!MyStatusLine('f') \| echohl Debug \| echo "Relative path (statusline)"<cr>
+nnoremap <leader>1          :set statusline=%!MyStatusLine('t') \| echohl Debug \| echo "Base name (statusline)"<cr>
+nnoremap <leader>2          :set statusline=%!MyStatusLine('f') \| echohl Debug \| echo "Relative path (statusline)"<cr>
 
 " Plugin mapping
 nnoremap <c-e>          :NERDTreeToggle<cr>
 
 nnoremap <leader>t      :Tabularize /
 
-nnoremap <silent> <F8>  :MarkdownPreview<cr>
+nnoremap <F8>           :MarkdownPreview<cr>
 
-nnoremap <leader>x      :YcmCompleter FixIt<cr>
-nnoremap <leader>g      :YcmCompleter GoToDefinition<cr>
-nnoremap <leader>r      :YcmCompleter GoToReferences<cr>
+nnoremap <leader>yx     :YcmCompleter FixIt<cr>
+nnoremap <leader>yg     :YcmCompleter GoToDefinition<cr>
+nnoremap <leader>yr     :YcmCompleter GoToReferences<cr>
+
+nnoremap <leader>ga     :Gwrite<cr>
+nnoremap <leader>gl     :Glog<cr>
 
 nnoremap bhs      :BufExplorerHorizontalSplit<cr>
 nnoremap bvs      :BufExplorerVerticalSplit<cr>
@@ -311,14 +327,18 @@ vmap <up>      <Plug>SchleppUp
 vmap <down>    <Plug>SchleppDown
 vmap <left>    <Plug>SchleppLeft
 vmap <right>   <Plug>SchleppRight
+
 " }}}
 
 "===[ Commands ]=== {{{
+"
 command! Bhs BufExplorerHorizontalSplit
 command! Bvs BufExplorerVerticalSplit
+
 " }}}
 
 "===[ Abbrevation ]=== {{{
+"
 " Common typos
 iabbrev fro         for
 iabbrev adn         and
@@ -336,9 +356,11 @@ iabbrev caes        case
 "inoremap { {}<left>
 "inoremap {<CR> {<CR>}<ESC>O
 "inoremap {;<CR> {<CR>};<ESC>O
+
 " }}}
 
 "===[ Helper functions]=== {{{
+"
 function! HasPaste()
     if &paste
         return 'PASTE MODE'
@@ -480,21 +502,31 @@ function! TryTrimSpace()
         call TrimSpace()
     endif
 endfunction
+
 " }}}
 
 "===[ Autocommands setup ]=== {{{
+"
 augroup usr
     autocmd!
 
     autocmd BufWrite    * call TryTrimSpace()
     autocmd BufEnter    * silent call EnableFastEsc()
-    autocmd BufRead     *.c,*.cpp,*.h,*.hpp,*.py,*.java,*.js,*.php,*.sh syn keyword TODO NOTE Todo Note todo note
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
 
     "autocmd VimEnter    *.c,*.cpp,*.py vsp
 augroup END
+
 " }}}
 
+"===[ Generic highlights ]=== {{{
+"
+syn keyword Todo    TODO NOTE FIXME REFACTOR HARDCODE HACK
+syn keyword Todo    Todo Note Fixme Refactor Hardcode Hack
+syn keyword Todo    todo note fixme refactor hardcode
+
 hi link Noise Special
+
+" }}}
 
 " vim: foldmethod=marker
