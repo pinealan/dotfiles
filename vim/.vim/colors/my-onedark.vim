@@ -48,21 +48,22 @@ let s:carrot        = { "x24": "#d7875f", "x8": "173" }
 let s:blue          = { "x24": "#61afef", "x8": "75" }
 let s:purple        = { "x24": "#c678dd", "x8": "170" }
 let s:docstring     = { "x24": "#98c379", "x8": "34" }
-
-" grey scale
 let s:transparent   = { "x24": "NONE",    "x8": "NONE" }
-let s:white         = { "x24": "#dbd2df", "x8": "253" }
-let s:content1      = { "x24": "#999999", "x8": "246" }
+
+" Semantic colors
+let s:content0      = { "x24": "#dfdfdf", "x8": "253" }
+let s:content1      = { "x24": "#b9b9b9", "x8": "246" }
 let s:content2      = { "x24": "#777777", "x8": "241" }
-let s:background0   = { "x24": "#333333", "x8": "237" }
-let s:black         = { "x24": "#28292c", "x8": "235" }
-let s:dark          = { "x24": "#222222", "x8": "234" }
-let s:_white        = { "x24": "#FFFFFF", "x8": "232" }
+let s:content_inv   = { "x24": "#404040", "x8": "237" }
+let s:background0   = { "x24": "#28292c", "x8": "235" }
+let s:background1   = { "x24": "#333333", "x8": "237" }
+let s:background2   = { "x24": "#222222", "x8": "234" }
 let s:_black        = { "x24": "#000000", "x8": "232" }
 
 let s:string        = s:teagreen
 let s:numeric       = s:carrot
 let s:statement     = s:purple
+let s:symbol        = s:pink
 " }}}
 
 " [ Syntax Groups (:h group-name) ] {{{
@@ -75,7 +76,7 @@ call s:h("Number",          { "fg": s:numeric }) " a number constant: 234, 0xff
 call s:h("Boolean",         { "fg": s:numeric }) " a boolean constant: TRUE, false
 call s:h("Float",           { "fg": s:numeric }) " a floating point constant: 2.3e10
 
-call s:h("Identifier",      { "fg": s:pink }) " any variable name
+call s:h("Identifier",      { "fg": s:symbol }) " any variable name
 call s:h("Function",        { "fg": s:blue }) " function name (also: methods for classes)
 
 call s:h("Statement",       { "fg": s:statement })  " any statement
@@ -99,8 +100,8 @@ call s:h("Typedef",         { "fg": s:statement }) " A typedef
 
 call s:h("Special",         { "fg": s:content1 }) " any special symbol
 call s:h("SpecialChar",     { "fg": s:content1 }) " special character in a constant
-call s:h("Tag",             { "fg": s:pink }) " you can use CTRL-] on this
-call s:h("Delimiter",       { "fg": s:content1 }) " character that needs attention
+call s:h("Tag",             { "fg": s:symbol }) " you can use CTRL-] on this
+call s:h("Delimiter",       { "fg": s:content2 }) " character that needs attention
 call s:h("SpecialComment",  { "fg": s:string }) " special things inside a comment
 call s:h("Debug",           { "fg": s:content1 }) " debugging statements
 
@@ -112,12 +113,12 @@ call s:h("Todo",            { "fg": s:content1 }) " TODO anything that needs ext
 
 " [ Default Highlighting Groups (:h highlight-groups) ] {{{
 "
-call s:h("ColorColumn",     { "bg": s:dark }) " used for the columns set with 'colorcolumn'
+call s:h("ColorColumn",     { "bg": s:background2 }) " used for the columns set with 'colorcolumn'
 call s:h("Conceal",         {}) " placeholder characters substituted for concealed text (see 'conceallevel')
 call s:h("Cursor",          { "fg": s:_black, "bg": s:blue }) " the character under the cursor
 call s:h("CursorIM",        {}) " like Cursor, but used when in IME mode
-call s:h("CursorColumn",    { "bg": s:dark }) " the screen column that the cursor is in when 'cursorcolumn' is set
-call s:h("CursorLine",      { "bg": s:dark }) " the screen line that the cursor is in when 'cursorline' is set
+call s:h("CursorColumn",    { "bg": s:background2 }) " the screen column that the cursor is in when 'cursorcolumn' is set
+call s:h("CursorLine",      { "bg": s:background2 }) " the screen line that the cursor is in when 'cursorline' is set
 call s:h("Directory",       { "fg": s:blue }) " directory names (and other special names in listings)
 
 call s:h("DiffAdd",         { "bg": s:green, "fg": s:_black }) " diff mode: Added line
@@ -131,40 +132,40 @@ call s:h("Folded",          { "fg": s:content2 }) " line used for closed folds
 call s:h("FoldColumn",      {}) " 'foldcolumn'
 call s:h("SignColumn",      {}) " column where signs are displayed
 call s:h("IncSearch",       { "fg": s:yellow, "bg": s:content2 }) " 'incsearch' highlighting; also used for the text replaced with ':s///c'
-call s:h("LineNr",          { "fg": s:background0 }) " Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+call s:h('LineNr',          { "fg": s:content_inv }) " Line number for ':number' and ':#' commands, and when 'number' or 'relativenumber' option is set.
 call s:h("CursorLineNr",    {}) " Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 call s:h("MatchParen",      { "fg": s:blue, "gui": "underline" }) " The character under the cursor or just before it, if it is a paired bracket, and its match.
 call s:h("ModeMsg",         {}) " 'showmode' message (e.g., -- INSERT --)
 call s:h("MoreMsg",         {}) " more-prompt
-call s:h("NonText",         { "fg": s:background0 }) " '~' and '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., '>' displayed when a double-wide character doesn't fit at the end of the line).
-call s:h("Normal",          { "fg": s:white, "bg": s:black  }) " normal text
+call s:h("NonText",         { "fg": s:content2 }) " '~' and '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., '>' displayed when a double-wide character doesn't fit at the end of the line).
+call s:h("Normal",          { "fg": s:content0, "bg": s:background0 }) " normal text
 
-call s:h("Pmenu",           { "bg": s:background0 }) " Popup menu: normal item.
+call s:h("Pmenu",           { "bg": s:background1 }) " Popup menu: normal item.
 call s:h("PmenuSel",        { "fg": s:_black, "bg": s:blue }) " Popup menu: selected item.
-call s:h("PmenuSbar",       { "bg": s:white }) " Popup menu: scrollbar.
-call s:h("PmenuThumb",      { "bg": s:white }) " Popup menu: Thumb of the scrollbar.
+call s:h("PmenuSbar",       { "bg": s:content0 }) " Popup menu: scrollbar.
+call s:h("PmenuThumb",      { "bg": s:content0 }) " Popup menu: Thumb of the scrollbar.
 
 call s:h("Question",        { "fg": s:purple }) " hit-enter prompt and yes/no questions
 call s:h("Search",          { "fg": s:_black, "bg": s:yellow }) " Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 call s:h("QuickFixLine",    { "fg": s:_black, "bg": s:gold }) " Current quickfix item in the quickfix window.
-call s:h("SpecialKey",      { "fg": s:black }) " Meta and special keys listed with ':map', also for text used to show unprintable characters in the text, 'listchars'. Generally: text that is displayed differently from what it really is.
+call s:h("SpecialKey",      { "fg": s:content1 }) " Meta and special keys listed with ':map', also for text used to show unprintable characters in the text, 'listchars'. Generally: text that is displayed differently from what it really is.
 
-call s:h("SpellBad",        { "fg": s:pink, "gui": "underline", "cterm": "underline" }) " Word that is not recognized by the spellchecker. This will be combined with the highlighting used otherwise.
+call s:h("SpellBad",        { "fg": s:symbol , "gui": "underline", "cterm": "underline" }) " Word that is not recognized by the spellchecker. This will be combined with the highlighting used otherwise.
 call s:h("SpellCap",        { "fg": s:carrot }) " Word that should start with a capital. This will be combined with the highlighting used otherwise.
 call s:h("SpellLocal",      { "fg": s:carrot }) " Word that is recognized by the spellchecker as one that is used in another region. This will be combined with the highlighting used otherwise.
 call s:h("SpellRare",       { "fg": s:carrot }) " Word that is recognized by the spellchecker as one that is hardly ever used. spell This will be combined with the highlighting used otherwise.
 
-call s:h("StatusLine",      { "fg": s:white, "bg": s:background0 }) " status line of current window
+call s:h("StatusLine",      { "fg": s:content0, "bg": s:background1 }) " status line of current window
 call s:h("StatusLineGit",   { "fg": s:_black, "bg": s:content2 }) " status line of current window
 call s:h("StatusLineNC",    { "fg": s:content2, "bg": s:_black }) " status lines of not-current windows Note: if this is equal to 'StatusLine' Vim will use '^^^' in the status line of the current window.
 
 call s:h("TabLine",         { "fg": s:content1 }) " tab pages line, not active tab page label
 call s:h("TabLineFill",     { "fg": s:content1 }) " tab pages line, where there are no labels
-call s:h("TabLineSel",      { "fg": s:white }) " tab pages line, active tab page label
+call s:h("TabLineSel",      { "fg": s:content0 }) " tab pages line, active tab page label
 
-call s:h("Title",           { "fg": s:pink }) " titles for output from ':set all', ':autocmd' etc.
-call s:h("Visual",          { "bg": s:background0 }) " Visual mode selection
-call s:h("VisualNOS",       { "bg": s:black }) " Visual mode selection when vim is 'Not Owning the Selection'. Only X11 Gui's gui-x11 and xterm-clipboard supports this.
+call s:h("Title",           { "fg": s:symbol }) " titles for output from ':set all', ':autocmd' etc.
+call s:h("Visual",          { "bg": s:background1 }) " Visual mode selection
+call s:h("VisualNOS",       { "bg": s:background0 }) " Visual mode selection when vim is 'Not Owning the Selection'. Only X11 Gui's gui-x11 and xterm-clipboard supports this.
 call s:h("WarningMsg",      { "fg": s:gold }) " warning messages
 call s:h("WildMenu",        { "fg": s:_black, "bg": s:blue }) " current match in 'wildmenu' completion
 " }}}
@@ -188,7 +189,7 @@ call s:h("gitcommitDiscardedFile",  { "fg": s:red })
 call s:h("gitcommitSelectedFile",   { "fg": s:green })
 call s:h("gitcommitUnmergedFile",   { "fg": s:gold })
 call s:h("gitcommitFile",           {})
-call s:h("gitcommitSummary",        { "fg": s:white })
+call s:h("gitcommitSummary",        { "fg": s:content0 })
 call s:h("gitcommitOverflow",       { "fg": s:pink })
 hi link gitcommitNoBranch gitcommitBranch
 hi link gitcommitUntracked gitcommitComment
