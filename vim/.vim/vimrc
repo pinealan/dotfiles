@@ -46,7 +46,6 @@ let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 let NERDTreeSortHiddenFirst=1
 " }}}
-" Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -115,6 +114,7 @@ Plug 'junegunn/goyo.vim'
 " Goyo {{{
 let g:goyo_width = 105
 " }}}
+Plug 'liuchengxu/vim-which-key'
 
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -298,11 +298,13 @@ nnoremap <silent> <leader>q     :q<cr>
 nnoremap <leader>s          :setlocal spell!<cr>
 nnoremap <leader><tab>      :setlocal wrap!<cr>
 nnoremap <leader><leader>   :setlocal hlsearch!<cr>
-nnoremap <leader><esc>      :call ToggleFastEsc()<cr>
+nnoremap <leader>j          :call ToggleFastEsc()<cr>
 nnoremap <leader>1          :set statusline=%!MyStatusLine('t') \| echohl Debug \| echo "Base name (statusline)"<cr>
 nnoremap <leader>2          :set statusline=%!MyStatusLine('f') \| echohl Debug \| echo "Relative path (statusline)"<cr>
 
 " Plugin mapping
+nnoremap <silent> <leader>  :WhichKey '<Space>'<CR>
+
 nnoremap <c-e>          :NERDTreeToggle<cr>
 
 nnoremap <leader>t      :Tabularize /
