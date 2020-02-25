@@ -104,6 +104,7 @@ let g:bufExplorerFindActive=0
 let g:bufExplorerShowNoName=1
 let g:bufExplorerShowRelativePath=1
 let g:bufExplorerSortBy='name'
+let g:bufExplorerSplitHorzSize=10
 let g:bufExplorerSplitVertSize=51
 " }}}
 Plug 'jiangmiao/auto-pairs'
@@ -231,7 +232,6 @@ set shellpipe=&>
 
 "===[ Mapping ]=== {{{
 "
-let mapleader=" "
 
 " Thank me later
 noremap ; :
@@ -272,14 +272,17 @@ noremap <c-j>      :bnext<cr>
 noremap <c-k>      :bprev<cr>
 noremap <c-n>      :cnext<cr>
 noremap <c-p>      :cprev<cr>
-noremap <leader>k  :FZF<cr>
 
 " Command shortchuts
-nnoremap <cr>               o<esc>
-nnoremap <F9>               :echo HighlightName()<cr>
-nnoremap <leader>c          :echo HighlightName()<cr>
-nnoremap <leader>w          :w !sudo tee % > /dev/null
-nnoremap <leader>f          :set filetype=
+let mapleader=" "
+let maplocalleader=","
+
+nnoremap <cr>                   o<esc>
+nnoremap <F9>                   :echo HighlightName()<cr>
+nnoremap <silent><leader>c      :echo HighlightName()<cr>
+nnoremap <leader>w              :w !sudo tee % > /dev/null
+nnoremap <leader>f              :set filetype=
+nnoremap <silent><leader>k      :FZF<cr>
 
 " create a fold for the pair of parenthesis/brackets under the cursor
 " Todo make this command into a safer function and with validation under cursor
@@ -288,6 +291,8 @@ nnoremap <leader>o          v%zF
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
 nnoremap <silent> <leader>'     :vsp<cr>
+nnoremap <silent> <leader>"     :sp<cr>
+nnoremap <silent> <leader>b     :BufExplorerHorizontalSplit<cr>
 nnoremap <silent> <leader>e     :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>

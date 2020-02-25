@@ -61,6 +61,7 @@ let s:background2   = { "x24": "#222222", "x8": "234" }
 let s:_black        = { "x24": "#000000", "x8": "232" }
 
 let s:string        = s:teagreen
+let s:macro         = s:carrot
 let s:numeric       = s:carrot
 let s:statement     = s:purple
 let s:symbol        = s:pink
@@ -87,10 +88,10 @@ call s:h("Operator",        { "fg": s:statement })  " sizeof, +, *, etc.
 call s:h("Keyword",         { "fg": s:statement })       " any other statement
 call s:h("Exception",       { "fg": s:statement })  " try, catch, throw
 
-call s:h("PreProc",         { "fg": s:statement }) " generic Preprocessor
+call s:h("PreProc",         { "fg": s:macro }) " generic Preprocessor
 call s:h("Include",         { "fg": s:statement }) " preprocessor #include
-call s:h("Define",          { "fg": s:blue }) " preprocessor #define
-call s:h("Macro",           { "fg": s:blue }) " same as Define
+call s:h("Define",          { "fg": s:macro }) " preprocessor #define
+call s:h("Macro",           { "fg": s:macro }) " same as Define
 call s:h("PreCondit",       { "fg": s:statement }) " preprocessor #if, #else, #endif, etc.
 
 call s:h("Type",            { "fg": s:gold }) " int, long, char, etc.
