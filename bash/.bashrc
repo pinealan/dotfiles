@@ -60,9 +60,11 @@ if ! shopt -oq posix; then
 fi
 
 # add zsh like Tab Completion to bash
+bind -l | grep -q show && (
+    bind 'set show-all-if-ambiguous on'
+    bind 'set show-all-if-unmodifed on'
+)
 bind 'set menu-complete-display-prefix off'
-bind 'set show-all-if-ambiguous on'
-bind 'set show-all-if-unmodifed on'
 bind 'set print-completions-horizontally on'
 bind 'TAB:menu-complete'
 bind '"\e[Z":menu-complete-backward'
