@@ -99,9 +99,9 @@ syn match   pythonEscape        "\\$" contained
 
 " format strings
 syn match   pythonEscape        /%\(([^\)]*)\)\?[diouxXeEfFgGcrsa]/ contained contains=pythonOldStringField
-syn match   pythonEscape        /{[^{:]*:\?}/ contained contains=pythonFStringField
+syn match   pythonEscape        /{[^{]*:\?}/ contained contains=pythonFStringField
 syn match   pythonOldStringField    /(\zs[^\)]*\ze)/ contained
-syn match   pythonFStringField      /{\zs[^{}:]*/ contained
+syn match   pythonFStringField      /{\zs[^{}]*/ contained
 
 hi link pythonOldStringField    pythonStringField
 hi link pythonFStringField      pythonStringField

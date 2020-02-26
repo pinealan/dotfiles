@@ -20,7 +20,7 @@ let exact_dir_names = [
 \   '^\.git$[[dir]]',
 \   '^\.idea$[[dir]]',
 \   '^\.ipynb_checkpoints$[[dir]]',
-\   '^\.mypy_cache[[dir]]$',
+\   '^\.mypy_cache$[[dir]]',
 \   '^\.pytest_cache$[[dir]]',
 \   '^\.sass-cache$[[dir]]',
 \   '^\.serverless$[[dir]]',
