@@ -97,7 +97,7 @@ stty -ixon
 # ----- Aliases -----
 
 # Colors
-alias ls='ls --color=auto --group-directories-first -h'
+alias ls='ls --color=auto -h'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
