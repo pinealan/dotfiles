@@ -8,16 +8,16 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
-fi
-
 # Extend PATH only for level 1 shells,
 # Fixes TMUX shell duplicate paths which are level 2 shells
 if [ $SHLVL == 1 ]; then
     # prepend PATH with user's private bin directories
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
     [ -f "$HOME/.local/.profile" ] && . "$HOME/.local/.profile"
+fi
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 fi

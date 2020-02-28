@@ -39,9 +39,9 @@ The following is the complete order in which bash scripts are source. Later
 scripts inherit and can override the environment set up by earlier scripts.
 
     .profile
+    .local/.profile
     .bashrc
     .local/.bashrc
-    .local/.profile
     .bash_plugins/*
 
 
