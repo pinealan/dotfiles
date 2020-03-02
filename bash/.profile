@@ -10,11 +10,12 @@
 
 # Extend PATH only for level 1 shells,
 # Fixes TMUX shell duplicate paths which are level 2 shells
-if [ $SHLVL == 1 ]; then
-    # prepend PATH with user's private bin directories
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-    [ -f "$HOME/.local/.profile" ] && . "$HOME/.local/.profile"
-fi
+
+# prepend PATH with user's home bin directories
+PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+# execute local machine-specific .profile if it exists
+[ -f "$HOME/.local/.profile" ] && . "$HOME/.local/.profile"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
