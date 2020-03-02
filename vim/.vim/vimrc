@@ -292,7 +292,7 @@ nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
 nnoremap <silent> <leader>'     :vsp<cr>
 nnoremap <silent> <leader>"     :sp<cr>
-nnoremap <silent> <leader>b     :BufExplorerHorizontalSplit<cr>
+nnoremap <silent> <leader>b     :let g:bufExplorerSplitHorzSize = len(getbufinfo({'buflisted': 1})) + 4 \| BufExplorerHorizontalSplit<cr>
 nnoremap <silent> <leader>e     :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
@@ -370,7 +370,7 @@ iabbrev caes        case
 "
 function! HasPaste()
     if &paste
-        return 'PASTE MODE'
+        return '[PASTE MODE]'
     endif
     return ''
 endfunction
@@ -488,11 +488,13 @@ function! GitBranch()
 endfunction
 
 function! MyStatusLine(pathformat)
+    " Git branch, Flags, Buffer number, File name | File type, Row/Column, Percent down file
+        "\'%#StatusLineGit#',
+        "\'%{GitBranch()}',
+        "\'%#User{1}#',
     return join([
-        \'%#StatusLineGit#',
-        \'%{GitBranch()}',
-        \'%#User{1}#',
-        \' %{HasPaste()}%r%m%n:%' . a:pathformat,
+        \' %q%w%r%m%{HasPaste()}',
+        \'%n:%' . a:pathformat,
         \'%=',
         \'%y %l,%-2c |%3p%% '
         \], '')
