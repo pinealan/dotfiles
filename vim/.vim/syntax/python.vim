@@ -35,9 +35,8 @@ syn keyword pythonStructure     class skipwhite
 syn keyword pythonStructure     def nextgroup=pythonFunctionCall skipwhite
 syn keyword pythonInclude       from import
 
-syn match   pythonPunctuation   "="
-syn match   pythonPunctuation   ":"
-syn match   pythonPunctuation   ","
+syn match   pythonDelimiter     "[,:=]"
+syn match   pythonDelimiter     "->" nextgroup=pythonPrimaryT skipwhite
 
 " For copy-pasta, python primary is `\h\k*\(\.\h\k*\)*`
 " What is a python primary?
@@ -56,8 +55,8 @@ syn region  pythonList display matchgroup=pythonPunctuation
 syn region  pythonParen display matchgroup=pythonPunctuation
     \ start='(' end=')' contains=TOP,pythonPrimaryT,pythonPrimaryD
 
-syn match   pythonKwarg /\i\+ *\ze=[^=]/ contained containedin=pythonParen contains=pythonPunctuation
-syn match   pythonKwarg /\i\+\ze: *\i* *=[^=]/ contained containedin=pythonParen contains=pythonPunctuation
+syn match   pythonKwarg /\i\+ *\ze=[^=]/ contained containedin=pythonParen contains=pythonDelimiter
+syn match   pythonKwarg /\i\+\ze: *\i* *=[^=]/ contained containedin=pythonParen contains=pythonDelimiter
 
 " Helper matchers
 syn match   pythonPrimaryD      /\v\h\k*(\.\h\k*)*/ contained contains=None
@@ -65,8 +64,7 @@ syn match   pythonPrimaryT      /\v\h\k*(\.\h\k*)*/ contained contains=None
 
 syn match   pythonDecorator     "^ *@" nextgroup=pythonPrimaryD skipwhite
 syn match   pythonTypeHint      /\v(lambda( +\h\k*(, *\h\k*)*)?)@<!:/
-    \ display contains=pythonPunctuation nextgroup=pythonPrimaryT skipwhite
-syn match   pythonPunctuation   "->" display contains=pythonPunctuation nextgroup=pythonPrimaryT skipwhite
+    \ display contains=pythonDelimiter nextgroup=pythonPrimaryT skipwhite
 
 syn match   pythonComment       "#.*$" contains=@Spell,Todo
 
@@ -315,7 +313,8 @@ hi def link pythonBuiltinType       Type
 hi def link pythonExceptions        pythonBuiltin
 hi def link pythonSpaceError        Error
 
-hi def link pythonPunctuation       Delimiter
+hi def link pythonPunctuation       Special
+hi def link pythonDelimiter         Delimiter
 
 " }}}
 
