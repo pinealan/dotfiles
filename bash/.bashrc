@@ -145,6 +145,8 @@ alias h='htop'
 alias df='df -h'
 alias svim='sudo -E vim'
 alias lsblk='lsblk -o NAME,LABEL,FSTYPE,SIZE,TYPE,MOUNTPOINT'
+alias wa='which -a'
+alias sl='echo $SHLVL'
 ds () {
     if [[ -z $@ ]]; then
         args='*'
