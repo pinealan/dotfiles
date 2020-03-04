@@ -52,8 +52,8 @@ let s:transparent   = { "x24": "NONE",    "x8": "NONE" }
 
 " Semantic colors
 let s:content0      = { "x24": "#dfdfdf", "x8": "253" }
-let s:content1      = { "x24": "#b9b9b9", "x8": "246" }
-let s:content2      = { "x24": "#777777", "x8": "241" }
+let s:content1      = { "x24": "#a9a9a9", "x8": "246" }
+let s:content2      = { "x24": "#828282", "x8": "241" }
 let s:content_inv   = { "x24": "#404040", "x8": "237" }
 let s:background0   = { "x24": "#28292c", "x8": "235" }
 let s:background1   = { "x24": "#333333", "x8": "237" }
