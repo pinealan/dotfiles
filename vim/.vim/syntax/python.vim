@@ -2,8 +2,17 @@
 " Language:     Python
 " Maintainer:   Alan Chan
 "
-" Highly customized for my own eyes. Python 3 only, with support up to 3.7
-" features, such as f-strings, async keywords, etc.
+" Highly customized for my own eyes. Python 3 only. Parses and highlights
+" language features such as:
+" - Argument defaults
+" - Keyword arguments
+" - Tuple, list, dictionary
+" - Built-in constants, functions, exceptions
+"
+" Also picks up modern python features (up to 3.7), such as:
+" - Async
+" - F-strings replacement fields
+" - Typed python
 "
 
 if exists("b:current_syntax")
@@ -13,7 +22,7 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
-" {{{
+" {{{ Primary language features and keywords
 " Keep Python keywords in alphabetical order inside groups for easy
 " comparison with the table in the 'Python Language Reference'
 " https://docs.python.org/3/reference/lexical_analysis.html#keywords.
@@ -151,7 +160,7 @@ syn match   pythonFloat
       \ "\%(^\|\W\)\zs\d*\.\d\+\%([eE][+-]\=\d\+\)\=[jJ]\=\>"
 " }}}
 
-" Python built-in functions are in alphabetical order. {{{
+" Built-in functions are in alphabetical order. {{{
 " http://docs.python.org/3/library/constants.html
 " http://docs.python.org/3/library/functions.html
 "
@@ -215,7 +224,7 @@ syn keyword pythonExceptions    UserWarning Warning ResourceWarning
 " }}}
 " }}}
 
-" stdlib typing module (since Python 3.5) {{{
+" Stdlib typing module (since Python 3.5) {{{
 " special typing primitives
 syn keyword pythonBuiltinType   Any Callable ClassVar ForwardRef Generic
 syn keyword pythonBuiltinType   Optional Text Tuple Type TypeVar Union
