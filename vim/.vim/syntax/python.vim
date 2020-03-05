@@ -13,6 +13,7 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
+" {{{
 " Keep Python keywords in alphabetical order inside groups for easy
 " comparison with the table in the 'Python Language Reference'
 " https://docs.python.org/3/reference/lexical_analysis.html#keywords.
@@ -39,8 +40,10 @@ syn match   pythonPunctuation   ":"
 syn match   pythonPunctuation   ","
 
 " For copy-pasta, python primary is `\h\k*\(\.\h\k*\)*`
+" What is a python primary?
+" https://docs.python.org/3/reference/expressions.html?highlight=primary#primaries
 
-syn match   pythonFunctionCall  "\h\k*\ze("
+syn match   pythonFunctionCall  "\h\k*\ze(" nextgroup=pythonParen skipwhite
 syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\k*"
 syn match   pythonDeclClass     "\s*\%(class\s\+\)\@<=\h\k*"
 
@@ -249,6 +252,10 @@ syn match   pythonSpaceError    display "\t\+ "
 " Sync at the beginning of class, function, or method definition.
 syn sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s\+\h\w*\s*("
 
+syn keyword Todo    TODO NOTE FIXME REFACTOR HARDCODE HACK contained
+syn keyword Todo    Todo Note Fixme Refactor Hardcode Hack contained
+syn keyword Todo    todo note fixme refactor hardcode contained
+
 " Highlights {{{
 hi def link pythonComment           Comment
 hi def link pythonNumber            Number
@@ -271,8 +278,7 @@ hi def link pythonFunctionCall      Function
 hi def link pythonDecoratorCall     Function
 hi def link pythonDeclFunction      Function
 
-hi def link pythonKeywordArg        None
-hi def link pythonStringField       Identifier
+hi def link pythonKwarg             Identifier
 hi def link pythonTypeHint          Type
 hi def link pythonDeclClass         Type
 
