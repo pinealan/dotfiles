@@ -45,48 +45,41 @@ syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\k*"
 syn match   pythonDeclClass     "\s*\%(class\s\+\)\@<=\h\k*"
 
 syn region  pythonParen display matchgroup=pythonPunctuation
-        \ start='(' end=')' display contains=ALLBUT,pythonPrimaryT,pythonPrimaryD,pythonSQLKeyword
+    \ start='(' end=')' contains=TOP,pythonPrimaryT,pythonPrimaryD
 
-syn match   pythonKeywordArg /\i\+ *\ze=[^=]/ containedin=pythonParen contains=pythonPunctuation contained
-syn match   pythonKeywordArg /\i\+\ze: *\i* *=[^=]/ containedin=pythonParen contains=pythonPunctuation contained
+syn match   pythonKwarg /\i\+ *\ze=[^=]/ contained containedin=pythonParen contains=pythonPunctuation
+syn match   pythonKwarg /\i\+\ze: *\i* *=[^=]/ contained containedin=pythonParen contains=pythonPunctuation
 
 " Helper matchers
-syn match   pythonPrimaryD      /\v\h\k*(\.\h\k*)*/ contained
-syn match   pythonPrimaryT      /\v\h\k*(\.\h\k*)*/ contained
+syn match   pythonPrimaryD      /\v\h\k*(\.\h\k*)*/ contained contains=None
+syn match   pythonPrimaryT      /\v\h\k*(\.\h\k*)*/ contained contains=None
 
 syn match   pythonDecorator     "^ *@" nextgroup=pythonPrimaryD skipwhite
-syn match   pythonTypeHint      /\v(lambda( +\h\k*(, *\h\k*)*)?)@<!:/ display contains=pythonPunctuation nextgroup=pythonPrimaryT skipwhite
+syn match   pythonTypeHint      /\v(lambda( +\h\k*(, *\h\k*)*)?)@<!:/
+    \ display contains=pythonPunctuation nextgroup=pythonPrimaryT skipwhite
 syn match   pythonPunctuation   "->" display contains=pythonPunctuation nextgroup=pythonPrimaryT skipwhite
 
-
-" Comments
 syn match   pythonComment       "#.*$" contains=@Spell,Todo
 
+" }}}
 
 " Strings {{{
-syn region  pythonString matchgroup=pythonQuotes
-      \ start=+[fuU]\=\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
-      \ contains=pythonEscape,@Spell
+" Python 3 'text' -> u'text' are the same
+" https://www.python.org/dev/peps/pep-0414/
+"
+syn region  pythonString
+    \ start=+[uU]\=\z(['"]\)+ end=+\z1+ skip="\\\\\|\\\z1"
+    \ contains=pythonEscape,@Spell
 
-" Triple-quoted strings can contain doctests.
-syn region  pythonString matchgroup=pythonTripleQuotes
-      \ start=+[fuU]\=\z('''\)+ end="\z1" keepend
-      \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell
+syn region  pythonLongString
+    \ start=+[uU]\=\z("""\)+ end=+\z1+ keepend
+    \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell
 
-" Buffers expressions
-syn region  pythonBufferString
-      \ start=+b\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
-
-" Raw string expressions (often used for Regex)
 syn region  pythonRawString
-      \ start=+[fuU]\=[rR]\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
-      \ contains=@Spell
-syn region  pythonRawString
-      \ start=+[fuU]\=[rR]\z('''\|"""\)+ end="\z1" keepend
-      \ contains=pythonSpaceError,pythonDoctest,@Spell
+    \ start=+[bBrR]\{1,2}\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
 
-" DocStrings
-syn region  pythonDocstring start='"""' end='"""'
+syn region  pythonRawString
+    \ start=+[bBrR]\{1,2}\z('''\|"""\)+ end="\z1"
 
 syn match   pythonEscape        +\\[abfnrtv'"\\]+ contained
 syn match   pythonEscape        "\\\o\{1,3}" contained
@@ -96,15 +89,20 @@ syn match   pythonEscape        "\%(\\u\x\{4}\|\\U\x\{8}\)" contained
 " Python allows case-insensitive Unicode IDs: http://www.unicode.org/charts/
 syn match   pythonEscape        "\\N{\a\+\%(\s\a\+\)*}" contained
 syn match   pythonEscape        "\\$" contained
-
-" format strings
 syn match   pythonEscape        /%\(([^\)]*)\)\?[diouxXeEfFgGcrsa]/ contained contains=pythonOldStringField
-syn match   pythonEscape        /{[^{]*:\?}/ contained contains=pythonFStringField
 syn match   pythonOldStringField    /(\zs[^\)]*\ze)/ contained
-syn match   pythonFStringField      /{\zs[^{}]*/ contained
 
-hi link pythonOldStringField    pythonStringField
-hi link pythonFStringField      pythonStringField
+" f-strings
+syn region  pythonFString
+    \ start=+[fF]\z(['"]\)+ end=+\z1+ skip=+\\\\\|\\\z1+ keepend
+    \ contains=pythonEscape,pythonFEscape,@Spell
+
+syn region  pythonFLongString
+    \ start=+[fF]\z('''\|"""\)+ end=+\z1+ keepend
+    \ contains=pythonEscape,pythonFEscape,pythonSpaceError,@Spell
+
+syn match   pythonFEscape           /{[^{]\{-}:\?}/ contained contains=pythonFStringField
+syn match   pythonFStringField      /{\zs[^{}]*/ contained contains=None
 " }}}
 
 " Inline SQL {{{
@@ -114,7 +112,7 @@ syn keyword pythonSQLKeyword    PRIMARY UNIQUE FOREIGN REFERENCES VALUES contain
 syn keyword pythonSQLKeyword    IF NOT FROM WITH KEY EXISTS INDEXED INTO BY contained
 syn keyword pythonSQLType       NULL INT INTEGER REAL TEXT STRING FLOAT BLOB contained
 syn keyword pythonSQLType       DATABASE TABLE TRIGGER TRANSACTION INDEX VIEW contained
-syn region  pythonSQLstring start="'''" end="'''" contains=pythonSQLKeyword,pythonSQLType
+syn region  pythonSQLstring start="'''" end="'''" keepend contains=pythonSQLKeyword,pythonSQLType
 " }}}
 
 " Numbers {{{
@@ -282,18 +280,23 @@ hi def link pythonPrimaryD          Function
 hi def link pythonPrimaryT          Type
 
 hi def link pythonSelf              Special
-hi def link pythonQuotes            String
+
 hi def link pythonString            String
+hi def link pythonLongString        String
+hi def link pythonFString           String
+hi def link pythonFLongString       String
+
+hi def link pythonStringField       Identifier
+hi def link pythonOldStringField    pythonStringField
+hi def link pythonFStringField      pythonStringField
+
 hi def link pythonRawString         Constant
 hi def link pythonSQLString         Constant
-hi def link pythonBufferString      Constant
 
 hi def link pythonSQLKeyword        Statement
 hi def link pythonSQLType           Type
 
-hi def link pythonTripleQuotes      pythonQuotes
-hi def link pythonDocString         Comment
-
+hi def link pythonFEscape           Special
 hi def link pythonEscape            Special
 hi def link pythonBuiltin           Function
 hi def link pythonBuiltinType       Type
