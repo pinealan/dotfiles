@@ -47,6 +47,9 @@ syn match   pythonFunctionCall  "\h\k*\ze(" nextgroup=pythonParen skipwhite
 syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\k*"
 syn match   pythonDeclClass     "\s*\%(class\s\+\)\@<=\h\k*"
 
+syn region  pythonDict display matchgroup=pythonPunctuation
+    \ start='{' end='}' contains=TOP,pythonTypeHint
+
 syn region  pythonParen display matchgroup=pythonPunctuation
     \ start='(' end=')' contains=TOP,pythonPrimaryT,pythonPrimaryD
 
