@@ -89,7 +89,7 @@ syn region  pythonString
 
 syn region  pythonLongString
     \ start=+[uU]\=\z("""\)+ end=+\z1+ keepend
-    \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell
+    \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell,Todo
 
 syn region  pythonRawString
     \ start=+[bBrR]\{1,2}\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
