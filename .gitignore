@@ -1,10 +1,5 @@
-vim/.vim/bundle/
-vim/.vim/plugged/
-vim/.vim/.netrwhist
-tmux/.tmux/plugins/
-tmux/.tmux/resurrect/
-
 *.aux
 *.log
 *.txt
+.DS_Store
 .cpcache
