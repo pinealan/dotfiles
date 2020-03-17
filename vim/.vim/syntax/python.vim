@@ -44,7 +44,7 @@ syn keyword pythonStructure     class skipwhite
 syn keyword pythonStructure     def nextgroup=pythonFunctionCall skipwhite
 syn keyword pythonInclude       from import
 
-syn match   pythonDelimiter     "[,:=]"
+syn match   pythonDelimiter     "[,:=\(!=\)]"
 syn match   pythonDelimiter     "->" nextgroup=pythonPrimaryT skipwhite
 
 " For copy-pasta, python primary is `\h\k*\(\.\h\k*\)*`
