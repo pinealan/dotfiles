@@ -2,7 +2,7 @@
 
 conky.config = {
     alignment = 'top_right',
-	background = true,
+    background = true,
     update_interval = 1.0,
     cpu_avg_samples = 2,
     net_avg_samples = 2,
@@ -25,9 +25,9 @@ conky.config = {
     draw_graph_borders = false,
     draw_outline = false,
     draw_shades = false,
-    gap_x = 70,
+    gap_x = -1770,
     gap_y = 80,
-	minimum_width = 450,
+    minimum_width = 450,
     use_xft = true,
     xftalpha = 1,
 
@@ -62,26 +62,26 @@ ${color3}CPU 0 : ${color}${execi 10 sensors | grep "Core 0" | cut -c17-23} ${col
 ${color3}CPU 1 : ${color}${execi 10 sensors | grep "Core 1" | cut -c17-23} ${color4}${cpubar cpu1 10}
 ${color3}CPU 2 : ${color}${execi 10 sensors | grep "Core 2" | cut -c17-23} ${color4}${cpubar cpu2 10}
 ${color3}CPU 3 : ${color}${execi 10 sensors | grep "Core 3" | cut -c17-23} ${color4}${cpubar cpu3 10}
-${color3}GPU   : ${color}${execi 10 nvidia-settings -query GPUCoreTemp | head -n 2 | tail -n 1 | tr -s ' ' | cut -d ' ' -f5}0°C
+${color3}GPU   : ${color}${execi 10 nvidia-settings -query GPUCoreTemp | head -n 2 | tail -n 1 | tr -s ' ' | cut -d ' ' -f5}0 C
 ${color3}MEM: ${color}${mem} / ${memmax}  ${color4}${membar 10}
 
 ${color1}Top Processes: ${color2}$hr
-${color3}  PID ${alignr} Name               CPU%   MEM%
-${color2}${alignc}--- Top CPU ---
-${color}${top pid 1} ${alignr} ${top name 1} ${top cpu 1} ${top mem 1}
-${color}${top pid 2} ${alignr} ${top name 2} ${top cpu 2} ${top mem 2}
-${color}${top pid 3} ${alignr} ${top name 3} ${top cpu 3} ${top mem 3}
-${color2}${alignc}--- Top RAM ---
-${color}${top_mem pid 1} ${alignr} ${top_mem name 1} ${top_mem cpu 1} ${top_mem mem 1}
-${color}${top_mem pid 2} ${alignr} ${top_mem name 2} ${top_mem cpu 2} ${top_mem mem 2}
-${color}${top_mem pid 3} ${alignr} ${top_mem name 3} ${top_mem cpu 3} ${top_mem mem 3}
+${color3}  Usage% ${alignc} Name               PID
+${color2}  - CPU
+${color}${top cpu 1} ${alignc} ${top name 1} ${top pid 1}
+${color}${top cpu 2} ${alignc} ${top name 2} ${top pid 2}
+${color}${top cpu 3} ${alignc} ${top name 3} ${top pid 3}
+${color2}  - MEM
+${color}${top_mem mem 1} ${alignc} ${top_mem name 1} ${top_mem pid 1}
+${color}${top_mem mem 2} ${alignc} ${top_mem name 2} ${top_mem pid 2}
+${color}${top_mem mem 3} ${alignc} ${top_mem name 3} ${top_mem pid 3}
 
 ${color1}Filesystem: ${color2}$hr
 ${color3}/dev/nvme0: ${color}${fs_used /} / ${fs_size /}
 ${color4}${fs_bar 10 /}
 
 ${color1}Network: ${color2}$hr
-${color3}Default Gateway: ${color}$gw_ip 
+${color3}Default Gateway: ${color}$gw_ip
 ]] .. [[${if_up wlp2s0}
 ${color2}[ Wireless ]
 ${color3}Network Name: ${color}${execi 30 iwgetid -r} ${alignr} ${downspeed wlp2s0}

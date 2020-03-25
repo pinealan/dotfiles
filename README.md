@@ -98,3 +98,12 @@ To migrate existing vundle setups, you may use the provided
 `vim/.vim/migrate-vundle-plug` script to clean up old `bunlde` directory and
 install the plugins with vim-plug. Note that you will have to re-install
 YouCompleteMe in `plugged/YouoCompleteMe` after the migration.
+
+
+### Cinnamon
+This directory has only one file `desktop-keybindings.dconf`. This is _not_
+meant to be stowed. These are portable key bindings that can be imported using
+dconf. See [arch
+wiki](https://wiki.archlinux.org/index.php/Cinnamon#Portable_keybindings) or
+[cinnamon
+wiki(https://github.com/linuxmint/Cinnamon/wiki/Backing-up-and-restoring-your-cinnamon-settings-(dconf))
