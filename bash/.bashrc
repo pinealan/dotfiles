@@ -81,7 +81,7 @@ export LESS_TERMCAP_ue=$'\e[0m'             # end underline
 export LESS_TERMCAP_so=$'\e[30;48;5;214m'   # standout-mode, dunno what this do
 export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
 
-export FZF_DEFAULT_COMMAND="find . -type f -not -path '*node_modules*' -not -path '*coverage*'"
+export FZF_DEFAULT_COMMAND="fd . -L -t f -t l"
 export FZF_DEFAULT_OPTS="\
     --height=30% \
     --min-height=10 \
@@ -143,10 +143,10 @@ alias lhid='ls -la | grep " \\."'
 # System Admin
 alias h='htop'
 alias df='df -h'
-alias svim='sudo -E vim'
 alias lsblk='lsblk -o NAME,LABEL,FSTYPE,SIZE,TYPE,MOUNTPOINT'
 alias wa='which -a'
 alias sl='echo $SHLVL'
+
 ds () {
     if [[ -z $@ ]]; then
         args='*'
@@ -217,15 +217,18 @@ venv() {
 # JS
 alias nlg='npm list -g -depth=0'
 
-# CLI tools
-alias a='ranger'
-alias f='fzf'
-alias m='man'
-alias v='vim'
-alias nv='nvim'
-alias vd='vim -d'
+# CLI
 alias serve='python3 -m http.server 5000'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
+
+alias a='ranger'
+alias m='man'
+alias vim='nvim'
+alias vd='vim -d'
+alias svim='sudo env "PATH=$PATH" nvim'
+
+alias vz='vim $(fzf)'
+alias vs='vim -S Session.vim'
 
 # Fun
 alias mo='fortune | cowsay'
@@ -237,9 +240,6 @@ mooo () {
         sleep $((`echo $str | wc -c` / 40 + 2))
     done
 }
-
-alias vz='vim $(fzf)'
-alias vs='vim -S Session.vim'
 
 # ----- Source more -----
 
