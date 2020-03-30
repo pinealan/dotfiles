@@ -1,0 +1,3 @@
+#!/bin/bash
+char=${1:-"\\t"}
+sed "s/[^$char]//g" $2 | awk '{print length}'

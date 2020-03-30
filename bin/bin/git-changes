@@ -30,7 +30,7 @@ function main() {
     | awk '
 
     # Record the date of a new commit
-    $1 ~ /Date\:/ {
+    $1 ~ /Date:/ {
         date = ($6 " " $3 " " $4);
         commits[date] += 1;
     }

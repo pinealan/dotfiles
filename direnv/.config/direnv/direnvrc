@@ -3,6 +3,7 @@
 realpath() {
     [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
+
 use_nix() {
   local path="$(nix-instantiate --find-file nixpkgs)"
 
@@ -60,11 +61,12 @@ use_nix() {
     log_status renewed cache and derivation link
   fi
 
-  if [[ $# = 0 ]]; then
+  if [[ $# == 0 ]]; then
     watch_file default.nix
     watch_file shell.nix
   fi
 }
+
 # layout_python() {
 #     local old_env
 #     local python=${1:-python}
