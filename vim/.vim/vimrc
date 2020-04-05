@@ -271,6 +271,10 @@ noremap <c-p>      :cprev<cr>
 let mapleader=" "
 let maplocalleader=","
 
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+
 nnoremap <cr>                   o<esc>
 nnoremap <F9>                   :echo HighlightName()<cr>
 nnoremap <silent><leader>c      :echo HighlightName()<cr>

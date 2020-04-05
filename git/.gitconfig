@@ -49,6 +49,7 @@
 	cpa = cherry-pick --abort
 	cpc = cherry-pick --continue
 	d = diff
+	ds = diff --staged
 
 	m = merge
 	ma = merge --abort
