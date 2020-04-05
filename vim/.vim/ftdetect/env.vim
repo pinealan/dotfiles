@@ -1,1 +1,3 @@
-au BufRead,BufNewFile env.*,.env.*,*.env       set filetype=sh
+au BufRead,BufNewFile .envrc,env.*,.env.*,*.env       set filetype=sh
+
+" vim: filetype=vim
