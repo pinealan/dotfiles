@@ -274,23 +274,19 @@ let maplocalleader=","
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
+map <leader>g' :vsp \| edit %%
+map <leader>g" :sp  \| edit %%
 
 nnoremap <cr>                   o<esc>
-nnoremap <F9>                   :echo HighlightName()<cr>
-nnoremap <silent><leader>c      :echo HighlightName()<cr>
-nnoremap <leader>w              :w !sudo tee % > /dev/null
+nnoremap <leader>c              :echo HighlightName()<cr>
 nnoremap <leader>f              :set filetype=
 nnoremap <silent><leader>k      :FZF<cr>
-
-" create a fold for the pair of parenthesis/brackets under the cursor
-" Todo make this command into a safer function and with validation under cursor
-nnoremap <leader>o          v%zF
 
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
 nnoremap <silent> <leader>'     :vsp<cr>
 nnoremap <silent> <leader>"     :sp<cr>
-nnoremap <silent> <leader>b     :let g:bufExplorerSplitHorzSize = len(getbufinfo({'buflisted': 1})) + 4 \| BufExplorerHorizontalSplit<cr>
+
 nnoremap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
 nnoremap <silent> <leader>p     :setlocal paste!<cr>
@@ -313,6 +309,10 @@ nnoremap <leader>2
 " Plugin mapping
 nnoremap <silent> <leader>  :WhichKey '<Space>'<CR>
 
+nnoremap <silent> <leader>b
+    \ :let g:bufExplorerSplitHorzSize = len(getbufinfo({'buflisted': 1})) + 4 \|
+    \ BufExplorerHorizontalSplit<cr>
+
 nnoremap <c-e>          :NERDTreeToggle<cr>
 
 nnoremap <leader>t      :Tabularize /
@@ -327,9 +327,6 @@ nnoremap <leader>ga     :Gwrite<cr>
 nnoremap <leader>gl     :Glog<cr>
 nnoremap <leader>gb     :Git blame<cr>
 nnoremap <leader>gs     :G<cr>
-
-nnoremap bhs      :BufExplorerHorizontalSplit<cr>
-nnoremap bvs      :BufExplorerVerticalSplit<cr>
 
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
