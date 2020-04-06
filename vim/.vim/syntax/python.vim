@@ -85,7 +85,7 @@ syn match   pythonComment       "#.*$" contains=@Spell,Todo
 "
 syn region  pythonString
     \ start=+[uU]\=\z(['"]\)+ end=+\z1+ skip="\\\\\|\\\z1"
-    \ contains=pythonEscape,@Spell
+    \ contains=pythonEscape,pythonFEscape,@Spell
 
 syn region  pythonLongString
     \ start=+[uU]\=\z("""\)+ end=+\z1+ keepend
