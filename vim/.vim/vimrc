@@ -257,7 +257,7 @@ noremap {<s-k>      <c-w>9+
 noremap {<s-l>      <c-w>9>
 
 " Buffer/Tab/Quickfix navigation
-noremap <c-q>      :qa<cr>
+noremap <c-q>      :q<cr>
 noremap <c-s>      :update<cr>
 noremap <c-r>      :edit<cr>
 noremap <c-h>      :tabprev<cr>
@@ -272,10 +272,9 @@ let mapleader=" "
 let maplocalleader=","
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>e :edit %%
+map <leader>E :edit %%
 map <leader>v :view %%
-map <leader>g' :vsp \| edit %%
-map <leader>g" :sp  \| edit %%
+map <leader>e :vsp \| edit %%
 
 nnoremap <cr>                   o<esc>
 nnoremap <leader>c              :echo HighlightName()<cr>
@@ -291,6 +290,7 @@ nnoremap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResu
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
 nnoremap <silent> <leader>p     :setlocal paste!<cr>
 nnoremap <silent> <leader>q     :q<cr>
+nnoremap <silent> <leader>d     :bd<cr>
 
 " toggles
 nnoremap <leader>s          :setlocal spell!<cr>
