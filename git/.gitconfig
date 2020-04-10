@@ -25,6 +25,7 @@
 	ec = config --global --edit
 
 	a = add
+	aa = add --all
 	ap = add --patch
 
 	c = commit
