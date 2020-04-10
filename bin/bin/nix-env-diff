@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+nix-list() {
+    nix-env --list-generations
+}
+
+get_current_gen() {
+    if [ -z $1 ] ; then
+        # default to current generation of nix-env
+        nix-list | grep current | awk '{print $1}'
+    else
+        # get n-th last generation
+        nix-list | grep -B $1 current | head -n 1 | awk '{print $1}'
+    fi
+}
+
+verify_gen_exist() {
+    if ! nix-list | awk '{print $1}' | grep $1 > /dev/null ; then
+        echo "Error: generation $1 not found." >&2
+        exit 1
+    fi
+}
+
+# This function needs to be run one at a time.
+# It make changes to filesystem (i.e. touches /nix/var/<user>/profile symlink),
+# so running it multiple times in the same command could lead concurrent
+# invocation that fails due to a lock on the file
+function echo_nix_gen_pkgs() {
+    local original_gen=$(get_current_gen)
+    nix-env -G $1 2> /dev/null
+    nix-env -q
+    nix-env -G $original_gen 2> /dev/null
+}
+
+
+# Select diff-ed generations
+if [ -z $1 ] ; then
+    from_gen=$(get_current_gen 1)
+else
+    verify_gen_exist $1
+    from_gen=$1
+fi
+
+if [ -z $2 ] ; then
+    to_gen=$(get_current_gen)
+else
+    verify_gen_exist $2
+    to_gen=$2
+fi
+
+
+# Select diff command
+if hash icdiff 2>/dev/null ; then
+    cmd="icdiff -L $from_gen -L $to_gen"
+elif ! hash diff 2>/dev/null ; then
+    echo "Error: diff or icdiff not installed." >&2
+    exit 1
+elif hash grc 2>/dev/null ; then
+    cmd="echo 'Changes to installed nix packages $from_gen -> $to_gen' >&2; grc diff"
+else
+    cmd="echo 'Changes to installed nix packages $from_gen -> $to_gen' >&2; diff"
+fi
+
+
+# see function comments on separating these invocations
+old=$( echo_nix_gen_pkgs $from_gen )
+new=$( echo_nix_gen_pkgs $to_gen )
+
+# main
+$cmd <(echo $old | tr ' ' '\n') <(echo $new | tr ' ' '\n')
