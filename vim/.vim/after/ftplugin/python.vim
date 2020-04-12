@@ -3,6 +3,7 @@ setl tw=88
 
 nnoremap <localleader>k  :vimgrep /^ *class/g @%
 nnoremap <localleader>d  :call ToggleDocstring()<cr>
+nnoremap <localleader>b  :!black %<cr>
 
 function! ToggleDocstring()
     let l:hi = execute("highlight pythonDocString")

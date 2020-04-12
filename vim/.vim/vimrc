@@ -118,7 +118,7 @@ let g:goyo_width = 105
 " }}}
 Plug 'liuchengxu/vim-which-key'
 
-" Languages
+" Languages {{{
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'dag/vim-fish'
 Plug 'othree/html5.vim', { 'for': 'html' }
@@ -130,9 +130,10 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'jparise/vim-graphql'
 Plug 'lepture/vim-jinja'
-Plug 'mechatroner/rainbow_csv'
+" Plug 'mechatroner/rainbow_csv'
 Plug 'LnL7/vim-nix'
 Plug 'tpope/vim-fireplace'
+" }}}
 
 call plug#end()
 filetype plugin indent on
@@ -272,14 +273,14 @@ let mapleader=" "
 let maplocalleader=","
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>E :edit %%
+map <leader>e :edit %%
+map <leader>r :vsp \| edit %%
 map <leader>v :view %%
-map <leader>e :vsp \| edit %%
 
 nnoremap <cr>                   o<esc>
 nnoremap <leader>c              :echo HighlightName()<cr>
 nnoremap <leader>f              :set filetype=
-nnoremap <silent><leader>k      :FZF<cr>
+nnoremap <leader>k              :FZF<cr>
 
 nnoremap <silent> -             :call Underline('-')<cr>
 nnoremap <silent> =             :call Underline('=')<cr>
@@ -290,6 +291,7 @@ nnoremap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResu
 nnoremap <silent> <leader>n     :vnew \| set ft=markdown<cr>
 nnoremap <silent> <leader>p     :setlocal paste!<cr>
 nnoremap <silent> <leader>q     :q<cr>
+nnoremap <silent> <leader>w     :w<cr>
 nnoremap <silent> <leader>d     :bd<cr>
 
 " toggles
@@ -511,7 +513,7 @@ endfunction
 "
 augroup usr
     autocmd!
-    autocmd BufWrite    * call TryTrimSpace()
+    "autocmd BufWrite    * call TryTrimSpace()
     autocmd BufEnter    * silent call EnableFastEsc()
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
     autocmd BufRead     *.vim set foldmethod=marker
