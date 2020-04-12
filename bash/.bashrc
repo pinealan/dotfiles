@@ -194,6 +194,7 @@ alias dpsa='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}\t{{
 # Python
 alias p='python'
 alias p3='python3'
+alias pm='python -m'
 venv() {
     # use global venvs from $HOME if arg is provided
     if [[ -n $1 ]]; then

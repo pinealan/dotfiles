@@ -50,6 +50,7 @@
 	cpa = cherry-pick --abort
 	cpc = cherry-pick --continue
 	d = diff
+	dc = diff --staged # alias for alias
 	ds = diff --staged
 
 	m = merge
@@ -67,6 +68,7 @@
 	rom = rebase origin/master
 	rum = rebase upstream/master
 
+	sp = stash pop
 	s = status
 	f = fetch --tags
 	fo = fetch origin --tags
