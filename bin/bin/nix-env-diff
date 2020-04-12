@@ -25,13 +25,26 @@ verify_gen_exist() {
 # It make changes to filesystem (i.e. touches /nix/var/<user>/profile symlink),
 # so running it multiple times in the same command could lead concurrent
 # invocation that fails due to a lock on the file
-function echo_nix_gen_pkgs() {
+echo_nix_gen_pkgs() {
     local original_gen=$(get_current_gen)
     nix-env -G $1 2> /dev/null
     nix-env -q
     nix-env -G $original_gen 2> /dev/null
 }
 
+main() {
+    # Select diff command
+    if hash icdiff 2>/dev/null ; then
+        icdiff -L $from_gen -L $to_gen $1 $2
+    elif ! hash diff 2>/dev/null ; then
+        echo "Error: diff or icdiff not installed." >&2
+        exit 1
+    elif hash grc 2>/dev/null ; then
+        grc diff $1 $2 || true
+    else
+        diff $1 $2 || true
+    fi
+}
 
 # Select diff-ed generations
 if [ -z $1 ] ; then
@@ -49,22 +62,9 @@ else
 fi
 
 
-# Select diff command
-if hash icdiff 2>/dev/null ; then
-    cmd="icdiff -L $from_gen -L $to_gen"
-elif ! hash diff 2>/dev/null ; then
-    echo "Error: diff or icdiff not installed." >&2
-    exit 1
-elif hash grc 2>/dev/null ; then
-    cmd="echo 'Changes to installed nix packages $from_gen -> $to_gen' >&2; grc diff"
-else
-    cmd="echo 'Changes to installed nix packages $from_gen -> $to_gen' >&2; diff"
-fi
-
-
 # see function comments on separating these invocations
 old=$( echo_nix_gen_pkgs $from_gen )
 new=$( echo_nix_gen_pkgs $to_gen )
 
 # main
-$cmd <(echo $old | tr ' ' '\n') <(echo $new | tr ' ' '\n')
+main <(echo $old | tr ' ' '\n') <(echo $new | tr ' ' '\n')
