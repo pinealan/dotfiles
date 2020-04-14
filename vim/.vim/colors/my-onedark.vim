@@ -56,7 +56,7 @@ let s:content1      = { "x24": "#a9a9a9", "x8": "246" }
 let s:content2      = { "x24": "#828282", "x8": "241" }
 let s:content_inv   = { "x24": "#404040", "x8": "237" }
 let s:background0   = { "x24": "#28292c", "x8": "235" }
-let s:background1   = { "x24": "#333333", "x8": "237" }
+let s:background1   = { "x24": "#3f3f3f", "x8": "237" }
 let s:background2   = { "x24": "#222222", "x8": "234" }
 let s:_black        = { "x24": "#000000", "x8": "232" }
 

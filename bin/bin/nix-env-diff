@@ -35,7 +35,7 @@ echo_nix_gen_pkgs() {
 main() {
     # Select diff command
     if hash icdiff 2>/dev/null ; then
-        icdiff -L $from_gen -L $to_gen $1 $2
+        icdiff --color-map=description:cyan -L $from_gen -L $to_gen $1 $2
     elif ! hash diff 2>/dev/null ; then
         echo "Error: diff or icdiff not installed." >&2
         exit 1
