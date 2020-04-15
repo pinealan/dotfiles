@@ -120,8 +120,7 @@ rainbow () {
     }'
 }
 
-# Shell
-alias c='clear'
+# Builtins
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -130,7 +129,7 @@ cl() {
     cd $@ && ls -G;
 }
 
-# List
+# LS
 alias l='ls -l'
 alias lt='ls -t'
 alias la='ls -lA'
@@ -178,6 +177,15 @@ alias scenable='sudo systemctl enable'
 alias scdisable='sudo systemctl disable'
 alias scdr='sudo systemctl daemon-reload'
 
+# Vim
+alias v='vim'
+alias vim='nvim'
+alias vd='vim -d'
+alias svim='sudo env "PATH=$PATH" nvim'
+
+alias vz='vim $(fzf)'
+alias vs='vim -S Session.vim'
+
 # Tmux
 alias t='tmux new -A -n shell -s default'
 alias ta='tmux attach -t'
@@ -224,12 +232,6 @@ alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)";
 
 alias a='ranger'
 alias m='man'
-alias vim='nvim'
-alias vd='vim -d'
-alias svim='sudo env "PATH=$PATH" nvim'
-
-alias vz='vim $(fzf)'
-alias vs='vim -S Session.vim'
 
 # Fun
 alias mo='fortune | cowsay'

@@ -1,6 +1,5 @@
 ## These are the color and format definitions used by gitprompt.sh
 
-Time12a="\$(date +%H:%M)"
 PathShort="\w"
 
 # start of the git info string
@@ -43,7 +42,7 @@ GIT_PROMPT_COMMAND_FAIL="${Red}✘ _LAST_COMMAND_STATE_"
 
 # template for displaying the current virtual environment
 # use the placeholder _VIRTUALENV_ will be replaced with
-# the name of the current virtual environment (currently CONDA and VIRTUAL_ENV)
+# the names of active virtual environments
 GIT_PROMPT_VIRTUALENV="${BrightBlack}(_VIRTUALENV_)${ResetColor} "
 
 # template for displaying the current remote tracking branch
@@ -53,10 +52,10 @@ GIT_PROMPT_UPSTREAM=" (${Red}_UPSTREAM_${ResetColor})"
 
 ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
 GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_ ${BoldBlue}${PathShort}${ResetColor}"
-GIT_PROMPT_END_USER="\n${Cyan}${Time12a}${BoldYellow} $ ${ResetColor}"
+GIT_PROMPT_END_USER="\n${Cyan}${Yellow}$ ${ResetColor}"
 
 GIT_PROMPT_START_ROOT="${GIT_PROMPT_START_USER}"
-GIT_PROMPT_END_ROOT="\n${Cyan}${Time12a}${Magenta} # ${ResetColor}"
+GIT_PROMPT_END_ROOT="\n${Cyan}}${Magenta}# ${ResetColor}"
 
 # Please do not add colors to these symbols
 # The symbol for "n versions ahead of origin"
