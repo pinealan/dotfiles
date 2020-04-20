@@ -1,26 +1,9 @@
-{
-  :deps {
-    org.clojure/clojure {:mvn/version "1.10.1"}
-    nrepl {:mvn/version "0.6.0"}
-    reply {:mvn/version "0.4.3"}
-  }
+{:deps {org.clojure/clojure {:mvn/version "1.10.1"}}
 
-  :aliases {
-    :needle {
-      :extra-deps {needleware {:local/root "/Volumes/Data/alan/lab/needleware"}}
-      :main-opts [
-        "-m" "nrepl.cmdline"
-        "--middleware" "[needleware.print/print-eval]"
-      ]
-    }
-    :nrepl {
-      :extra-deps {cider/cider-nrepl {:mvn/version "0.22.4"}}
-      :main-opts [
-        "-m" "nrepl.cmdline"
-        "--middleware" "[cider.nrepl/cider-middleware]"
-        "-i"
-        "-C"
-      ]
-    }
-  }
-}
+ :aliases {:cljfmt {:extra-deps {cljfmt {:mvn/version "0.6.4"}}
+                    :main-opts ["-m" "cljfmt.main"]}
+
+           :nrepld {:extra-deps {nrepl {:mvn/version "0.6.0"}
+                                 cider/cider-nrepl {:mvn/version "0.22.4"}}
+                    :main-opts ["-m" "nrepl.cmdline"
+                                "--middleware" "[cider.nrepl/cider-middleware]"]}}}
