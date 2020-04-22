@@ -282,7 +282,7 @@ let maplocalleader=","
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e   :edit %%
-map <leader>r   :vsp \| edit %%
+"map <leader>r   :vsp \| edit %%
 map <leader>v   :view %%
 map <leader>o   :tab sp
 
@@ -297,7 +297,6 @@ nmap <silent> <leader>'     :vsp<cr>
 nmap <silent> <leader>"     :sp<cr>
 
 nmap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
-nmap <silent> <leader>n     :vnew \| set ft=markdown<cr>
 nmap <silent> <leader>p     :setlocal paste!<cr>
 nmap <silent> <leader>q     :q<cr>
 nmap <silent> <leader>w     :w<cr>
@@ -410,6 +409,11 @@ let g:sexp_mappings = {
     \ 'sexp_capture_prev_element':      '<(',
     \ 'sexp_capture_next_element':      '>)',
     \ }
+
+nmap <silent> <localleader>af   <Plug>(iced_eval)<Plug>(sexp_outer_list)
+nmap <silent> <localleader>aF   <Plug>(iced_eval_outer_top_list)
+nmap <silent> <localleader>rtf  <Plug>(iced_thread_first)
+nmap <silent> <localleader>rtl  <Plug>(iced_thread_last)
 
 " }}}
 

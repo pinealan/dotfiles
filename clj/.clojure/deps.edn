@@ -6,6 +6,15 @@
            :repl   {:extra-deps {nrepl {:mvn/version "0.7.0"}}
                     :main-opts ["-m" "nrepl.cmdline" "--connect" "--port"]}
 
+           :iced   {:extra-deps {nrepl {:mvn/version "0.7.0"}
+                                 cider/cider-nrepl {:mvn/version "0.24.0"}
+                                 refactor-nrepl {:mvn/version "2.5.0"}
+                                 iced-nrepl {:mvn/version "1.0.1"}
+                                 needleware {:local/root "/Volumes/Data/alan/lab/needleware"
+                                             :deps/manifest :deps}}
+                    :main-opts ["-m" "nrepl.cmdline"
+                                "--middleware" "[cider.nrepl/wrap-classpath,cider.nrepl/wrap-clojuredocs,cider.nrepl/wrap-complete,cider.nrepl/wrap-debug,cider.nrepl/wrap-format,cider.nrepl/wrap-info,cider.nrepl/wrap-macroexpand,cider.nrepl/wrap-ns,cider.nrepl/wrap-out,cider.nrepl/wrap-spec,cider.nrepl/wrap-test,cider.nrepl/wrap-trace,cider.nrepl/wrap-undef,cider.nrepl/wrap-xref,refactor-nrepl.middleware/wrap-refactor,iced.nrepl/wrap-iced,needleware.print/print-eval]"]}
+
            :nrepld {:extra-deps {nrepl {:mvn/version "0.7.0"}
                                  cider/cider-nrepl {:mvn/version "0.22.4"}}
                     :main-opts ["-m" "nrepl.cmdline"
