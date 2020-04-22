@@ -278,7 +278,7 @@ map <C-p>      :cprev<cr>
 
 " Command shortchuts
 let mapleader=" "
-let maplocalleader=","
+let maplocalleader=";"
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e   :edit %%
@@ -318,7 +318,7 @@ nmap <leader>2
 
 " Plugin mappings
 nmap <silent> <leader>          :WhichKey '<Space>'<CR>
-nmap <silent> <localleader>     :WhichKey ','<CR>
+nmap <silent> <localleader>     :WhichKey ';'<CR>
 "nmap <silent> <                 :WhichKey '<'<CR>
 "nmap <silent> >                 :WhichKey '>'<CR>
 
@@ -410,10 +410,12 @@ let g:sexp_mappings = {
     \ 'sexp_capture_next_element':      '>)',
     \ }
 
-nmap <silent> <localleader>af   <Plug>(iced_eval)<Plug>(sexp_outer_list)
-nmap <silent> <localleader>aF   <Plug>(iced_eval_outer_top_list)
-nmap <silent> <localleader>rtf  <Plug>(iced_thread_first)
-nmap <silent> <localleader>rtl  <Plug>(iced_thread_last)
+nmap <localleader>c    :IcedConnect<cr>
+nmap <localleader>%    :IcedRequire<cr>
+nmap <localleader>af   <Plug>(iced_eval)<Plug>(sexp_outer_list)
+nmap <localleader>aF   <Plug>(iced_eval_outer_top_list)
+nmap <localleader>rtf  :IcedThreadFirst<cr>
+nmap <localleader>rtl  :IcedThreadLast<cr>
 
 " }}}
 
