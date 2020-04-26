@@ -137,8 +137,14 @@ let g:bufExplorerFindActive=0
 let g:bufExplorerShowNoName=1
 let g:bufExplorerShowRelativePath=1
 let g:bufExplorerSortBy='name'
+let g:bufExplorerSplitOutPathName=1
 let g:bufExplorerSplitHorzSize=10
 let g:bufExplorerSplitVertSize=51
+hi link bufExplorerSortBy Comment
+hi link bufExplorerCurBuf String
+hi link bufExplorerActBuf Constant
+hi link bufExplorerHidBuf Tag
+hi link bufExplorerAltBuf String
 " }}}
 " Goyo {{{
 let g:goyo_width = 105

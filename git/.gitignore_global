@@ -7,3 +7,6 @@
 .netrwhist
 .vscode
 Session.vim
+SessionConfig.vim
+
+.nrepl-port
