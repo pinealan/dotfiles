@@ -74,9 +74,10 @@
 	fo = fetch origin --tags
 	fg = fetch github --tags
 	p = pull -v
-	pg = push github
 	po = push origin
+	pg = push github
 	pf = push -f
+	puo = push -u origin HEAD
 	pug = push -u github HEAD
 
 	mark = tag tmp

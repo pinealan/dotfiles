@@ -9,4 +9,5 @@
 Session.vim
 SessionConfig.vim
 
+.direnv
 .nrepl-port
