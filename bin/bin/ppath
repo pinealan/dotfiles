@@ -3,4 +3,4 @@
 import sys
 from pprint import pprint
 # skip the first path which is directory of this script
-pprint(sys.path[1:])
+pprint(sys.path)

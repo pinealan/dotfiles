@@ -598,7 +598,7 @@ endfunction
 "
 augroup usr
     autocmd!
-    "autocmd BufWrite    * call TryTrimSpace()
+    autocmd BufWrite    *.clj,*.py,*.js call TryTrimSpace()
     autocmd BufEnter    * silent call EnableFastEsc()
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
     autocmd BufRead     *.vim set foldmethod=marker
@@ -617,7 +617,7 @@ augroup END
 "
 syn keyword Todo    TODO NOTE FIXME REFACTOR HARDCODE HACK
 syn keyword Todo    Todo Note Fixme Refactor Hardcode Hack
-syn keyword Todo    todo note fixme refactor hardcode
+syn keyword Todo    todo note fixme refactor hardcode hack
 
 hi link Noise Special
 

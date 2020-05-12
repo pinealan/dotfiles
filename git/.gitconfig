@@ -93,7 +93,7 @@
 	lla = log --pretty=fl --graph --all
 	ls  = log --pretty=fl --graph --stat
 	lp  = log --pretty=fl --graph --patch
-	lr  = log --pretty=fo --graph --tags --remotes=github/release* --tags=v* --branches=release* master HEAD
+	lr  = log --pretty=fo --graph --tags --branches=release* --remotes=github/release* --tags=v* github/master master HEAD
 
 	g = grep --break --heading --line-number
 
