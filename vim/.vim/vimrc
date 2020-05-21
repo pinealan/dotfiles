@@ -176,6 +176,7 @@ let g:tex_no_error = 1
 "===[ Options ]=== {{{
 "
 set backspace=eol,start,indent
+set clipboard+=unnamedplus
 set cursorline
 set nofoldenable
 set foldmethod=indent
@@ -332,7 +333,9 @@ nmap <silent> <localleader>     :WhichKey ';'<CR>
 "nmap <silent> <                 :WhichKey '<'<CR>
 "nmap <silent> >                 :WhichKey '>'<CR>
 
-nnoremap <silent> <leader>b
+nnoremap <leader>bb     :b 
+
+nnoremap <silent> <leader>be
     \ :let g:bufExplorerSplitHorzSize = len(getbufinfo({'buflisted': 1})) + 4 \|
     \ BufExplorerHorizontalSplit<cr>
 
@@ -362,6 +365,7 @@ vmap <right>   <Plug>SchleppRight
 
 let g:tmux_navigator_no_mappings = 1
 
+" doing my own mappings because the defaults uses <leader>
 let g:sexp_enable_insert_mode_mappings = 0
 let g:sexp_mappings = {
     \ 'sexp_outer_list':                'af',
@@ -420,12 +424,28 @@ let g:sexp_mappings = {
     \ 'sexp_capture_next_element':      '>)',
     \ }
 
-nmap <localleader>c    :IcedConnect<cr>
-nmap <localleader>%    :IcedRequire<cr>
-nmap <localleader>af   <Plug>(iced_eval)<Plug>(sexp_outer_list)
-nmap <localleader>aF   <Plug>(iced_eval_outer_top_list)
+nmap <localleader>'    :IcedConnect<cr>
+nmap <localleader>rr   :IcedRequire<cr>
+nmap <localleader>ee   <Plug>(iced_eval)<Plug>(sexp_inner_element)
+nmap <localleader>ef   <Plug>(iced_eval)<Plug>(sexp_outer_list)
+nmap <localleader>eF   <Plug>(iced_eval_outer_top_list)
+nmap <localleader>epe  <Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)
+nmap <localleader>epf  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)
+nmap <localleader>epF  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)
+
 nmap <localleader>rtf  :IcedThreadFirst<cr>
 nmap <localleader>rtl  :IcedThreadLast<cr>
+nmap <localleader>rml  :IcedMoveToLet<cr>
+
+nmap <localleader>ss   :IcedStdoutBufferOpen<cr>
+nmap <localleader>sl   :IcedStdoutBufferClear<cr>
+nmap <localleader>sq   :IcedStdoutBufferClose<cr>
+
+nmap <localleader>==   :IcedFormat<cr>
+nmap <localleader>=G   :IcedFormatAll<cr>
+
+nmap <localleader>==   :IcedFormat<cr>
+nmap <localleader>=G   :IcedFormatAll<cr>
 
 " }}}
 
