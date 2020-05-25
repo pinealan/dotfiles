@@ -42,9 +42,7 @@ Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 Plug 'jparise/vim-graphql'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
-"Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme', 'lisp'] }
-"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'guns/vim-sexp'
+Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
 Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 
 "Plug 'mechatroner/rainbow_csv'
@@ -181,7 +179,7 @@ set cursorline
 set nofoldenable
 set foldmethod=indent
 set hidden
-set history=500
+set history=10000
 set hlsearch
 set incsearch
 set lazyredraw
@@ -251,15 +249,10 @@ set shellpipe=&>
 
 "===[ Mapping ]=== {{{
 "
+let g:mapleader=' '
+let g:maplocalleader=','
 
-" Homerow navigation
-"noremap H 0
-"noremap J L
-"noremap K H
-"noremap L $
-
-"noremap $ J
-"noremap 0 K
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Swap undo
 noremap    U   <C-r>
@@ -287,11 +280,8 @@ map <C-k>      :bprev<cr>
 map <C-n>      :cnext<cr>
 map <C-p>      :cprev<cr>
 
-" Command shortchuts
-let mapleader=" "
-let maplocalleader=";"
+" Mnemonic command shortcuts
 
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e   :edit %%
 "map <leader>r   :vsp \| edit %%
 map <leader>v   :view %%
@@ -307,43 +297,34 @@ nmap <silent> =             :call Underline('=')<cr>
 nmap <silent> <leader>'     :vsp<cr>
 nmap <silent> <leader>"     :sp<cr>
 
-nmap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
+"nmap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nmap <silent> <leader>p     :setlocal paste!<cr>
-nmap <silent> <leader>q     :q<cr>
-nmap <silent> <leader>w     :w<cr>
+nmap <silent> <leader>q     :quit<cr>
+"nmap <silent> <leader>w     :w<cr>
 nmap <silent> <leader>d     :bd<cr>
 
 " toggles
 nmap <leader>s          :setlocal spell!<cr>
 nmap <leader><tab>      :setlocal wrap!<cr>
 nmap <leader><leader>   :setlocal hlsearch!<cr>
-nmap <leader>j          :call ToggleFastEsc()<cr>
-nmap <leader>1
-    \ :set statusline=%!MyStatusLine('t') \|
-    \ echohl Debug \|
-    \ echo "Relative path (statusline)"<cr>
-nmap <leader>2
-    \ :set statusline=%!MyStatusLine('f') \|
-    \ echohl Debug \|
-    \ echo "Relative path (statusline)"<cr>
+nmap <leader>tj         :call ToggleFastEsc()<cr>
+nmap <leader>t1         :MyStatusLineLong<cr>
+nmap <leader>t2         :MyStatusLineShort<cr>
 
-" Plugin mappings
-nmap <silent> <leader>          :WhichKey '<Space>'<CR>
-nmap <silent> <localleader>     :WhichKey ';'<CR>
-"nmap <silent> <                 :WhichKey '<'<CR>
-"nmap <silent> >                 :WhichKey '>'<CR>
+" windows
+nmap <leader>ww     <C-w>P
+nmap <leader>wt     <C-w>T
+nmap <leader>w=     <C-w>=
 
-nnoremap <leader>bb     :b 
-
-nnoremap <silent> <leader>be
-    \ :let g:bufExplorerSplitHorzSize = len(getbufinfo({'buflisted': 1})) + 4 \|
-    \ BufExplorerHorizontalSplit<cr>
-
-nmap <C-e>          :NERDTreeToggle<cr>
-
-nmap <leader>t      :Tabularize /
+" buffers
+nmap <leader>bb     :buffer 
+nmap <leader>bd     :bd<cr>
+nmap <silent> <leader>bl    :Bhs<cr>
 
 nmap <F8>           :MarkdownPreview<cr>
+nmap <C-e>          :NERDTreeToggle<cr>
+
+nmap <leader>tt     :Tabularize /
 
 nmap <leader>yx     :YcmCompleter FixIt<cr>
 nmap <leader>yg     :YcmCompleter GoToDefinition<cr>
@@ -353,6 +334,36 @@ nmap <leader>ga     :Gwrite<cr>
 nmap <leader>gl     :Glog<cr>
 nmap <leader>gb     :Git blame<cr>
 nmap <leader>gs     :G<cr>
+
+" vim-which-key setup
+let g:which_key_disable_default_offset = 1
+
+let g:leader_map = {}
+let g:leader_map['b'] = {
+    \ 'name': '+buffer',
+    \ 'b': ':buffer',
+    \ 'd': 'delete-current-buffer',
+    \ 'l': 'list-buffers',
+    \ }
+let g:leader_map['w'] = {
+    \ 'name': '+window',
+    \ '=': 'balance-windows',
+    \ 't': 'move-to-new-tab',
+    \ 'w': 'other-window',
+    \ }
+let g:leader_map['g'] = { 'name': '+Git' }
+let g:leader_map['t'] = { 'name': '+toggle' }
+let g:leader_map['y'] = { 'name': '+Ycm' }
+
+let g:leader_map["'"] = "split-vertical"
+let g:leader_map['"'] = "split-horizontal"
+
+call which_key#register('<space>', "g:leader_map")
+
+nnoremap <silent> <leader>          :WhichKey '<space>'<CR>
+vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<CR>
+nnoremap <silent> <localleader>     :WhichKey ';'<CR>
+vnoremap <silent> <localleader>     :WhichKeyVisual ';'<CR>
 
 let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
@@ -451,8 +462,18 @@ nmap <localleader>=G   :IcedFormatAll<cr>
 
 "===[ Commands ]=== {{{
 "
-command! Bhs BufExplorerHorizontalSplit
 command! Bvs BufExplorerVerticalSplit
+command! Bhs
+    \ let g:bufExplorerSplitHorzSize = len(getbufinfo({'buflisted': 1})) + 4 |
+    \ BufExplorerHorizontalSplit
+command! MyStatusLineShort
+    \ set statusline=%!MyStatusLine('t') |
+    \ echohl Debug |
+    \ echo "Relative path (statusline)"
+command! MyStatusLineLong
+    \ set statusline=%!MyStatusLine('f') |
+    \ echohl Debug |
+    \ echo "Full path (statusline)"
 
 " }}}
 
