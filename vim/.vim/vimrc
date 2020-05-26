@@ -193,7 +193,7 @@ set showcmd
 set noshowmatch
 set showmode
 set sidescrolloff=3
-set timeoutlen=250
+set timeoutlen=200
 set whichwrap+=<,>,h,l
 
 set splitbelow
@@ -250,7 +250,7 @@ set shellpipe=&>
 "===[ Mapping ]=== {{{
 "
 let g:mapleader=' '
-let g:maplocalleader=','
+let g:maplocalleader=';'
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
@@ -285,12 +285,17 @@ map <C-p>      :cprev<cr>
 map <leader>e   :edit %%
 "map <leader>r   :vsp \| edit %%
 map <leader>v   :view %%
-map <leader>o   :tab sp
+map <leader>o   :tab sp<cr>
 
 nnoremap <cr>                   o<esc>
 nmap <leader>c              :echo HighlightName()<cr>
-nmap <leader>f              :set filetype=
-nmap <leader>k              :FZF<cr>
+
+nmap <leader>fb             :Buffers<cr>
+nmap <leader>ff             :FZF<cr>
+nmap <leader>fc             :Commands<cr>
+nmap <leader>fm             :Commits<cr>
+nmap <leader>fr             :Rg<cr>
+nmap <leader>ft             :Filetypes<cr>
 
 nmap <silent> -             :call Underline('-')<cr>
 nmap <silent> =             :call Underline('=')<cr>
@@ -298,21 +303,23 @@ nmap <silent> <leader>'     :vsp<cr>
 nmap <silent> <leader>"     :sp<cr>
 
 "nmap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
-nmap <silent> <leader>p     :setlocal paste!<cr>
 nmap <silent> <leader>q     :quit<cr>
 "nmap <silent> <leader>w     :w<cr>
 nmap <silent> <leader>d     :bd<cr>
 
 " toggles
-nmap <leader>s          :setlocal spell!<cr>
-nmap <leader><tab>      :setlocal wrap!<cr>
-nmap <leader><leader>   :setlocal hlsearch!<cr>
-nmap <leader>tj         :call ToggleFastEsc()<cr>
-nmap <leader>t1         :MyStatusLineLong<cr>
-nmap <leader>t2         :MyStatusLineShort<cr>
+nmap <silent> <leader>tp    :setlocal paste!<cr>
+nmap <silent> <leader>tj    :call ToggleFastEsc()<cr>
+nmap <silent> <leader>t1    :MyStatusLineLong<cr>
+nmap <silent> <leader>t2    :MyStatusLineShort<cr>
+
+nmap <silent> <leader>s         :setlocal spell!<cr>
+nmap <silent> <leader><tab>     :setlocal wrap!<cr>
+nmap <silent> <leader><leader>  :setlocal hlsearch!<cr>
 
 " windows
 nmap <leader>ww     <C-w>P
+nmap <leader>wo     :tab sp<cr>
 nmap <leader>wt     <C-w>T
 nmap <leader>w=     <C-w>=
 
@@ -339,26 +346,32 @@ nmap <leader>gs     :G<cr>
 let g:which_key_disable_default_offset = 1
 
 let g:leader_map = {}
+let g:leader_map['name'] = 'root'
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
-    \ 'b': ':buffer',
     \ 'd': 'delete-current-buffer',
     \ 'l': 'list-buffers',
     \ }
 let g:leader_map['w'] = {
     \ 'name': '+window',
     \ '=': 'balance-windows',
+    \ 'o': 'move-to-new-tab',
     \ 't': 'move-to-new-tab',
     \ 'w': 'other-window',
     \ }
-let g:leader_map['g'] = { 'name': '+Git' }
+let g:leader_map['f'] = { 'name': '+fzf' }
+let g:leader_map['g'] = { 'name': '+git' }
 let g:leader_map['t'] = { 'name': '+toggle' }
-let g:leader_map['y'] = { 'name': '+Ycm' }
+let g:leader_map['y'] = { 'name': '+ycm' }
 
 let g:leader_map["'"] = "split-vertical"
 let g:leader_map['"'] = "split-horizontal"
+let g:leader_map[' '] = "toggle-local-hlsearch"
+let g:leader_map['s'] = "toggle-local-spell"
 
-call which_key#register('<space>', "g:leader_map")
+let g:leader_map['<Tab>'] = "toggle-local-wrap"
+
+call which_key#register(' ', "g:leader_map")
 
 nnoremap <silent> <leader>          :WhichKey '<space>'<CR>
 vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<CR>
@@ -444,6 +457,11 @@ nmap <localleader>epe  <Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)
 nmap <localleader>epf  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)
 nmap <localleader>epF  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)
 
+nmap <localleader>jl   :IcedJumpToLet<cr>
+
+nmap <localleader>raa  :IcedAddArity<cr>
+nmap <localLeader>ram  :IcedAddMissing<cr>
+nmap <localLeader>ran  :IcedAddNs<cr>
 nmap <localleader>rtf  :IcedThreadFirst<cr>
 nmap <localleader>rtl  :IcedThreadLast<cr>
 nmap <localleader>rml  :IcedMoveToLet<cr>
