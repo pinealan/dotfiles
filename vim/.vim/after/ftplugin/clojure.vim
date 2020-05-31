@@ -93,4 +93,17 @@ nmap <localleader>sq   :IcedStdoutBufferClose<cr>
 nmap <localleader>==   :IcedFormat<cr>
 nmap <localleader>=G   :IcedFormatAll<cr>
 
+nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
+
 let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
+
+function! AltSrcTestPath()
+    let path = expand('%:r')
+    if path =~# '^src'
+        return substitute( path.'_test.clj','^src','test','' )
+    elseif path =~# '^test'
+        return substitute( substitute(path,'_test','',''),'^test','src','' ).'.clj'
+    else
+        echom 'File path does not start with "src" or "test"'
+        return expand('%')
+endfunction

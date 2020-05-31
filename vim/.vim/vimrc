@@ -314,8 +314,8 @@ nmap <silent> <leader>tj    :call ToggleFastEsc()<cr>
 nmap <silent> <leader>t1    :MyStatusLineLong<cr>
 nmap <silent> <leader>t2    :MyStatusLineShort<cr>
 
-nmap <silent> <leader>s         :setlocal spell!<cr>
-nmap <silent> <leader><tab>     :setlocal wrap!<cr>
+nmap <silent> <leader>ts    :setlocal spell!<cr>
+nmap <silent> <leader>tw    :setlocal wrap!<cr>
 nmap <silent> <leader><leader>  :setlocal hlsearch!<cr>
 
 " windows
@@ -441,7 +441,7 @@ function! ShortCwd(len)
 endfunction
 
 function! PathFilename(path)
-    let name=split(a:path, '/')
+    let name = split(a:path, '/')
     if len(name) == 0
         return '[no name]'
     elseif len(name) < 4
