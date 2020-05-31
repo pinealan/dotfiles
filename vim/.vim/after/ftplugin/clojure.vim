@@ -73,6 +73,11 @@ nmap <localleader>hs   :IcedSourcePopupShow<cr>
 
 nmap <localleader>jl   :IcedJumpToLet<cr>
 
+nmap <localleader>tt   :IcedTestUnderCursor<cr>
+nmap <localLeader>tn   :IcedTestNs<cr>
+nmap <localleader>tr   :IcedTestRedo<cr>
+nmap <localLeader>tl   :IcedTestRerunLast<cr>
+
 nmap <localleader>raa  :IcedAddArity<cr>
 nmap <localLeader>ram  :IcedAddMissing<cr>
 nmap <localLeader>ran  :IcedAddNs<cr>
@@ -87,3 +92,5 @@ nmap <localleader>sq   :IcedStdoutBufferClose<cr>
 
 nmap <localleader>==   :IcedFormat<cr>
 nmap <localleader>=G   :IcedFormatAll<cr>
+
+let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
