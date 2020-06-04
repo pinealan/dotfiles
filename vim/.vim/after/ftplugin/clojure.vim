@@ -67,6 +67,8 @@ nmap <localleader>epe  <Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)
 nmap <localleader>epf  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)
 nmap <localleader>epF  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)
 
+xmap <localleader>ee   :IcedEvalVisual<cr>
+
 nmap K                 :IcedDocumentPopupOpen<cr>
 nmap <localleader>hc   :IcedClojureDocsOpen<cr>
 nmap <localleader>hs   :IcedSourcePopupShow<cr>

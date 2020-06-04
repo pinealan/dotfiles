@@ -250,8 +250,8 @@ set shellpipe=&>
 
 "===[ Mapping ]=== {{{
 "
-let g:mapleader=' '
-let g:maplocalleader=';'
+let g:mapleader=" "
+let g:maplocalleader="'"
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
@@ -283,9 +283,9 @@ map <C-p>      :cprev<cr>
 
 " Mnemonic command shortcuts
 
-map <leader>e   :edit %%
-"map <leader>r   :vsp \| edit %%
-map <leader>v   :view %%
+map <leader>ee  :edit %%
+map <leader>eh  :edit ~/
+map <leader>ev  :view %%
 map <leader>o   :tab sp<cr>
 
 nnoremap <cr>                   o<esc>
@@ -376,8 +376,8 @@ call which_key#register(' ', "g:leader_map")
 
 nnoremap <silent> <leader>          :WhichKey '<space>'<CR>
 vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<CR>
-nnoremap <silent> <localleader>     :WhichKey ';'<CR>
-vnoremap <silent> <localleader>     :WhichKeyVisual ';'<CR>
+nnoremap <silent> <localleader>     :WhichKey "'"<CR>
+vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
 
 let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
