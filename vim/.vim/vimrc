@@ -373,11 +373,8 @@ let g:leader_map['s'] = "toggle-local-spell"
 let g:leader_map['<Tab>'] = "toggle-local-wrap"
 
 call which_key#register(' ', "g:leader_map")
-
 nnoremap <silent> <leader>          :WhichKey '<space>'<CR>
 vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<CR>
-nnoremap <silent> <localleader>     :WhichKey "'"<CR>
-vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
 
 let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"

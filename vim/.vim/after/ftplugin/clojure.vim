@@ -12,60 +12,49 @@ let g:sexp_mappings = {
     \ 'sexp_inner_element':             'ie',
     \ 'sexp_move_to_prev_bracket':      '[f',
     \ 'sexp_move_to_next_bracket':      ']f',
-    \ 'sexp_move_to_prev_element_head': 'B',
-    \ 'sexp_move_to_next_element_head': 'W',
-    \ 'sexp_move_to_prev_element_tail': 'gE',
-    \ 'sexp_move_to_next_element_tail': 'E',
     \ 'sexp_flow_to_prev_close':        '{',
     \ 'sexp_flow_to_next_open':         ')',
     \ 'sexp_flow_to_prev_open':         '(',
     \ 'sexp_flow_to_next_close':        '}',
-    \ 'sexp_flow_to_prev_leaf_head':    'b',
-    \ 'sexp_flow_to_next_leaf_head':    'w',
-    \ 'sexp_flow_to_prev_leaf_tail':    'ge',
-    \ 'sexp_flow_to_next_leaf_tail':    'e',
+    \ 'sexp_flow_to_prev_leaf_head':    'B',
+    \ 'sexp_flow_to_next_leaf_head':    'W',
+    \ 'sexp_flow_to_next_leaf_tail':    'E',
     \ 'sexp_move_to_prev_top_element':  '[[',
     \ 'sexp_move_to_next_top_element':  ']]',
     \ 'sexp_select_prev_element':       '[e',
     \ 'sexp_select_next_element':       ']e',
-    \ 'sexp_indent':                    '==',
-    \ 'sexp_indent_top':                '=-',
     \ 'sexp_round_head_wrap_list':      '<localleader>I',
     \ 'sexp_round_tail_wrap_list':      '<localleader>A',
+    \ 'sexp_round_head_wrap_element':   '<localleader>i',
+    \ 'sexp_round_tail_wrap_element':   '<localleader>a',
     \ 'sexp_square_head_wrap_list':     '<localleader>[',
     \ 'sexp_square_tail_wrap_list':     '<localleader>]',
     \ 'sexp_curly_head_wrap_list':      '<localleader>{',
     \ 'sexp_curly_tail_wrap_list':      '<localleader>}',
-    \ 'sexp_round_head_wrap_element':   '<localleader>i',
-    \ 'sexp_round_tail_wrap_element':   '<localleader>a',
-    \ 'sexp_square_head_wrap_element':  '<localleader>e[',
-    \ 'sexp_square_tail_wrap_element':  '<localleader>e]',
-    \ 'sexp_curly_head_wrap_element':   '<localleader>e{',
-    \ 'sexp_curly_tail_wrap_element':   '<localleader>e}',
     \ 'sexp_insert_at_list_head':       '<localleader>h',
     \ 'sexp_insert_at_list_tail':       '<localleader>l',
-    \ 'sexp_splice_list':               '<localleader>s',
-    \ 'sexp_convolute':                 '<localleader>?',
+    \ 'sexp_splice_list':               '<localleader>p',
+    \ 'sexp_convolute':                 '<localleader>c',
     \ 'sexp_raise_list':                '<localleader>O',
     \ 'sexp_raise_element':             '<localleader>o',
     \ 'sexp_swap_list_backward':        '<F',
     \ 'sexp_swap_list_forward':         '>F',
     \ 'sexp_swap_element_backward':     '<E',
     \ 'sexp_swap_element_forward':      '>E',
-    \ 'sexp_emit_head_element':         '>(',
-    \ 'sexp_emit_tail_element':         '<)',
-    \ 'sexp_capture_prev_element':      '<(',
-    \ 'sexp_capture_next_element':      '>)',
+    \ 'sexp_emit_head_element':         '><',
+    \ 'sexp_emit_tail_element':         '<>',
+    \ 'sexp_capture_prev_element':      '<<',
+    \ 'sexp_capture_next_element':      '>>',
     \ }
 
 nmap <localleader>'    :IcedConnect<cr>
 nmap <localleader>rr   :IcedRequire<cr>
 nmap <localleader>ee   <Plug>(iced_eval)<Plug>(sexp_inner_element)
 nmap <localleader>ef   <Plug>(iced_eval)<Plug>(sexp_outer_list)
-nmap <localleader>eF   <Plug>(iced_eval_outer_top_list)
+nmap <localleader>et   <Plug>(iced_eval_outer_top_list)
 nmap <localleader>epe  <Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)
 nmap <localleader>epf  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)
-nmap <localleader>epF  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)
+nmap <localleader>ept  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)
 
 xmap <localleader>ee   :IcedEvalVisual<cr>
 
@@ -96,6 +85,22 @@ nmap <localleader>==   :IcedFormat<cr>
 nmap <localleader>=G   :IcedFormatAll<cr>
 
 nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
+
+let g:localleader_map = {}
+let g:localleader_map['e'] = { 'name': '+iced-eval' }
+let g:localleader_map['r'] = { 'name': '+iced-refactor' }
+let g:localleader_map['s'] = { 'name': '+iced-stdout' }
+let g:localleader_map['t'] = { 'name': '+iced-test' }
+
+let g:localleader_map['c'] = 'convolute'
+let g:localleader_map['p'] = 'splice'
+let g:localleader_map['o'] = 'raise-element'
+let g:localleader_map['O'] = 'raise-list'
+let g:localleader_map['<Tab>'] = "edit-test-file"
+
+call which_key#register("'", "g:localleader_map")
+nnoremap <silent> <localleader>     :WhichKey "'"<CR>
+vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
 
 let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
 
