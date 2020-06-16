@@ -292,11 +292,11 @@ nnoremap <cr>                   o<esc>
 nmap <leader>c              :echo HighlightName()<cr>
 
 nmap <leader>fb             :Buffers<cr>
-nmap <leader>ff             :FZF<cr>
+nmap <leader>ff             :Files<cr>
 nmap <leader>fc             :Commands<cr>
 nmap <leader>fm             :Commits<cr>
-nmap <leader>fr             :Rg<cr>
-nmap <leader>ft             :Filetypes<cr>
+nmap <leader>fg             :Rg<cr>
+nmap <leader>fp             :Filetypes<cr>
 
 nmap <silent> -             :call Underline('-')<cr>
 nmap <silent> =             :call Underline('=')<cr>

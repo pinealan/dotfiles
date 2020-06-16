@@ -183,7 +183,6 @@ alias vim='nvim'
 alias vd='vim -d'
 alias svim='sudo env "PATH=$PATH" nvim'
 
-alias vz='vim $(fzf)'
 alias vs='vim -S Session.vim'
 
 # Tmux
@@ -192,8 +191,6 @@ alias ta='tmux attach -t'
 alias tn='tmux new -s'
 alias tl='tmux ls'
 alias tk='tmux kill-server'
-
-alias tig='tig --all'
 
 # Docker
 alias dps='docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
@@ -228,7 +225,6 @@ alias nlg='npm list -g -depth=0'
 
 # CLI
 alias serve='python3 -m http.server 5000'
-alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"; rm $HOME/.rangerdir'
 
 alias a='ranger'
 alias m='man'
