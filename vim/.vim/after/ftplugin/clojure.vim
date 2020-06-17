@@ -10,15 +10,15 @@ let g:sexp_mappings = {
     \ 'sexp_inner_string':              'is',
     \ 'sexp_outer_element':             'ae',
     \ 'sexp_inner_element':             'ie',
-    \ 'sexp_move_to_prev_bracket':      '[f',
-    \ 'sexp_move_to_next_bracket':      ']f',
     \ 'sexp_flow_to_prev_close':        '{',
     \ 'sexp_flow_to_next_open':         ')',
     \ 'sexp_flow_to_prev_open':         '(',
     \ 'sexp_flow_to_next_close':        '}',
-    \ 'sexp_flow_to_prev_leaf_head':    'B',
-    \ 'sexp_flow_to_next_leaf_head':    'W',
-    \ 'sexp_flow_to_next_leaf_tail':    'E',
+    \ 'sexp_flow_to_prev_leaf_head':    'b',
+    \ 'sexp_flow_to_next_leaf_head':    'w',
+    \ 'sexp_flow_to_next_leaf_tail':    'e',
+    \ 'sexp_move_to_prev_bracket':      '[f',
+    \ 'sexp_move_to_next_bracket':      ']f',
     \ 'sexp_move_to_prev_top_element':  '[[',
     \ 'sexp_move_to_next_top_element':  ']]',
     \ 'sexp_select_prev_element':       '[e',
@@ -47,42 +47,49 @@ let g:sexp_mappings = {
     \ 'sexp_capture_next_element':      '>>',
     \ }
 
-nmap <localleader>'    :IcedConnect<cr>
-nmap <localleader>rr   :IcedRequire<cr>
-nmap <localleader>ee   <Plug>(iced_eval)<Plug>(sexp_inner_element)
-nmap <localleader>ef   <Plug>(iced_eval)<Plug>(sexp_outer_list)
-nmap <localleader>et   <Plug>(iced_eval_outer_top_list)
-nmap <localleader>epe  <Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)
-nmap <localleader>epf  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)
-nmap <localleader>ept  <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)
+nnoremap <buffer>       W w
+xnoremap <buffer>       W w
+nnoremap <buffer>       B b
+xnoremap <buffer>       B b
+nnoremap <buffer>       E e
+xnoremap <buffer>       E e
 
-xmap <localleader>ee   :IcedEvalVisual<cr>
+nmap <localleader>'     :IcedConnect<cr>
+nmap <localleader>rr    :IcedRequire<cr>
+nmap <localleader>ee    <Plug>(iced_eval)<Plug>(sexp_inner_element)
+nmap <localleader>ef    <Plug>(iced_eval)<Plug>(sexp_outer_list)
+nmap <localleader>et    <Plug>(iced_eval_outer_top_list)
+nmap <localleader>epe   <Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)
+nmap <localleader>epf   <Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)
+nmap <localleader>ept   <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)
 
-nmap K                 :IcedDocumentPopupOpen<cr>
-nmap <localleader>hc   :IcedClojureDocsOpen<cr>
-nmap <localleader>hs   :IcedSourcePopupShow<cr>
+xmap <localleader>ee    :IcedEvalVisual<cr>
 
-nmap <localleader>jl   :IcedJumpToLet<cr>
+nmap K                  :IcedDocumentPopupOpen<cr>
+nmap <localleader>hc    :IcedClojureDocsOpen<cr>
+nmap <localleader>hs    :IcedSourcePopupShow<cr>
 
-nmap <localleader>tt   :IcedTestUnderCursor<cr>
-nmap <localLeader>tn   :IcedTestNs<cr>
-nmap <localleader>tr   :IcedTestRedo<cr>
-nmap <localLeader>tl   :IcedTestRerunLast<cr>
+nmap <localleader>jl    :IcedJumpToLet<cr>
 
-nmap <localleader>raa  :IcedAddArity<cr>
-nmap <localLeader>ram  :IcedAddMissing<cr>
-nmap <localLeader>ran  :IcedAddNs<cr>
-nmap <localleader>rtf  :IcedThreadFirst<cr>
-nmap <localleader>rtl  :IcedThreadLast<cr>
-nmap <localleader>ref  :IcedExtractFunction<cr>
-nmap <localleader>rml  :IcedMoveToLet<cr>
+nmap <localleader>tt    :IcedTestUnderCursor<cr>
+nmap <localLeader>tn    :IcedTestNs<cr>
+nmap <localleader>tr    :IcedTestRedo<cr>
+nmap <localLeader>tl    :IcedTestRerunLast<cr>
 
-nmap <localleader>ss   :IcedStdoutBufferOpen<cr>
-nmap <localleader>sl   :IcedStdoutBufferClear<cr>
-nmap <localleader>sq   :IcedStdoutBufferClose<cr>
+nmap <localleader>raa   :IcedAddArity<cr>
+nmap <localLeader>ram   :IcedAddMissing<cr>
+nmap <localLeader>ran   :IcedAddNs<cr>
+nmap <localleader>rtf   :IcedThreadFirst<cr>
+nmap <localleader>rtl   :IcedThreadLast<cr>
+nmap <localleader>ref   :IcedExtractFunction<cr>
+nmap <localleader>rml   :IcedMoveToLet<cr>
 
-nmap <localleader>==   :IcedFormat<cr>
-nmap <localleader>=G   :IcedFormatAll<cr>
+nmap <localleader>ss    :IcedStdoutBufferOpen<cr>
+nmap <localleader>sl    :IcedStdoutBufferClear<cr>
+nmap <localleader>sq    :IcedStdoutBufferClose<cr>
+
+nmap <localleader>==    :IcedFormat<cr>
+nmap <localleader>=G    :IcedFormatAll<cr>
 
 nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 
