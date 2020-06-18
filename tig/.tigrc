@@ -43,12 +43,12 @@ color "parent "			yellow  default
 color "tree "			yellow  default
 color "author "			color241	default
 color "committer "		magenta	default
-color "    Signed-off-by"	cyan    default
+color "    Signed-off-by"	cyan	default
 color "    Acked-by"		cyan	default
 color "    Tested-by"		cyan	default
 color "    Reviewed-by"		cyan	default
 color default			default	default	normal
-color cursor			default black
+color cursor			default	color235
 color status			green	default
 color delimiter			magenta	default
 color date			color67 default
