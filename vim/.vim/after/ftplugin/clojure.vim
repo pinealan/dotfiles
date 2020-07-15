@@ -1,6 +1,7 @@
 " doing my own mappings because the defaults uses <Leader> or <M-*>
 "
 let g:sexp_enable_insert_mode_mappings = 0
+let g:sexp_insert_after_wrap = 0
 let g:sexp_mappings = {
     \ 'sexp_outer_list':                'af',
     \ 'sexp_inner_list':                'if',
@@ -23,14 +24,18 @@ let g:sexp_mappings = {
     \ 'sexp_move_to_next_top_element':  ']]',
     \ 'sexp_select_prev_element':       '[e',
     \ 'sexp_select_next_element':       ']e',
-    \ 'sexp_round_head_wrap_list':      '<localleader>I',
-    \ 'sexp_round_tail_wrap_list':      '<localleader>A',
-    \ 'sexp_round_head_wrap_element':   '<localleader>i',
-    \ 'sexp_round_tail_wrap_element':   '<localleader>a',
-    \ 'sexp_square_head_wrap_list':     '<localleader>[',
-    \ 'sexp_square_tail_wrap_list':     '<localleader>]',
-    \ 'sexp_curly_head_wrap_list':      '<localleader>{',
-    \ 'sexp_curly_tail_wrap_list':      '<localleader>}',
+    \ 'sexp_round_head_wrap_list':      '',
+    \ 'sexp_round_tail_wrap_list':      '',
+    \ 'sexp_square_head_wrap_list':     '',
+    \ 'sexp_square_tail_wrap_list':     '',
+    \ 'sexp_curly_head_wrap_list':      '',
+    \ 'sexp_curly_tail_wrap_list':      '',
+    \ 'sexp_round_head_wrap_element':   '',
+    \ 'sexp_round_tail_wrap_element':   '',
+    \ 'sexp_square_head_wrap_element':  '',
+    \ 'sexp_square_tail_wrap_element':  '',
+    \ 'sexp_curly_head_wrap_element':   '',
+    \ 'sexp_curly_tail_wrap_element':   '',
     \ 'sexp_insert_at_list_head':       '<localleader>h',
     \ 'sexp_insert_at_list_tail':       '<localleader>l',
     \ 'sexp_splice_list':               '<localleader>p',
@@ -93,16 +98,39 @@ nmap <localleader>=G    :IcedFormatAll<cr>
 
 nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 
+nmap <localleader>w(    m`<Plug>(sexp_round_head_wrap_element)g``
+nmap <localleader>w[    m`<Plug>(sexp_square_head_wrap_element)g``
+nmap <localleader>w{    m`<Plug>(sexp_curly_head_wrap_element)g``
+nmap <localleader>w)    m`<Plug>(sexp_round_head_wrap_list)g``
+nmap <localleader>w]    m`<Plug>(sexp_square_head_wrap_list)g``
+nmap <localleader>w}    m`<Plug>(sexp_curly_head_wrap_list)g``
+nmap <localleader>Wi(   <Plug>(sexp_round_head_wrap_element)a
+nmap <localleader>Wa(   <Plug>(sexp_round_tail_wrap_element)i
+nmap <localleader>Wi[   <Plug>(sexp_square_head_wrap_element)a
+nmap <localleader>Wa[   <Plug>(sexp_square_tail_wrap_element)i
+nmap <localleader>Wi{   <Plug>(sexp_curly_head_wrap_element)a
+nmap <localleader>Wa{   <Plug>(sexp_curly_tail_wrap_element)i
+nmap <localleader>Wi)   <Plug>(sexp_round_head_wrap_list)a
+nmap <localleader>Wa)   <Plug>(sexp_round_tail_wrap_list)i
+nmap <localleader>Wi]   <Plug>(sexp_square_head_wrap_list)a
+nmap <localleader>Wa]   <Plug>(sexp_square_tail_wrap_list)i
+nmap <localleader>Wi}   <Plug>(sexp_curly_head_wrap_list)a
+nmap <localleader>Wa}   <Plug>(sexp_curly_tail_wrap_list)i
+
 let g:localleader_map = {}
 let g:localleader_map['e'] = { 'name': '+iced-eval' }
 let g:localleader_map['r'] = { 'name': '+iced-refactor' }
 let g:localleader_map['s'] = { 'name': '+iced-stdout' }
 let g:localleader_map['t'] = { 'name': '+iced-test' }
+let g:localleader_map['w'] = { 'name': '+sexp-wrap' }
+let g:localleader_map['W'] = { 'name': '+sexp-wrap-insert' }
 
-let g:localleader_map['c'] = 'convolute'
-let g:localleader_map['p'] = 'splice'
-let g:localleader_map['o'] = 'raise-element'
-let g:localleader_map['O'] = 'raise-list'
+let g:localleader_map['c'] = 'sexp-convolute'
+let g:localleader_map['p'] = 'sexp-splice'
+let g:localleader_map['h'] = 'sexp-insert-at-head'
+let g:localleader_map['l'] = 'sexp-insert-at-tail'
+let g:localleader_map['o'] = 'sexp-raise-element'
+let g:localleader_map['O'] = 'sexp-raise-list'
 let g:localleader_map['<Tab>'] = "edit-test-file"
 
 call which_key#register("'", "g:localleader_map")

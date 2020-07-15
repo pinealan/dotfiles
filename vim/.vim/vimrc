@@ -360,6 +360,8 @@ let g:leader_map['w'] = {
     \ 't': 'move-to-new-tab',
     \ 'w': 'other-window',
     \ }
+let g:leader_map['e'] = { 'name': '+edit' }
+let g:leader_map['h'] = { 'name': '+gitgutter' }
 let g:leader_map['f'] = { 'name': '+fzf' }
 let g:leader_map['g'] = { 'name': '+git' }
 let g:leader_map['t'] = { 'name': '+toggle' }
