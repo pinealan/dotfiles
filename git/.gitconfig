@@ -88,12 +88,14 @@
 
 	# log
 	l   = log --pretty=fo --graph
-	ll  = log --pretty=fl --graph
 	la  = log --pretty=fo --graph --all
 	lla = log --pretty=fl --graph --all
 	ls  = log --pretty=fl --graph --stat
 	lp  = log --pretty=fl --graph --patch
-	lr  = log --pretty=fo --graph --tags --branches=release* --remotes=github/release* --tags=v* github/master master HEAD
+	lrelease = log --pretty=fo --graph --tags --branches=release* --remotes=github/release* --tags=v* github/master master HEAD
+	llocal   = log --pretty=fo --graph --tags --branches=* HEAD
+	ll  = llocal
+	lr  = lrelease
 
 	g = grep --break --heading --line-number
 
