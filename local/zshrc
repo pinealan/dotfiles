@@ -1,0 +1,40 @@
+# POXIS Builtins
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# LS
+alias l='ls -l'
+alias lt='ls -t'
+alias la='ls -lA'
+alias ld='ls -al | grep " \."'
+alias las='ls -lASF'
+alias ll='LC_COLLATE=en_US.ascii ls -l'
+alias lss='ls --color | less -R'
+alias lhid='ls -la | grep " \\."'
+
+# System Admin
+alias h='htop'
+alias df='df -h'
+alias wa='which -a'
+alias sl='echo $SHLVL'
+
+# Vim
+alias v='vim'
+alias vim='nvim'
+alias vd='vim -d'
+alias svim='sudo env "PATH=$PATH" nvim'
+alias vs='vim -S Session.vim'
+
+# Tmux
+alias t='tmux new -A -n shell -s default'
+alias ta='tmux attach -t'
+alias tn='tmux new -s'
+alias tl='tmux ls'
+alias tk='tmux kill-server'
+
+# Docker
+alias dps='docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dpsa='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
+

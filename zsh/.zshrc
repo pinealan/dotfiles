@@ -35,13 +35,5 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-
-# Move to ~/.local/.zshrc
-alias ls='ls -Gh'
-alias l='ls -lo'
-alias la='ls -loa'
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
+# Machine local zshrc
+[ -f ~/.local/.zshrc ] && . ~/.local/.zshrc

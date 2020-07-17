@@ -1,0 +1,23 @@
+export PAGER=bat
+export VISUAL=nvim
+export EDITOR=nvim
+
+export LSCOLORS='ExgxfxDxcxdxBxabagacad'
+export ANDROID_HOME=/Users/alan/Library/Android/sdk
+
+prepend_path=
+prepend_path+=$HOME/.cargo/bin:
+prepend_path+=$ANDROID_HOME/tools:
+prepend_path+=$ANDROID_HOME/platform-tools:
+
+PATH=${prepend_path}${PATH}
+export PATH
+
+NIX_SH="$HOME/.nix-profile/etc/profile.d/nix.sh"
+[ -e $NIX_SH ] && . $NIX_SH
+
+NVM_SH="$HOME/.nvm/nvm.sh"
+[ -s $NVM_SH ] && . $NVM_SH
+
+NIX_DAEMON="/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+[ -e $NIX_DAEMON ] && . $NIX_DAEMON

@@ -1,0 +1,135 @@
+# ----- Aliases -----
+
+# POXIS Builtins
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# LS
+alias l='ls -l'
+alias lt='ls -t'
+alias la='ls -lA'
+alias ld='ls -al | grep " \."'
+alias las='ls -lASF'
+alias ll='LC_COLLATE=en_US.ascii ls -l'
+alias lss='ls --color | less -R'
+alias lhid='ls -la | grep " \\."'
+
+ds () {
+    if [[ -z $@ ]]; then
+        args='*'
+    else
+        args=$@
+    fi
+    du -sh $args | sort -h
+}
+
+frequent_commands () {
+    n=10
+
+    while getopts "n:" opt; do
+        case "$opt" in
+        n)
+            n=$OPTARG
+            ;;
+        esac
+    done
+
+    history | awk '{ if (length($2) > 1) print $2}' | sort | uniq -c | sort -nr | head -n"$n" | nl
+}
+
+# System Admin
+alias h='htop'
+alias df='df -h'
+alias wa='which -a'
+alias sl='echo $SHLVL'
+
+# GNU/Linux Coreutils
+alias ls='ls --color=auto -h --group-directories-first'
+
+alias lsblk='lsblk -o NAME,LABEL,FSTYPE,SIZE,TYPE,MOUNTPOINT'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias rgrep='rgrep --color=auto'
+
+# Systemd
+alias scs='systemctl status'
+alias scstart='sudo systemctl start'
+alias scstop='sudo systemctl stop'
+alias screstart='sudo systemctl restart'
+alias scenable='sudo systemctl enable'
+alias scdisable='sudo systemctl disable'
+alias scdr='sudo systemctl daemon-reload'
+
+# Vim
+alias v='vim'
+alias vim='nvim'
+alias vd='vim -d'
+alias svim='sudo env "PATH=$PATH" nvim'
+alias vs='vim -S Session.vim'
+
+# Tmux
+alias t='tmux new -A -n shell -s default'
+alias ta='tmux attach -t'
+alias tn='tmux new -s'
+alias tl='tmux ls'
+alias tk='tmux kill-server'
+
+# Docker
+alias dps='docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dpsa='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
+
+# Python
+alias p='python'
+alias p3='python3'
+alias pm='python -m'
+venv() {
+    # use global venvs from $HOME if arg is provided
+    if [[ -n $1 ]]; then
+        . ~/venv/$1/bin/activate
+        return
+    fi
+
+    # look for a venv in current directory
+    for dir in "venv" ".venv" "env" ".env"; do
+        if [[ -d $dir ]]; then
+            . $dir/bin/activate
+            return
+        fi
+    done
+
+    # exit with error
+    echo ERROR: Unable to find local environment >&2
+    return 127
+}
+
+# JS
+alias nlg='npm list -g -depth=0'
+
+# CLI
+alias serve='python3 -m http.server 5000'
+
+alias a='ranger'
+alias m='man'
+
+# Fun
+alias mo='fortune | cowsay'
+alias moo='mo'
+mooo () {
+    while true; do
+        str=`fortune -a`
+        echo $str | cowsay
+        sleep $((`echo $str | wc -c` / 40 + 2))
+    done
+}
+
+# Git
+function git-watch() {
+    while [ 1 ]
+    do
+        gw --all -n ${1:-55}
+    done
+}
