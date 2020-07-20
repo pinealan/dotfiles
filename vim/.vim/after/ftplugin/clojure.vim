@@ -52,6 +52,7 @@ let g:sexp_mappings = {
     \ 'sexp_capture_next_element':      '>>',
     \ }
 
+" Normal whitespace-based word navigation
 nnoremap <buffer>       W w
 xnoremap <buffer>       W w
 nnoremap <buffer>       B b
@@ -98,18 +99,27 @@ nmap <localleader>=G    :IcedFormatAll<cr>
 
 nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 
+" Mappings to just wrap element/list and keep cursor at the same spot
 nmap <localleader>w(    m`<Plug>(sexp_round_head_wrap_element)g``
 nmap <localleader>w[    m`<Plug>(sexp_square_head_wrap_element)g``
 nmap <localleader>w{    m`<Plug>(sexp_curly_head_wrap_element)g``
 nmap <localleader>w)    m`<Plug>(sexp_round_head_wrap_list)g``
 nmap <localleader>w]    m`<Plug>(sexp_square_head_wrap_list)g``
 nmap <localleader>w}    m`<Plug>(sexp_curly_head_wrap_list)g``
+
+" Mappings to wrap element and insert
 nmap <localleader>Wi(   <Plug>(sexp_round_head_wrap_element)a
 nmap <localleader>Wa(   <Plug>(sexp_round_tail_wrap_element)i
 nmap <localleader>Wi[   <Plug>(sexp_square_head_wrap_element)a
 nmap <localleader>Wa[   <Plug>(sexp_square_tail_wrap_element)i
 nmap <localleader>Wi{   <Plug>(sexp_curly_head_wrap_element)a
 nmap <localleader>Wa{   <Plug>(sexp_curly_tail_wrap_element)i
+
+" Duplicate alias for wrapping as list
+nmap <localleader>WI    <Plug>(sexp_round_head_wrap_element)a
+nmap <localleader>WA    <Plug>(sexp_round_tail_wrap_element)i
+
+" Mappings to wrap list and insert
 nmap <localleader>Wi)   <Plug>(sexp_round_head_wrap_list)a
 nmap <localleader>Wa)   <Plug>(sexp_round_tail_wrap_list)i
 nmap <localleader>Wi]   <Plug>(sexp_square_head_wrap_list)a
