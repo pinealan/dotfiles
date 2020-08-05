@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+for t in `git tag -l | sort -V --reverse`; do
+    echo "";
+    echo "------------------------------------";
+    git cat-file -p `git rev-parse $t`; 
+done;
