@@ -21,15 +21,3 @@ alias gw='{ ls .git/{index,FETCH_HEAD,HEAD}; find .git/refs; } | entr -c git l'
 alias gwlatest='gw -n 50'
 alias gwlocal='gw -n 50 --branches master HEAD'
 alias gwan='gw --all -n'
-
-git-show-file() {
-    if [[ -z $1 ]]; then
-        echo ERROR: First arguemnt must be file path >&2
-        return 1
-    fi
-
-    path=$1
-    shift
-
-    git show $(git log --follow --pretty=format:%H $path) $@
-}

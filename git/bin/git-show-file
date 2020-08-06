@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [[ -z $1 ]]; then
+    echo ERROR: First arguemnt must be file path >&2
+    exit 1
+fi
+
+path=$1
+shift
+
+git show $(git log --follow --pretty=format:%H $path) $@
