@@ -84,11 +84,13 @@ stty -ixon
 # ----- Source more -----
 
 # Execute optional extensions
-if [ -d ~/.bash_plugins ]; then
-    for f in ~/.bash_plugins/*; do
+local_bash_plugins="$HOME/.local/bash_plugins"
+if [ -d $local_bash_plugins ]; then
+    for f in $local_bash_plugins/*; do
         [ -f $f ] && . $f
     done
 fi
 
 # Machine local bashrc
-[ -f ~/.local/.bashrc ] && . ~/.local/.bashrc
+local_bashrc="$HOME/.local/bashrc"
+[ -f $local_bashrc ] && . $local_bashrc

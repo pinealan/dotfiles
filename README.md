@@ -107,3 +107,18 @@ dconf. See [arch
 wiki](https://wiki.archlinux.org/index.php/Cinnamon#Portable_keybindings) or
 [cinnamon
 wiki(https://github.com/linuxmint/Cinnamon/wiki/Backing-up-and-restoring-your-cinnamon-settings-(dconf))
+
+
+## Shell profiles
+
+Call graph:
+
+    .bash_profile -> .profile
+    .bash_profile -> .bashrc
+    .bashrc       -> .local/bashrc
+    .bashrc       -> .local/bash_plugins
+
+    .zshenv       -> .profile
+    .zshrc        -> .local/zshrc
+
+    .profile      -> .local/profile

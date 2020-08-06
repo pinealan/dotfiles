@@ -11,4 +11,5 @@ export FZF_DEFAULT_OPTS="\
     --preview='head -n $COLUMNS {}'"
 
 # execute local machine-specific .profile if it exists
-[ -f "$HOME/.local/.profile" ] && . "$HOME/.local/.profile"
+local_profile="$HOME/.local/profile"
+[ -f  $local_profile ] && . $local_profile

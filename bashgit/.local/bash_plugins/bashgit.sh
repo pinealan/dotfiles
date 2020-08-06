@@ -4,4 +4,7 @@ GIT_PROMPT_IGNORE_SUBMODULES=1
 GIT_PROMPT_SHOW_UNTRACKED_FILES=no
 GIT_PROMPT_SHOW_UPSTREAM=1
 
-. ~/.bash_plugins/bashgit/gitprompt.sh
+if command -v git &> /dev/null
+then
+    . $HOME/.local/bash_plugins/bashgit/gitprompt.sh
+fi
