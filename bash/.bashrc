@@ -13,7 +13,7 @@ HISTCONTROL=ignoreboth:ignoredups:erasedups
 HISTSIZE=5000
 
 # history file size, average cmd is 30 characters, should only be ~1.5MB
-HISTFILESIZE=50000
+HISTFILESIZE=100000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
