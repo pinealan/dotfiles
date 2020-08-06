@@ -3,12 +3,13 @@
 *.swp
 
 # Editors
-.idea
+# .idea
 .netrwhist
 .vscode
 Session.vim
 SessionConfig.vim
 
 .direnv
-.envrc
-.nrepl-port
+.env
+# .envrc
+# .nrepl-port
