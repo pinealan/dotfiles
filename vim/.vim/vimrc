@@ -17,7 +17,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'zirrostig/vim-schlepp'
-Plug 'jlanzarotta/bufexplorer'
+"Plug 'jlanzarotta/bufexplorer'
 Plug 'jiangmiao/auto-pairs'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -131,20 +131,6 @@ let g:ycm_extra_conf_vim_data = ['&filetype']
 let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
-" }}}
-" BufExplorer {{{
-let g:bufExplorerFindActive=0
-let g:bufExplorerShowNoName=1
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerSortBy='name'
-let g:bufExplorerSplitOutPathName=1
-let g:bufExplorerSplitHorzSize=10
-let g:bufExplorerSplitVertSize=51
-hi link bufExplorerSortBy Comment
-hi link bufExplorerCurBuf String
-hi link bufExplorerActBuf Constant
-hi link bufExplorerHidBuf Tag
-hi link bufExplorerAltBuf String
 " }}}
 " Goyo {{{
 let g:goyo_width = 105
@@ -327,7 +313,6 @@ nmap <leader>w=     <C-w>=
 " buffers
 nmap <leader>bb     :buffer 
 nmap <leader>bd     :bd<cr>
-nmap <silent> <leader>bl    :Bhs<cr>
 
 nmap <F8>           :MarkdownPreview<cr>
 nmap <C-e>          :NERDTreeToggle<cr>
@@ -341,6 +326,8 @@ nmap <leader>yr     :YcmCompleter GoToReferences<cr>
 nmap <leader>ga     :Gwrite<cr>
 nmap <leader>gl     :Glog<cr>
 nmap <leader>gb     :Git blame<cr>
+nmap <leader>gdd    :Git diff<cr>
+nmap <leader>gdv    :Gvdiffsplit<cr>
 nmap <leader>gs     :G<cr>
 
 " vim-which-key setup
@@ -393,10 +380,6 @@ let g:tmux_navigator_no_mappings = 1
 
 "===[ Commands ]=== {{{
 "
-command! Bvs BufExplorerVerticalSplit
-command! Bhs
-    \ let g:bufExplorerSplitHorzSize = len(getbufinfo({'buflisted': 1})) + 4 |
-    \ BufExplorerHorizontalSplit
 command! MyStatusLineShort
     \ set statusline=%!MyStatusLine('t') |
     \ echohl Debug |
