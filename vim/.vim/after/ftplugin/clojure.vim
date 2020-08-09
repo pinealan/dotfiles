@@ -20,6 +20,10 @@ let g:sexp_mappings = {
     \ 'sexp_flow_to_next_leaf_tail':    'e',
     \ 'sexp_move_to_prev_bracket':      '[f',
     \ 'sexp_move_to_next_bracket':      ']f',
+    \ 'sexp_move_to_prev_element_head': 'B',
+    \ 'sexp_move_to_next_element_head': 'W',
+    \ 'sexp_move_to_prev_element_tail': 'gE',
+    \ 'sexp_move_to_next_element_tail': 'E',
     \ 'sexp_move_to_prev_top_element':  '[[',
     \ 'sexp_move_to_next_top_element':  ']]',
     \ 'sexp_select_prev_element':       '[e',
@@ -53,12 +57,12 @@ let g:sexp_mappings = {
     \ }
 
 " Normal whitespace-based word navigation
-nnoremap <buffer>       W w
-xnoremap <buffer>       W w
-nnoremap <buffer>       B b
-xnoremap <buffer>       B b
-nnoremap <buffer>       E e
-xnoremap <buffer>       E e
+" nnoremap <buffer>       W w
+" xnoremap <buffer>       W w
+" nnoremap <buffer>       B b
+" xnoremap <buffer>       B b
+" nnoremap <buffer>       E e
+" xnoremap <buffer>       E e
 
 nmap <localleader>'     :IcedConnect<cr>
 nmap <localleader>rr    :IcedRequire<cr>

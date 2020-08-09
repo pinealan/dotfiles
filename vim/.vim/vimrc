@@ -245,6 +245,9 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 noremap    U   <C-r>
 noremap <C-r>     U
 
+" keep commands from moving the cursor around
+noremap J    m`Jxg``
+
 " Windows navigation
 map <silent> <M-h>   :TmuxNavigateLeft<cr>
 map <silent> <M-j>   :TmuxNavigateDown<cr>
