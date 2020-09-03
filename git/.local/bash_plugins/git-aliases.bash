@@ -5,7 +5,7 @@
 alias d='git diff'
 alias s='git status'
 alias g='git'
-alias gg='git la'
+alias gg='git llocal'
 alias ga='git add .'
 alias gs='git stash'
 alias gsp='git stash pop'
