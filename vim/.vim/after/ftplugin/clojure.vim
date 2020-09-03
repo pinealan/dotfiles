@@ -5,8 +5,8 @@ let g:sexp_insert_after_wrap = 0
 let g:sexp_mappings = {
     \ 'sexp_outer_list':                'af',
     \ 'sexp_inner_list':                'if',
-    \ 'sexp_outer_top_list':            'aF',
-    \ 'sexp_inner_top_list':            'iF',
+    \ 'sexp_outer_top_list':            'at',
+    \ 'sexp_inner_top_list':            'it',
     \ 'sexp_outer_string':              'as',
     \ 'sexp_inner_string':              'is',
     \ 'sexp_outer_element':             'ae',

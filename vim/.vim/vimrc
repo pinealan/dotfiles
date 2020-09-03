@@ -246,7 +246,7 @@ noremap    U   <C-r>
 noremap <C-r>     U
 
 " keep commands from moving the cursor around
-noremap J    m`Jxg``
+noremap J    m`J:s/ *$//<cr>g``
 
 " Windows navigation
 map <silent> <M-h>   :TmuxNavigateLeft<cr>
@@ -331,7 +331,12 @@ nmap <leader>gl     :Glog<cr>
 nmap <leader>gb     :Git blame<cr>
 nmap <leader>gdd    :Git diff<cr>
 nmap <leader>gdv    :Gvdiffsplit<cr>
-nmap <leader>gs     :G<cr>
+nmap <leader>gs     :Git<cr>
+
+" Already provided by default from gitgutter
+" nmap <leader>hp    <Plug>(GitGutterPreviewHunk)
+" nmap <leader>hs    <Plug>(GitGutterStageHunk)
+" nmap <leader>hu    <Plug>(GitGutterUndoHunk)
 
 " vim-which-key setup
 let g:which_key_disable_default_offset = 1
@@ -365,8 +370,8 @@ let g:leader_map['s'] = "toggle-local-spell"
 let g:leader_map['<Tab>'] = "toggle-local-wrap"
 
 call which_key#register(' ', "g:leader_map")
-nnoremap <silent> <leader>          :WhichKey '<space>'<CR>
-vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<CR>
+nnoremap <silent> <leader>          :WhichKey '<space>'<cr>
+vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<cr>
 
 let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
