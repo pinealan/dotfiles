@@ -8,9 +8,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeTabsToggle'] }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'google/vim-searchindex'
 Plug 'godlygeek/tabular'
 Plug 'Valloric/YouCompleteMe'
@@ -89,6 +89,10 @@ let NERDTreeIgnore = exact_dir_names + exact_file_names + file_suffixes
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 let NERDTreeSortHiddenFirst=1
+" }}}
+" Git Gutter {{{
+let g:gitgutter_map_keys = 0
+let g:gitgutter_preview_win_floating = 1
 " }}}
 " YouCompleteMe {{{
 let g:ycm_min_num_of_chars_for_completion = 2
@@ -270,18 +274,21 @@ map <C-k>      :bprev<cr>
 map <C-n>      :cnext<cr>
 map <C-p>      :cprev<cr>
 
-" Mnemonic command shortcuts
+nnoremap <cr>                   o<esc>
+
+nmap <silent> -             :call Underline('-')<cr>
+nmap <silent> =             :call Underline('=')<cr>
+
+nmap <F8>                   :MarkdownPreview<cr>
+nmap <silent> <C-e>         :NERDTreeToggle<cr>
+
+" Mnemonic leader mapping to commands
 
 map <leader>ee  :edit %%
 map <leader>eh  :edit ~/
 map <leader>ev  :view %%
-map <leader>o   :tab sp<cr>
 
-nnoremap <cr>                   o<esc>
 nmap <leader>c              :echo HighlightName()<cr>
-
-nmap <silent> -             :call Underline('-')<cr>
-nmap <silent> =             :call Underline('=')<cr>
 nmap <silent> <leader>'     :vsp<cr>
 nmap <silent> <leader>"     :sp<cr>
 
@@ -298,16 +305,20 @@ nmap <silent> <leader>t2    :MyStatusLineShort<cr>
 
 nmap <silent> <leader>ts    :setlocal spell!<cr>
 nmap <silent> <leader>tw    :setlocal wrap!<cr>
-nmap <silent> <leader>t<leader> :setlocal hlsearch!<cr>
+nmap <silent> <leader>th    :setlocal hlsearch!<cr>
 
 " windows
+nmap <leader>wh     <C-w>h
+nmap <leader>wj     <C-w>j
+nmap <leader>wk     <C-w>k
+nmap <leader>wl     <C-w>l
+nmap <leader>ws     :vsp<cr>
+nmap <leader>wS     :sp<cr>
+nmap <leader>wo     <C-w>T
 nmap <leader>ww     <C-w>P
-nmap <leader>wo     :tab sp<cr>
-nmap <leader>wt     <C-w>T
 nmap <leader>w=     <C-w>=
 
 " buffers
-nmap <leader>bb     :buffer 
 nmap <leader>bd     :bd<cr>
 
 " fuzzy finders, mapped to prefixes of corresponding search target
@@ -315,78 +326,104 @@ nmap <leader>bb             :Buffers<cr>
 nmap <leader>gg             :Commits<cr>
 nmap <leader>gf             :GFiles<cr>
 nmap <leader>ff             :Files<cr>
-nmap <leader>rf             :History<cr>
-nmap <leader>r:             :History:<cr>
-nmap <leader>r/             :History/<cr>
-nmap <leader>//             :Rg<cr>
-nmap <leader>/B             :Lines<cr>
-nmap <leader>/b             :BLines<cr>
+nmap <leader>s/             :History/<cr>
+nmap <leader>s:             :History:<cr>
+nmap <leader>sB             :Lines<cr>
+nmap <leader>sb             :BLines<cr>
+nmap <leader>sf             :History<cr>
+nmap <leader>ss             :Rg<cr>
 nmap <leader>:              :Commands<cr>
 
-nmap <F8>           :MarkdownPreview<cr>
-nmap <C-e>          :NERDTreeToggle<cr>
-
-nmap <leader>tt     :Tabularize /
+nmap <leader>xt     :Tabularize /
 
 nmap <leader>yx     :YcmCompleter FixIt<cr>
 nmap <leader>yg     :YcmCompleter GoToDefinition<cr>
 nmap <leader>yr     :YcmCompleter GoToReferences<cr>
 
 nmap <leader>ga     :Gwrite<cr>
-nmap <leader>gl     :Glog<cr>
 nmap <leader>gb     :Git blame<cr>
-nmap <leader>gdd    :Git diff<cr>
-nmap <leader>gdv    :Gvdiffsplit<cr>
+nmap <leader>gd     :Git diff<cr>
+nmap <leader>gl     :Glog<cr>
 nmap <leader>gs     :Git<cr>
+nmap <leader>gv     :Gvdiffsplit<cr>
 
-" Already provided by default from gitgutter
-" nmap <leader>hp    <Plug>(GitGutterPreviewHunk)
-" nmap <leader>hs    <Plug>(GitGutterStageHunk)
-" nmap <leader>hu    <Plug>(GitGutterUndoHunk)
+nmap <leader>gp     <Plug>(GitGutterPreviewHunk)
+nmap <leader>gS     <Plug>(GitGutterStageHunk)
+nmap <leader>gU     <Plug>(GitGutterUndoHunk)
 
 " vim-which-key setup
 let g:which_key_disable_default_offset = 1
 
 let g:leader_map = {}
-let g:leader_map['name'] = 'root'
+
+let g:leader_map["'"] = "Split vertical"
+let g:leader_map['"'] = "Split horizontal"
+let g:leader_map[':'] = "Search commands"
+let g:leader_map['c'] = "Show highlight group"
+let g:leader_map['d'] = "Unload buffer"
+let g:leader_map['q'] = "Quit window"
+
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
-    \ 'd': 'delete-current-buffer',
-    \ 'l': 'list-buffers',
+    \ 'd': 'Unload buffer',
     \ }
+
+let g:leader_map['e'] = {
+    \ 'name': '+edit',
+    \ }
+
+let g:leader_map['f'] = {
+    \ 'name': '+files',
+    \ }
+
+let g:leader_map['g'] = {
+    \ 'name': '+git',
+    \ 'a': 'Add',
+    \ 'b': 'Blame',
+    \ 'd': 'Diff',
+    \ 'g': 'Log',
+    \ 'l': 'File history',
+    \ 's': 'Status',
+    \ 'v': 'Diff (vertical)',
+    \ 'p': 'Preview hunk',
+    \ 'S': 'Stage hunk',
+    \ 'U': 'Unstage hunk',
+    \ }
+
+let g:leader_map["s"] = {
+    \ 'name': '+search',
+    \ '/': 'Recent searchs',
+    \ ':': 'Recent commands',
+    \ 'B': 'Search buffer',
+    \ 'b': 'Search in all buffers',
+    \ 'f': 'Recent files',
+    \ 's': 'Search all',
+    \ }
+
+let g:leader_map['t'] = {
+    \ 'name': '+toggle',
+    \ }
+
 let g:leader_map['w'] = {
     \ 'name': '+window',
-    \ '=': 'balance-windows',
-    \ 'o': 'move-to-new-tab',
-    \ 't': 'move-to-new-tab',
-    \ 'w': 'other-window',
-    \ }
-let g:leader_map["r"] = {
-    \ 'name': '+recent',
-    \ '/': 'recent-searchs',
-    \ 'f': 'recent-files',
-    \ ':': 'recent-commands',
-    \ }
-let g:leader_map["/"] = {
-    \ 'name': '+search',
-    \ '/': 'search-all',
-    \ 'B': 'search-buffer',
-    \ 'b': 'search-all-buffers',
+    \ '=': 'Balance windows',
+    \ 'h': 'Move left',
+    \ 'j': 'Move up',
+    \ 'k': 'Move down',
+    \ 'l': 'Move right',
+    \ 's': 'Split vertical',
+    \ 'S': 'Split horizontal',
+    \ 'o': 'Move to new tab',
+    \ 'w': 'Last window',
     \ }
 
-let g:leader_map['e'] = { 'name': '+edit' }
-let g:leader_map['h'] = { 'name': '+gitgutter' }
-let g:leader_map['f'] = { 'name': '+fzf' }
-let g:leader_map['g'] = { 'name': '+git' }
-let g:leader_map['t'] = { 'name': '+toggle' }
-let g:leader_map['y'] = { 'name': '+ycm' }
+let g:leader_map['x'] = {
+    \ 'name': '+execute',
+    \ }
 
-let g:leader_map["'"] = "split-vertical"
-let g:leader_map['"'] = "split-horizontal"
-let g:leader_map[' '] = "toggle-local-hlsearch"
-let g:leader_map['s'] = "toggle-local-spell"
-
-let g:leader_map['<Tab>'] = "toggle-local-wrap"
+let g:leader_map['y'] = {
+    \ 'name': '+ycm',
+    \ }
 
 call which_key#register(' ', "g:leader_map")
 nnoremap <silent> <leader>          :WhichKey '<space>'<cr>
