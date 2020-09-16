@@ -246,7 +246,7 @@ noremap    U   <C-r>
 noremap <C-r>     U
 
 " keep commands from moving the cursor around
-noremap J    m`J:s/ *$//<cr>g``
+noremap J    m`J:setlocal nohlsearch<cr>:s/ *$//<cr>g``
 
 " Windows navigation
 map <silent> <M-h>   :TmuxNavigateLeft<cr>
@@ -280,13 +280,6 @@ map <leader>o   :tab sp<cr>
 nnoremap <cr>                   o<esc>
 nmap <leader>c              :echo HighlightName()<cr>
 
-nmap <leader>fb             :Buffers<cr>
-nmap <leader>ff             :Files<cr>
-nmap <leader>fc             :Commands<cr>
-nmap <leader>fm             :Commits<cr>
-nmap <leader>fg             :Rg<cr>
-nmap <leader>fp             :Filetypes<cr>
-
 nmap <silent> -             :call Underline('-')<cr>
 nmap <silent> =             :call Underline('=')<cr>
 nmap <silent> <leader>'     :vsp<cr>
@@ -316,6 +309,19 @@ nmap <leader>w=     <C-w>=
 " buffers
 nmap <leader>bb     :buffer 
 nmap <leader>bd     :bd<cr>
+
+" fuzzy finders, mapped to prefixes of corresponding search target
+nmap <leader>bb             :Buffers<cr>
+nmap <leader>gg             :Commits<cr>
+nmap <leader>gf             :GFiles<cr>
+nmap <leader>ff             :Files<cr>
+nmap <leader>//             :BLines<cr>
+nmap <leader>/?             :Lines<cr>
+nmap <leader>/g             :Rg<cr>
+nmap <leader>rf             :History<cr>
+nmap <leader>r:             :History:<cr>
+nmap <leader>r/             :History/<cr>
+nmap <leader>:              :Commands<cr>
 
 nmap <F8>           :MarkdownPreview<cr>
 nmap <C-e>          :NERDTreeToggle<cr>
@@ -355,6 +361,9 @@ let g:leader_map['w'] = {
     \ 't': 'move-to-new-tab',
     \ 'w': 'other-window',
     \ }
+let g:leader_map["r"] = { 'name': '+recent' }
+let g:leader_map["/"] = { 'name': '+search' }
+
 let g:leader_map['e'] = { 'name': '+edit' }
 let g:leader_map['h'] = { 'name': '+gitgutter' }
 let g:leader_map['f'] = { 'name': '+fzf' }
