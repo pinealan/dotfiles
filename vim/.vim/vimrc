@@ -298,7 +298,7 @@ nmap <silent> <leader>t2    :MyStatusLineShort<cr>
 
 nmap <silent> <leader>ts    :setlocal spell!<cr>
 nmap <silent> <leader>tw    :setlocal wrap!<cr>
-nmap <silent> <leader><leader>  :setlocal hlsearch!<cr>
+nmap <silent> <leader>t<leader> :setlocal hlsearch!<cr>
 
 " windows
 nmap <leader>ww     <C-w>P
@@ -315,12 +315,12 @@ nmap <leader>bb             :Buffers<cr>
 nmap <leader>gg             :Commits<cr>
 nmap <leader>gf             :GFiles<cr>
 nmap <leader>ff             :Files<cr>
-nmap <leader>//             :BLines<cr>
-nmap <leader>/?             :Lines<cr>
-nmap <leader>/g             :Rg<cr>
 nmap <leader>rf             :History<cr>
 nmap <leader>r:             :History:<cr>
 nmap <leader>r/             :History/<cr>
+nmap <leader>//             :Rg<cr>
+nmap <leader>/B             :Lines<cr>
+nmap <leader>/b             :BLines<cr>
 nmap <leader>:              :Commands<cr>
 
 nmap <F8>           :MarkdownPreview<cr>
@@ -361,8 +361,18 @@ let g:leader_map['w'] = {
     \ 't': 'move-to-new-tab',
     \ 'w': 'other-window',
     \ }
-let g:leader_map["r"] = { 'name': '+recent' }
-let g:leader_map["/"] = { 'name': '+search' }
+let g:leader_map["r"] = {
+    \ 'name': '+recent',
+    \ '/': 'recent-searchs',
+    \ 'f': 'recent-files',
+    \ ':': 'recent-commands',
+    \ }
+let g:leader_map["/"] = {
+    \ 'name': '+search',
+    \ '/': 'search-all',
+    \ 'B': 'search-buffer',
+    \ 'b': 'search-all-buffers',
+    \ }
 
 let g:leader_map['e'] = { 'name': '+edit' }
 let g:leader_map['h'] = { 'name': '+gitgutter' }
