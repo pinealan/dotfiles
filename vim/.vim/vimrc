@@ -249,8 +249,11 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 noremap    U   <C-r>
 noremap <C-r>     U
 
-" keep commands from moving the cursor around
+" Keep commands from moving the cursor around
 noremap J    m`J:setlocal nohlsearch<cr>:s/ *$//<cr>g``
+
+" Easier newline
+nnoremap <cr>  o<esc>
 
 " Windows navigation
 map <silent> <M-h>   :TmuxNavigateLeft<cr>
@@ -274,28 +277,49 @@ map <C-k>      :bprev<cr>
 map <C-n>      :cnext<cr>
 map <C-p>      :cprev<cr>
 
-nnoremap <cr>                   o<esc>
-
 nmap <silent> -             :call Underline('-')<cr>
 nmap <silent> =             :call Underline('=')<cr>
 
 nmap <F8>                   :MarkdownPreview<cr>
 nmap <silent> <C-e>         :NERDTreeToggle<cr>
 
-" Mnemonic leader mapping to commands
-
-map <leader>ee  :edit %%
-map <leader>eh  :edit ~/
-map <leader>ev  :view %%
+" Mnemonic leader mapping to commands {{{
+" Conventions taken from DOOM Emacs
 
 nmap <leader>c              :echo HighlightName()<cr>
 nmap <silent> <leader>'     :vsp<cr>
 nmap <silent> <leader>"     :sp<cr>
 
+nmap <leader>:      :Commands<cr>
+
 "nmap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nmap <silent> <leader>q     :quit<cr>
-"nmap <silent> <leader>w     :w<cr>
 nmap <silent> <leader>d     :bd<cr>
+
+" buffers
+nmap <leader>bd     :bd<cr>
+
+nmap <leader>fe     :edit %%
+nmap <leader>ff     :Files<cr>
+nmap <leader>fh     :edit ~/
+
+nmap <leader>ga     :Gwrite<cr>
+nmap <leader>gb     :Git blame<cr>
+nmap <leader>gd     :Git diff<cr>
+nmap <leader>gl     :Glog<cr>
+nmap <leader>gs     :Git<cr>
+nmap <leader>gv     :Gvdiffsplit<cr>
+
+nmap <leader>gp     <Plug>(GitGutterPreviewHunk)
+nmap <leader>gS     <Plug>(GitGutterStageHunk)
+nmap <leader>gU     <Plug>(GitGutterUndoHunk)
+
+nmap <leader>s/     :History/<cr>
+nmap <leader>s:     :History:<cr>
+nmap <leader>sB     :Lines<cr>
+nmap <leader>sb     :BLines<cr>
+nmap <leader>sf     :History<cr>
+nmap <leader>ss     :Rg<cr>
 
 " toggles
 nmap <silent> <leader>tp    :setlocal paste!<cr>
@@ -318,40 +342,20 @@ nmap <leader>wo     <C-w>T
 nmap <leader>ww     <C-w>P
 nmap <leader>w=     <C-w>=
 
-" buffers
-nmap <leader>bd     :bd<cr>
-
-" fuzzy finders, mapped to prefixes of corresponding search target
-nmap <leader>bb             :Buffers<cr>
-nmap <leader>gg             :Commits<cr>
-nmap <leader>gf             :GFiles<cr>
-nmap <leader>ff             :Files<cr>
-nmap <leader>s/             :History/<cr>
-nmap <leader>s:             :History:<cr>
-nmap <leader>sB             :Lines<cr>
-nmap <leader>sb             :BLines<cr>
-nmap <leader>sf             :History<cr>
-nmap <leader>ss             :Rg<cr>
-nmap <leader>:              :Commands<cr>
-
 nmap <leader>xt     :Tabularize /
 
 nmap <leader>yx     :YcmCompleter FixIt<cr>
 nmap <leader>yg     :YcmCompleter GoToDefinition<cr>
 nmap <leader>yr     :YcmCompleter GoToReferences<cr>
 
-nmap <leader>ga     :Gwrite<cr>
-nmap <leader>gb     :Git blame<cr>
-nmap <leader>gd     :Git diff<cr>
-nmap <leader>gl     :Glog<cr>
-nmap <leader>gs     :Git<cr>
-nmap <leader>gv     :Gvdiffsplit<cr>
+" fuzzy finders, mapped to prefixes of corresponding search target
+nmap <leader>bb     :Buffers<cr>
+nmap <leader>gg     :Commits<cr>
+nmap <leader>gf     :GFiles<cr>
 
-nmap <leader>gp     <Plug>(GitGutterPreviewHunk)
-nmap <leader>gS     <Plug>(GitGutterStageHunk)
-nmap <leader>gU     <Plug>(GitGutterUndoHunk)
+" }}}
 
-" vim-which-key setup
+" vim-which-key setup {{{
 let g:which_key_disable_default_offset = 1
 
 let g:leader_map = {}
@@ -365,15 +369,15 @@ let g:leader_map['q'] = "Quit window"
 
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
+    \ 'b': 'Find buffer',
     \ 'd': 'Unload buffer',
     \ }
 
-let g:leader_map['e'] = {
-    \ 'name': '+edit',
-    \ }
-
 let g:leader_map['f'] = {
-    \ 'name': '+files',
+    \ 'name': '+file',
+    \ 'e': 'Edit adjacent file',
+    \ 'f': 'Find file',
+    \ 'h': 'Edit file from home',
     \ }
 
 let g:leader_map['g'] = {
@@ -394,7 +398,7 @@ let g:leader_map["s"] = {
     \ 'name': '+search',
     \ '/': 'Recent searchs',
     \ ':': 'Recent commands',
-    \ 'B': 'Search buffer',
+    \ 'B': 'Search in buffer',
     \ 'b': 'Search in all buffers',
     \ 'f': 'Recent files',
     \ 's': 'Search all',
@@ -428,6 +432,8 @@ let g:leader_map['y'] = {
 call which_key#register(' ', "g:leader_map")
 nnoremap <silent> <leader>          :WhichKey '<space>'<cr>
 vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<cr>
+
+" }}}
 
 let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
