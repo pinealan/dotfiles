@@ -284,17 +284,21 @@ nmap <F8>                   :MarkdownPreview<cr>
 nmap <silent> <C-e>         :NERDTreeToggle<cr>
 
 " Mnemonic leader mapping to commands {{{
-" Conventions taken from DOOM Emacs
+" conventions inspired by Space/DOOM Emacs
 
-nmap <leader>c              :echo HighlightName()<cr>
 nmap <silent> <leader>'     :vsp<cr>
 nmap <silent> <leader>"     :sp<cr>
 
-nmap <leader>:      :Commands<cr>
+"nmap <silent> <leader><tab>     :setlocal <cr>
+nmap <silent> <leader><space>   :setlocal hlsearch!<cr>
 
-"nmap <silent> <leader>m     :silent! make \| redraw! \| call ReportBuildResult()<cr>
+nmap <silent> <leader>d     :bdelete<cr>
+nmap <silent> <leader>p     :setlocal paste!<cr>
 nmap <silent> <leader>q     :quit<cr>
-nmap <silent> <leader>d     :bd<cr>
+
+
+nmap <leader>:      :Commands<cr>
+nmap <leader>c      :echo HighlightName()<cr>
 
 " buffers
 nmap <leader>bd     :bd<cr>
@@ -303,8 +307,10 @@ nmap <leader>fe     :edit %%
 nmap <leader>ff     :Files<cr>
 nmap <leader>fh     :edit ~/
 
+" git
 nmap <leader>ga     :Gwrite<cr>
 nmap <leader>gb     :Git blame<cr>
+nmap <leader>gc     :Git commit<cr>
 nmap <leader>gd     :Git diff<cr>
 nmap <leader>gl     :Glog<cr>
 nmap <leader>gs     :Git<cr>
@@ -314,6 +320,7 @@ nmap <leader>gp     <Plug>(GitGutterPreviewHunk)
 nmap <leader>gS     <Plug>(GitGutterStageHunk)
 nmap <leader>gU     <Plug>(GitGutterUndoHunk)
 
+" search
 nmap <leader>s/     :History/<cr>
 nmap <leader>s:     :History:<cr>
 nmap <leader>sB     :Lines<cr>
@@ -322,26 +329,27 @@ nmap <leader>sf     :History<cr>
 nmap <leader>ss     :Rg<cr>
 
 " toggles
-nmap <silent> <leader>tp    :setlocal paste!<cr>
-nmap <silent> <leader>tj    :call ToggleFastEsc()<cr>
 nmap <silent> <leader>t1    :MyStatusLineLong<cr>
 nmap <silent> <leader>t2    :MyStatusLineShort<cr>
-
+nmap <silent> <leader>th    :setlocal hlsearch!<cr>
+nmap <silent> <leader>tj    :call ToggleFastEsc()<cr>
+nmap <silent> <leader>tp    :setlocal paste!<cr>
 nmap <silent> <leader>ts    :setlocal spell!<cr>
 nmap <silent> <leader>tw    :setlocal wrap!<cr>
-nmap <silent> <leader>th    :setlocal hlsearch!<cr>
 
 " windows
 nmap <leader>wh     <C-w>h
 nmap <leader>wj     <C-w>j
 nmap <leader>wk     <C-w>k
 nmap <leader>wl     <C-w>l
+nmap <leader>wq     :quit<cr>
 nmap <leader>ws     :vsp<cr>
 nmap <leader>wS     :sp<cr>
 nmap <leader>wo     <C-w>T
 nmap <leader>ww     <C-w>P
 nmap <leader>w=     <C-w>=
 
+nmap <leader>xm     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nmap <leader>xt     :Tabularize /
 
 nmap <leader>yx     :YcmCompleter FixIt<cr>
@@ -360,11 +368,14 @@ let g:which_key_disable_default_offset = 1
 
 let g:leader_map = {}
 
+let g:leader_map[" "] = "Toggle highlight search"
 let g:leader_map["'"] = "Split vertical"
 let g:leader_map['"'] = "Split horizontal"
 let g:leader_map[':'] = "Search commands"
+
 let g:leader_map['c'] = "Show highlight group"
 let g:leader_map['d'] = "Unload buffer"
+let g:leader_map["p"] = "Toggle paste mode"
 let g:leader_map['q'] = "Quit window"
 
 let g:leader_map['b'] = {
@@ -384,6 +395,7 @@ let g:leader_map['g'] = {
     \ 'name': '+git',
     \ 'a': 'Add',
     \ 'b': 'Blame',
+    \ 'c': 'Commit',
     \ 'd': 'Diff',
     \ 'g': 'Log',
     \ 'l': 'File history',
@@ -406,6 +418,11 @@ let g:leader_map["s"] = {
 
 let g:leader_map['t'] = {
     \ 'name': '+toggle',
+    \ 'h': 'Highlight search',
+    \ 'j': 'Fast escape (jj)',
+    \ 'p': 'Paste mode',
+    \ 's': 'Spell check',
+    \ 'w': 'Soft wrap',
     \ }
 
 let g:leader_map['w'] = {
@@ -415,6 +432,7 @@ let g:leader_map['w'] = {
     \ 'j': 'Move up',
     \ 'k': 'Move down',
     \ 'l': 'Move right',
+    \ 'q': 'Quit window',
     \ 's': 'Split vertical',
     \ 'S': 'Split horizontal',
     \ 'o': 'Move to new tab',
@@ -423,6 +441,8 @@ let g:leader_map['w'] = {
 
 let g:leader_map['x'] = {
     \ 'name': '+execute',
+    \ 'm': 'make',
+    \ 't': 'Tabularize',
     \ }
 
 let g:leader_map['y'] = {
