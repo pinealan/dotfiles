@@ -136,6 +136,9 @@ let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
 " }}}
+" FZF {{{
+let g:fzf_layout = {'window': { 'width': 0.8, 'height': 0.6 }}
+" }}}
 " Goyo {{{
 let g:goyo_width = 105
 " }}}
