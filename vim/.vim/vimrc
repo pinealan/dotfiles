@@ -307,7 +307,6 @@ nmap <leader>c      :echo HighlightName()<cr>
 nmap <leader>bd     :bd<cr>
 
 nmap <leader>fe     :edit %%
-nmap <leader>ff     :Files<cr>
 nmap <leader>fh     :edit ~/
 
 " git
@@ -361,6 +360,7 @@ nmap <leader>yr     :YcmCompleter GoToReferences<cr>
 
 " fuzzy finders, mapped to prefixes of corresponding search target
 nmap <leader>bb     :Buffers<cr>
+nmap <leader>ff     :Files<cr>
 nmap <leader>gg     :Commits<cr>
 nmap <leader>gf     :GFiles<cr>
 
@@ -649,10 +649,10 @@ endfunction
 "
 augroup usr
     autocmd!
-    autocmd BufWrite    *.clj,*.py,*.js call TryTrimSpace()
     autocmd BufEnter    * silent call EnableFastEsc()
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
     autocmd BufRead     *.vim set foldmethod=marker
+    autocmd BufWrite    *.clj,*.py,*.js call TryTrimSpace()
     "autocmd VimEnter    *.c,*.cpp,*.py vsp
 
     autocmd BufReadPost *
