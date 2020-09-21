@@ -241,6 +241,8 @@ set shellpipe=&>
 
 " }}}
 
+command! FilesAll call fzf#run(fzf#wrap('files-all', {'source': 'fd . -I -H -L -t f -t l'}))
+
 "===[ Mapping ]=== {{{
 "
 let g:mapleader=" "
@@ -364,6 +366,8 @@ nmap <leader>ff     :Files<cr>
 nmap <leader>gg     :Commits<cr>
 nmap <leader>gf     :GFiles<cr>
 
+nmap <leader>fa     :FilesAll<cr>
+
 " }}}
 
 " vim-which-key setup {{{
@@ -389,6 +393,7 @@ let g:leader_map['b'] = {
 
 let g:leader_map['f'] = {
     \ 'name': '+file',
+    \ 'a': 'Find all files including vcs-ignored',
     \ 'e': 'Edit adjacent file',
     \ 'f': 'Find file',
     \ 'h': 'Edit file from home',
