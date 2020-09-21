@@ -241,7 +241,7 @@ set shellpipe=&>
 
 " }}}
 
-command! FilesAll call fzf#run(fzf#wrap('files-all', {'source': 'fd . -I -H -L -t f -t l'}))
+command! FilesAll   call fzf#run(fzf#wrap('files-all', {'source': 'fd . -I -H -L -t f -t l'}))
 
 "===[ Mapping ]=== {{{
 "
@@ -367,6 +367,7 @@ nmap <leader>gg     :Commits<cr>
 nmap <leader>gf     :GFiles<cr>
 
 nmap <leader>fa     :FilesAll<cr>
+nmap <leader>fz     :call fzf#run(fzf#wrap('fzf-custom', {'source': ''}))
 
 " }}}
 
