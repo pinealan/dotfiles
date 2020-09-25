@@ -137,6 +137,7 @@ let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
 " }}}
 " FZF {{{
+let g:fzf_command_prefix = "Fzf"
 let g:fzf_layout = {'window': { 'width': 0.8, 'height': 0.6 }}
 " }}}
 " Goyo {{{
@@ -241,8 +242,6 @@ set shellpipe=&>
 
 " }}}
 
-command! FilesAll   call fzf#run(fzf#wrap('files-all', {'source': 'fd . -I -H -L -t f -t l'}))
-
 "===[ Mapping ]=== {{{
 "
 let g:mapleader=" "
@@ -285,10 +284,14 @@ map <C-p>      :cprev<cr>
 nmap <silent> -             :call Underline('-')<cr>
 nmap <silent> =             :call Underline('=')<cr>
 
-nmap <F8>                   :MarkdownPreview<cr>
+nmap <silent> <F8>          :MarkdownPreview<cr>
 nmap <silent> <C-e>         :NERDTreeToggle<cr>
 
+noremap <silent> <M-d>   <C-e>
+noremap <silent> <M-u>   <C-y>
+
 " Mnemonic leader mapping to commands {{{
+
 " conventions inspired by Space/DOOM Emacs
 
 nmap <silent> <leader>'     :vsp<cr>
@@ -301,28 +304,35 @@ nmap <silent> <leader>d     :bdelete<cr>
 nmap <silent> <leader>p     :setlocal paste!<cr>
 nmap <silent> <leader>q     :quit<cr>
 
-
 nmap <leader>:      :Commands<cr>
 nmap <leader>c      :echo HighlightName()<cr>
 
 " buffers
+nmap <leader>bb     :FzfBuffers<cr>
 nmap <leader>bd     :bd<cr>
 
+nmap <leader>fa     :FilesAll<cr>
 nmap <leader>fe     :edit %%
+nmap <leader>ff     :FzfFiles<cr>
 nmap <leader>fh     :edit ~/
+nmap <leader>fz     :call fzf#run(fzf#wrap('fzf-custom', {'source': ''}))
 
 " git
 nmap <leader>ga     :Gwrite<cr>
 nmap <leader>gb     :Git blame<cr>
 nmap <leader>gc     :Git commit<cr>
 nmap <leader>gd     :Git diff<cr>
+nmap <leader>gf     :FzfGFiles<cr>
+nmap <leader>gg     :Git<cr>
 nmap <leader>gl     :Glog<cr>
-nmap <leader>gs     :Git<cr>
+nmap <leader>gs     :FzfCommits<cr>
 nmap <leader>gv     :Gvdiffsplit<cr>
 
-nmap <leader>gp     <Plug>(GitGutterPreviewHunk)
 nmap <leader>gS     <Plug>(GitGutterStageHunk)
 nmap <leader>gU     <Plug>(GitGutterUndoHunk)
+nmap <leader>g[     <Plug>(GitGutterPrevHunk)
+nmap <leader>g]     <Plug>(GitGutterNextHunk)
+nmap <leader>gp     <Plug>(GitGutterPreviewHunk)
 
 " search
 function! RipgrepFzf(query, fullscreen)
@@ -333,13 +343,14 @@ function! RipgrepFzf(query, fullscreen)
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+command!                FilesAll    call fzf#run(fzf#wrap('files-all', {'source': 'fd . -I -H -L -t f -t l'}))
+command! -nargs=* -bang RG          call RipgrepFzf(<q-args>, <bang>0)
 
-nmap <leader>s/     :History/<cr>
-nmap <leader>s:     :History:<cr>
-nmap <leader>sB     :Lines<cr>
-nmap <leader>sb     :BLines<cr>
-nmap <leader>sf     :History<cr>
+nmap <leader>s/     :FzfHistory/<cr>
+nmap <leader>s:     :FzfHistory:<cr>
+nmap <leader>sB     :FzfLines<cr>
+nmap <leader>sb     :FzfBLines<cr>
+nmap <leader>sf     :FzfHistory<cr>
 nmap <leader>ss     :RG<cr>
 
 " toggles
@@ -351,6 +362,9 @@ nmap <silent> <leader>tp    :setlocal paste!<cr>
 nmap <silent> <leader>ts    :setlocal spell!<cr>
 nmap <silent> <leader>tw    :setlocal wrap!<cr>
 
+" vim
+nmap <leader>v      :e ~/.vim/vimrc<cr>
+
 " windows
 nmap <leader>wh     <C-w>h
 nmap <leader>wj     <C-w>j
@@ -359,25 +373,18 @@ nmap <leader>wl     <C-w>l
 nmap <leader>wq     :quit<cr>
 nmap <leader>ws     :vsp<cr>
 nmap <leader>wS     :sp<cr>
-nmap <leader>wo     <C-w>T
+nmap <leader>wo     :tab sp<cr>
+nmap <leader>wt     <C-w>T
 nmap <leader>ww     <C-w>P
 nmap <leader>w=     <C-w>=
 
 nmap <leader>xm     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nmap <leader>xt     :Tabularize /
 
+" youcompleteme
 nmap <leader>yx     :YcmCompleter FixIt<cr>
 nmap <leader>yg     :YcmCompleter GoToDefinition<cr>
 nmap <leader>yr     :YcmCompleter GoToReferences<cr>
-
-" fuzzy finders, mapped to prefixes of corresponding search target
-nmap <leader>bb     :Buffers<cr>
-nmap <leader>ff     :Files<cr>
-nmap <leader>gg     :Commits<cr>
-nmap <leader>gf     :GFiles<cr>
-
-nmap <leader>fa     :FilesAll<cr>
-nmap <leader>fz     :call fzf#run(fzf#wrap('fzf-custom', {'source': ''}))
 
 " }}}
 
