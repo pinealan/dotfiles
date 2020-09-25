@@ -8,6 +8,8 @@
 .vscode
 Session.vim
 SessionConfig.vim
+session-*.vim
+session.vim
 
 .direnv
 .env
