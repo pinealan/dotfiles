@@ -288,7 +288,7 @@ nmap <silent> <F8>          :MarkdownPreview<cr>
 nmap <silent> <C-e>         :NERDTreeToggle<cr>
 
 noremap <silent> <M-d>   <C-e>
-noremap <silent> <M-u>   <C-y>
+noremap <silent> <M-e>   <C-y>
 
 " Mnemonic leader mapping to commands {{{
 
