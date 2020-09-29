@@ -14,7 +14,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name="my-onedark"
+let g:colors_name="my-onelight"
 
 " Helper function to match highlight gruops in all colors modes, i.e.
 "   gui:      Full RGB, 24 bit
@@ -35,26 +35,26 @@ endfunction
 
 " [ Color Variables ] {{{
 "
-let s:red           = { "x24": "#be5046", "x8": "160" }
-let s:pink          = { "x24": "#e06c75", "x8": "204" }
-let s:green         = { "x24": "#78a339", "x8": "70" }
-let s:teagreen      = { "x24": "#98c379", "x8": "114" }
-let s:teal          = { "x24": "#56b6c2", "x8": "30" }
-let s:yellow        = { "x24": "#e5c07b", "x8": "220" }
-let s:gold          = { "x24": "#d7af5f", "x8": "179" }
+let s:red           = { "x24": "#e45649", "x8": "166" }
+let s:pink          = { "x24": "#ca1243", "x8": "160" }
+let s:green         = { "x24": "#50a14f", "x8": "71" }
+let s:teagreen      = { "x24": "#327002", "x8": "28" }
+let s:teal          = { "x24": "#067682", "x8": "23" }
+let s:yellow        = { "x24": "#986801", "x8": "94" }
+let s:gold          = { "x24": "#c18401", "x8": "136" }
 let s:carrot        = { "x24": "#d7875f", "x8": "173" }
-let s:blue          = { "x24": "#61afef", "x8": "75" }
-let s:purple        = { "x24": "#c678dd", "x8": "170" }
+let s:blue          = { "x24": "#4078f2", "x8": "33" }
+let s:purple        = { "x24": "#a626a4", "x8": "127" }
 let s:transparent   = { "x24": "NONE",    "x8": "NONE" }
 
 " Semantic colors
-let s:content0      = { "x24": "#dfdfdf", "x8": "253" }
-let s:content1      = { "x24": "#a9a9a9", "x8": "246" }
-let s:content2      = { "x24": "#828282", "x8": "241" }
-let s:content_inv   = { "x24": "#404040", "x8": "237" }
-let s:background0   = { "x24": "#28292c", "x8": "235" }
-let s:background1   = { "x24": "#3f3f3f", "x8": "237" }
-let s:background2   = { "x24": "#222222", "x8": "234" }
+let s:content0      = { "x24": "#494b53", "x8": "23" }
+let s:content1      = { "x24": "#696c77", "x8": "60" }
+let s:content2      = { "x24": "#a0a1a7", "x8": "145" }
+let s:content_inv   = { "x24": "#c2c2c3", "x8": "250" }
+let s:background0   = { "x24": "#fafafa", "x8": "255" }
+let s:background1   = { "x24": "#dadada", "x8": "251" }
+let s:background2   = { "x24": "#f0f0f0", "x8": "254" }
 let s:_black        = { "x24": "#000000", "x8": "232" }
 
 let s:docstring     = s:teagreen
@@ -247,4 +247,4 @@ call s:h("diffRemoved",             { "fg": s:pink })
 
 " Must appear at the end of the file to work around this oddity:
 " https://groups.google.com/forum/#!msg/vim_dev/afPqwAFNdrU/nqh6tOM87QUJ
-set background=dark
+set background=light
