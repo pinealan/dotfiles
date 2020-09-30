@@ -48,6 +48,7 @@ Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 
 "Plug 'mechatroner/rainbow_csv'
 Plug 'LnL7/vim-nix', { 'for': 'nix' }
+Plug 'eigenfoo/stan-vim'
 
 " NERDTree {{{
 augroup usr_nerdtree
@@ -366,17 +367,17 @@ nmap <silent> <leader>tw    :setlocal wrap!<cr>
 nmap <leader>v      :e ~/.vim/vimrc<cr>
 
 " windows
+nmap <leader>w=     <C-w>=
+nmap <leader>wS     :sp<cr>
 nmap <leader>wh     <C-w>h
 nmap <leader>wj     <C-w>j
 nmap <leader>wk     <C-w>k
 nmap <leader>wl     <C-w>l
+nmap <leader>wo     :tab sp<cr>
 nmap <leader>wq     :quit<cr>
 nmap <leader>ws     :vsp<cr>
-nmap <leader>wS     :sp<cr>
-nmap <leader>wo     :tab sp<cr>
 nmap <leader>wt     <C-w>T
 nmap <leader>ww     <C-w>P
-nmap <leader>w=     <C-w>=
 
 nmap <leader>xm     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nmap <leader>xt     :Tabularize /
@@ -423,13 +424,15 @@ let g:leader_map['g'] = {
     \ 'b': 'Blame',
     \ 'c': 'Commit',
     \ 'd': 'Diff',
-    \ 'g': 'Log',
+    \ 'g': 'Status',
     \ 'l': 'File history',
-    \ 's': 'Status',
+    \ 's': 'Show commits',
     \ 'v': 'Diff (vertical)',
     \ 'p': 'Preview hunk',
     \ 'S': 'Stage hunk',
     \ 'U': 'Unstage hunk',
+    \ '[': 'Previouw hunk',
+    \ ']': 'Next hunk',
     \ }
 
 let g:leader_map["s"] = {
@@ -454,15 +457,16 @@ let g:leader_map['t'] = {
 let g:leader_map['w'] = {
     \ 'name': '+window',
     \ '=': 'Balance windows',
+    \ 'S': 'Split horizontal',
     \ 'h': 'Move left',
     \ 'j': 'Move up',
     \ 'k': 'Move down',
     \ 'l': 'Move right',
+    \ 'o': 'Open in new tabpage',
     \ 'q': 'Quit window',
     \ 's': 'Split vertical',
-    \ 'S': 'Split horizontal',
-    \ 'o': 'Move to new tab',
-    \ 'w': 'Last window',
+    \ 't': 'Move to new tabpage',
+    \ 'w': 'Jump to last window',
     \ }
 
 let g:leader_map['x'] = {
