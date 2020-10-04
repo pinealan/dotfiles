@@ -24,6 +24,20 @@ stow bash
 
 
 ## Packages config
+
+### Cross-posix shell setup TL;DR
+Call graph:
+
+    .bash_profile -> .profile
+    .bash_profile -> .bashrc
+    .bashrc       -> .local/bashrc
+    .bashrc       -> .local/bash_plugins
+
+    .zshenv       -> .profile
+    .zshrc        -> .local/zshrc
+
+    .profile      -> .local/profile
+
 ### Bash
 Contains `.profile`, `.bashrc`. These sets up `PATH` environment variables, tmux
 integration, and various bash configurations.
@@ -32,17 +46,17 @@ integration, and various bash configurations.
 are for machine specific configs or aliases, and should not be committed to this
 repo.
 
-All files in directory `~/.bash_plugins/` will be sourced by bash. This is used
+All files in directory `~/.local/bash_plugins/` will be sourced by bash. This is used
 by the [bashgit](#bashgit) plugin that adds a git prompt to bash.
 
 The following is the complete order in which bash scripts are source. Later
 scripts inherit and can override the environment set up by earlier scripts.
 
     .profile
-    .local/.profile
+    .local/profile
     .bashrc
-    .local/.bashrc
-    .bash_plugins/*
+    .local/bashrc
+    .local/bash_plugins/*
 
 
 ### Bashgit
@@ -108,17 +122,3 @@ wiki](https://wiki.archlinux.org/index.php/Cinnamon#Portable_keybindings) or
 [cinnamon
 wiki(https://github.com/linuxmint/Cinnamon/wiki/Backing-up-and-restoring-your-cinnamon-settings-(dconf))
 
-
-## Shell profiles
-
-Call graph:
-
-    .bash_profile -> .profile
-    .bash_profile -> .bashrc
-    .bashrc       -> .local/bashrc
-    .bashrc       -> .local/bash_plugins
-
-    .zshenv       -> .profile
-    .zshrc        -> .local/zshrc
-
-    .profile      -> .local/profile

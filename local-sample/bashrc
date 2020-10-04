@@ -1,11 +1,3 @@
-# ----- Aliases -----
-
-# POXIS Builtins
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-
 # LS
 alias l='ls -l'
 alias lt='ls -t'
@@ -39,17 +31,9 @@ frequent_commands () {
     history | awk '{ if (length($2) > 1) print $2}' | sort | uniq -c | sort -nr | head -n"$n" | nl
 }
 
-# System Admin
-alias h='htop'
-alias df='df -h'
-alias wa='which -a'
-alias sl='echo $SHLVL'
-
 # GNU/Linux Coreutils
 alias ls='ls --color=auto -h --group-directories-first'
-
 alias lsblk='lsblk -o NAME,LABEL,FSTYPE,SIZE,TYPE,MOUNTPOINT'
-
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -65,22 +49,10 @@ alias scdisable='sudo systemctl disable'
 alias scdr='sudo systemctl daemon-reload'
 
 # Vim
-alias v='vim'
 alias vim='nvim'
 alias vd='vim -d'
 alias svim='sudo env "PATH=$PATH" nvim'
 alias vs='vim -S Session.vim'
-
-# Tmux
-alias t='tmux new -A -n shell -s default'
-alias ta='tmux attach -t'
-alias tn='tmux new -s'
-alias tl='tmux ls'
-alias tk='tmux kill-server'
-
-# Docker
-alias dps='docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
-alias dpsa='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
 
 # Python
 alias p='python'

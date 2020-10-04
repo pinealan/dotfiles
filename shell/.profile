@@ -10,6 +10,31 @@ export FZF_DEFAULT_OPTS="\
     --border \
     --preview='head -n $COLUMNS {}'"
 
+# POXIS Builtins
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# Docker
+alias dps='docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dpsa='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
+alias drdp='docker run -d -p'
+
+# Tmux
+alias t='tmux new -A -n shell -s default'
+alias ta='tmux attach -t'
+alias tn='tmux new -s'
+alias tl='tmux ls'
+alias tk='tmux kill-server'
+
+alias g='git'
+alias h='htop'
+alias v='vim'
+alias df='df -h'
+alias sl='echo $SHLVL'
+alias wa='which -a'
+
 # execute local machine-specific .profile if it exists
 local_profile="$HOME/.local/profile"
 [ -f  $local_profile ] && . $local_profile
