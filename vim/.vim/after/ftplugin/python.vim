@@ -1,6 +1,10 @@
 setl cc=89
 setl tw=88
 
+command! -nargs=*       PGoto   YcmCompleter GoTo
+
+set keywordprg=:PGoto
+
 nnoremap <localleader>k  :vimgrep /^ *class/g @%
 nnoremap <localleader>d  :call ToggleDocstring()<cr>
 nnoremap <localleader>b  :!black %<cr>

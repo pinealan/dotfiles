@@ -56,6 +56,8 @@ let g:sexp_mappings = {
     \ 'sexp_capture_next_element':      '>>',
     \ }
 
+set keywordprg=:IcedDocumentPopupOpen
+
 " Normal whitespace-based word navigation
 " nnoremap <buffer>       W w
 " xnoremap <buffer>       W w
@@ -75,7 +77,6 @@ nmap <localleader>ept   <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)
 
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
-nmap K                  :IcedDocumentPopupOpen<cr>
 nmap <localleader>hc    :IcedClojureDocsOpen<cr>
 nmap <localleader>hs    :IcedSourcePopupShow<cr>
 

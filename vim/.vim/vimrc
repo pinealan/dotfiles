@@ -313,22 +313,25 @@ nmap <leader>c      :echo HighlightName()<cr>
 " buffers
 nmap <leader>bb     :FzfBuffers<cr>
 nmap <leader>bd     :bd<cr>
+nmap <leader>bn     :vnew<cr>
 
 nmap <leader>fa     :FilesAll<cr>
 nmap <leader>fe     :edit %%
 nmap <leader>ff     :FzfFiles<cr>
 nmap <leader>fh     :edit ~/
+nmap <leader>fr     :FzfHistory<cr>
 nmap <leader>fz     :call fzf#run(fzf#wrap('fzf-custom', {'source': ''}))
 
 " git
+nmap <leader>gC     :Git commit<cr>
 nmap <leader>ga     :Gwrite<cr>
 nmap <leader>gb     :Git blame<cr>
-nmap <leader>gc     :Git commit<cr>
+nmap <leader>gc     :FzfCommits<cr>
 nmap <leader>gd     :Git diff<cr>
 nmap <leader>gf     :FzfGFiles<cr>
-nmap <leader>gg     :Git<cr>
+nmap <leader>gg     :vert Git<cr>
 nmap <leader>gl     :Glog<cr>
-nmap <leader>gs     :FzfCommits<cr>
+nmap <leader>gs     :Git<cr>
 nmap <leader>gv     :Gvdiffsplit<cr>
 
 nmap <leader>gS     <Plug>(GitGutterStageHunk)
@@ -353,7 +356,7 @@ nmap <leader>s/     :FzfHistory/<cr>
 nmap <leader>s:     :FzfHistory:<cr>
 nmap <leader>sB     :FzfLines<cr>
 nmap <leader>sb     :FzfBLines<cr>
-nmap <leader>sf     :FzfHistory<cr>
+nmap <leader>sc     :FzfCommands<cr>
 nmap <leader>ss     :RG<cr>
 
 " toggles
@@ -410,6 +413,7 @@ let g:leader_map['b'] = {
     \ 'name': '+buffer',
     \ 'b': 'Find buffer',
     \ 'd': 'Unload buffer',
+    \ 'n': 'New empty buffer',
     \ }
 
 let g:leader_map['f'] = {
@@ -417,20 +421,23 @@ let g:leader_map['f'] = {
     \ 'a': 'Find all files including vcs-ignored',
     \ 'e': 'Edit adjacent file',
     \ 'f': 'Find file',
-    \ 'h': 'Edit file from home',
+    \ 'h': 'Edit file from home directory',
+    \ 'r': 'Recent files',
+    \ 'z': 'FZF function call template',
     \ }
 
 let g:leader_map['g'] = {
     \ 'name': '+git',
     \ 'a': 'Add',
     \ 'b': 'Blame',
-    \ 'c': 'Commit',
+    \ 'c': 'Search commits',
     \ 'd': 'Diff',
-    \ 'g': 'Status',
+    \ 'g': 'Status (vertical)',
     \ 'l': 'File history',
-    \ 's': 'Show commits',
+    \ 's': 'Status',
     \ 'v': 'Diff (vertical)',
     \ 'p': 'Preview hunk',
+    \ 'C': 'Commit',
     \ 'S': 'Stage hunk',
     \ 'U': 'Unstage hunk',
     \ '[': 'Previouw hunk',
@@ -443,8 +450,8 @@ let g:leader_map["s"] = {
     \ ':': 'Recent commands',
     \ 'B': 'Search in buffer',
     \ 'b': 'Search in all buffers',
-    \ 'f': 'Recent files',
-    \ 's': 'Search all',
+    \ 'c': 'Search vim commands',
+    \ 's': 'Search text recursively',
     \ }
 
 let g:leader_map['t'] = {

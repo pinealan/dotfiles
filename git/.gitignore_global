@@ -6,6 +6,7 @@
 # .idea
 .netrwhist
 .vscode
+.ycm_extra_conf.py
 Session.vim
 SessionConfig.vim
 session-*.vim
