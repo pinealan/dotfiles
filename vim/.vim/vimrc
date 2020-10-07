@@ -245,11 +245,180 @@ set shellpipe=&>
 
 " }}}
 
+"===[ Functions ]=== {{{
+"
+function! HasPaste()
+    if &paste
+        return '[PASTE MODE]'
+    endif
+    return ''
+endfunction
+
+" Format home directory into ~ and truncate the beginning of the path.
+function! ShortCwd(len)
+    let cwd=getcwd()
+    let cwd=substitute(cwd, '/home/[^/]\+', '~', '')
+    let cwd=substitute(cwd, '[^~].*\(.\{' . a:len . '\}$\)\@=', '/...', '')
+    let cwd=substitute(cwd, '\.\.\.[^/]*', '...', '')
+    return cwd
+endfunction
+
+function! PathFilename(path)
+    let name = split(a:path, '/')
+    if len(name) == 0
+        return '[no name]'
+    elseif len(name) < 4
+        return a:path
+    else
+        return name[0] . '/.../' . name[-2] . '/' . name[-1]
+endfunction
+
+function! MyTabLabel(n)
+    let wincount = tabpagewinnr(a:n, '$')
+    let winnr = tabpagewinnr(a:n)
+    let bufls = tabpagebuflist(a:n)
+    return PathFilename(bufname(bufls[winnr - 1])) . ' (' . wincount . ')'
+endfunction
+
+function! MyTabLine()
+    let s = ''
+    for i in range(tabpagenr('$'))
+        if i + 1 == tabpagenr()
+            let s .= '%#TabLineSel#'
+        else
+            let s .= '%#TabLine#'
+        endif
+        let s .= '%' . (i + 1) . 'T'
+        let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+    endfor
+
+    let s .= '%#TabLineFill#%T'
+
+    if tabpagenr('$') > 1
+        let s .= '%=%#TabLine#%999Xclose'
+    endif
+    return s
+endfunction
+
+function! HighlightName()
+    let id  = synID(line("."), col("."), 1)
+    let tid = synID(line("."), col("."), 0)
+
+    let fg  = synIDattr(synIDtrans(id), "fg")
+    let bg  = synIDattr(synIDtrans(id), "bg")
+    let hi  = synIDattr(id, "name")
+    let lo  = synIDattr(synIDtrans(id), "name")
+    let tr  = synIDattr(tid, "name")
+
+    return "hi: ".hi." \| lo: ".lo." \| trans: ".tr." \| fg: ".fg." \| bg: ".bg
+endfunction
+
+function! EnableFastEsc()
+    let b:fastesc=1
+    inoremap <buffer> jj <esc>
+    echom "Enabled insert mdoe fast <esc>"
+endfunction!
+
+function! DisableFastEsc()
+    unlet b:fastesc
+    iunmap <buffer> jj
+    echom "Disabled insert mdoe fast <esc>"
+endfunction!
+
+function! ToggleFastEsc()
+    if get(b:, 'fastesc', 0)
+        call DisableFastEsc()
+    else
+        call EnableFastEsc()
+    endif
+endfunction
+
+function! Underline(symbol)
+    let line = getline('.')
+    let llen = strlen(line)
+    let str = ''
+    if llen > 0
+        let widx = match(line, '\S')
+        for ii in range(widx)
+            let str = str . " "
+        endfor
+        for ii in range(llen - widx)
+            let str = str . a:symbol
+        endfor
+        call setreg("y", str)
+        exec "normal! o\<esc>\"yp"
+    endif
+endfunction
+
+function! ReportBuildResult()
+    if len(getqflist()) != 0
+        copen | cc
+        echohl Tag
+        echo "Build fail!"
+        echohl None
+    else
+        echo "Build success!"
+    endif
+endfunction
+
+function! GitBranch()
+    let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    return strlen(l:branchname) > 0 ? '  ' . l:branchname . ' ' : ''
+endfunction
+
+function! MyStatusLine(pathformat)
+    " Git branch, Flags, Buffer number, File name | File type, Row/Column, Percent down file
+        "\'%#StatusLineGit#',
+        "\'%{GitBranch()}',
+        "\'%#User{1}#',
+    return join([
+        \' %q%w%r%m%{HasPaste()}',
+        \'%n:%' . a:pathformat,
+        \'%=',
+        \'%y %l,%-2c |%3p%% '
+        \], '')
+endfunction
+
+function! TrimSpace()
+    %s/\s\+$//e
+endfunction
+
+function! TryTrimSpace()
+    if &ft =~ 'markdown'
+        return
+    else
+        call TrimSpace()
+    endif
+endfunction
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+" }}}
+
+"===[ Commands ]=== {{{
+"
+command! MyStatusLineShort
+    \ set statusline=%!MyStatusLine('t') |
+    \ echohl Debug |
+    \ echo "Relative path (statusline)"
+command! MyStatusLineLong
+    \ set statusline=%!MyStatusLine('f') |
+    \ echohl Debug |
+    \ echo "Full path (statusline)"
+
+command!                FilesAll    call fzf#run(fzf#wrap('files-all', {'source': 'fd . -I -H -L -t f -t l'}))
+command! -nargs=* -bang RG          call RipgrepFzf(<q-args>, <bang>0)
+
+" }}}
+
 "===[ Mapping ]=== {{{
 "
-let g:mapleader=" "
-let g:maplocalleader="'"
-
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Swap undo
@@ -295,12 +464,13 @@ noremap <silent> <M-e>   <C-y>
 
 " Mnemonic leader mapping to commands {{{
 
-" conventions inspired by Space/DOOM Emacs
+let g:mapleader=" "
+let g:maplocalleader="'"
+
+" prefix conventions inspired by Space/DOOM Emacs
 
 nmap <silent> <leader>'     :vsp<cr>
 nmap <silent> <leader>"     :sp<cr>
-
-"nmap <silent> <leader><tab>     :setlocal <cr>
 nmap <silent> <leader><space>   :setlocal hlsearch!<cr>
 
 nmap <silent> <leader>d     :bdelete<cr>
@@ -341,17 +511,6 @@ nmap <leader>g]     <Plug>(GitGutterNextHunk)
 nmap <leader>gp     <Plug>(GitGutterPreviewHunk)
 
 " search
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command!                FilesAll    call fzf#run(fzf#wrap('files-all', {'source': 'fd . -I -H -L -t f -t l'}))
-command! -nargs=* -bang RG          call RipgrepFzf(<q-args>, <bang>0)
-
 nmap <leader>s/     :FzfHistory/<cr>
 nmap <leader>s:     :FzfHistory:<cr>
 nmap <leader>sB     :FzfLines<cr>
@@ -507,19 +666,6 @@ let g:tmux_navigator_no_mappings = 1
 
 " }}}
 
-"===[ Commands ]=== {{{
-"
-command! MyStatusLineShort
-    \ set statusline=%!MyStatusLine('t') |
-    \ echohl Debug |
-    \ echo "Relative path (statusline)"
-command! MyStatusLineLong
-    \ set statusline=%!MyStatusLine('f') |
-    \ echohl Debug |
-    \ echo "Full path (statusline)"
-
-" }}}
-
 "===[ Abbrevation ]=== {{{
 "
 " Common typos
@@ -530,154 +676,6 @@ iabbrev swihtc      switch
 iabbrev siwthc      switch
 iabbrev csae        case
 iabbrev caes        case
-
-" }}}
-
-"===[ Helper functions]=== {{{
-"
-function! HasPaste()
-    if &paste
-        return '[PASTE MODE]'
-    endif
-    return ''
-endfunction
-
-" Format home directory into ~ and truncate the beginning of the path.
-function! ShortCwd(len)
-    let cwd=getcwd()
-    let cwd=substitute(cwd, '/home/[^/]\+', '~', '')
-    let cwd=substitute(cwd, '[^~].*\(.\{' . a:len . '\}$\)\@=', '/...', '')
-    let cwd=substitute(cwd, '\.\.\.[^/]*', '...', '')
-    return cwd
-endfunction
-
-function! PathFilename(path)
-    let name = split(a:path, '/')
-    if len(name) == 0
-        return '[no name]'
-    elseif len(name) < 4
-        return a:path
-    else
-        return name[0] . '/.../' . name[-2] . '/' . name[-1]
-endfunction
-
-function! MyTabLabel(n)
-    let wincount = tabpagewinnr(a:n, '$')
-    let winnr = tabpagewinnr(a:n)
-    let bufls = tabpagebuflist(a:n)
-    return PathFilename(bufname(bufls[winnr - 1])) . ' (' . wincount . ')'
-endfunction
-
-function! MyTabLine()
-    let s = ''
-    for i in range(tabpagenr('$'))
-        if i + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
-        else
-            let s .= '%#TabLine#'
-        endif
-        let s .= '%' . (i + 1) . 'T'
-        let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
-    endfor
-
-    let s .= '%#TabLineFill#%T'
-
-    if tabpagenr('$') > 1
-        let s .= '%=%#TabLine#%999Xclose'
-    endif
-    return s
-endfunction
-
-function! HighlightName()
-    let id  = synID(line("."), col("."), 1)
-    let tid = synID(line("."), col("."), 0)
-
-    let fg  = synIDattr(synIDtrans(id), "fg")
-    let bg  = synIDattr(synIDtrans(id), "bg")
-    let hi  = synIDattr(id, "name")
-    let lo  = synIDattr(synIDtrans(id), "name")
-    let tr  = synIDattr(tid, "name")
-
-    return "hi: ".hi." \| lo: ".lo." \| trans: ".tr." \| fg: ".fg." \| bg: ".bg
-endfunction
-
-function! EnableFastEsc()
-    let b:fastesc=1
-    inoremap <buffer> jj <esc>
-    echom "Enabled insert mdoe fast <esc>"
-endfunction!
-
-function! DisableFastEsc()
-    unlet b:fastesc
-    iunmap <buffer> jj
-    echom "Disabled insert mdoe fast <esc>"
-endfunction!
-
-function! ToggleFastEsc()
-    if get(b:, 'fastesc', 0)
-        call DisableFastEsc()
-    else
-        call EnableFastEsc()
-    endif
-endfunction
-
-function! Underline(symbol)
-    let line = getline('.')
-    let llen = strlen(line)
-    let str = ''
-    if llen > 0
-        let widx = match(line, '\S')
-        for ii in range(widx)
-            let str = str . " "
-        endfor
-        for ii in range(llen - widx)
-            let str = str . a:symbol
-        endfor
-        call setreg("y", str)
-        exec "normal! o\<esc>\"yp"
-    endif
-endfunction
-
-function! ReportBuildResult()
-    if len(getqflist()) != 0
-        copen | cc
-        echohl Tag
-        echo "Build fail!"
-        echohl None
-    else
-        echo "Build success!"
-    endif
-endfunction
-
-function! GitBranch()
-    let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    return strlen(l:branchname) > 0 ? '  ' . l:branchname . ' ' : ''
-endfunction
-
-function! MyStatusLine(pathformat)
-    " Git branch, Flags, Buffer number, File name | File type, Row/Column, Percent down file
-        "\'%#StatusLineGit#',
-        "\'%{GitBranch()}',
-        "\'%#User{1}#',
-    return join([
-        \' %q%w%r%m%{HasPaste()}',
-        \'%n:%' . a:pathformat,
-        \'%=',
-        \'%y %l,%-2c |%3p%% '
-        \], '')
-endfunction
-
-function! TrimSpace()
-    %s/\s\+$//e
-endfunction
-
-function! TryTrimSpace()
-    if &ft =~ 'markdown'
-        return
-    else
-        call TrimSpace()
-    endif
-endfunction
 
 " }}}
 
