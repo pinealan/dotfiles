@@ -419,7 +419,7 @@ command! -nargs=* -bang RG          call RipgrepFzf(<q-args>, <bang>0)
 
 "===[ Mapping ]=== {{{
 "
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
+cnoremap %% <C-R>=substitute(expand('%:h').'/', '^\./', '', '')<cr>
 
 " Swap undo
 noremap    U   <C-r>
