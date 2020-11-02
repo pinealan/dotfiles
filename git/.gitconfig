@@ -63,6 +63,7 @@
 	ra = rebase --abort
 	rc = rebase --continue
 	ri = rebase --interactive
+	rs = rebase --skip
 	rms = rebase master
 	rgm = rebase github/master
 	rom = rebase origin/master
