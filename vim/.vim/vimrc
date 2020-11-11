@@ -690,7 +690,7 @@ augroup usr
     autocmd BufEnter    * silent call EnableFastEsc()
     autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
     autocmd BufRead     *.vim set foldmethod=marker
-    autocmd BufWrite    *.clj,*.py,*.[tj]s,*.[tj]sx call TryTrimSpace()
+    autocmd BufWrite    * call TryTrimSpace()
     "autocmd VimEnter    *.c,*.cpp,*.py vsp
 
     autocmd BufReadPost *
