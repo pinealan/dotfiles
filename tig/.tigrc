@@ -48,7 +48,7 @@ color "    Acked-by"		cyan	default
 color "    Tested-by"		cyan	default
 color "    Reviewed-by"		cyan	default
 color default			default	default	normal
-color cursor			default	color235
+color cursor			color232	color251
 color status			green	default
 color delimiter			magenta	default
 color date			color67 default
