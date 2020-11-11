@@ -5,14 +5,14 @@
 # Editors
 # .idea
 .netrwhist
-.vscode
+# .vscode
 .ycm_extra_conf.py
 Session.vim
 SessionConfig.vim
 session-*.vim
 session.vim
 
-.direnv
-.env
+# .direnv
+# .env
 # .envrc
 # .nrepl-port
