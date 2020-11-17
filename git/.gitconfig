@@ -136,6 +136,6 @@
 	extendRegexp = true
 	lineNumber = true
 [diff]
-	tool = vimdiff
+	tool = opendiff
 [difftool]
 	prompt = false
