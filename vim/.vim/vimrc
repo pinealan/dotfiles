@@ -412,7 +412,8 @@ command! MyStatusLineLong
     \ echohl Debug |
     \ echo "Full path (statusline)"
 
-command!                FilesAll    call fzf#run(fzf#wrap('files-all', {'source': 'fd . -I -H -L -t f -t l'}))
+command!                Files       call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -L -E .git -t f'}))
+command!                FilesAll    call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -I -L -t f -t l'}))
 command! -nargs=* -bang RG          call RipgrepFzf(<q-args>, <bang>0)
 
 " }}}
@@ -491,7 +492,7 @@ nmap <leader>ee     :FzfBuffers<cr>
 " files
 nmap <leader>fa     :FilesAll<cr>
 nmap <leader>fe     :edit %%
-nmap <leader>ff     :FzfFiles<cr>
+nmap <leader>ff     :Files<cr>
 nmap <leader>fh     :edit ~/
 nmap <leader>fr     :FzfHistory<cr>
 nmap <leader>fz     :call fzf#run(fzf#wrap('fzf-custom', {'source': ''}))
