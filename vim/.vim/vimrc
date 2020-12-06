@@ -216,7 +216,7 @@ set expandtab
 set list
 exec "set listchars=tab:\u2015\u2015,trail:\uB7"
 
-set colorcolumn=81
+set colorcolumn=81,101
 set formatoptions+=t
 set textwidth=100
 set nowrap
