@@ -17,7 +17,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'zirrostig/vim-schlepp'
-"Plug 'jlanzarotta/bufexplorer'
 Plug 'jiangmiao/auto-pairs'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -48,7 +47,6 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
 Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 
-"Plug 'mechatroner/rainbow_csv'
 Plug 'LnL7/vim-nix', { 'for': 'nix' }
 Plug 'eigenfoo/stan-vim'
 
