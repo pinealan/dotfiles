@@ -2,6 +2,7 @@
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 export FZF_DEFAULT_COMMAND="fd . -HIL -t f -t l"
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_DEFAULT_OPTS="\
     --height=30% \
     --min-height=10 \
