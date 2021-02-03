@@ -23,7 +23,7 @@
    :main-opts ["-m" "nrepl.cmdline"
                "--middleware" "[iced-repl/cider-middleware,refactor-nrepl.middleware/wrap-refactor,iced.nrepl/wrap-iced]"]}
 
-  ; Compound alias for all -A:nrepl:niddle:iced
+  ;; Compound alias for all -A:nrepl:niddle:iced
   :icedd
   {:extra-deps {nrepl/nrepl {:mvn/version "0.7.0"}
                 niddle/niddle {:local/root "/Volumes/Data/alan/lab/niddle"
@@ -33,8 +33,17 @@
                 iced-nrepl/iced-nrepl {:mvn/version "1.0.1"}
                 iced-repl/iced-repl {:local/root "/Users/alan/.vim/plugged/vim-iced"
                                      :deps/manifest :deps}}
-   :main-opts
-   ["-m"
-    "nrepl.cmdline"
-    "--middleware"
-    "[iced-repl/cider-middleware,refactor-nrepl.middleware/wrap-refactor,iced.nrepl/wrap-iced,niddle.print/niddle-mw]"]}}}
+
+   ; :main-opts
+   ; ["-m"
+   ;  "nrepl.cmdline"
+   ;  "--middleware"
+   ;  "[iced-repl/cider-middleware,refactor-nrepl.middleware/wrap-refactor,iced.nrepl/wrap-iced,niddle.print/niddle-mw]"]
+
+   ;; Upgrade from nrepl -main entrypoint that replied on string CLI args onto structured edn args
+   :exec-fn nrepl.cmdline/dispatch-commands
+   :exec-args {:middleware [iced-repl/cider-middleware
+                            refactor-nrepl.middleware/wrap-refactor
+                            iced.nrepl/wrap-iced
+                            niddle.print/niddle-mw]}}
+  }}
