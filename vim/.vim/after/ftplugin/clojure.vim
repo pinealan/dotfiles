@@ -164,12 +164,12 @@ vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
 let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
 
 function! AltSrcTestPath()
-    let path = expand('%:r')
+    let root = expand('%:r')
     let ext = expand('%:e')
-    if path =~# '^src'
-        return substitute( path.'_test.','^src','test','' ).ext
-    elseif path =~# '^test'
-        return substitute( substitute(path,'_test$','.',''),'^test','src','' ).ext
+    if root =~# '^src'
+        return substitute( root.'_test.','^src','test','' ).ext
+    elseif root =~# '^test'
+        return substitute( substitute( root,'_test$','.','' ),'^test','src','' ).ext
     else
         echom 'File path does not start with "src" or "test"'
         return expand('%')

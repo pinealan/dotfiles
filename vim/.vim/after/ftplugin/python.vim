@@ -14,6 +14,19 @@ function! ToggleDocstring()
     endif
 endfunction
 
-nnoremap <localleader>k  :vimgrep /^ *class/g @%
-nnoremap <localleader>d  :call ToggleDocstring()<cr>
-nnoremap <localleader>b  :!black %<cr>
+nmap <localleader>k  :vimgrep /^ *class/g @%
+nmap <localleader>d  :call ToggleDocstring()<cr>
+nmap <localleader>b  :!black %<cr>
+
+nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
+
+function! AltSrcTestPath()
+    let root = expand('%:r')
+    if root !~# '^test'
+        return substitute( root.'_test','^[^/]+/','test','' ).'.py'
+    elseif root =~# '^test'
+        return substitute( substitute( root,'/test_','/','' ),'^test/','','' ).'.py'
+    else
+        echom 'File path does not start with "src" or "test"'
+        return expand('%')
+endfunction
