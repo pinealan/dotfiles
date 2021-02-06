@@ -1,3 +1,5 @@
+# POSIX compliant shell configs
+
 # prepend PATH with user's home bin directories
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
@@ -29,12 +31,41 @@ alias tn='tmux new -s'
 alias tl='tmux ls'
 alias tk='tmux kill-server'
 
+# ls
+alias l='ls -l'
+alias lt='ls -t'
+alias la='ls -lA'
+alias ld='ls -al | grep " \."'
+alias las='ls -lASF'
+alias ll='LC_COLLATE=en_US.ascii ls -l'
+alias lss='ls --color | less -R'
+alias lhid='ls -la | grep " \\."'
+
+# Git
+alias d='git diff'
+alias s='git status'
+alias gg='tig'
+alias ga='gg --all'
+alias gs='git stash'
+alias gsp='git stash pop'
+
+# Shorthands
 alias g='git'
 alias h='htop'
 alias v='vim'
 alias df='df -h'
 alias sl='echo $SHLVL'
 alias wa='which -a'
+
+# Assumes 256 colors (8 bit)
+export LESS_TERMCAP_mb=$'\e[1;31m'          # begin bold
+export LESS_TERMCAP_md=$'\e[38;5;77m'       # begin blink
+export LESS_TERMCAP_us=$'\e[38;5;185m'      # begin underline
+export LESS_TERMCAP_me=$'\e[0m'             # end bold/blink
+export LESS_TERMCAP_ue=$'\e[0m'             # end underline
+
+export LESS_TERMCAP_so=$'\e[30;48;5;214m'   # standout-mode, dunno what this do
+export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
 
 # execute local machine-specific .profile if it exists
 local_profile="$HOME/.local/profile"

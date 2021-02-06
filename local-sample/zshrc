@@ -13,3 +13,34 @@ alias vim='nvim'
 alias vd='vim -d'
 alias svim='sudo env "PATH=$PATH" nvim'
 alias vs='vim -S Session.vim'
+
+_direnv_hook() {
+  trap -- '' SIGINT;
+  eval "$('/Users/alan/.nix-profile/bin/direnv' export zsh 2> >( egrep -v '^direnv: export' 1>&2 ))";
+  trap - SIGINT;
+}
+typeset -ag precmd_functions;
+if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
+  precmd_functions=( _direnv_hook ${precmd_functions[@]} )
+fi
+typeset -ag chpwd_functions;
+if [[ -z ${chpwd_functions[(r)_direnv_hook]} ]]; then
+  chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
+fi
+
+NIX_DAEMON="/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+[ -e $NIX_DAEMON ] && . $NIX_DAEMON
+
+NIX_FZF="/nix/store/kncw79f3f108hj9gnj7i7l5g59cal2gb-fzf-0.24.4"
+source $NIX_FZF/share/fzf/completion.zsh
+source $NIX_FZF/share/fzf/key-bindings.zsh
+
+# ZSH Git prompt
+GIT_PROMPT_EXECUTABLE="haskell"
+source $HOME/src/zsh-git-prompt/zshrc.sh
+
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[yellow]%}"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]%}%{✚%G%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}%{✔%G%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}%{✚%G%}"
+PROMPT='%B%F{blue}%~%f%b $(git_super_status)'$'\n''%# '

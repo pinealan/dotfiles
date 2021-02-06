@@ -69,16 +69,6 @@ bind 'set print-completions-horizontally on'
 bind 'TAB:menu-complete'
 bind '"\e[Z":menu-complete-backward'
 
-# Assumes 256 colors (8 bit)
-export LESS_TERMCAP_mb=$'\e[1;31m'          # begin bold
-export LESS_TERMCAP_md=$'\e[38;5;77m'       # begin blink
-export LESS_TERMCAP_us=$'\e[38;5;185m'      # begin underline
-export LESS_TERMCAP_me=$'\e[0m'             # end bold/blink
-export LESS_TERMCAP_ue=$'\e[0m'             # end underline
-
-export LESS_TERMCAP_so=$'\e[30;48;5;214m'   # standout-mode, dunno what this do
-export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
-
 stty -ixon
 
 # ----- Source more -----

@@ -35,6 +35,14 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# Execute optional extensions
+local_zsh_plugins="$HOME/.local/zsh_plugins"
+if [ -d $local_zsh_plugins ]; then
+    for f in $local_zsh_plugins/*; do
+        [ -f $f ] && . $f
+    done
+fi
+
 # Machine local zshrc
 local_zsh="$HOME/.local/zshrc"
 [ -f $local_zsh ] && . $local_zsh
