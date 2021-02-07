@@ -48,6 +48,7 @@ alias gg='tig'
 alias ga='gg --all'
 alias gs='git stash'
 alias gsp='git stash pop'
+alias gsd='git stash drop'
 
 # Shorthands
 alias g='git'
