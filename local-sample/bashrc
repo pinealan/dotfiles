@@ -105,3 +105,24 @@ function git-watch() {
         gw --all -n ${1:-55}
     done
 }
+
+_direnv_hook() {
+    local previous_exit_status=$?;
+    # eval "$(direnv export bash)";
+    # eval "$(direnv export bash 2> >( egrep -v '^direnv: export' 1>&2 ))";
+    eval "$(direnv export bash 2> >( \
+        awk '
+        $0 !~ /^direnv: export/
+        $0 ~ /^direnv: export/ {
+            plus   = gsub("\\+", "");
+            minus  = gsub("-", "");
+            change = gsub("~", "");
+            print "direnv: export " plus "(+) " minus "(-) " change "(~)"
+        }
+        ' 1>&2 \
+    ))";
+    return $previous_exit_status;
+};
+if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
+    PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+fi
