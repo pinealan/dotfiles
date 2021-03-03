@@ -1,46 +1,30 @@
-{:aliases
+{;:paths []
+ ;:deps {}
+ :aliases
  {:fmt    {:extra-deps {cljfmt/cljfmt {:mvn/version "0.6.4"}}
            :main-opts ["-m" "cljfmt.main"]}
 
-  :nrepl  {:extra-deps {nrepl/nrepl {:mvn/version "0.7.0"}}}
+  :repl   {:extra-deps {reply/reply {:mvn/version "0.4.4"}}
+           :main-opts ["-m" "reply.main" "--color" "--attach"]}
 
-  :repl   {:main-opts ["-m" "nrepl.cmdline" "--connect" "--port"]}
-
-  :reveal {:extra-deps {reveal/reveal {:local/root "/Volumes/Data/src/reveal"
-                                :deps/manifest :deps}}}
-
-  :niddle {:extra-deps {niddle/niddle {:local/root "/Volumes/Data/alan/lab/niddle"
-                                :deps/manifest :deps}}}
+  :niddle {:extra-deps
+           {niddle/niddle
+            {:local/root "/Users/alan/src/niddle" :deps/manifest :deps}}}
 
   :pg     {:extra-deps {cider/piggieback {:mvn/version "0.5.2"}}}
 
-  :iced
-  {:extra-deps {refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}
-                cider/cider-nrepl {:mvn/version "0.24.0"}
-                iced-nrepl/iced-nrepl {:mvn/version "1.0.1"}
-                iced-repl/iced-repl {:local/root "/Users/alan/.vim/plugged/vim-iced"
-                                     :deps/manifest :deps}}
-   :main-opts ["-m" "nrepl.cmdline"
-               "--middleware" "[iced-repl/cider-middleware,refactor-nrepl.middleware/wrap-refactor,iced.nrepl/wrap-iced]"]}
-
-  ;; Compound alias for all -A:nrepl:niddle:iced
   :icedd
-  {:extra-deps {nrepl/nrepl {:mvn/version "0.7.0"}
-                niddle/niddle {:local/root "/Volumes/Data/alan/lab/niddle"
-                               :deps/manifest :deps}
+  {:extra-deps {nrepl/nrepl                   {:mvn/version "0.7.0"}
                 refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}
-                cider/cider-nrepl {:mvn/version "0.24.0"}
-                iced-nrepl/iced-nrepl {:mvn/version "1.0.1"}
-                iced-repl/iced-repl {:local/root "/Users/alan/.vim/plugged/vim-iced"
-                                     :deps/manifest :deps}}
+                cider/cider-nrepl             {:mvn/version "0.24.0"}
+                iced-nrepl/iced-nrepl         {:mvn/version "1.0.1"}
 
-   ; :main-opts
-   ; ["-m"
-   ;  "nrepl.cmdline"
-   ;  "--middleware"
-   ;  "[iced-repl/cider-middleware,refactor-nrepl.middleware/wrap-refactor,iced.nrepl/wrap-iced,niddle.print/niddle-mw]"]
+                niddle/niddle
+                {:local/root "/Users/alan/src/niddle" :deps/manifest :deps}
 
-   ;; Upgrade from nrepl -main entrypoint that replied on string CLI args onto structured edn args
+                iced-repl/iced-repl
+                {:local/root "/Users/alan/.vim/plugged/vim-iced" :deps/manifest :deps}}
+
    :exec-fn nrepl.cmdline/dispatch-commands
    :exec-args {:middleware [iced-repl/cider-middleware
                             refactor-nrepl.middleware/wrap-refactor
