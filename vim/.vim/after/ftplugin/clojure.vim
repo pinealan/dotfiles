@@ -171,10 +171,10 @@ nmap <localleader>'     :IcedConnect<cr>
 nmap <localleader>rr    :IcedRequire<cr>
 nmap <localleader>ee    m`<Plug>(iced_eval)<Plug>(sexp_inner_element)g``
 nmap <localleader>ef    m`<Plug>(iced_eval)<Plug>(sexp_outer_list)g``
-nmap <localleader>et    m`<Plug>(iced_eval):call SelectOuterTopList()<cr>g``
+nmap <localleader>et    m`<Plug>(iced_eval):<c-u>call SelectOuterTopList()<cr>g``
 nmap <localleader>epe   m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
 nmap <localleader>epf   m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
-nmap <localleader>ept   m`<Plug>(iced_eval_and_print):call SelectOuterTopList()<cr>g``
+nmap <localleader>ept   m`<Plug>(iced_eval_and_print):<c-u>call SelectOuterTopList()<cr>g``
 
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
