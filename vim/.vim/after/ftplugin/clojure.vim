@@ -169,12 +169,12 @@ set keywordprg=:IcedDocumentPopupOpen
 
 nmap <localleader>'     :IcedConnect<cr>
 nmap <localleader>rr    :IcedRequire<cr>
-nmap <localleader>ee    m`<Plug>(iced_eval)<Plug>(sexp_inner_element)g``
+nmap <localleader>ew    m`<Plug>(iced_eval)<Plug>(sexp_inner_element)g``
 nmap <localleader>ef    m`<Plug>(iced_eval)<Plug>(sexp_outer_list)g``
-nmap <localleader>et    m`<Plug>(iced_eval):<c-u>call SelectOuterTopList()<cr>g``
-nmap <localleader>epe   m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
-nmap <localleader>epf   m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
-nmap <localleader>ept   m`<Plug>(iced_eval_and_print):<c-u>call SelectOuterTopList()<cr>g``
+nmap <localleader>ee    m`<Plug>(iced_eval):<c-u>call SelectOuterTopList()<cr>g``
+nmap <localleader>EW   m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
+nmap <localleader>EF   m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
+nmap <localleader>EE   m`<Plug>(iced_eval_and_print):<c-u>call SelectOuterTopList()<cr>g``
 
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
@@ -196,9 +196,10 @@ nmap <localleader>rtl   :IcedThreadLast<cr>
 nmap <localleader>ref   :IcedExtractFunction<cr>
 nmap <localleader>rml   :IcedMoveToLet<cr>
 
-nmap <localleader>ss    :IcedStdoutBufferOpen<cr>
-nmap <localleader>sl    :IcedStdoutBufferClear<cr>
-nmap <localleader>sq    :IcedStdoutBufferClose<cr>
+nmap <localleader>bb    :IcedStdoutBufferOpen<cr>
+nmap <localleader>bc    :IcedStdoutBufferClear<cr>
+nmap <localleader>bq    :IcedStdoutBufferClose<cr>
+nmap <localleader>bt    :IcedTestBufferOpen<cr>
 
 nmap <localleader>==    :IcedFormat<cr>
 nmap <localleader>=G    :IcedFormatAll<cr>
@@ -208,9 +209,9 @@ nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 """ WhichKey {{{1
 
 let g:localleader_map = {}
+let g:localleader_map['b'] = { 'name': '+iced-buffers' }
 let g:localleader_map['e'] = { 'name': '+iced-eval' }
 let g:localleader_map['r'] = { 'name': '+iced-refactor' }
-let g:localleader_map['s'] = { 'name': '+iced-stdout' }
 let g:localleader_map['t'] = { 'name': '+iced-test' }
 "let g:localleader_map['w'] = {
 "    \ 'name': '+sexp-wrap-element',
