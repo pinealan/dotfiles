@@ -1,3 +1,5 @@
+""" Sexp mappings {{{1
+
 " doing my own mappings because the defaults uses <Leader> or <M-*>
 "
 let g:sexp_enable_insert_mode_mappings = 0
@@ -68,12 +70,12 @@ set keywordprg=:IcedDocumentPopupOpen
 
 nmap <localleader>'     :IcedConnect<cr>
 nmap <localleader>rr    :IcedRequire<cr>
-nmap <localleader>ee    <Plug>(iced_eval)<Plug>(sexp_inner_element)
-nmap <localleader>ef    <Plug>(iced_eval)<Plug>(sexp_outer_list)
-nmap <localleader>et    <Plug>(iced_eval_outer_top_list)
-nmap <localleader>epe   <Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)
-nmap <localleader>epf   <Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)
-nmap <localleader>ept   <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)
+nmap <localleader>ee    m`<Plug>(iced_eval)<Plug>(sexp_inner_element)g``
+nmap <localleader>ef    m`<Plug>(iced_eval)<Plug>(sexp_outer_list)g``
+nmap <localleader>et    m`<Plug>(iced_eval):call SelectOuterTopList()<cr>g``
+nmap <localleader>epe   m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
+nmap <localleader>epf   m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
+nmap <localleader>ept   m`<Plug>(iced_eval_and_print):call SelectOuterTopList()<cr>g``
 
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
@@ -173,4 +175,58 @@ function! AltSrcTestPath()
     else
         echom 'File path does not start with "src" or "test"'
         return expand('%')
+endfunction
+
+" from vim-sexp
+function! s:get_visual_marks()
+    return [getpos("'<"), getpos("'>")]
+endfunction
+
+function! s:set_visual_marks(marks)
+    call setpos("'<", a:marks[0])
+    call setpos("'>", a:marks[1])
+endfunction
+
+" Return visually selected text without changing selection state and registers
+function! GetSelectedCode() abort
+    let reg_save = @@
+    silent normal! y
+    let result = @@
+    let @@ = reg_save
+    silent normal! gv
+    return result
+endfunction
+
+function! SelectOuterUntilTop(top_code) abort
+    let reg_save = @@
+    try
+        while (v:true)
+            call sexp#select_current_list('v', 0, 1)
+            let current_marks = s:get_visual_marks()
+
+            call sexp#docount(2, 'sexp#select_current_list', 'v', 0, 1)
+            let next_code = GetSelectedCode()
+
+            if (next_code ==# a:top_code) | break | endif
+        endwhile
+        call s:set_visual_marks(current_marks)
+        normal! gv
+    finally
+        let @@ = reg_save
+    endtry
+endfunction
+
+function! SelectOuterTopList() abort
+    let curpos = getpos('.')
+
+    " First use vim-sexp optimized top form selector
+    call sexp#select_current_top_list('v', 0)
+    let top_code = GetSelectedCode()
+
+    if (stridx(top_code, '(comment') == 0)
+        " Select up one by one if the top list is a (comment ...) form
+        execute "normal! \<Esc>"
+        call setpos('.', curpos)
+        call SelectOuterUntilTop(top_code)
+    endif
 endfunction
