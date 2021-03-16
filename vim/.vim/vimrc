@@ -435,10 +435,10 @@ map <silent> <M-h>   :TmuxNavigateLeft<cr>
 map <silent> <M-j>   :TmuxNavigateDown<cr>
 map <silent> <M-k>   :TmuxNavigateUp<cr>
 map <silent> <M-l>   :TmuxNavigateRight<cr>
-map {H          <C-w>9<
-map {J          <C-w>9-
-map {K          <C-w>9+
-map {L          <C-w>9>
+"map {H          <C-w>9<
+"map {J          <C-w>9-
+"map {K          <C-w>9+
+"map {L          <C-w>9>
 
 " Buffer/Tab/Quickfix navigation
 map <C-q>      :q<cr>
@@ -502,7 +502,7 @@ nmap <leader>gb     :Git blame<cr>
 nmap <leader>gc     :FzfCommits<cr>
 nmap <leader>gd     :Git diff<cr>
 nmap <leader>gf     :FzfGFiles<cr>
-nmap <leader>gg     :vert Git<cr>
+nmap <leader>gg     :vert Git<cr>60<c-w>\|
 nmap <leader>gl     :Glog<cr>
 nmap <leader>gs     :Git<cr>
 nmap <leader>gv     :Gvdiffsplit<cr>
@@ -544,7 +544,7 @@ nmap <leader>wo     :tab sp<cr>
 nmap <leader>wq     :quit<cr>
 nmap <leader>ws     :vsp<cr>
 nmap <leader>wt     <C-w>T
-nmap <leader>ww     <C-w>P
+nmap <leader>ww     :w<cr>
 
 nmap <leader>xm     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nmap <leader>xt     :Tabularize /
