@@ -7,9 +7,16 @@
   :repl   {:extra-deps {reply/reply {:mvn/version "0.4.4"}}
            :main-opts ["-m" "reply.main" "--color" "--attach"]}
 
+  :nrepl  {:extra-deps {nrepl/nrepl                   {:mvn/version "0.7.0"}}
+           :exec-fn nrepl.cmdline/dispatch-commands
+           :exec-args {}}
+
   :niddle {:extra-deps
            {niddle/niddle
-            {:local/root "/Users/alan/src/niddle" :deps/manifest :deps}}}
+            {:local/root "/Users/alan/src/niddle" :deps/manifest :deps}}
+
+           :exec-fn nrepl.cmdline/dispatch-commands
+           :exec-args {:middleware [niddle.print/niddle-mw]}}
 
   :pg     {:extra-deps {cider/piggieback {:mvn/version "0.5.2"}}}
 
