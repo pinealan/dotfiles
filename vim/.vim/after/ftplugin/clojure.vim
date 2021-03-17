@@ -188,6 +188,10 @@ nmap <localLeader>tn    :IcedTestNs<cr>
 nmap <localleader>tr    :IcedTestRedo<cr>
 nmap <localLeader>tl    :IcedTestRerunLast<cr>
 
+nmap <localLeader>ss    :IcedCljsRepl (figwheel.main.api/repl-env "dev")
+nmap <localLeader>sc    :IcedCycleSession<cr>
+nmap <localLeader>sq    :IcedQuitCljsRepl<cr>
+
 nmap <localleader>raa   :IcedAddArity<cr>
 nmap <localLeader>ram   :IcedAddMissing<cr>
 nmap <localLeader>ran   :IcedAddNs<cr>
@@ -212,6 +216,7 @@ let g:localleader_map = {}
 let g:localleader_map['b'] = { 'name': '+iced-buffers' }
 let g:localleader_map['e'] = { 'name': '+iced-eval' }
 let g:localleader_map['r'] = { 'name': '+iced-refactor' }
+let g:localleader_map['s'] = { 'name': '+iced-cljs' }
 let g:localleader_map['t'] = { 'name': '+iced-test' }
 "let g:localleader_map['w'] = {
 "    \ 'name': '+sexp-wrap-element',
