@@ -12,28 +12,32 @@
            :exec-args {}}
 
   :niddle {:extra-deps
-           {niddle/niddle
+           {nrepl/nrepl                   {:mvn/version "0.7.0"}
+            niddle/niddle
             {:local/root "/Users/alan/src/niddle" :deps/manifest :deps}}
 
            :exec-fn nrepl.cmdline/dispatch-commands
            :exec-args {:middleware [niddle.print/niddle-mw]}}
 
-  :pg     {:extra-deps {cider/piggieback {:mvn/version "0.5.2"}}}
-
   :icedd
-  {:extra-deps {nrepl/nrepl                   {:mvn/version "0.7.0"}
-                refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}
-                cider/cider-nrepl             {:mvn/version "0.24.0"}
-                iced-nrepl/iced-nrepl         {:mvn/version "1.0.1"}
+  {:extra-deps
+   {nrepl/nrepl                   {:mvn/version "0.7.0"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}
+    cider/cider-nrepl             {:mvn/version "0.24.0"}
+    iced-nrepl/iced-nrepl         {:mvn/version "1.0.1"}
 
-                niddle/niddle
-                {:local/root "/Users/alan/src/niddle" :deps/manifest :deps}
+    ; it doesn't get in our way so just always include it
+    cider/piggieback              {:mvn/version "0.5.2"}
 
-                iced-repl/iced-repl
-                {:local/root "/Users/alan/.vim/plugged/vim-iced" :deps/manifest :deps}}
+    niddle/niddle
+    {:local/root "/Users/alan/src/niddle" :deps/manifest :deps}
+
+    iced-repl/iced-repl
+    {:local/root "/Users/alan/src/vim-iced" :deps/manifest :deps}}
 
    :exec-fn nrepl.cmdline/dispatch-commands
    :exec-args {:middleware [iced-repl/cider-middleware
+                            cider.piggieback/wrap-cljs-repl
                             refactor-nrepl.middleware/wrap-refactor
                             iced.nrepl/wrap-iced
                             niddle.print/niddle-mw]}}
