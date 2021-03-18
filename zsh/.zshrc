@@ -4,14 +4,14 @@
 # promptinit
 # prompt adam1
 
-setopt histignorealldups sharehistory
+setopt extended_history hist_ignore_all_dups share_history
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000000
+SAVEHIST=1000000000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
