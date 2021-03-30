@@ -214,7 +214,18 @@ nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 
 let g:localleader_map = {}
 let g:localleader_map['b'] = { 'name': '+iced-buffers' }
-let g:localleader_map['e'] = { 'name': '+iced-eval' }
+let g:localleader_map['e'] = {
+    \ 'name': '+iced-eval',
+    \ 'e': 'Eval top list',
+    \ 'f': 'Eval list',
+    \ 'w': 'Eval element',
+    \ }
+let g:localleader_map['E'] = {
+    \ 'name': '+iced-eval-print',
+    \ 'E': 'Eval top list',
+    \ 'F': 'Eval list',
+    \ 'W': 'Eval element',
+    \ }
 let g:localleader_map['r'] = { 'name': '+iced-refactor' }
 let g:localleader_map['s'] = { 'name': '+iced-cljs' }
 let g:localleader_map['t'] = { 'name': '+iced-test' }
@@ -241,3 +252,5 @@ nnoremap <silent> <localleader>     :WhichKey "'"<CR>
 vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
 
 let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
+
+setl tw=80
