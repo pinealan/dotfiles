@@ -39,7 +39,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
-Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'junegunn/goyo.vim'
 Plug 'jparise/vim-graphql'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
@@ -144,6 +144,9 @@ let g:goyo_width = 105
 " }}}
 " illuminate {{{
 hi link illuminatedWord Visual
+" }}}
+" Markdown preview {{{
+let g:mkdp_auto_close = 0
 " }}}
 
 call plug#end()
