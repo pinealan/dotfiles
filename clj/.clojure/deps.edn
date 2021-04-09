@@ -19,6 +19,21 @@
            :exec-fn nrepl.cmdline/dispatch-commands
            :exec-args {:middleware [niddle.print/niddle-mw]}}
 
+  :iced
+  {:extra-deps
+   {nrepl/nrepl                   {:mvn/version "0.7.0"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}
+    cider/cider-nrepl             {:mvn/version "0.24.0"}
+    iced-nrepl/iced-nrepl         {:mvn/version "1.0.1"}
+
+    iced-repl/iced-repl
+    {:local/root "/Users/alan/src/vim-iced" :deps/manifest :deps}}
+
+   :exec-fn nrepl.cmdline/dispatch-commands
+   :exec-args {:middleware [iced-repl/cider-middleware
+                            refactor-nrepl.middleware/wrap-refactor
+                            iced.nrepl/wrap-iced]}}
+
   :icedd
   {:extra-deps
    {nrepl/nrepl                   {:mvn/version "0.7.0"}
@@ -41,4 +56,9 @@
                             refactor-nrepl.middleware/wrap-refactor
                             iced.nrepl/wrap-iced
                             niddle.print/niddle-mw]}}
+
+  :depstar
+  {:extra-deps {com.github.seancorfield/depstar {:mvn/version "2.0.206"}}
+   :ns-default hf.depstar
+   :exec-args {}}
   }}
