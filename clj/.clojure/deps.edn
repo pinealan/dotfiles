@@ -26,11 +26,14 @@
     cider/cider-nrepl             {:mvn/version "0.24.0"}
     iced-nrepl/iced-nrepl         {:mvn/version "1.0.1"}
 
+    cider/piggieback              {:mvn/version "0.5.2"}
+
     iced-repl/iced-repl
     {:local/root "/Users/alan/src/vim-iced" :deps/manifest :deps}}
 
    :exec-fn nrepl.cmdline/dispatch-commands
    :exec-args {:middleware [iced-repl/cider-middleware
+                            cider.piggieback/wrap-cljs-repl
                             refactor-nrepl.middleware/wrap-refactor
                             iced.nrepl/wrap-iced]}}
 
