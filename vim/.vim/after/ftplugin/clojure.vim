@@ -109,8 +109,8 @@ let g:sexp_mappings = {
     \ 'sexp_square_tail_wrap_element':  '',
     \ 'sexp_curly_head_wrap_element':   '',
     \ 'sexp_curly_tail_wrap_element':   '',
-    \ 'sexp_insert_at_list_head':       '<localleader>h',
-    \ 'sexp_insert_at_list_tail':       '<localleader>l',
+    \ 'sexp_insert_at_list_head':       '<localleader>i',
+    \ 'sexp_insert_at_list_tail':       '<localleader>a',
     \ 'sexp_splice_list':               '<localleader>p',
     \ 'sexp_convolute':                 '<localleader>c',
     \ 'sexp_raise_list':                '<localleader>O',
@@ -172,9 +172,15 @@ nmap <localleader>rr    :IcedRequire<cr>
 nmap <localleader>ew    m`<Plug>(iced_eval)<Plug>(sexp_inner_element)g``
 nmap <localleader>ef    m`<Plug>(iced_eval)<Plug>(sexp_outer_list)g``
 nmap <localleader>ee    m`<Plug>(iced_eval):<c-u>call SelectOuterTopList()<cr>g``
-nmap <localleader>EW   m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
-nmap <localleader>EF   m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
-nmap <localleader>EE   m`<Plug>(iced_eval_and_print):<c-u>call SelectOuterTopList()<cr>g``
+" nmap <localleader>ee    m`<Plug>(iced_eval_outer_top_list)g``
+nmap <localleader>eW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
+nmap <localleader>eF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
+nmap <localleader>eE    m`<Plug>(iced_eval_and_print):<c-u>call SelectOuterTopList()<cr>g``
+nmap <localleader>EW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
+nmap <localleader>EF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
+nmap <localleader>EE    m`<Plug>(iced_eval_and_print):<c-u>call SelectOuterTopList()<cr>g``
+
+nmap <localleader>eq    :IcedInterrupt<cr>
 
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
@@ -195,6 +201,8 @@ nmap <localLeader>sq    :IcedQuitCljsRepl<cr>
 nmap <localleader>raa   :IcedAddArity<cr>
 nmap <localLeader>ram   :IcedAddMissing<cr>
 nmap <localLeader>ran   :IcedAddNs<cr>
+nmap <localLeader>rcn   :IcedCleanNs<cr>
+nmap <localLeader>rrs   :IcedRenameSymbol<cr>
 nmap <localleader>rtf   :IcedThreadFirst<cr>
 nmap <localleader>rtl   :IcedThreadLast<cr>
 nmap <localleader>ref   :IcedExtractFunction<cr>
@@ -240,8 +248,8 @@ let g:localleader_map['t'] = { 'name': '+iced-test' }
 
 let g:localleader_map['c'] = 'sexp-convolute'
 let g:localleader_map['p'] = 'sexp-splice'
-let g:localleader_map['h'] = 'sexp-insert-at-head'
-let g:localleader_map['l'] = 'sexp-insert-at-tail'
+let g:localleader_map['i'] = 'sexp-insert-at-head'
+let g:localleader_map['a'] = 'sexp-insert-at-tail'
 let g:localleader_map['o'] = 'sexp-raise-element'
 let g:localleader_map['O'] = 'sexp-raise-list'
 "let g:localleader_map['='] = 'iced-format'
