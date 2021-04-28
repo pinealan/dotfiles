@@ -552,6 +552,7 @@ nmap <leader>ww     :w<cr>
 
 nmap <leader>xm     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nmap <leader>xt     :Tabularize /
+nmap <leader>xr     :s/ /\r/g<cr>
 
 " youcompleteme
 nmap <leader>yx     :YcmCompleter FixIt<cr>
