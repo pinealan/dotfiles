@@ -21,10 +21,10 @@
 
   :iced
   {:extra-deps
-   {nrepl/nrepl                   {:mvn/version "0.7.0"}
-    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}
-    cider/cider-nrepl             {:mvn/version "0.24.0"}
-    iced-nrepl/iced-nrepl         {:mvn/version "1.0.1"}
+   {nrepl/nrepl                   {:mvn/version "0.8.3"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.1"}
+    cider/cider-nrepl             {:mvn/version "0.26.0"}
+    com.github.liquidz/iced-nrepl {:mvn/version "1.2.4"}
 
     cider/piggieback              {:mvn/version "0.5.2"}
 
@@ -39,10 +39,10 @@
 
   :icedd
   {:extra-deps
-   {nrepl/nrepl                   {:mvn/version "0.7.0"}
-    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}
-    cider/cider-nrepl             {:mvn/version "0.24.0"}
-    iced-nrepl/iced-nrepl         {:mvn/version "1.0.1"}
+   {nrepl/nrepl                   {:mvn/version "0.8.3"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.1"}
+    cider/cider-nrepl             {:mvn/version "0.26.0"}
+    com.github.liquidz/iced-nrepl {:mvn/version "1.2.4"}
 
     ; it doesn't get in our way so just always include it
     cider/piggieback              {:mvn/version "0.5.2"}
