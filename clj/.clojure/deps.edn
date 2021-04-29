@@ -23,7 +23,7 @@
   {:extra-deps
    {nrepl/nrepl                   {:mvn/version "0.8.3"}
     refactor-nrepl/refactor-nrepl {:mvn/version "2.5.1"}
-    cider/cider-nrepl             {:mvn/version "0.26.0"}
+    cider/cider-nrepl             {:mvn/version "0.25.11"}
     com.github.liquidz/iced-nrepl {:mvn/version "1.2.4"}
 
     cider/piggieback              {:mvn/version "0.5.2"}
@@ -41,7 +41,7 @@
   {:extra-deps
    {nrepl/nrepl                   {:mvn/version "0.8.3"}
     refactor-nrepl/refactor-nrepl {:mvn/version "2.5.1"}
-    cider/cider-nrepl             {:mvn/version "0.26.0"}
+    cider/cider-nrepl             {:mvn/version "0.25.11"}
     com.github.liquidz/iced-nrepl {:mvn/version "1.2.4"}
 
     ; it doesn't get in our way so just always include it
