@@ -1,0 +1,23 @@
+\set QUIET 1
+\pset null '¤'
+\pset pager off
+
+\pset linestyle unicode
+\pset border 2
+
+\set PROMPT1 '%[%033[36m%]%/%[%033[0m%]%R%#%x '
+\set PROMPT2 '... > '
+
+\timing
+
+\x auto
+
+\set COMP_KEYWORD_CASE upper
+\set HISTCONTROL ignoredups
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTSIZE -1
+\set VERBOSITY verbose
+
+\echo Connected to :HOST as :USER
+
+\unset QUIET
