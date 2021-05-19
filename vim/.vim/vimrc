@@ -50,6 +50,7 @@ Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 
 Plug 'LnL7/vim-nix', { 'for': 'nix' }
 Plug 'eigenfoo/stan-vim'
+Plug 'vyperlang/vim-vyper'
 
 " NERDTree {{{
 augroup usr_nerdtree
