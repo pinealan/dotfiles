@@ -124,6 +124,7 @@ nmap <localleader>eW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g
 nmap <localleader>eF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
 nmap <localleader>eE    m`<Plug>(iced_eval_outer_top_list)g``
 
+" Duplicate in case of fat finger fast typing
 nmap <localleader>EW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
 nmap <localleader>EF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
 nmap <localleader>EE    m`<Plug>(iced_eval_outer_top_list)g``
@@ -135,6 +136,7 @@ xmap <localleader>ee    :IcedEvalVisual<cr>
 nmap <localleader>hc    :IcedClojureDocsOpen<cr>
 nmap <localleader>hs    :IcedSourcePopupShow<cr>
 
+nmap <localleader>jd    :IcedDefJump .<cr>
 nmap <localleader>jl    :IcedJumpToLet<cr>
 
 nmap <localleader>tt    :IcedTestUnderCursor<cr>
@@ -169,39 +171,83 @@ nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 """ WhichKey {{{1
 
 let g:localleader_map = {}
-let g:localleader_map['b'] = { 'name': '+iced-buffers' }
+
 let g:localleader_map['e'] = {
     \ 'name': '+iced-eval',
     \ 'e': 'Eval top list',
     \ 'f': 'Eval list',
     \ 'w': 'Eval element',
+    \ 'E': 'Eval & print top list',
+    \ 'F': 'Eval & print list',
+    \ 'W': 'Eval & print element',
     \ }
+
 let g:localleader_map['E'] = {
     \ 'name': '+iced-eval-print',
-    \ 'E': 'Eval top list',
-    \ 'F': 'Eval list',
-    \ 'W': 'Eval element',
+    \ 'E': 'Eval & print top list',
+    \ 'F': 'Eval & print list',
+    \ 'W': 'Eval & print element',
     \ }
-let g:localleader_map['r'] = { 'name': '+iced-refactor' }
+
+let g:localleader_map['='] = { 'name': '+iced-format' }
+let g:localleader_map['b'] = { 'name': '+iced-buffers' }
+let g:localleader_map['h'] = { 'name': '+iced-docs' }
+let g:localleader_map['j'] = { 'name': '+iced-jump' }
 let g:localleader_map['s'] = { 'name': '+iced-cljs' }
 let g:localleader_map['t'] = { 'name': '+iced-test' }
-"let g:localleader_map['w'] = {
-"    \ 'name': '+sexp-wrap-element',
-"    \ 'w': '+sexp-wrap-element-insert',
-"    \ }
-"let g:localleader_map['W'] = {
-"    \ 'name': '+sexp-wrap-list',
-"    \ 'W': '+sexp-wrap-list-insert',
-"    \ }
 
-let g:localleader_map['c'] = 'sexp-convolute'
-let g:localleader_map['p'] = 'sexp-splice'
-let g:localleader_map['i'] = 'sexp-insert-at-head'
-let g:localleader_map['a'] = 'sexp-insert-at-tail'
-let g:localleader_map['o'] = 'sexp-raise-element'
-let g:localleader_map['O'] = 'sexp-raise-list'
-"let g:localleader_map['='] = 'iced-format'
-let g:localleader_map['<Tab>'] = "edit-test-file"
+let g:localleader_map['r'] = {
+    \ 'name': '+iced-refactor',
+    \ 'a': {'name': '+add'},
+    \ 'c': {'name': '+clean'},
+    \ 'e': {'name': '+extract'},
+    \ 'm': {'name': '+move'},
+    \ 'r': {'name': '+rename'},
+    \ 't': {'name': '+thread'},
+    \ }
+
+let g:localleader_map['w'] = {
+    \ 'name': '+sexp-wrap-element',
+    \ '(': 'In parens',
+    \ '[': 'In brackets',
+    \ '{': 'In braces',
+    \ 'i': 'In parens & start insert at head',
+    \ 'a': 'In parens & start insert at tail',
+    \ 'w': {
+    \     'name': '+wrap-and-insert',
+    \     '(': 'In parens & start insert at head',
+    \     ')': 'In parens & start insert at tail',
+    \     '[': 'In brackets & start insert at head',
+    \     ']': 'In brackets & start insert at tail',
+    \     '{': 'In braces & start insert at head',
+    \     '}': 'In braces & start insert at tail',
+    \     },
+    \ }
+
+let g:localleader_map['W'] = {
+    \ 'name': '+sexp-wrap-list',
+    \ '(': 'In parens',
+    \ '[': 'In brackets',
+    \ '{': 'In braces',
+    \ 'W': {
+    \     'name': '+wrap-and-insert',
+    \     '(': 'In parens & start insert at head',
+    \     ')': 'In parens & start insert at tail',
+    \     '[': 'In brackets & start insert at head',
+    \     ']': 'In brackets & start insert at tail',
+    \     '{': 'In braces & start insert at head',
+    \     '}': 'In braces & start insert at tail',
+    \     },
+    \ }
+
+let g:localleader_map['c'] = 'Sexp convolute'
+let g:localleader_map['p'] = 'Sexp splice'
+let g:localleader_map['i'] = 'Sexp insert at head'
+let g:localleader_map['a'] = 'Sexp insert at tail'
+let g:localleader_map['o'] = 'Sexp raise element'
+let g:localleader_map['O'] = 'Sexp raise list'
+
+let g:localleader_map['<Tab>'] = "Edit corresponding src/test file"
 
 call which_key#register("'", "g:localleader_map")
 nnoremap <silent> <localleader>     :WhichKey "'"<CR>
