@@ -27,9 +27,9 @@ let g:sexp_mappings = {
     \ 'sexp_inner_string':              'is',
     \ 'sexp_outer_element':             'ae',
     \ 'sexp_inner_element':             'ie',
-    \ 'sexp_flow_to_prev_close':        '{',
-    \ 'sexp_flow_to_next_open':         ')',
     \ 'sexp_flow_to_prev_open':         '(',
+    \ 'sexp_flow_to_next_open':         ')',
+    \ 'sexp_flow_to_prev_close':        '{',
     \ 'sexp_flow_to_next_close':        '}',
     \ 'sexp_flow_to_prev_leaf_head':    'b',
     \ 'sexp_flow_to_next_leaf_head':    'w',
@@ -105,6 +105,8 @@ nmap <localleader>WW}   <Plug>(sexp_curly_tail_wrap_list)i
 """ Iced mappings {{{1
 
 set keywordprg=:IcedDocumentPopupOpen
+
+let g:iced#nrepl#skip_evaluation_when_buffer_size_is_exceeded = v:true
 
 " Normal whitespace-based word navigation
 " nnoremap <buffer>       W w
