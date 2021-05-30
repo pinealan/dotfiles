@@ -41,7 +41,11 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'lifepillar/pgsql.vim'
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', {
+    \ 'do': { -> mkdp#util#install() },
+    \ 'for': ['markdown', 'vim-plug'],
+    \ }
+
 Plug 'junegunn/goyo.vim'
 Plug 'jparise/vim-graphql'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
@@ -61,34 +65,37 @@ augroup usr_nerdtree
 augroup END
 
 let exact_dir_names = [
-\   '^\.cpcache$[[dir]]',
-\   '^\.direnv$[[dir]]',
-\   '^\.egg-info$[[dir]]',
-\   '^\.git$[[dir]]',
-\   '^\.idea$[[dir]]',
-\   '^\.ipynb_checkpoints$[[dir]]',
-\   '^\.mypy_cache$[[dir]]',
-\   '^\.pytest_cache$[[dir]]',
-\   '^\.sass-cache$[[dir]]',
-\   '^\.serverless$[[dir]]',
-\   '^\.venv$[[dir]]',
-\   '^\.vscode$[[dir]]',
-\   '^__pycache__$[[dir]]',
-\   '^coverage$[[dir]]',
-\   '^node_modules$[[dir]]',
-\   '^vendor$[[dir]]',
-\   '^venv$[[dir]]'
-\]
+    \   '^\.cpcache$[[dir]]',
+    \   '^\.direnv$[[dir]]',
+    \   '^\.egg-info$[[dir]]',
+    \   '^\.git$[[dir]]',
+    \   '^\.idea$[[dir]]',
+    \   '^\.ipynb_checkpoints$[[dir]]',
+    \   '^\.mypy_cache$[[dir]]',
+    \   '^\.pytest_cache$[[dir]]',
+    \   '^\.sass-cache$[[dir]]',
+    \   '^\.serverless$[[dir]]',
+    \   '^\.venv$[[dir]]',
+    \   '^\.vscode$[[dir]]',
+    \   '^__pycache__$[[dir]]',
+    \   '^coverage$[[dir]]',
+    \   '^node_modules$[[dir]]',
+    \   '^vendor$[[dir]]',
+    \   '^venv$[[dir]]'
+    \]
+
 let exact_file_names = [
-\   '^Session.vim$[[file]]',
-\   '^\.DS_Store$[[file]]'
-\]
+    \   '^Session.vim$[[file]]',
+    \   '^\.DS_Store$[[file]]'
+    \]
+
 let file_suffixes = [
-\   '\.exe$[[file]]',
-\   '\.o$[[file]]',
-\   '\.out$[[file]]',
-\   '\.pyc$[[file]]'
-\]
+    \   '\.exe$[[file]]',
+    \   '\.o$[[file]]',
+    \   '\.out$[[file]]',
+    \   '\.pyc$[[file]]'
+    \]
+
 let NERDTreeIgnore = exact_dir_names + exact_file_names + file_suffixes
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
