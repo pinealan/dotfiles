@@ -376,7 +376,7 @@ function! MyStatusLine(pathformat)
         "\'%#User{1}#',
     return join([
         \' %q%w%r%m%{HasPaste()}',
-        \'%n:%' . a:pathformat,
+        \'%' . a:pathformat,
         \'%=',
         \'%y %l,%-2c |%3p%% '
         \], '')
