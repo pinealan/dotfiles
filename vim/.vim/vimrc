@@ -22,6 +22,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
+Plug 'luochen1990/rainbow'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -146,6 +147,12 @@ let g:goyo_width = 105
 " }}}
 " illuminate {{{
 hi link illuminatedWord Visual
+" }}}
+" rainbow {{{
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+    \ 'guifgs': ['#828282', 'royalblue3', 'darkorange4', 'seagreen4', 'firebrick', 'darkorchid3'],
+    \ }
 " }}}
 " Markdown preview {{{
 let g:mkdp_auto_close = 0
@@ -532,6 +539,7 @@ nmap <silent> <leader>t2    :MyStatusLineShort<cr>
 nmap <silent> <leader>th    :setlocal hlsearch!<cr>
 nmap <silent> <leader>tj    :call ToggleFastEsc()<cr>
 nmap <silent> <leader>tp    :setlocal paste!<cr>
+nmap <silent> <leader>tr    :RainbowToggle<cr>
 nmap <silent> <leader>ts    :setlocal spell!<cr>
 nmap <silent> <leader>tw    :setlocal wrap!<cr>
 
@@ -627,6 +635,7 @@ let g:leader_map['t'] = {
     \ 'h': 'Highlight search',
     \ 'j': 'Fast escape (jj)',
     \ 'p': 'Paste mode',
+    \ 'r': 'Rainbow parens',
     \ 's': 'Spell check',
     \ 'w': 'Soft wrap',
     \ }
