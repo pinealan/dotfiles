@@ -255,6 +255,6 @@ call which_key#register("'", "g:localleader_map")
 nnoremap <silent> <localleader>     :WhichKey "'"<CR>
 vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
 
-let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
+let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"'}
 
 setl tw=80
