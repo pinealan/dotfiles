@@ -231,7 +231,7 @@ set autoindent
 set smartindent
 set expandtab
 set list
-exec "set listchars=tab:\u2015\u2015,trail:\uB7"
+exec "set listchars=tab:>\u2015,trail:\uB7"
 
 set colorcolumn=81,101
 set formatoptions+=t
