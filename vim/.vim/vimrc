@@ -504,7 +504,7 @@ nmap <leader>bd     :bd<cr>
 nmap <leader>bn     :vnew<cr>
 
 " use e as alias of buffEr mnemonics
-nmap <leader>ee     :FzfBuffers<cr>
+nmap <leader>e      :FzfBuffers<cr>
 
 " files
 nmap <leader>fa     :FilesAll<cr>
@@ -568,7 +568,7 @@ nmap <leader>ww     :w<cr>
 
 nmap <leader>xm     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nmap <leader>xt     :Tabularize /
-nmap <leader>xr     :s/ /\r/g<cr>
+nmap <leader>xr     :s/ \+/\r/g<cr>
 
 " youcompleteme
 nmap <leader>yx     :YcmCompleter FixIt<cr>
@@ -588,6 +588,7 @@ let g:leader_map['"'] = "Split horizontal"
 let g:leader_map[':'] = "Search commands"
 
 let g:leader_map['c'] = "Show highlight group"
+let g:leader_map['e'] = "Search buffer by name"
 let g:leader_map['d'] = "Unload buffer"
 let g:leader_map["p"] = "Toggle paste mode"
 let g:leader_map['q'] = "Quit window"
@@ -664,7 +665,8 @@ let g:leader_map['w'] = {
 
 let g:leader_map['x'] = {
     \ 'name': '+execute',
-    \ 'm': 'make',
+    \ 'm': 'Make',
+    \ 'r': 'Split line by spaces',
     \ 't': 'Tabularize',
     \ }
 
