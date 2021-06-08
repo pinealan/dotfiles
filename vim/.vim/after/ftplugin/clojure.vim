@@ -141,6 +141,12 @@ nmap <localleader>hs    :IcedSourcePopupShow<cr>
 nmap <localleader>jd    :IcedDefJump .<cr>
 nmap <localleader>jl    :IcedJumpToLet<cr>
 
+" tap
+nmap <localleader>tb    :IcedBrowseTapped
+nmap <localLeader>tc    :IcedClearTapped<cr>
+nmap <localleader>td    :IcedDeleteTapped<cr>
+
+" test
 nmap <localleader>tt    :IcedTestUnderCursor<cr>
 nmap <localLeader>tn    :IcedTestNs<cr>
 nmap <localleader>tr    :IcedTestRedo<cr>
@@ -196,7 +202,7 @@ let g:localleader_map['b'] = { 'name': '+iced-buffers' }
 let g:localleader_map['h'] = { 'name': '+iced-docs' }
 let g:localleader_map['j'] = { 'name': '+iced-jump' }
 let g:localleader_map['s'] = { 'name': '+iced-cljs' }
-let g:localleader_map['t'] = { 'name': '+iced-test' }
+let g:localleader_map['t'] = { 'name': '+iced-tap/test' }
 
 let g:localleader_map['r'] = {
     \ 'name': '+iced-refactor',
