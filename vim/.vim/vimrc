@@ -24,7 +24,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
 Plug 'luochen1990/rainbow'
 
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -450,10 +450,14 @@ noremap J    m`J:setlocal nohlsearch<cr>:s/ *$//<cr>g``
 nnoremap <cr>  o<esc>
 
 " Windows navigation
-map <silent> <M-h>   :TmuxNavigateLeft<cr>
-map <silent> <M-j>   :TmuxNavigateDown<cr>
-map <silent> <M-k>   :TmuxNavigateUp<cr>
-map <silent> <M-l>   :TmuxNavigateRight<cr>
+"map <silent> <M-h>   :TmuxNavigateLeft<cr>
+"map <silent> <M-j>   :TmuxNavigateDown<cr>
+"map <silent> <M-k>   :TmuxNavigateUp<cr>
+"map <silent> <M-l>   :TmuxNavigateRight<cr>
+map <silent> <M-h>   <C-w>h
+map <silent> <M-j>   <C-w>j
+map <silent> <M-k>   <C-w>k
+map <silent> <M-l>   <C-w>l
 "map {H          <C-w>9<
 "map {J          <C-w>9-
 "map {K          <C-w>9+
