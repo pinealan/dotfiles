@@ -135,6 +135,8 @@ nmap <localleader>eq    :IcedInterrupt<cr>
 
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
+nmap <localleader>l     :IcedPrintLast<cr>
+
 nmap <localleader>hc    :IcedClojureDocsOpen<cr>
 nmap <localleader>hs    :IcedSourcePopupShow<cr>
 

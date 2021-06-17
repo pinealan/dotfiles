@@ -496,6 +496,7 @@ let g:maplocalleader="'"
 nmap <silent> <leader>'     :vsp<cr>
 nmap <silent> <leader>"     :sp<cr>
 nmap <silent> <leader><space>   :setlocal hlsearch!<cr>
+nmap <silent> <leader><tab>     <c-^>
 
 nmap <silent> <leader>d     :bdelete<cr>
 nmap <silent> <leader>p     :setlocal paste!<cr>
