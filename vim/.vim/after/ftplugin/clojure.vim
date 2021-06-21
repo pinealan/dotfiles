@@ -124,12 +124,12 @@ nmap <localleader>ee    m`<Plug>(iced_eval_outer_top_list)g``
 
 nmap <localleader>eW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
 nmap <localleader>eF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
-nmap <localleader>eE    m`<Plug>(iced_eval_outer_top_list)g``
+nmap <localleader>eE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
 
 " Duplicate in case of fat finger fast typing
 nmap <localleader>EW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
 nmap <localleader>EF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
-nmap <localleader>EE    m`<Plug>(iced_eval_outer_top_list)g``
+nmap <localleader>EE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
 
 nmap <localleader>eq    :IcedInterrupt<cr>
 
