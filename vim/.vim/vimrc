@@ -54,7 +54,7 @@ Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
 Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 
 let g:iced_formatter = 'zprint'
-let g:iced#format#zprint_option = '{:style :indent-only}'
+let g:iced#format#zprint_option = '{}'
 
 "Plug 'LnL7/vim-nix', { 'for': 'nix' }
 Plug 'eigenfoo/stan-vim'
