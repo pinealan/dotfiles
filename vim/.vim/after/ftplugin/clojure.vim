@@ -257,7 +257,7 @@ let g:localleader_map['a'] = 'Sexp insert at tail'
 let g:localleader_map['o'] = 'Sexp raise element'
 let g:localleader_map['O'] = 'Sexp raise list'
 
-let g:localleader_map['<Tab>'] = "Edit corresponding src/test file"
+let g:localleader_map['<Tab>'] = "Goto corresponding src/test file"
 
 call which_key#register("'", "g:localleader_map")
 nnoremap <silent> <localleader>     :WhichKey "'"<CR>

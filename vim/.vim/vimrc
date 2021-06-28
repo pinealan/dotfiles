@@ -606,6 +606,8 @@ let g:leader_map['q'] = "Quit window"
 let g:leader_map['r'] = "Edit vimrc"
 let g:leader_map['v'] = "Reload vimrc"
 
+let g:leader_map['<Tab>'] = "Goto alternate buffer"
+
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
     \ 'b': 'Find buffer',
