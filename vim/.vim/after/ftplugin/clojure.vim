@@ -158,6 +158,9 @@ nmap <localLeader>ss    :IcedCljsRepl (figwheel.main.api/repl-env "dev")
 nmap <localLeader>sc    :IcedCycleSession<cr>
 nmap <localLeader>sq    :IcedQuitCljsRepl<cr>
 
+nmap <localLeader>sp    i)()<esc>x2<Plug>(sexp_flow_to_prev_close)J%lywh%a<cr><esc>p
+nmap <localLeader>si    i)()<esc>x
+
 nmap <localleader>raa   :IcedAddArity<cr>
 nmap <localLeader>ram   :IcedAddMissing<cr>
 nmap <localLeader>ran   :IcedAddNs<cr>
