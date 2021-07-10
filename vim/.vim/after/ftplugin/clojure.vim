@@ -102,10 +102,12 @@ nmap <localleader>WW]   <Plug>(sexp_square_tail_wrap_list)i
 nmap <localleader>WW{   <Plug>(sexp_curly_head_wrap_list)a
 nmap <localleader>WW}   <Plug>(sexp_curly_tail_wrap_list)i
 
-""" Iced mappings {{{1
+""" Iced mappings & configs {{{1
 
 set keywordprg=:IcedDocumentPopupOpen
 
+let g:iced_formatter = 'zprint'
+let g:iced#format#zprint_option = '{}'
 let g:iced#nrepl#skip_evaluation_when_buffer_size_is_exceeded = v:true
 
 " Normal whitespace-based word navigation

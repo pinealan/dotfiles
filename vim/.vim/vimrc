@@ -41,9 +41,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
 Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 
-let g:iced_formatter = 'zprint'
-let g:iced#format#zprint_option = '{}'
-
 Plug 'eigenfoo/stan-vim'
 Plug 'vyperlang/vim-vyper'
 
