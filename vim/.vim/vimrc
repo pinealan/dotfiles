@@ -52,6 +52,7 @@ let g:polyglot_disabled = ['clojure', 'markdown', 'python']
 Plug 'sheerun/vim-polyglot'
 
 " NERDTree {{{
+
 augroup usr_nerdtree
     autocmd!
     autocmd StdinReadPre * let s:std_in=1
@@ -94,12 +95,16 @@ let NERDTreeIgnore = exact_dir_names + exact_file_names + file_suffixes
 let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
 let NERDTreeShowHidden=1
 let NERDTreeSortHiddenFirst=1
+
 " }}}
 " Git Gutter {{{
+
 let g:gitgutter_map_keys = 0
 let g:gitgutter_preview_win_floating = 1
+
 " }}}
 " YouCompleteMe {{{
+
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_max_num_candidates = 25
 let g:ycm_filetype_blacklist = {
@@ -133,30 +138,43 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_extra_conf_vim_data = ['&filetype']
+
 " }}}
 " Schlepp {{{
+
 let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
+
 " }}}
 " FZF {{{
+
 let g:fzf_command_prefix = "Fzf"
 let g:fzf_layout = {'window': { 'width': 0.8, 'height': 0.6 }}
+
 " }}}
 " Goyo {{{
+
 let g:goyo_width = 105
+
 " }}}
 " illuminate {{{
+
 hi link illuminatedWord Visual
+
 " }}}
 " rainbow {{{
+
 let g:rainbow_active = 1
 let g:rainbow_conf = {
     \ 'guifgs': ['#828282', 'royalblue3', 'darkorange4', 'seagreen4', 'firebrick', 'darkorchid3'],
     \ }
+
 " }}}
 " Markdown preview {{{
+
 let g:mkdp_auto_close = 0
+
 " }}}
 
 call plug#end()
