@@ -17,6 +17,11 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'zirrostig/vim-schlepp'
+Plug 'jlanzarotta/bufexplorer', {
+    \ 'on': [
+    \   'BufExplorer', 'BufExplorerHorizontalSplit', 'BufExplorerVerticalSplit'
+    \ ] }
+
 Plug 'jiangmiao/auto-pairs'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -148,6 +153,23 @@ let g:Schlepp#trimWS = 0
 
 let g:fzf_command_prefix = "Fzf"
 let g:fzf_layout = {'window': { 'width': 0.8, 'height': 0.6 }}
+
+" }}}
+" BufExplorer {{{
+
+let g:bufExplorerFindActive=0
+let g:bufExplorerShowNoName=1
+let g:bufExplorerShowRelativePath=1
+let g:bufExplorerSortBy='name'
+let g:bufExplorerSplitOutPathName=1
+let g:bufExplorerSplitHorzSize=10
+let g:bufExplorerSplitVertSize=51
+let g:bufExplorerDisableDefaultKeyMapping=v:true
+hi link bufExplorerSortBy Comment
+hi link bufExplorerCurBuf String
+hi link bufExplorerActBuf Constant
+hi link bufExplorerHidBuf Tag
+hi link bufExplorerAltBuf String
 
 " }}}
 " Goyo {{{
