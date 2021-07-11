@@ -54,11 +54,15 @@ let g:polyglot_disabled = ['clojure', 'markdown', 'python']
 Plug 'sheerun/vim-polyglot'
 
 " NERDTree {{{
+"
+function! NTIsLastBuffer()
+    return (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
+endfunction
 
 augroup usr_nerdtree
     autocmd!
     autocmd StdinReadPre * let s:std_in=1
-    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd BufEnter * if (NTIsLastBuffer()) | q | endif
 augroup END
 
 let exact_dir_names = [
@@ -186,7 +190,14 @@ hi link illuminatedWord Visual
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-    \ 'guifgs': ['#828282', 'royalblue3', 'darkorange4', 'seagreen4', 'firebrick', 'darkorchid3'],
+    \ 'guifgs': [
+    \   '#828282',
+    \   'royalblue3',
+    \   'darkorange4',
+    \   'seagreen4',
+    \   'firebrick',
+    \   'darkorchid3'
+    \   ],
     \ }
 
 " }}}
@@ -408,15 +419,14 @@ function! ReportBuildResult()
 endfunction
 
 function! GitBranch()
-    let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    let l:branchname = system(
+        \ "git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'"
+        \ )
     return strlen(l:branchname) > 0 ? '  ' . l:branchname . ' ' : ''
 endfunction
 
 function! MyStatusLine(pathformat)
-    " Git branch, Flags, Buffer number, File name | File type, Row/Column, Percent down file
-        "\'%#StatusLineGit#',
-        "\'%{GitBranch()}',
-        "\'%#User{1}#',
+    " [Flags]*File name <gap> [File type] Row,Column | Percent down file
     return join([
         \' %q%w%r%m%{HasPaste()}',
         \'%' . a:pathformat,
@@ -438,11 +448,23 @@ function! TryTrimSpace()
 endfunction
 
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let command_fmt = join([
+    \ 'rg',
+    \ '--column',
+    \ '--line-number',
+    \ '--no-heading',
+    \ '--color=always',
+    \ '--smart-case',
+    \ '-- %s || true'
+    \ ], ' ')
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+  let spec = {
+    \ 'options': [
+    \   '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command
+    \ ]}
+  call fzf#vim#grep(
+    \ initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
 " }}}
@@ -458,9 +480,12 @@ command! MyStatusLineLong
     \ echohl Debug |
     \ echo "Full path (statusline)"
 
-command!                Files       call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -L -E .git -t f'}))
-command!                FilesAll    call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -I -L -t f -t l'}))
-command! -nargs=* -bang RG          call RipgrepFzf(<q-args>, <bang>0)
+command! Files
+    \ call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -L -E .git -t f'}))
+command! FilesAll
+    \ call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -I -L -t f -t l'}))
+command! -nargs=* -bang RG
+    \ call RipgrepFzf(<q-args>, <bang>0)
 
 " }}}
 
