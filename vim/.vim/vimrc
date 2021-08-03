@@ -498,10 +498,18 @@ noremap    U   <C-r>
 noremap <C-r>     U
 
 " Keep commands from moving the cursor around
-noremap J    m`J:setlocal nohlsearch<cr>:s/ *$//<cr>g``
+nnoremap n    nzzzv
+nnoremap N    Nzzzv
+nnoremap J    mzJ`z
 
 " Easier newline
 nnoremap <cr>  o<esc>
+nnoremap Y     y$
+
+" Set undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ; ;<c-g>u
 
 " Windows navigation
 "map <silent> <M-h>   :TmuxNavigateLeft<cr>
