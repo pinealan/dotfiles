@@ -139,3 +139,5 @@
 	tool = opendiff
 [difftool]
 	prompt = false
+[init]
+	defaultBranch = master
