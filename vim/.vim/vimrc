@@ -49,7 +49,7 @@ Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 Plug 'eigenfoo/stan-vim'
 Plug 'vyperlang/vim-vyper'
 
-let g:polyglot_disabled = ['clojure', 'markdown', 'python']
+let g:polyglot_disabled = ['clojure', 'markdown', 'python', 'solidity']
 
 Plug 'sheerun/vim-polyglot'
 
@@ -792,6 +792,9 @@ augroup usr
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \   exe "normal g'\"" |
         \ endif
+
+
+    autocmd BufNewFile,BufRead  *.sol setf solidity
 
 augroup END
 
