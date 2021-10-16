@@ -56,7 +56,7 @@ syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\k*"
 syn match   pythonDeclClass     "\s*\%(class\s\+\)\@<=\h\k*"
 
 syn region  pythonDict display matchgroup=pythonPunctuation
-    \ start='{' end='}' contains=TOP,pythonTypeHint
+    \ start='{' end='}' contains=TOP
 
 syn region  pythonList display matchgroup=pythonPunctuation
     \ start='\[' end='\]' contains=TOP,pythonTypeHint

@@ -12,6 +12,13 @@ function! AltSrcTestPath()
         return expand('%')
 endfunction
 
+function! ToggleIcedIdent()
+    if &indentexpr == ''
+        set indentexpr=GetIcedIndent()
+    elseif &indentexpr == 'GetIcedIndent()'
+        set indentexpr=
+endfunction
+
 """ Sexp mappings {{{1
 
 " doing my own mappings because the defaults uses <Leader> or <M-*>
@@ -140,6 +147,7 @@ nmap <localleader>eq    :IcedInterrupt<cr>
 
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
+nmap <localleader>g     :ToggleIcedIdent<cr>
 nmap <localleader>l     :IcedPrintLast<cr>
 
 nmap <localleader>hc    :IcedClojureDocsOpen<cr>

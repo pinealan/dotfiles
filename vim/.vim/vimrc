@@ -610,6 +610,7 @@ nmap <leader>ss     :RG<cr>
 " toggles
 nmap <silent> <leader>t1    :MyStatusLineLong<cr>
 nmap <silent> <leader>t2    :MyStatusLineShort<cr>
+nmap <silent> <leader>tg    :GitGutterToggle<cr>
 nmap <silent> <leader>th    :setlocal hlsearch!<cr>
 nmap <silent> <leader>tj    :call ToggleFastEsc()<cr>
 nmap <silent> <leader>tp    :setlocal paste!<cr>
@@ -618,7 +619,7 @@ nmap <silent> <leader>ts    :setlocal spell!<cr>
 nmap <silent> <leader>tw    :setlocal wrap!<cr>
 
 " vim
-nmap <leader>r      :so $MYVIMRC<cr>
+nmap <leader>r      "_dwP
 nmap <leader>v      :e ~/.vim/vimrc<cr>
 
 " windows
@@ -660,7 +661,7 @@ let g:leader_map['e'] = "Search buffer by name"
 let g:leader_map['d'] = "Unload buffer"
 let g:leader_map["p"] = "Toggle paste mode"
 let g:leader_map['q'] = "Quit window"
-let g:leader_map['r'] = "Reload vimrc"
+let g:leader_map['r'] = "Replace word with register"
 let g:leader_map['v'] = "Edit vimrc"
 
 let g:leader_map['<Tab>'] = "Goto alternate buffer"
@@ -712,6 +713,7 @@ let g:leader_map["s"] = {
 
 let g:leader_map['t'] = {
     \ 'name': '+toggle',
+    \ 'g': 'Git gutter',
     \ 'h': 'Highlight search',
     \ 'j': 'Fast escape (jj)',
     \ 'p': 'Paste mode',
