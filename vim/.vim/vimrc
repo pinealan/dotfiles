@@ -498,9 +498,9 @@ noremap    U   <C-r>
 noremap <C-r>     U
 
 " Keep commands from moving the cursor around
-nnoremap n    nzzzv
-nnoremap N    Nzzzv
-nnoremap J    mzJ`z
+nnoremap <silent> n    nzzzv:SearchIndex<cr>
+nnoremap <silent> N    Nzzzv:SearchIndex<cr>
+nnoremap <silent> J    mzJ`z
 
 " Easier newline
 nnoremap <cr>  o<esc>
