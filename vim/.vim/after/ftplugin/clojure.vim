@@ -134,6 +134,9 @@ nmap <localleader>ew    m`<Plug>(iced_eval)<Plug>(sexp_inner_element)g``
 nmap <localleader>ef    m`<Plug>(iced_eval)<Plug>(sexp_outer_list)g``
 nmap <localleader>ee    m`<Plug>(iced_eval_outer_top_list)g``
 
+nmap <localleader>er    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_inner_element)g``
+nmap <localleader>eR    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_outer_list)g``
+
 nmap <localleader>eW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
 nmap <localleader>eF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
 nmap <localleader>eE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
@@ -142,6 +145,7 @@ nmap <localleader>eE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
 nmap <localleader>EW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
 nmap <localleader>EF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
 nmap <localleader>EE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
+nmap <localleader>ER    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_outer_list)g``
 
 nmap <localleader>eq    :IcedInterrupt<cr>
 
@@ -151,6 +155,7 @@ nmap <localleader>g     :ToggleIcedIdent<cr>
 nmap <localleader>l     :IcedPrintLast<cr>
 
 nmap <localleader>hc    :IcedClojureDocsOpen<cr>
+nmap <localleader>hp    :IcedDocumentPopupOpen<cr>
 nmap <localleader>hs    :IcedSourcePopupShow<cr>
 
 nmap <localleader>jd    :IcedDefJump .<cr>
