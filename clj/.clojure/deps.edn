@@ -45,6 +45,16 @@
                             iced.nrepl/wrap-iced
                             niddle.print/niddle-mw]}}
 
+  :+reveal
+  {:extra-deps
+   {vlaaad/reveal {:mvn/version "1.3.250"}}
+
+   :exec-args {:middleware [iced-repl/cider-middleware
+                            cider.piggieback/wrap-cljs-repl
+                            refactor-nrepl.middleware/wrap-refactor
+                            iced.nrepl/wrap-iced
+                            vlaaad.reveal.nrepl/middleware]}}
+
   :depstar
   {:extra-deps {com.github.seancorfield/depstar {:mvn/version "2.0.206"}}
    :ns-default hf.depstar
