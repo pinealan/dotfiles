@@ -3,7 +3,7 @@
 filetype off
 set nocompatible
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/dotfiles/vim/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -18,7 +18,7 @@ Plug 'honza/vim-snippets'
 Plug 'zirrostig/vim-schlepp'
 
 Plug 'jiangmiao/auto-pairs'
-Plug '/usr/local/opt/fzf'
+Plug '/nix/store/vbkm5j73dd5xrfyfq3mcrqlv85rr5hzc-fzf-0.28.0/share/vim-plugins/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
@@ -36,7 +36,7 @@ Plug 'jeetsukumaran/vim-pythonsense'
 "Plug 'lepture/vim-jinja'
 
 Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
-Plug 'liquidz/vim-iced', { 'for': 'clojure' }
+Plug '~/src/vim-iced', { 'for': 'clojure' }
 
 Plug 'eigenfoo/stan-vim'
 Plug 'vyperlang/vim-vyper'
