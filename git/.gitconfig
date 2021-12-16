@@ -3,7 +3,7 @@
 	email = achan961117@gmail.com
 
 [core]
-	editor = vim
+	editor = nvim
 	fileMode = false
 	autocrlf = false
 	attributesFile = ~/.gitattributes
