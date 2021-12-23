@@ -24,8 +24,6 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
 Plug 'luochen1990/rainbow'
 
-"Plug 'christoomey/vim-tmux-navigator'
-
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
