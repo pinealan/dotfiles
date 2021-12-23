@@ -126,7 +126,7 @@ let g:goyo_width = 105
 " }}}
 " illuminate {{{
 
-hi link illuminatedWord Visual
+let g:Illuminate_delay = 100
 
 " }}}
 " rainbow {{{
@@ -752,6 +752,7 @@ syn keyword Todo    Todo Note Fixme Refactor Hardcode Hack
 syn keyword Todo    todo note fixme refactor hardcode hack
 
 hi link Noise Special
+hi link illuminatedWord Visual
 
 " }}}
 
