@@ -5,7 +5,6 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeTabsToggle'] }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
@@ -53,56 +52,6 @@ let g:polyglot_disabled = ['clojure', 'markdown', 'python', 'solidity']
 
 Plug 'sheerun/vim-polyglot'
 
-" NERDTree {{{
-"
-function! NTIsLastBuffer()
-    return (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
-endfunction
-
-augroup usr_nerdtree
-    autocmd!
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd BufEnter * if (NTIsLastBuffer()) | q | endif
-augroup END
-
-let exact_dir_names = [
-    \   '^\.cpcache$[[dir]]',
-    \   '^\.direnv$[[dir]]',
-    \   '^\.egg-info$[[dir]]',
-    \   '^\.git$[[dir]]',
-    \   '^\.idea$[[dir]]',
-    \   '^\.ipynb_checkpoints$[[dir]]',
-    \   '^\.mypy_cache$[[dir]]',
-    \   '^\.pytest_cache$[[dir]]',
-    \   '^\.sass-cache$[[dir]]',
-    \   '^\.serverless$[[dir]]',
-    \   '^\.venv$[[dir]]',
-    \   '^\.vscode$[[dir]]',
-    \   '^__pycache__$[[dir]]',
-    \   '^coverage$[[dir]]',
-    \   '^node_modules$[[dir]]',
-    \   '^vendor$[[dir]]',
-    \   '^venv$[[dir]]'
-    \]
-
-let exact_file_names = [
-    \   '^Session.vim$[[file]]',
-    \   '^\.DS_Store$[[file]]'
-    \]
-
-let file_suffixes = [
-    \   '\.exe$[[file]]',
-    \   '\.o$[[file]]',
-    \   '\.out$[[file]]',
-    \   '\.pyc$[[file]]'
-    \]
-
-let NERDTreeIgnore = exact_dir_names + exact_file_names + file_suffixes
-let NERDTreeStatusLine="%{matchstr(getline('.'),'\\s\\zs\\w\\(.*\\)')}"
-let NERDTreeShowHidden=1
-let NERDTreeSortHiddenFirst=1
-
-" }}}
 " Git Gutter {{{
 
 let g:gitgutter_map_keys = 0
