@@ -1,5 +1,5 @@
 {:search-config? true
- :style         {:backtranslate :respect-nl}
+ :style         [:backtranslate :respect-nl]
  :fn-map        {"->>"      :hang
                  "some->>"  :hang
                  "defn"     :fn
@@ -7,7 +7,7 @@
                  "testing"  :arg1-body
                  "with-let" :binding
                  "with-connection-pool" :arg1-body}
- :remove  {:fn-force-ml #{:noarg1 :noarg1-body}}
+ :remove  {:fn-force-nl #{:noarg1 :noarg1-body}}
  :binding {:justify? true :justify {:max-variance 15}}
  :pair    {:justify? true :justify {:max-variance 15}}
  :map     {:justify? true :justify {:max-variance 15} :comma? false}}
