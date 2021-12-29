@@ -224,7 +224,13 @@ let g:localleader_map['='] = { 'name': '+iced-format' }
 let g:localleader_map['b'] = { 'name': '+iced-buffers' }
 let g:localleader_map['h'] = { 'name': '+iced-docs' }
 let g:localleader_map['j'] = { 'name': '+iced-jump' }
-let g:localleader_map['s'] = { 'name': '+iced-cljs' }
+
+let g:localleader_map['s'] = {
+    \ 'name': '+iced-cljs/split',
+    \ 'i': 'Split list',
+    \ 'p': 'Split list and copy first leaf',
+    \ }
+
 let g:localleader_map['t'] = { 'name': '+iced-tap/test' }
 
 let g:localleader_map['r'] = {

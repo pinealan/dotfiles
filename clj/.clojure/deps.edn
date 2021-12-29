@@ -7,49 +7,43 @@
   :repl   {:extra-deps {reply/reply {:mvn/version "0.4.4"}}
            :main-opts ["-m" "reply.main" "--color" "--attach"]}
 
-  :nrepl  {:extra-deps {nrepl/nrepl                   {:mvn/version "0.7.0"}}
-           :exec-fn nrepl.cmdline/dispatch-commands
-           :exec-args {}}
-
-  :niddle {:extra-deps
-           {nrepl/nrepl                   {:mvn/version "0.7.0"}
-            niddle/niddle
-            {:local/root "/Users/alan/src/niddle" :deps/manifest :deps}}
-
-           :exec-fn nrepl.cmdline/dispatch-commands
-           :exec-args {:middleware [niddle.print/niddle-mw]}}
-
   :iced
   {:extra-deps
-   {nrepl/nrepl                   {:mvn/version "0.8.3"}
-    cider/cider-nrepl             {:mvn/version "0.25.11"}
+   {cider/cider-nrepl             {:mvn/version "0.25.11"}
     com.github.liquidz/iced-nrepl {:mvn/version "1.2.4"}
-    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.1"}
     iced-repl/iced-repl           {:local/root "/Users/pinealan/src/vim-iced"
-                                   :deps/manifest :deps}}
+                                   :deps/manifest :deps}
+    nrepl/nrepl                   {:mvn/version "0.8.3"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.1"}}
 
    :exec-fn nrepl.cmdline/dispatch-commands
    :exec-args {:middleware [iced-repl/cider-middleware
                             refactor-nrepl.middleware/wrap-refactor
                             iced.nrepl/wrap-iced]}}
 
-  :+niddle
-  {:extra-deps
-   {niddle/niddle {:local/root "/Users/pinealan/src/niddle" :deps/manifest :deps}}
-
-   :exec-args {:middleware [iced-repl/cider-middleware
-                            refactor-nrepl.middleware/wrap-refactor
-                            iced.nrepl/wrap-iced
-                            niddle.print/niddle-mw]}}
+  ; Alisases to be used with :iced
 
   :+reveal
   {:extra-deps
    {vlaaad/reveal {:mvn/version "1.3.250"}}
 
-   :exec-args {:middleware [iced-repl/cider-middleware
-                            refactor-nrepl.middleware/wrap-refactor
-                            iced.nrepl/wrap-iced
-                            vlaaad.reveal.nrepl/middleware]}}
+   :exec-args
+   {:middleware [iced-repl/cider-middleware
+                 refactor-nrepl.middleware/wrap-refactor
+                 iced.nrepl/wrap-iced
+                 vlaaad.reveal.nrepl/middleware]}}
+
+  :+reveal+cljs
+  {:extra-deps
+   {cider/piggieback {:mvn/version "0.5.3"}
+    vlaaad/reveal    {:mvn/version "1.3.250"}}
+
+   :exec-args
+   {:middleware [iced-repl/cider-middleware
+                 refactor-nrepl.middleware/wrap-refactor
+                 iced.nrepl/wrap-iced
+                 vlaaad.reveal.nrepl/middleware
+                 cider.piggieback/wrap-cljs-repl]}}
 
   :depstar
   {:extra-deps {com.github.seancorfield/depstar {:mvn/version "2.0.206"}}
