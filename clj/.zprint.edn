@@ -6,7 +6,10 @@
                  "defonce"  :arg1
                  "testing"  :arg1-body
                  "with-let" :binding
-                 "with-connection-pool" :arg1-body}
+                 "with-connection-pool" :arg1-body
+                 "sdef"     :arg1
+                 "let-flow" :binding
+                 "go-loop"  :binding}
  :remove  {:fn-force-nl #{:noarg1 :noarg1-body}}
  :binding {:justify? true :justify {:max-variance 15}}
  :pair    {:justify? true :justify {:max-variance 15}}
