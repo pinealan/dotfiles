@@ -183,7 +183,7 @@ nmap <localleader>raa   :IcedAddArity<cr>
 nmap <localLeader>ram   :IcedAddMissing<cr>
 nmap <localLeader>ran   :IcedAddNs<cr>
 nmap <localLeader>rcn   :IcedCleanNs<cr>
-nmap <localLeader>rrs   :IcedRenameSymbol<cr>
+nmap <localLeader>rs    :IcedRenameSymbol<cr>
 nmap <localleader>rtf   :IcedThreadFirst<cr>
 nmap <localleader>rtl   :IcedThreadLast<cr>
 nmap <localleader>ref   :IcedExtractFunction<cr>
@@ -193,6 +193,8 @@ nmap <localleader>bb    :IcedStdoutBufferOpen<cr>
 nmap <localleader>bc    :IcedStdoutBufferClear<cr>
 nmap <localleader>bq    :IcedStdoutBufferClose<cr>
 nmap <localleader>bt    :IcedTestBufferOpen<cr>
+
+nmap <localleader>vc    :IcedEval {:vlaaad.reveal/command '(clear-output)}<cr>
 
 nmap <localleader>==    :IcedFormat<cr>
 nmap <localleader>=G    :IcedFormatAll<cr>
@@ -241,6 +243,11 @@ let g:localleader_map['r'] = {
     \ 'm': {'name': '+move'},
     \ 'r': {'name': '+rename'},
     \ 't': {'name': '+thread'},
+    \ }
+
+let g:localleader_map['v'] = {
+    \ 'name': '+vlaaad.reveal',
+    \ 'c': 'Clear reveal output',
     \ }
 
 let g:localleader_map['w'] = {
