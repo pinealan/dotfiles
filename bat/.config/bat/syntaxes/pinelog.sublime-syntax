@@ -1,0 +1,94 @@
+%YAML 1.2
+---
+name: Pinelog
+file_extensions:
+  - plog
+scope: text.log
+variables:
+  date: (?:\b\d{4}-\d{2}-\d{2}\b)|(?:\b\d{4}/\d{2}/\d{2}\b)
+  time: (?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)(?:([\.,])\d{3})?(?:[\+\-]\d{2}|Z)?
+  datetime: '{{date}}[T ]{{time}}'
+  ns_chars: '[\d\w\.\-_]'
+  sym_chars: '[\d\w\.\-_*=!?><]'
+  symbol: '(?:{{ns_chars}}+/)?{{sym_chars}}+'
+
+contexts:
+  main:
+    - match: ^(?={{datetime}}|{{date}}|{{time}})
+      push: header
+
+    - include: datetimes
+    - include: strings
+
+    - match: '(?<!\w):{{symbol}}\b'
+      scope: keyword
+
+    - match: \{
+      push: clojure
+
+    - match: '[\w\.]*Exception'
+      scope: string
+
+    - match: (\S+)\.(\S+)\((\w+\.\w+):(\d+)\)
+      scope: meta.java.stackframe
+      captures:
+        1: string
+        3: entity.name.function
+        4: constant.numeric
+
+  clojure:
+    - include: datetimes
+    - include: strings
+
+    - match: ':{{symbol}}\b'
+      scope: markup.changed
+
+    - match: '\W[\-+]?\d+(?:\.(?:\d+)?)?(?:[eEM])?\b'
+      scope: constant.numeric
+
+    - match: \}
+      pop: true
+
+  header:
+    - include: datetimes
+
+    # log levels
+    - match: \b(?i:fail(?:ure|ed)?|error|exception|critical)\b
+      scope: markup.bold
+
+    - match: \b(?i:warn(?:ing)?)\b
+      scope: markup.heading
+
+    - match: \b(?i:info)\b
+      scope: markup.quote
+
+    - match: \b(?i:debug|trace)\b
+      scope: comment
+
+    # logger name
+    - match: (?<=\[).*(?=\])
+      scope: entity.name
+
+    - match: \]
+      pop: true
+
+  datetimes:
+    - match: '{{datetime}}'
+      scope: constant.other
+    - match: '{{date}}'
+      scope: constant.other
+    - match: '{{time}}'
+      scope: constant.other
+
+  strings:
+    - match: '(")([^"]*)(")'
+      scope: string.quoted.single.log
+      captures:
+        1: punctuation.definition.string.begin.log
+        3: punctuation.definition.string.end.log
+
+    - match: "(')([^']*)(')"
+      scope: string.quoted.single.log
+      captures:
+        1: punctuation.definition.string.begin.log
+        3: punctuation.definition.string.end.log
