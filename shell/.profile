@@ -58,6 +58,8 @@ alias df='df -h'
 alias sl='echo $SHLVL'
 alias wa='which -a'
 
+alias mkdtdir='mkdir $(date -Iminutes --utc | sed "s/\+.*//")'
+
 # Assumes 256 colors (8 bit)
 export LESS_TERMCAP_mb=$'\e[1;31m'          # begin bold
 export LESS_TERMCAP_md=$'\e[38;5;77m'       # begin blink
