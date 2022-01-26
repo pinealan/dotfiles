@@ -66,7 +66,7 @@ contexts:
       scope: comment
 
     # logger name
-    - match: (?<=\[).*(?=\])
+    - match: (?<=\[).*?(?=\])
       scope: entity.name
 
     - match: \]
