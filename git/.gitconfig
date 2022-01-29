@@ -49,7 +49,7 @@
 	cp = cherry-pick
 	cpa = cherry-pick --abort
 	cpc = cherry-pick --continue
-	d = diff
+	d = diff --stat
 	dc = diff --staged # alias for alias
 	ds = diff --staged
 

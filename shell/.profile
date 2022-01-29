@@ -43,7 +43,7 @@ alias lhid='ls -la | grep " \\."'
 
 # Git
 alias d='git diff'
-alias s='git status'
+alias s='git status --branch --short'
 alias gg='tig'
 alias ga='gg --all'
 alias gs='git stash'
