@@ -151,12 +151,13 @@ nmap <localleader>eq    :IcedInterrupt<cr>
 
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
-nmap <localleader>g     :ToggleIcedIdent<cr>
 nmap <localleader>l     :IcedPrintLast<cr>
 
 nmap <localleader>hc    :IcedClojureDocsOpen<cr>
 nmap <localleader>hp    :IcedDocumentPopupOpen<cr>
 nmap <localleader>hs    :IcedSourcePopupShow<cr>
+" Alias for opening doc
+nmap <localleader>d     :IcedDocumentPopupOpen<cr>
 
 nmap <localleader>jd    :IcedDefJump .<cr>
 nmap <localleader>jl    :IcedJumpToLet<cr>
@@ -204,6 +205,14 @@ nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 """ WhichKey {{{1
 
 let g:localleader_map = {}
+
+let g:localleader_map['a'] = 'Sexp insert at tail'
+let g:localleader_map['c'] = 'Sexp convolute'
+let g:localleader_map['d'] = 'Iced document popup'
+let g:localleader_map['i'] = 'Sexp insert at head'
+let g:localleader_map['o'] = 'Sexp raise element'
+let g:localleader_map['O'] = 'Sexp raise list'
+let g:localleader_map['p'] = 'Sexp splice'
 
 let g:localleader_map['e'] = {
     \ 'name': '+iced-eval',
@@ -283,13 +292,6 @@ let g:localleader_map['W'] = {
     \     '}': 'In braces & start insert at tail',
     \     },
     \ }
-
-let g:localleader_map['c'] = 'Sexp convolute'
-let g:localleader_map['p'] = 'Sexp splice'
-let g:localleader_map['i'] = 'Sexp insert at head'
-let g:localleader_map['a'] = 'Sexp insert at tail'
-let g:localleader_map['o'] = 'Sexp raise element'
-let g:localleader_map['O'] = 'Sexp raise list'
 
 let g:localleader_map['<Tab>'] = "Goto corresponding src/test file"
 
