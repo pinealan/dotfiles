@@ -1,20 +1,21 @@
 {:search-config? true
- :style         [:backtranslate :respect-nl]
- :fn-map        {"->>"      :hang
-                 "some->>"  :hang
-                 "defn"     :fn
-                 "defonce"  :arg1
-                 "testing"  :arg1-body
-                 "with-let" :binding
-                 "with-connection-pool" :arg1-body
-                 "sdef"     :arg1
-                 "with-sh-dir" :arg1
-                 "with-sh-env" :arg1
-                 "let-flow" :binding
-                 "go-loop"  :binding
-                 "cond->"   :arg1-pair
-                 "cond->>"  :arg1-pair}
- :remove  {:fn-force-nl #{:noarg1 :noarg1-body}}
- :binding {:justify? true :justify {:max-variance 15}}
- :pair    {:justify? true :justify {:max-variance 15}}
- :map     {:justify? true :justify {:max-variance 15} :comma? false}}
+ :style          [:backtranslate :respect-nl]
+ :fn-map         {"->>"            :hang
+                  "some->>"        :hang
+                  "defn"           :fn
+                  "defonce"        :arg1
+                  "testing"        :arg1-body
+                  "with-let"       :binding
+                  "with-connection-pool" :arg1-body
+                  "sdef"           :arg1
+                  "with-sh-dir"    :arg1
+                  "with-sh-env"    :arg1
+                  "with-precision" :arg1
+                  "let-flow"       :binding
+                  "go-loop"        :binding
+                  "cond->"         :arg1-pair
+                  "cond->>"        :arg1-pair}
+ :remove         {:fn-force-nl #{:noarg1 :noarg1-body}}
+ :binding        {:justify? true :justify {:max-variance 15}}
+ :pair           {:justify? true :justify {:max-variance 15}}
+ :map            {:justify? true :justify {:max-variance 15} :comma? false}}
