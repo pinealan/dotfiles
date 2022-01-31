@@ -148,13 +148,12 @@ nmap <localleader>EE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
 nmap <localleader>ER    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_outer_list)g``
 
 nmap <localleader>eq    :IcedInterrupt<cr>
-
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
 nmap <localleader>l     :IcedPrintLast<cr>
 
 nmap <localleader>hc    :IcedClojureDocsOpen<cr>
-nmap <localleader>hp    :IcedDocumentPopupOpen<cr>
+nmap <localleader>hd    :IcedDocumentPopupOpen<cr>
 nmap <localleader>hs    :IcedSourcePopupShow<cr>
 " Alias for opening doc
 nmap <localleader>d     :IcedDocumentPopupOpen<cr>
