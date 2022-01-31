@@ -26,7 +26,7 @@ contexts:
     - match: \{
       push: clojure
 
-    - match: '[\w\.]*Exception'
+    - match: '[\w\.]*Exception[\w\.]*'
       scope: string
 
     - match: (\S+)\.(\S+)\((\w+\.\w+):(\d+)\)
@@ -81,14 +81,28 @@ contexts:
       scope: constant.other
 
   strings:
-    - match: '(")([^"]*)(")'
-      scope: string.quoted.single.log
-      captures:
-        1: punctuation.definition.string.begin.log
-        3: punctuation.definition.string.end.log
+    - match: "'"
+      scope: string
+      push: single_quote_string
 
-    - match: "(')([^']*)(')"
-      scope: string.quoted.single.log
-      captures:
-        1: punctuation.definition.string.begin.log
-        3: punctuation.definition.string.end.log
+    - match: '"'
+      scope: string
+      push: double_quote_string
+
+  single_quote_string:
+    - meta_scope: string
+
+    - match: \\\'
+      scope: constant.character.escape
+
+    - match: "'"
+      pop: true
+
+  double_quote_string:
+    - meta_scope: string
+
+    - match: \\\"
+      scope: constant.character.escape
+
+    - match: '"'
+      pop: true
