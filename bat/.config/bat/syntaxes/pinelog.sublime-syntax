@@ -18,10 +18,9 @@ contexts:
       push: header
 
     - include: datetimes
-    - include: strings
 
     - match: '(?<!\w):{{symbol}}\b'
-      scope: keyword
+      scope: entity.name
 
     - match: \{
       push: clojure
@@ -40,11 +39,17 @@ contexts:
     - include: datetimes
     - include: strings
 
+    - match: '(?:nil|true|false)'
+      scope: constant.language.clojure
+
     - match: ':{{symbol}}\b'
-      scope: markup.changed
+      scope: keyword
 
     - match: '\W[\-+]?\d+(?:\.(?:\d+)?)?(?:[eEM])?\b'
       scope: constant.numeric
+
+    - match: \{
+      push: clojure
 
     - match: \}
       pop: true
