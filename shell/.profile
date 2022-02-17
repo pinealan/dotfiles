@@ -12,6 +12,8 @@ export FZF_DEFAULT_OPTS="\
     --reverse \
     --border \
     --preview='head -n $COLUMNS {}'"
+export FZF_CTRL_R_OPTS="\
+    --preview=''"
 
 # POXIS Builtins
 alias ..='cd ..'
