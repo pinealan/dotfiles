@@ -35,16 +35,16 @@ endfunction
 
 " [ Color Variables ] {{{
 "
-let s:red           = { "x24": "#be5046", "x8": "160" }
-let s:pink          = { "x24": "#e06c75", "x8": "204" }
-let s:green         = { "x24": "#78a339", "x8": "70" }
-let s:teagreen      = { "x24": "#98c379", "x8": "114" }
-let s:teal          = { "x24": "#56b6c2", "x8": "30" }
-let s:yellow        = { "x24": "#e5c07b", "x8": "220" }
-let s:gold          = { "x24": "#d7af5f", "x8": "179" }
-let s:carrot        = { "x24": "#d7875f", "x8": "173" }
-let s:blue          = { "x24": "#61afef", "x8": "75" }
-let s:purple        = { "x24": "#c678dd", "x8": "170" }
+let s:red           = { "x24": "#be5046", "x8": "160" } " HSL 5° 48% 51%
+let s:pink          = { "x24": "#e06c75", "x8": "204" } " HSL 355° 65% 65%
+let s:green         = { "x24": "#78a339", "x8": "70" }  " HSL 84° 48% 43%
+let s:teagreen      = { "x24": "#98c379", "x8": "114" } " HSL 95° 38% 62%
+let s:teal          = { "x24": "#56b6c2", "x8": "30" }  " HSL 187° 47% 55%
+let s:yellow        = { "x24": "#e5c07b", "x8": "220" } " HSL 39° 67% 69%
+let s:gold          = { "x24": "#d7af5f", "x8": "179" } " HSL 40° 60% 61%
+let s:carrot        = { "x24": "#d7875f", "x8": "173" } " HSL 20° 60% 61%
+let s:blue          = { "x24": "#61afef", "x8": "75" }  " HSL 207° 82% 66%
+let s:purple        = { "x24": "#c678dd", "x8": "170" } " HSL 286° 60% 67%
 let s:transparent   = { "x24": "NONE",    "x8": "NONE" }
 
 " Semantic colors

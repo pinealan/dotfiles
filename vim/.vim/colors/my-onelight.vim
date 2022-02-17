@@ -40,22 +40,23 @@ let s:pink          = { "x24": "#ca1243", "x8": "160" }
 let s:green         = { "x24": "#50a14f", "x8": "71" }
 let s:teagreen      = { "x24": "#327002", "x8": "28" }
 let s:teal          = { "x24": "#067682", "x8": "23" }
-let s:yellow        = { "x24": "#986801", "x8": "94" }
-let s:gold          = { "x24": "#c18401", "x8": "136" }
-let s:carrot        = { "x24": "#d7875f", "x8": "173" }
-let s:blue          = { "x24": "#3870e2", "x8": "33" }
+let s:yellow        = { "x24": "#d59201", "x8": "94" }
+let s:gold          = { "x24": "#986801", "x8": "136" }
+let s:carrot        = { "x24": "#eb814c", "x8": "173" }
+let s:blue          = { "x24": "#046dc2", "x8": "33" }
 let s:purple        = { "x24": "#981996", "x8": "127" }
 let s:transparent   = { "x24": "NONE",    "x8": "NONE" }
 
 " Semantic colors
-let s:content0      = { "x24": "#393b43", "x8": "16" }
+let s:content0      = { "x24": "#292929", "x8": "16" }
 let s:content1      = { "x24": "#606370", "x8": "60" }
-let s:content2      = { "x24": "#a0a1a7", "x8": "145" }
+let s:content2      = { "x24": "#999999", "x8": "145" }
 let s:content_inv   = { "x24": "#c2c2c3", "x8": "250" }
 let s:background0   = { "x24": "#fafafa", "x8": "255" }
 let s:background1   = { "x24": "#dadada", "x8": "251" }
 let s:background2   = { "x24": "#f0f0f0", "x8": "254" }
 let s:_black        = { "x24": "#000000", "x8": "232" }
+let s:_white        = { "x24": "#ffffff", "x8": "255" }
 
 let s:docstring     = s:teagreen
 let s:string        = s:teagreen
