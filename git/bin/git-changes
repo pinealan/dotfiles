@@ -1,60 +1,32 @@
 #!/bin/bash
 
-function print_help {
-    echo "Usage: gitchanges [-a | --all] [-A | --author=<name>]"
-    echo "                  [-h | --help]"
+git log --stat --date=default $@ \
+| grep "file changed\|files changed\|Date" \
+| awk '
+
+# Record the date of a new commit
+$1 ~ /Date:/ {
+    date = ($6 " " $3 " " $4);
+    commits[date] += 1;
 }
 
-function main() {
-    OPT=""
-    AUTHOR=""
-
-    for i in "$@"; do
-        case $i in
-        -h|--help)
-            print_help
-            return
-            ;;
-        -a|--all)
-            OPT+="--all"
-            OPT+=" "
-            shift;;
-        -A*|--author*)
-            AUTHOR=${i#*=}
-            shift;;
-        esac
-    done
-
-    git log $OPT --author=$AUTHOR --stat --date=default\
-    | grep "file changed\|files changed\|Date" \
-    | awk '
-
-    # Record the date of a new commit
-    $1 ~ /Date:/ {
-        date = ($6 " " $3 " " $4);
-        commits[date] += 1;
+# Record the insertions and deletions in the commit
+/files changed/ || /file changed/ {
+    if ($5 ~ /insertions/) {
+        inserts[date] += $4;
     }
-
-    # Record the insertions and deletions in the commit
-    /files changed/ || /file changed/ {
-        if ($5 ~ /insertions/) {
-            inserts[date] += $4;
-        }
-        if ($5 ~ /deletions/) {
-            deletes[date] += $4;
-        }
-        if ($7 ~ /deletions/) {
-            deletes[date] += $6;
-        }
+    if ($5 ~ /deletions/) {
+        deletes[date] += $4;
     }
-
-    # Print out the summary
-    END {
-        for (i in commits){
-            printf "%-15s: %3i commits, %6i inserts(+), %6i deletes(-), %6i net\n", i, commits[i], inserts[i], deletes[i], inserts[i] - deletes[i];
-        }
-    }' \
-    | sort -k1g -k2M -k3g
+    if ($7 ~ /deletions/) {
+        deletes[date] += $6;
+    }
 }
 
-main "$@"
+# Print out the summary
+END {
+    for (i in commits){
+        printf "%-15s: %3i commits, %6i inserts(+), %6i deletes(-), %6i net\n", i, commits[i], inserts[i], deletes[i], inserts[i] - deletes[i];
+    }
+}' \
+| sort -k1g -k2M -k3g
