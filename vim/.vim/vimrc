@@ -23,6 +23,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
 Plug 'luochen1990/rainbow'
+Plug 'gyim/vim-boxdraw'
 
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
