@@ -53,7 +53,7 @@ syn match   pythonDelimiter     "->" nextgroup=pythonPrimaryT skipwhite
 
 syn match   pythonFunctionCall  "\h\k*\ze(" nextgroup=pythonParen skipwhite
 syn match   pythonDeclFunction  "\%(def\s\+\)\@<=\h\k*"
-syn match   pythonDeclClass     "\s*\%(class\s\+\)\@<=\h\k*"
+syn match   pythonDeclClass     "\%(\<class\s\+\)\@<=\h\k*"
 
 syn region  pythonDict display matchgroup=pythonPunctuation
     \ start='{' end='}' contains=TOP
