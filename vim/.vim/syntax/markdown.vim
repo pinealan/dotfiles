@@ -104,21 +104,23 @@ syn match markdownError "\w\@<=_\w\@="
 hi def link markdownHeadingRule           markdownRule
 hi def link markdownHeadingDelimiter      Delimiter
 hi def link markdownOrderedListMarker     markdownListMarker
-hi def link markdownListMarker            htmlTagName
+hi def link markdownListMarker            Type
 hi def link markdownBlockquote            Special
 hi def link markdownRule                  PreProc
 
-hi def link markdownFootnote              Typedef
+hi def link markdownFootnote              Tnaunceypedef
 hi def link markdownFootnoteDefinition    Typedef
 
-hi def link markdownLinkText              htmlLink
-hi def link markdownIdDeclaration         Typedef
+hi def link markdownLinkText              Define
+hi def link markdownIdDeclaration         Type
 hi def link markdownId                    Type
 hi def link markdownAutomaticLink         markdownUrl
-hi def link markdownUrl                   Float
+hi def link markdownUrl                   Comment
+
 hi def link markdownUrlTitle              String
-hi def link markdownIdDelimiter           markdownLinkDelimiter
-hi def link markdownUrlDelimiter          htmlTag
+hi def link markdownIdDelimiter           Delimiter
+hi def link markdownLinkDelimiter         Delimiter
+hi def link markdownUrlDelimiter          Delimiter
 hi def link markdownUrlTitleDelimiter     Delimiter
 
 hi def link markdownEscape                Special
@@ -127,7 +129,9 @@ hi def link markdownError                 Error
 hi link markdownItalicDelimiter         markdownItalic
 hi link markdownBoldDelimiter           markdownBold
 hi link markdownBoldItalicDelimiter     markdownBoldItalic
+
 hi link markdownCodeDelimiter           Delimiter
+hi link markdownLinkTextDelimiter       Delimiter
 
 hi link markdownH1                      Title
 hi link markdownH2                      Title
@@ -135,6 +139,8 @@ hi link markdownH3                      Title
 hi link markdownH4                      Title
 hi link markdownH5                      Title
 hi link markdownH6                      Title
+
+hi link markdownCode                    Special
 
 hi link markdownHeadingDelimiter        Statement
 hi link markdownError                   Normal
