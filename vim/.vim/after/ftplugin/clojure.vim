@@ -112,6 +112,8 @@ nmap <localleader>WW]   <Plug>(sexp_square_tail_wrap_list)i
 nmap <localleader>WW{   <Plug>(sexp_curly_head_wrap_list)a
 nmap <localleader>WW}   <Plug>(sexp_curly_tail_wrap_list)i
 
+nmap <localleader>D    yaf%pi<cr><esc>
+
 """ Iced mappings & configs {{{1
 
 set keywordprg=:IcedDocumentPopupOpen
