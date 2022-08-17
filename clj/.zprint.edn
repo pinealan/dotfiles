@@ -15,6 +15,7 @@
                   "go-loop"        :binding
                   "cond->"         :arg1-pair
                   "cond->>"        :arg1-pair}
+ :extend         {:indent 0}
  :remove         {:fn-force-nl #{:noarg1 :noarg1-body}}
  :binding        {:justify? true :justify {:max-variance 15}}
  :pair           {:justify? true :justify {:max-variance 15}}
