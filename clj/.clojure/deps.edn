@@ -9,12 +9,12 @@
 
   :iced
   {:extra-deps
-   {cider/cider-nrepl             {:mvn/version "0.25.11"}
+   {cider/cider-nrepl             {:mvn/version "0.28.5"}
     com.github.liquidz/iced-nrepl {:mvn/version "1.2.4"}
     iced-repl/iced-repl           {:local/root "/Users/pinealan/src/vim-iced"
                                    :deps/manifest :deps}
-    nrepl/nrepl                   {:mvn/version "0.8.3"}
-    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.1"}}
+    nrepl/nrepl                   {:mvn/version "0.9.0"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "3.5.5"}}
 
    :exec-fn nrepl.cmdline/dispatch-commands
    :exec-args {:middleware [iced-repl/cider-middleware
@@ -43,10 +43,4 @@
                  refactor-nrepl.middleware/wrap-refactor
                  iced.nrepl/wrap-iced
                  vlaaad.reveal.nrepl/middleware
-                 cider.piggieback/wrap-cljs-repl]}}
-
-  :depstar
-  {:extra-deps {com.github.seancorfield/depstar {:mvn/version "2.0.206"}}
-   :ns-default hf.depstar
-   :exec-args {}}
-  }}
+                 cider.piggieback/wrap-cljs-repl]}}}}
