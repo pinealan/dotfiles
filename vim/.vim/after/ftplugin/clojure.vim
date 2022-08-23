@@ -118,6 +118,8 @@ nmap <localleader>D    yaf%pi<cr><esc>
 
 set keywordprg=:IcedDocumentPopupOpen
 
+let g:iced_enable_clj_kondo_analysis = v:true
+let g:iced_enable_clj_kondo_local_analysis = v:true
 let g:iced_formatter = 'zprint'
 let g:iced#format#zprint_option = '{}'
 let g:iced#nrepl#skip_evaluation_when_buffer_size_is_exceeded = v:true
@@ -193,6 +195,7 @@ nmap <localleader>rml   :IcedMoveToLet<cr>
 
 nmap <localleader>bb    :IcedStdoutBufferOpen<cr>
 nmap <localleader>bc    :IcedStdoutBufferClear<cr>
+nmap <localleader>be    :IcedEval *e<cr>:IcedPrintLast<cr>
 nmap <localleader>bq    :IcedStdoutBufferClose<cr>
 nmap <localleader>bt    :IcedTestBufferOpen<cr>
 
@@ -212,6 +215,7 @@ let g:localleader_map['c'] = 'Sexp convolute'
 let g:localleader_map['d'] = 'Iced document popup'
 let g:localleader_map['i'] = 'Sexp insert at head'
 let g:localleader_map['o'] = 'Sexp raise element'
+let g:localleader_map['D'] = 'Sexp duplicate'
 let g:localleader_map['O'] = 'Sexp raise list'
 let g:localleader_map['p'] = 'Sexp splice'
 
