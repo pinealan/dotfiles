@@ -1,23 +1,24 @@
 with import <nixpkgs> {};
 
 mkShell {
+    # Many of these tools are listed in Modern Unix
+    # https://github.com/ibraheemdev/modern-unix
     buildInputs = [
-        neovim
-        (python39.withPackages (ps: with ps; [ virtualenv setuptools wheel ]))
-
         # Sysadmin
-        htop stow lolcat
+        htop stow lolcat as-tree gping duf exa
 
         # CLI data view / search / processing
-        bat fd fzf ripgrep miller jq yq icdiff
+        bat fd fzf ripgrep miller jq yq icdiff hexyl
 
         # Dev environment
-        cloc direnv entr modd devd
+        direnv entr modd devd delta scc
+        curlie gh
 
         # Benchmarking
-        wrk
+        wrk hyperfine
 
         # Language
-        clojure go rust nodejs yarn
+        clojure go rustup nodejs yarn
+        (python39.withPackages (ps: with ps; [ virtualenv setuptools wheel ]))
     ];
 }
