@@ -5,6 +5,7 @@ set mouse = yes
 set show-changes = no
 set refresh-interval = 1
 set refresh-mode = periodic
+set commit-order = author-date
 
 color "---"                     yellow  default
 color "diff --"			blue	default
