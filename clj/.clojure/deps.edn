@@ -10,10 +10,10 @@
   :iced
   {:extra-deps
    {cider/cider-nrepl             {:mvn/version "0.28.5"}
-    com.github.liquidz/iced-nrepl {:mvn/version "1.2.4"}
+    com.github.liquidz/iced-nrepl {:mvn/version "1.2.468"}
     iced-repl/iced-repl           {:local/root "/Users/pinealan/src/vim-iced"
                                    :deps/manifest :deps}
-    nrepl/nrepl                   {:mvn/version "0.9.0"}
+    nrepl/nrepl                   {:mvn/version "1.0.0"}
     refactor-nrepl/refactor-nrepl {:mvn/version "3.5.5"}}
 
    :exec-fn nrepl.cmdline/dispatch-commands
