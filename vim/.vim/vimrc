@@ -500,9 +500,8 @@ let g:maplocalleader="'"
 
 nmap <silent> <leader>'     :vsp<cr>
 nmap <silent> <leader>"     :sp<cr>
-nmap <silent> <leader><space>   :setlocal hlsearch!<cr>
-nmap <silent> <leader>h         :setlocal hlsearch!<cr>
-nmap <silent> <leader><tab>     <c-^>
+nmap <silent> <leader>h     :setlocal hlsearch!<cr>
+nmap <silent> <leader><tab> <c-^>
 
 nmap <silent> <leader>d     :bdelete<cr>
 nmap <silent> <leader>p     :setlocal paste!<cr>
@@ -597,7 +596,7 @@ let g:which_key_disable_default_offset = 1
 
 let g:leader_map = {}
 
-let g:leader_map[" "] = "Toggle highlight search"
+"let g:leader_map[" "] = "Toggle highlight search (dup h)"
 let g:leader_map["'"] = "Split vertical"
 let g:leader_map['"'] = "Split horizontal"
 let g:leader_map[':'] = "Search commands"
@@ -605,6 +604,7 @@ let g:leader_map[':'] = "Search commands"
 let g:leader_map['c'] = "Show highlight group"
 let g:leader_map['e'] = "Search buffer by name"
 let g:leader_map['d'] = "Unload buffer"
+let g:leader_map["h"] = "Toggle highlight search"
 let g:leader_map["p"] = "Toggle paste mode"
 let g:leader_map['q'] = "Quit window"
 let g:leader_map['r'] = "Replace word with register"
