@@ -6,6 +6,7 @@
 	editor = vim
 	fileMode = false
 	autocrlf = false
+	attributesFile = ~/.gitattributes
 	excludesfile = ~/.gitignore_global
 
 [credential]
@@ -135,8 +136,12 @@
 [grep]
 	extendRegexp = true
 	lineNumber = true
+
 [diff]
 	tool = opendiff
+[diff "notebook"]
+	textconv = nbextract
+
 [difftool]
 	prompt = false
 [init]
