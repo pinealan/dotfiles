@@ -4,7 +4,10 @@ import json
 import sys
 import re
 
-notebook = json.load(sys.stdin)
+if len(sys.argv) > 1:
+    notebook = json.load(open(sys.argv[1]))
+else:
+    notebook = json.load(sys.stdin)
 
 for cell in notebook['cells']:
     if cell['source'] == []:
