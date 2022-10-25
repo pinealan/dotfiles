@@ -1,6 +1,7 @@
 {:search-config? true
  :style          [:backtranslate :respect-nl]
  :fn-map         {"->>"            :hang
+                  "some->"         :hang
                   "some->>"        :hang
                   "defn"           :fn
                   "defonce"        :arg1
