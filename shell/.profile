@@ -25,6 +25,14 @@ alias .....='cd ../../../..'
 alias dps='docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Names}}"'
 alias dpsa='docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
 alias drdp='docker run -d -p'
+alias docker-stats='
+echo "===== Network =====";
+docker network ls;
+echo "===== Volume =====";
+docker volume ls;
+echo "===== Containers =====";
+docker ps -a --format "table {{.Image}}\t{{.Status}}\t{{.Names}}";
+'
 
 # Tmux
 alias t='tmux new -A -n shell -s default'
