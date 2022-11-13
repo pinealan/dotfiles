@@ -12,6 +12,9 @@ SessionConfig.vim
 session-*.vim
 session.vim
 
+# Python
+.testmondata
+
 # .direnv
 # .env
 # .envrc
