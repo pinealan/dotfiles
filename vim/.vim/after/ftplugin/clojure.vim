@@ -196,6 +196,7 @@ nmap <localleader>rml   :IcedMoveToLet<cr>
 nmap <localleader>bb    :IcedStdoutBufferOpen<cr>
 nmap <localleader>bc    :IcedStdoutBufferClear<cr>
 nmap <localleader>be    :IcedEval *e<cr>:IcedPrintLast<cr>
+nmap <localleader>bl    :IcedPrintLast<cr>
 nmap <localleader>bq    :IcedStdoutBufferClose<cr>
 nmap <localleader>bt    :IcedTestBufferOpen<cr>
 
@@ -214,6 +215,7 @@ let g:localleader_map['a'] = 'Sexp insert at tail'
 let g:localleader_map['c'] = 'Sexp convolute'
 let g:localleader_map['d'] = 'Iced document popup'
 let g:localleader_map['i'] = 'Sexp insert at head'
+let g:localleader_map['l'] = 'Iced print last'
 let g:localleader_map['o'] = 'Sexp raise element'
 let g:localleader_map['D'] = 'Sexp duplicate'
 let g:localleader_map['O'] = 'Sexp raise list'
@@ -237,7 +239,13 @@ let g:localleader_map['E'] = {
     \ }
 
 let g:localleader_map['='] = { 'name': '+iced-format' }
-let g:localleader_map['b'] = { 'name': '+iced-buffers' }
+
+let g:localleader_map['b'] = {
+    \ 'name': '+iced-buffers',
+    \ 'e': 'Print last error',
+    \ 'l': 'Print last result',
+    \ }
+
 let g:localleader_map['h'] = { 'name': '+iced-docs' }
 let g:localleader_map['j'] = { 'name': '+iced-jump' }
 
