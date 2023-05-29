@@ -1,12 +1,12 @@
 #!/bin/bash
 
-git log --stat --date=default $@ \
+git log --stat --date=iso $@ \
 | grep "file changed\|files changed\|Date" \
 | awk '
 
 # Record the date of a new commit
 $1 ~ /Date:/ {
-    date = ($6 " " $3 " " $4);
+    date = ($2);
     commits[date] += 1;
 }
 
@@ -29,4 +29,4 @@ END {
         printf "%-15s: %3i commits, %6i inserts(+), %6i deletes(-), %6i net\n", i, commits[i], inserts[i], deletes[i], inserts[i] - deletes[i];
     }
 }' \
-| sort -k1g -k2M -k3g
+| sort
