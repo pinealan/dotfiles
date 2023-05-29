@@ -7,7 +7,6 @@
                   "defonce"        :arg1
                   "testing"        :arg1-body
                   "with-let"       :binding
-                  "with-connection-pool" :arg1-body
                   "sdef"           :arg1
                   "with-sh-dir"    :arg1
                   "with-sh-env"    :arg1
