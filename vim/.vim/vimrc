@@ -125,11 +125,6 @@ hi link bufExplorerAltBuf String
 let g:goyo_width = 105
 
 " }}}
-" illuminate {{{
-
-let g:Illuminate_delay = 100
-
-" }}}
 " rainbow {{{
 
 let g:rainbow_active = 1
@@ -152,6 +147,12 @@ let g:mkdp_auto_close = 0
 " }}}
 
 call plug#end()
+
+" illuminate {{{
+
+lua require('illuminate').configure({ delay = 50, })
+
+" }}}
 
 " }}}
 
@@ -755,7 +756,10 @@ syn keyword Todo    Todo Note Fixme Refactor Hardcode Hack
 syn keyword Todo    todo note fixme refactor hardcode hack
 
 hi link Noise Special
-hi link illuminatedWord Visual
+
+hi def IlluminatedWordText guibg=#3f3f3f gui=underline
+hi def IlluminatedWordRead guibg=#3f3f3f gui=underline
+hi def IlluminatedWordWrite guibg=#3f3f3f gui=italic
 
 " }}}
 
