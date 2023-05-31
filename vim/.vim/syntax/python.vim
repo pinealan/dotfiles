@@ -65,7 +65,7 @@ syn region  pythonParen display matchgroup=pythonPunctuation
     \ start='(' end=')' contains=TOP,pythonPrimaryT,pythonPrimaryD
 
 syn match   pythonKwarg /\i\+ *\ze=[^=]/ contained containedin=pythonParen contains=pythonDelimiter
-syn match   pythonKwarg /\i\+\ze: *\i* *=[^=]/ contained containedin=pythonParen contains=pythonDelimiter
+syn match   pythonKwarg /\i\+\ze: *[a-zA-Z0-9\[\]]\+ *=[^=]/ contained containedin=pythonParen contains=pythonDelimiter,pythonList
 
 " Helper matchers
 syn match   pythonPrimaryD      /\v\h\k*(\.\h\k*)*/ contained contains=None
@@ -295,7 +295,7 @@ hi def link pythonKwarg             Identifier
 hi def link pythonTypeHint          Type
 hi def link pythonDeclClass         Type
 
-hi def link pythonPrimaryD          Function
+hi def link pythonPrimaryD          Special
 hi def link pythonPrimaryT          Type
 
 hi def link pythonSelf              Special
