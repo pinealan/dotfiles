@@ -219,6 +219,11 @@ call s:h("NeomakeInfoSign",         { "fg": s:blue })
 " tpope/vim-fugitive
 call s:h("diffAdded",               { "fg": s:teagreen })
 call s:h("diffRemoved",             { "fg": s:pink })
+
+" RRethy/vim-illuminate
+call s:h("IlluminatedWordText",     { "bg": s:background1, "gui": "underline" })
+call s:h("IlluminatedWordRead",     { "bg": s:background1, "gui": "underline" })
+call s:h("IlluminatedWordWrite",    { "bg": s:background1, "gui": "italic" })
 " }}}
 
 " [ Neovim terminal colors ] {{{

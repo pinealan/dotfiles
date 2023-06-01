@@ -756,11 +756,6 @@ syn keyword Todo    Todo Note Fixme Refactor Hardcode Hack
 syn keyword Todo    todo note fixme refactor hardcode hack
 
 hi link Noise Special
-
-hi def IlluminatedWordText guibg=#3f3f3f gui=underline
-hi def IlluminatedWordRead guibg=#3f3f3f gui=underline
-hi def IlluminatedWordWrite guibg=#3f3f3f gui=italic
-
 " }}}
 
 " vim: foldmethod=marker
