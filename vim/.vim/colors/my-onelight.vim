@@ -157,7 +157,7 @@ call s:h("SpellRare",       { "fg": s:carrot }) " Word that is recognized by the
 
 call s:h("StatusLine",      { "fg": s:content0, "bg": s:background1 }) " status line of current window
 call s:h("StatusLineGit",   { "fg": s:_black, "bg": s:content2 }) " status line of current window
-call s:h("StatusLineNC",    { "fg": s:content2, "bg": s:_black }) " status lines of not-current windows Note: if this is equal to 'StatusLine' Vim will use '^^^' in the status line of the current window.
+call s:h("StatusLineNC",    { "fg": s:content2, "bg": s:_white }) " status lines of not-current windows Note: if this is equal to 'StatusLine' Vim will use '^^^' in the status line of the current window.
 
 call s:h("TabLine",         { "fg": s:content1 }) " tab pages line, not active tab page label
 call s:h("TabLineFill",     { "fg": s:content1 }) " tab pages line, where there are no labels
