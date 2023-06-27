@@ -31,3 +31,9 @@ nmap <localleader>d  :call ToggleDocstring()<cr>
 nmap <localleader>b  :!black %<cr>
 
 nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
+
+hi link @attribute          Special
+hi link @constructor        Normal
+hi link @field              Normal
+hi link @variable           Normal
+hi link @variable.builtin   Special

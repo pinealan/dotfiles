@@ -25,8 +25,8 @@ Plug 'RRethy/vim-illuminate'
 Plug 'luochen1990/rainbow'
 Plug 'gyim/vim-boxdraw'
 
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/playground'
+"Plug 'nvim-treesitter/nvim-treesitter'
+"Plug 'nvim-treesitter/playground'
 
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -490,7 +490,6 @@ nmap <silent> -             :call Underline('-')<cr>
 nmap <silent> =             :call Underline('=')<cr>
 
 nmap <silent> <F8>          :MarkdownPreview<cr>
-nmap <silent> <C-e>         :NERDTreeToggle<cr>
 
 noremap <silent> <M-d>   <C-e>
 noremap <silent> <M-e>   <C-y>
