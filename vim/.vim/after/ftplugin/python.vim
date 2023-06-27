@@ -5,6 +5,18 @@ command! -nargs=* PythonGoto YcmCompleter GoTo
 
 set keywordprg=:PythonGoto
 
+function! AltSrcTestPath()
+    let head = expand('%:h')
+    let tail = expand('%:t')
+    if head =~# '^src'
+        return substitute( head . '/test_' . tail,'^src','test','' )
+    elseif head =~# '^test'
+        return substitute( head . substitute( tail,'^test_','/','' ) ,'^test','src','' )
+    else
+        echom 'File path does not start with "src" or "test"'
+        return expand('%')
+endfunction
+
 function! ToggleDocstring()
     let l:hi = execute("highlight pythonDocString")
     if len(matchstr(l:hi, "cterm=bold")) == 0
@@ -19,14 +31,3 @@ nmap <localleader>d  :call ToggleDocstring()<cr>
 nmap <localleader>b  :!black %<cr>
 
 nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
-
-function! AltSrcTestPath()
-    let root = expand('%:r')
-    if root !~# '^test'
-        return substitute( root.'_test','^[^/]+/','test','' ).'.py'
-    elseif root =~# '^test'
-        return substitute( substitute( root,'/test_','/','' ),'^test/','','' ).'.py'
-    else
-        echom 'File path does not start with "src" or "test"'
-        return expand('%')
-endfunction
