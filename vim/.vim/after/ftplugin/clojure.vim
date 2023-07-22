@@ -157,10 +157,12 @@ xmap <localleader>ee    :IcedEvalVisual<cr>
 nmap <localleader>l     :IcedPrintLast<cr>
 
 nmap <localleader>hc    :IcedClojureDocsOpen<cr>
-nmap <localleader>hd    :IcedDocumentPopupOpen<cr>
-nmap <localleader>hs    :IcedSourcePopupShow<cr>
-" Alias for opening doc
-nmap <localleader>d     :IcedDocumentPopupOpen<cr>
+nmap <localleader>hd    :IcedDocumentOpen<cr>
+nmap <localleader>hq    :IcedDocumentClose<cr>
+nmap <localleader>hs    :IcedSourceShow<cr>
+" Alias for open/close doc
+nmap <localleader>d     :IcedDocumentOpen<cr>
+nmap <localleader>q     :IcedDocumentClose<cr>
 
 nmap <localleader>jd    :IcedDefJump .<cr>
 nmap <localleader>jl    :IcedJumpToLet<cr>
@@ -213,7 +215,8 @@ let g:localleader_map = {}
 
 let g:localleader_map['a'] = 'Sexp insert at tail'
 let g:localleader_map['c'] = 'Sexp convolute'
-let g:localleader_map['d'] = 'Iced document popup'
+let g:localleader_map['d'] = 'Iced document open'
+let g:localleader_map['q'] = 'Iced document close'
 let g:localleader_map['i'] = 'Sexp insert at head'
 let g:localleader_map['l'] = 'Iced print last'
 let g:localleader_map['o'] = 'Sexp raise element'
