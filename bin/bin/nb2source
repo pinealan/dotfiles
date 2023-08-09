@@ -1,4 +1,4 @@
 #!/bin/sh
 
-jq -r '[ .cells[] | select(.cell_type == "code") | .source | select(. != []) ] | map(. + ["\n", "\n"]) | flatten | add' $@ \
+jq -r '[ .cells[] | select(.cell_type == "code") | .source | select(. != []) ] | map(. + ["\n", "\n"]) | flatten | add' "$@" \
     | sed 's/^%/# %/g'
