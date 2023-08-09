@@ -33,12 +33,12 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
 "Plug 'lepture/vim-jinja'
 
-Plug 'iamcco/markdown-preview.nvim', {
-    \ 'do': { -> mkdp#util#install() },
-    \ 'for': ['markdown', 'vim-plug'],
-    \ }
+"Plug 'iamcco/markdown-preview.nvim', {
+"    \ 'do': { -> mkdp#util#install() },
+"    \ 'for': ['markdown', 'vim-plug'],
+"    \ }
 
-Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/goyo.vim'
 
 Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
 Plug 'liquidz/vim-iced', { 'for': 'clojure' }
