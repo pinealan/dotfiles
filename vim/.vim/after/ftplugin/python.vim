@@ -37,3 +37,7 @@ hi link @constructor        Normal
 hi link @field              Normal
 hi link @variable           Normal
 hi link @variable.builtin   Special
+
+nmap <localleader>ee <Plug>JupyterExecute
+nmap <localleader>ea <Plug>JupyterExecuteAll
+nmap <localleader>r  <Plug>JupyterRestart
