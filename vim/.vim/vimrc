@@ -32,11 +32,6 @@ Plug 'gyim/vim-boxdraw'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
 "Plug 'lepture/vim-jinja'
-Plug 'luk400/vim-jukit'
-
-let g:jukit_mappings = 1
-let g:jukit_convert_overwrite_default = 1
-let g:jukit_convert_open_default = 0
 
 "Plug 'junegunn/goyo.vim'
 
