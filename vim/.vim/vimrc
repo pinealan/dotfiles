@@ -38,11 +38,6 @@ let g:jukit_mappings = 1
 let g:jukit_convert_overwrite_default = 1
 let g:jukit_convert_open_default = 0
 
-"Plug 'iamcco/markdown-preview.nvim', {
-"    \ 'do': { -> mkdp#util#install() },
-"    \ 'for': ['markdown', 'vim-plug'],
-"    \ }
-
 "Plug 'junegunn/goyo.vim'
 
 Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
@@ -111,23 +106,6 @@ let g:fzf_command_prefix = "Fzf"
 let g:fzf_layout = {'window': { 'width': 0.8, 'height': 0.6 }}
 
 " }}}
-" BufExplorer {{{
-
-let g:bufExplorerFindActive=0
-let g:bufExplorerShowNoName=1
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerSortBy='name'
-let g:bufExplorerSplitOutPathName=1
-let g:bufExplorerSplitHorzSize=10
-let g:bufExplorerSplitVertSize=51
-let g:bufExplorerDisableDefaultKeyMapping=v:true
-hi link bufExplorerSortBy Comment
-hi link bufExplorerCurBuf String
-hi link bufExplorerActBuf Constant
-hi link bufExplorerHidBuf Tag
-hi link bufExplorerAltBuf String
-
-" }}}
 " Goyo {{{
 
 let g:goyo_width = 105
@@ -146,11 +124,6 @@ let g:rainbow_conf = {
     \   'darkorchid3'
     \   ],
     \ }
-
-" }}}
-" Markdown preview {{{
-
-let g:mkdp_auto_close = 0
 
 " }}}
 
