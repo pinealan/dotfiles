@@ -28,12 +28,16 @@ Plug 'gyim/vim-boxdraw'
 "Plug 'nvim-treesitter/nvim-treesitter'
 "Plug 'nvim-treesitter/playground'
 
+Plug 'kana/vim-textobj-user'
+
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
 "Plug 'lepture/vim-jinja'
 
 Plug 'untitled-ai/jupyter_ascending.vim'
+
+let g:jupyter_ascending_default_mappings = v:false
 
 "Plug 'junegunn/goyo.vim'
 
