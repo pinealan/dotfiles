@@ -26,33 +26,7 @@ function! ToggleDocstring()
     endif
 endfunction
 
-nmap <localleader>k  :vimgrep /^ *class/g @%
-nmap <localleader>d  :call ToggleDocstring()<cr>
-nmap <localleader>b  :!black %<cr>
-
-nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
-
-hi link @attribute          Special
-hi link @constructor        Normal
-hi link @field              Normal
-hi link @variable           Normal
-hi link @variable.builtin   Special
-
-nmap <localleader>ee <Plug>JupyterExecute
-nmap <localleader>ea <Plug>JupyterExecuteAll
-nmap <localleader>r  <Plug>JupyterRestart
-
 " Taken from https://github.com/GCBallesteros/vim-textobj-hydrogen
-
-call textobj#user#plugin('pypercent', {
-\      '-': {
-\        '*sfile*': expand('<sfile>:p'),
-\        'select-a': 'ae',  '*select-a-function*': 's:select_a',
-\        'select-i': 'ie',  '*select-i-function*': 's:select_i',
-\        'move-n': ']e',    '*move-n-function*': 's:move_n',
-\        'move-p': '[e',    '*move-p-function*': 's:move_p'
-\      }
-\    })
 
 function! s:move_p()
   let next_line = search("^# %%", "bnW")
@@ -129,5 +103,32 @@ function! s:select_i()
   return ['V', start_pos, end_pos]
 endfunction
 
+hi link @attribute          Special
+hi link @constructor        Normal
+hi link @field              Normal
+hi link @variable           Normal
+hi link @variable.builtin   Special
+
+call textobj#user#plugin('pypercent', {
+\      '-': {
+\        '*sfile*': expand('<sfile>:p'),
+\        'select-a': 'ae',  '*select-a-function*': 's:select_a',
+\        'select-i': 'ie',  '*select-i-function*': 's:select_i',
+\        'move-n': ']e',    '*move-n-function*': 's:move_n',
+\        'move-p': '[e',    '*move-p-function*': 's:move_p'
+\      }
+\    })
+
+nmap <localleader>gk        :vimgrep /^ *class/g @%
+nmap <localleader>d         :call ToggleDocstring()<cr>
+
+nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
+
+" Mappings for working with percent scripts (jupyter notebook as text)
 nmap <localleader>j  ]e
 nmap <localleader>k  [e
+
+" Mappings for jupyter_ascending pluging
+nmap <localleader>ee <Plug>JupyterExecute
+nmap <localleader>ea <Plug>JupyterExecuteAll
+nmap <localleader>r  <Plug>JupyterRestart
