@@ -120,15 +120,32 @@ call textobj#user#plugin('pypercent', {
 \    })
 
 nmap <localleader>gk        :vimgrep /^ *class/g @%
-nmap <localleader>d         :call ToggleDocstring()<cr>
-
 nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 
 " Mappings for working with percent scripts (jupyter notebook as text)
 nmap <localleader>j  ]e
 nmap <localleader>k  [e
 
+nmap <localleader>a  [ek<cr>i# %%<esc><cr><cr>k
+nmap <localleader>b  ]ek<cr>i# %%<esc><cr><cr>k
+nmap <localleader>d  dae
+
 " Mappings for jupyter_ascending pluging
 nmap <localleader>ee <Plug>JupyterExecute
 nmap <localleader>ea <Plug>JupyterExecuteAll
 nmap <localleader>r  <Plug>JupyterRestart
+
+""" WhichKey {{{1
+
+let g:localleader_map = {}
+
+let g:localleader_map['a'] = 'Create cell above'
+let g:localleader_map['b'] = 'Create cell below'
+let g:localleader_map['d'] = 'ToggleDocstring'
+let g:localleader_map['j'] = 'Move to next cell'
+let g:localleader_map['k'] = 'Move to previous cell'
+let g:localleader_map['r'] = 'Jupyter Ascending: Restart'
+
+call which_key#register("'", "g:localleader_map")
+nnoremap <silent> <localleader>     :WhichKey "'"<CR>
+vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
