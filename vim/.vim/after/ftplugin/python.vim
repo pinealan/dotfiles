@@ -149,3 +149,7 @@ let g:localleader_map['r'] = 'Jupyter Ascending: Restart'
 call which_key#register("'", "g:localleader_map")
 nnoremap <silent> <localleader>     :WhichKey "'"<CR>
 vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
+
+augroup usr
+    autocmd BufWritePost    *.sync.py !jupytext -s %
+augroup END
