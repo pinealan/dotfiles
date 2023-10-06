@@ -35,10 +35,6 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
 "Plug 'lepture/vim-jinja'
 
-Plug 'untitled-ai/jupyter_ascending.vim'
-
-let g:jupyter_ascending_default_mappings = v:false
-
 "Plug 'junegunn/goyo.vim'
 
 Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
