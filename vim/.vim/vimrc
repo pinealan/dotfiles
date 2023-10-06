@@ -35,15 +35,17 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
 "Plug 'lepture/vim-jinja'
 
-"Plug 'junegunn/goyo.vim'
-
 Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
 Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 
 Plug 'eigenfoo/stan-vim'
 Plug 'vyperlang/vim-vyper'
 
+" Polyglot {{{
+
 let g:polyglot_disabled = ['clojure', 'markdown', 'python', 'solidity']
+
+" }}}
 
 Plug 'sheerun/vim-polyglot'
 
@@ -101,11 +103,6 @@ let g:Schlepp#trimWS = 0
 
 let g:fzf_command_prefix = "Fzf"
 let g:fzf_layout = {'window': { 'width': 0.8, 'height': 0.6 }}
-
-" }}}
-" Goyo {{{
-
-let g:goyo_width = 105
 
 " }}}
 " rainbow {{{
