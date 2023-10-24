@@ -718,6 +718,7 @@ augroup usr
 
 
     autocmd BufNewFile,BufRead  *.sol setf solidity
+    autocmd BufWritePost        *.sync.py !jupytext -s %
 
 augroup END
 

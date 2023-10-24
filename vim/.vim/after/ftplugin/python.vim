@@ -143,7 +143,3 @@ let g:localleader_map['k'] = 'Move to previous cell'
 call which_key#register("'", "g:localleader_map")
 nnoremap <silent> <localleader>     :WhichKey "'"<CR>
 vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
-
-augroup usr
-    autocmd BufWritePost    *.sync.py !jupytext -s %
-augroup END
