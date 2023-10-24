@@ -40,7 +40,7 @@ syn keyword pythonAsync         async await
 
 syn keyword pythonSelf          self cls
 
-syn keyword pythonStructure     class skipwhite
+syn keyword pythonStructure     class skipwhite match case
 syn keyword pythonStructure     def nextgroup=pythonFunctionCall skipwhite
 syn keyword pythonInclude       from import
 
