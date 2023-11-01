@@ -144,6 +144,8 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 let g:tex_no_error = 1
 
+let g:clojure_discard_macro = v:true
+
 " }}}
 
 "===[ Options ]=== {{{
