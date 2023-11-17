@@ -43,3 +43,5 @@ no
 entrypoint
 Github
 boto3
+automatable
+dataframe
