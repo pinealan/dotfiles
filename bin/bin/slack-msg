@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if ! type curlie > /dev/null; then
+    print "curlie must be installed"
+    exit 1
+fi
+
+curlie post https://slack.com/api/chat.postMessage \
+    content-type:'application/json; charset=utf-8' \
+    --oauth2-bearer $SLACK_OAUTH_TOKEN \
+    -d "{\"channel\": \"$1\", \"text\": \"$2\"}" \
+    2> /dev/null | jq "{ ok }"
