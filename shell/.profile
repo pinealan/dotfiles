@@ -56,6 +56,7 @@ alias d='git diff'
 alias s='git status --branch --short'
 alias gg='tig'
 alias ga='gg --all'
+alias gm='gg master HEAD'
 alias gs='git stash'
 alias gsp='git stash pop'
 alias gsd='git stash drop'
@@ -80,6 +81,23 @@ export LESS_TERMCAP_ue=$'\e[0m'             # end underline
 
 export LESS_TERMCAP_so=$'\e[30;48;5;214m'   # standout-mode, dunno what this do
 export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
+
+venv() {
+    if [[ -n $1 ]]; then
+        . ~/venv/$1/bin/activate
+        return
+    fi
+
+    for dir in "venv" ".venv" "env" ".env"; do
+        if [[ -d $dir ]]; then
+            . $dir/bin/activate
+            return
+        fi
+    done
+
+    echo ERROR: Unable to find matching environment >&2
+    return 127
+}
 
 # execute local machine-specific .profile if it exists
 local_profile="$HOME/.local/profile"
