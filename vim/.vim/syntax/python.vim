@@ -59,7 +59,7 @@ syn region  pythonDict display matchgroup=pythonPunctuation
     \ start='{' end='}' contains=TOP
 
 syn region  pythonList display matchgroup=pythonPunctuation
-    \ start='\[' end='\]' contains=TOP,pythonTypeHint
+    \ start='\[' end='\]' contains=TOP
 
 syn region  pythonParen display matchgroup=pythonPunctuation
     \ start='(' end=')' contains=TOP,pythonPrimaryT,pythonPrimaryD
@@ -72,7 +72,7 @@ syn match   pythonPrimaryD      /\v\h\k*(\.\h\k*)*/ contained contains=None
 syn match   pythonPrimaryT      /\v\h\k*(\.\h\k*)*/ contained contains=None
 
 syn match   pythonDecorator     "^ *@" nextgroup=pythonPrimaryD skipwhite
-syn match   pythonTypeHint      /\v(lambda( +\h\k*(, *\h\k*)*)?)@<!:/
+syn match   pythonTypeHint      /\v(lambda( +\h\k*(, *\h\k*)*)?)@<!: /
     \ display contains=pythonDelimiter nextgroup=pythonPrimaryT skipwhite
 
 syn match   pythonComment       "#.*$" contains=@Spell,Todo
