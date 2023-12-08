@@ -130,6 +130,8 @@ nmap <localleader>a  [ek<cr>i# %%<esc><cr><cr>k
 nmap <localleader>b  ]ek<cr>i# %%<esc><cr><cr>k
 nmap <localleader>d  dae
 
+nmap <localleader>ti A # type: ignore<esc>
+
 """ WhichKey {{{1
 
 let g:localleader_map = {}
