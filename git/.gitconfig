@@ -109,6 +109,10 @@
 	date = format:%a, %Y-%m-%d %R (%z)
 	showRoot = true
 
+[advice]
+	statusHints = false
+	detachedHead = false
+
 [fetch]
 	prune = true
 
