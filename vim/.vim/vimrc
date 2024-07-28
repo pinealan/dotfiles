@@ -457,8 +457,8 @@ map <C-h>      :tabprev<cr>
 map <C-l>      :tabnext<cr>
 map <C-j>      :bnext<cr>
 map <C-k>      :bprev<cr>
-map <C-n>      :cnext<cr>
-map <C-p>      :cprev<cr>
+map <C-n>      :lnext<cr>
+map <C-p>      :lprev<cr>
 
 nmap <silent> -             :call Underline('-')<cr>
 nmap <silent> =             :call Underline('=')<cr>
@@ -708,8 +708,9 @@ iabbrev caes        case
 augroup usr
     autocmd!
     autocmd BufEnter    * silent call EnableFastEsc()
-    autocmd BufNewfile  *.php r ~/.vim/template/template.php | normal kdd
-    autocmd BufRead     *.vim set foldmethod=marker
+    autocmd BufNewfile  *.php silent r ~/.vim/template/template.php | normal kdd
+    autocmd BufRead     *.vim silent set foldmethod=marker
+    autocmd BufRead     *.html silent RainbowToggle
     autocmd BufWrite    * call TryTrimSpace()
     "autocmd VimEnter    *.c,*.cpp,*.py vsp
 
