@@ -120,6 +120,7 @@ set keywordprg=:IcedDocumentPopupOpen
 
 let g:iced_enable_clj_kondo_analysis = v:true
 let g:iced_enable_clj_kondo_local_analysis = v:true
+let g:iced_clj_kondo_analysis_dirs = ['src', 'dev', 'test']
 let g:iced_formatter = 'zprint'
 let g:iced#format#zprint_option = '{}'
 let g:iced#nrepl#skip_evaluation_when_buffer_size_is_exceeded = v:true
@@ -156,6 +157,7 @@ xmap <localleader>ee    :IcedEvalVisual<cr>
 
 nmap <localleader>l     :IcedPrintLast<cr>
 
+" docs
 nmap <localleader>hc    :IcedClojureDocsOpen<cr>
 nmap <localleader>hd    :IcedDocumentOpen<cr>
 nmap <localleader>hq    :IcedDocumentClose<cr>
@@ -185,6 +187,7 @@ nmap <localLeader>sq    :IcedQuitCljsRepl<cr>
 nmap <localLeader>sp    i)()<esc>x2<Plug>(sexp_flow_to_prev_close)J%lywh%a<cr><esc>p
 nmap <localLeader>si    i)()<esc>x
 
+" refactor
 nmap <localleader>raa   :IcedAddArity<cr>
 nmap <localLeader>ram   :IcedAddMissing<cr>
 nmap <localLeader>ran   :IcedAddNs<cr>
@@ -195,12 +198,17 @@ nmap <localleader>rtl   :IcedThreadLast<cr>
 nmap <localleader>ref   :IcedExtractFunction<cr>
 nmap <localleader>rml   :IcedMoveToLet<cr>
 
+" iced buffer
 nmap <localleader>bb    :IcedStdoutBufferOpen<cr>
 nmap <localleader>bc    :IcedStdoutBufferClear<cr>
 nmap <localleader>be    :IcedEval *e<cr>:IcedPrintLast<cr>
 nmap <localleader>bl    :IcedPrintLast<cr>
 nmap <localleader>bq    :IcedStdoutBufferClose<cr>
 nmap <localleader>bt    :IcedTestBufferOpen<cr>
+
+" lookup usage
+nmap <localleader>bd    :IcedBrowseDependencies<cr>
+nmap <localleader>br    :IcedBrowseReferences<cr>
 
 nmap <localleader>vc    :IcedEval {:vlaaad.reveal/command '(clear-output)}<cr>
 
@@ -244,7 +252,9 @@ let g:localleader_map['E'] = {
 let g:localleader_map['='] = { 'name': '+iced-format' }
 
 let g:localleader_map['b'] = {
-    \ 'name': '+iced-buffers',
+    \ 'name': '+iced-buffers/browse',
+    \ 'd': 'Browse dependencies',
+    \ 'r': 'Browse references',
     \ 'e': 'Print last error',
     \ 'l': 'Print last result',
     \ }

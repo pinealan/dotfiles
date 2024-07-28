@@ -1,20 +1,21 @@
 {:search-config? true
  :style          [:backtranslate :respect-nl]
  :fn-map         {"->>"            :hang
+                  "cond->"         :arg1-pair
+                  "cond->>"        :arg1-pair
                   "some->"         :hang
                   "some->>"        :hang
                   "defn"           :fn
                   "defonce"        :arg1
-                  "testing"        :arg1-body
-                  "with-let"       :binding
                   "sdef"           :arg1
-                  "with-sh-dir"    :arg1
-                  "with-sh-env"    :arg1
-                  "with-precision" :arg1
-                  "let-flow"       :binding
-                  "go-loop"        :binding
-                  "cond->"         :arg1-pair
-                  "cond->>"        :arg1-pair}
+                  "testing"        :arg1-body
+                  "with-let"                    :binding
+                  "with-sh-dir"                 :arg1
+                  "with-sh-env"                 :arg1
+                  "with-precision"              :arg1
+                  "with-transaction"            :arg1-body
+                  "with-connection-pool"        :arg1-body
+                  }
  :extend         {:indent 0}
  :remove         {:fn-force-nl #{:noarg1 :noarg1-body}}
  :binding        {:justify? true :justify {:max-variance 15}}

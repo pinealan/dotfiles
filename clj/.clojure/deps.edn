@@ -7,6 +7,8 @@
   :repl   {:extra-deps {reply/reply {:mvn/version "0.4.4"}}
            :main-opts ["-m" "reply.main" "--color" "--attach"]}
 
+  :antq   {:extra-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}}
+
   :iced
   {:extra-deps
    {cider/cider-nrepl             {:mvn/version "0.28.5"}
