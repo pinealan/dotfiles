@@ -11,7 +11,7 @@ export FZF_DEFAULT_OPTS="\
     --cycle \
     --reverse \
     --border \
-    --preview='head -n $COLUMNS {}'"
+    --preview='head -n 100 {}'"
 export FZF_CTRL_R_OPTS="\
     --preview=''"
 
