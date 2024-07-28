@@ -129,8 +129,10 @@ nmap <localleader>k  [e
 nmap <localleader>a  [ek<cr>i# %%<esc><cr><cr>k
 nmap <localleader>b  ]ek<cr>i# %%<esc><cr><cr>k
 nmap <localleader>d  dae
+nmap <localleader>s  :!jupytext -s %<cr>
 
 nmap <localleader>ti A # type: ignore<esc>
+
 
 """ WhichKey {{{1
 
@@ -139,6 +141,7 @@ let g:localleader_map = {}
 let g:localleader_map['a'] = 'Create cell above'
 let g:localleader_map['b'] = 'Create cell below'
 let g:localleader_map['d'] = 'Delete cell'
+let g:localleader_map['d'] = 'Sync with notebook'
 let g:localleader_map['j'] = 'Move to next cell'
 let g:localleader_map['k'] = 'Move to previous cell'
 
