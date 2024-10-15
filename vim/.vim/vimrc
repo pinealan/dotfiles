@@ -247,17 +247,21 @@ function! PathFilename(path)
     let name = split(a:path, '/')
     if len(name) == 0
         return '[no name]'
-    elseif len(name) < 4
+    elseif len(name) < 3
         return a:path
     else
-        return name[0] . '/.../' . name[-2] . '/' . name[-1]
+        let s = ''
+        for i in range(len(name) - 2)
+            let s .= name[i][0] . '/'
+        endfor
+        return s . name[-2] . '/' . name[-1]
 endfunction
 
 function! MyTabLabel(n)
-    let wincount = tabpagewinnr(a:n, '$')
+    "let wincount = tabpagewinnr(a:n, '$')
     let winnr = tabpagewinnr(a:n)
     let bufls = tabpagebuflist(a:n)
-    return PathFilename(bufname(bufls[winnr - 1])) . ' (' . wincount . ')'
+    return PathFilename(bufname(bufls[winnr - 1]))
 endfunction
 
 function! MyTabLine()
