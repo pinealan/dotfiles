@@ -284,19 +284,6 @@ function! MyTabLine()
     return s
 endfunction
 
-function! HighlightName()
-    let id  = synID(line("."), col("."), 1)
-    let tid = synID(line("."), col("."), 0)
-
-    let fg  = synIDattr(synIDtrans(id), "fg")
-    let bg  = synIDattr(synIDtrans(id), "bg")
-    let hi  = synIDattr(id, "name")
-    let lo  = synIDattr(synIDtrans(id), "name")
-    let tr  = synIDattr(tid, "name")
-
-    return "hi: ".hi." \| lo: ".lo." \| trans: ".tr." \| fg: ".fg." \| bg: ".bg
-endfunction
-
 function! EnableFastEsc()
     let b:fastesc=1
     inoremap <buffer> jj <esc>
@@ -483,7 +470,7 @@ nmap <silent> <leader>p     :setlocal paste!<cr>
 nmap <silent> <leader>q     :quit<cr>
 
 nmap <leader>:      :Commands<cr>
-nmap <leader>c      :echo HighlightName()<cr>
+nmap <leader>c      :Inspect<cr>
 
 " buffers
 nmap <leader>bb     :FzfBuffers<cr>
