@@ -18,7 +18,7 @@ Plug 'honza/vim-snippets'
 Plug 'zirrostig/vim-schlepp'
 
 Plug 'jiangmiao/auto-pairs'
-Plug '/nix/store/vbkm5j73dd5xrfyfq3mcrqlv85rr5hzc-fzf-0.28.0/share/vim-plugins/fzf'
+Plug '/nix/store/3zc8kjdicrkwlby25dajz3d6bjrdwq08-fzf-0.55.0/share/vim-plugins/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
