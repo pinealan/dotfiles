@@ -439,10 +439,6 @@ inoremap . .<c-g>u
 inoremap ; ;<c-g>u
 
 " Windows navigation
-"map <silent> <M-h>   :TmuxNavigateLeft<cr>
-"map <silent> <M-j>   :TmuxNavigateDown<cr>
-"map <silent> <M-k>   :TmuxNavigateUp<cr>
-"map <silent> <M-l>   :TmuxNavigateRight<cr>
 map <silent> <M-h>   <C-w>h
 map <silent> <M-j>   <C-w>j
 map <silent> <M-k>   <C-w>k
@@ -466,8 +462,6 @@ map <C-p>      :lprev<cr>
 
 nmap <silent> -             :call Underline('-')<cr>
 nmap <silent> =             :call Underline('=')<cr>
-
-nmap <silent> <F8>          :MarkdownPreview<cr>
 
 noremap <silent> <M-d>   <C-e>
 noremap <silent> <M-e>   <C-y>
