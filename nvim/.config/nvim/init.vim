@@ -133,6 +133,49 @@ lua require('illuminate').configure({ delay = 50, })
 
 " }}}
 
+"===[ Functions ]=== {{{
+"
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = join([
+    \ 'rg',
+    \ '--column',
+    \ '--line-number',
+    \ '--no-heading',
+    \ '--color=always',
+    \ '--smart-case',
+    \ '-- %s || true'
+    \ ], ' ')
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {
+    \ 'options': [
+    \   '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command
+    \ ]}
+  call fzf#vim#grep(
+    \ initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+" }}}
+
+"===[ Commands ]=== {{{
+"
+command! MyStatusLineShort
+    \ set statusline=%!MyStatusLine('t') |
+    \ echohl Debug |
+    \ echo "Relative path (statusline)"
+command! MyStatusLineLong
+    \ set statusline=%!MyStatusLine('f') |
+    \ echohl Debug |
+    \ echo "Full path (statusline)"
+
+command! Files
+    \ call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -L -E .git -t f'}))
+command! FilesAll
+    \ call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -I -L -t f -t l'}))
+command! -nargs=* -bang RG
+    \ call RipgrepFzf(<q-args>, <bang>0)
+
+" }}}
 
 "===[ Mapping ]=== {{{
 "
@@ -406,6 +449,29 @@ let g:tmux_navigator_no_mappings = 1
 
 " }}}
 
+"===[ Autocommands setup ]=== {{{
+"
+augroup usr
+    autocmd!
+    autocmd BufEnter    * silent call EnableFastEsc()
+    autocmd BufNewfile  *.php silent r ~/.vim/template/template.php | normal kdd
+    autocmd BufRead     *.vim silent set foldmethod=marker
+    autocmd BufRead     *.html silent RainbowToggle
+    autocmd BufWrite    * call TryTrimSpace()
+    "autocmd VimEnter    *.c,*.cpp,*.py vsp
+
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g'\"" |
+        \ endif
+
+
+    autocmd BufNewFile,BufRead  *.sol setf solidity
+    autocmd BufWritePost        *.sync.py !jupytext -s %
+
+augroup END
+
+" }}}
 
 source ~/.vim/vimrc
 set termguicolors
