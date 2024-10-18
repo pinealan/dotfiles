@@ -101,15 +101,6 @@ function! HasPaste()
     return ''
 endfunction
 
-" Format home directory into ~ and truncate the beginning of the path.
-function! ShortCwd(len)
-    let cwd=getcwd()
-    let cwd=substitute(cwd, '/home/[^/]\+', '~', '')
-    let cwd=substitute(cwd, '[^~].*\(.\{' . a:len . '\}$\)\@=', '/...', '')
-    let cwd=substitute(cwd, '\.\.\.[^/]*', '...', '')
-    return cwd
-endfunction
-
 function! PathFilename(path)
     let name = split(a:path, '/')
     if len(name) == 0
@@ -186,24 +177,6 @@ function! Underline(symbol)
         call setreg("y", str)
         exec "normal! o\<esc>\"yp"
     endif
-endfunction
-
-function! ReportBuildResult()
-    if len(getqflist()) != 0
-        copen | cc
-        echohl Tag
-        echo "Build fail!"
-        echohl None
-    else
-        echo "Build success!"
-    endif
-endfunction
-
-function! GitBranch()
-    let l:branchname = system(
-        \ "git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'"
-        \ )
-    return strlen(l:branchname) > 0 ? '  ' . l:branchname . ' ' : ''
 endfunction
 
 function! MyStatusLine(pathformat)

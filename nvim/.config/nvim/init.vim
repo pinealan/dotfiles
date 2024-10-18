@@ -133,6 +133,8 @@ lua require('illuminate').configure({ delay = 50, })
 
 " }}}
 
+source ~/.vim/vimrc
+
 "===[ Functions ]=== {{{
 "
 function! RipgrepFzf(query, fullscreen)
@@ -316,14 +318,8 @@ nmap <leader>ws     :vsp<cr>
 nmap <leader>wt     <C-w>T
 nmap <leader>ww     :w<cr>
 
-nmap <leader>xm     :silent! make \| redraw! \| call ReportBuildResult()<cr>
 nmap <leader>xt     :Tabularize /
 nmap <leader>xr     :s/ \+/\r/g<cr>
-
-" youcompleteme
-nmap <leader>yx     :YcmCompleter FixIt<cr>
-nmap <leader>yg     :YcmCompleter GoToDefinition<cr>
-nmap <leader>yr     :YcmCompleter GoToReferences<cr>
 
 " }}}
 
@@ -436,10 +432,6 @@ vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<cr>
 
 " }}}
 
-let g:UltiSnipsExpandTrigger="<C-e>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-
 vmap <up>      <Plug>SchleppUp
 vmap <down>    <Plug>SchleppDown
 vmap <left>    <Plug>SchleppLeft
@@ -473,6 +465,5 @@ augroup END
 
 " }}}
 
-source ~/.vim/vimrc
 set termguicolors
 "lua require('init')
