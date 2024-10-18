@@ -14,7 +14,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'google/vim-searchindex'
 Plug 'godlygeek/tabular'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'zirrostig/vim-schlepp'
 
 Plug 'jiangmiao/auto-pairs'
@@ -24,11 +23,15 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
 Plug 'luochen1990/rainbow'
 Plug 'gyim/vim-boxdraw'
-
-"Plug 'nvim-treesitter/nvim-treesitter'
-"Plug 'nvim-treesitter/playground'
-
 Plug 'kana/vim-textobj-user'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -48,43 +51,6 @@ let g:polyglot_disabled = ['clojure', 'markdown', 'python', 'solidity']
 
 let g:gitgutter_map_keys = 0
 let g:gitgutter_preview_win_floating = 1
-
-" }}}
-" YouCompleteMe {{{
-
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_max_num_candidates = 25
-let g:ycm_filetype_blacklist = {
-    \ 'tagbar': 1,
-    \ 'qf': 1,
-    \ 'notes': 1,
-    \ 'markdown': 1,
-    \ 'unite': 1,
-    \ 'text': 1,
-    \ 'vimwiki': 1,
-    \ 'pandoc': 1,
-    \ 'infolog': 1,
-    \ 'mail': 1,
-    \ 'html': 1,
-    \ 'gitconfig': 1,
-    \ 'tex': 1,
-    \ 'bib': 0,
-    \}
-let g:ycm_use_ultisnips_completer = 1
-
-" YCM diagnostic
-hi YcmErrorSection cterm=underline ctermfg=196
-hi YcmWarningSection cterm=underline ctermfg=196
-let g:ycm_error_symbol = 'x'
-let g:ycm_warning_symbol = '>'
-let g:ycm_open_loclist_on_ycm_diags = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-
-" YCM paths
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_extra_conf_vim_data = ['&filetype']
 
 " }}}
 " Schlepp {{{
@@ -117,12 +83,6 @@ let g:rainbow_conf = {
 " }}}
 
 call plug#end()
-
-" illuminate {{{
-
-lua require('illuminate').configure({ delay = 50, })
-
-" }}}
 
 " }}}
 
@@ -415,10 +375,6 @@ let g:leader_map['x'] = {
     \ 't': 'Tabularize',
     \ }
 
-let g:leader_map['y'] = {
-    \ 'name': '+ycm',
-    \ }
-
 call which_key#register(' ', "g:leader_map")
 nnoremap <silent> <leader>          :WhichKey '<space>'<cr>
 vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<cr>
@@ -457,4 +413,4 @@ augroup END
 " }}}
 
 set termguicolors
-"lua require('init')
+lua require('init')
