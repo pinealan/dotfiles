@@ -15,8 +15,6 @@ Plug 'tpope/vim-surround'
 Plug 'google/vim-searchindex'
 Plug 'godlygeek/tabular'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'zirrostig/vim-schlepp'
 
 Plug 'jiangmiao/auto-pairs'
@@ -35,22 +33,17 @@ Plug 'kana/vim-textobj-user'
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
-"Plug 'lepture/vim-jinja'
 
 Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
 Plug '~/src/vim-iced', { 'for': 'clojure' }
 
-Plug 'eigenfoo/stan-vim'
-Plug 'vyperlang/vim-vyper'
+Plug 'sheerun/vim-polyglot'
 
 " Polyglot {{{
 
 let g:polyglot_disabled = ['clojure', 'markdown', 'python', 'solidity']
 
 " }}}
-
-Plug 'sheerun/vim-polyglot'
-
 " Git Gutter {{{
 
 let g:gitgutter_map_keys = 0
@@ -436,8 +429,6 @@ vmap <up>      <Plug>SchleppUp
 vmap <down>    <Plug>SchleppDown
 vmap <left>    <Plug>SchleppLeft
 vmap <right>   <Plug>SchleppRight
-
-let g:tmux_navigator_no_mappings = 1
 
 " }}}
 
