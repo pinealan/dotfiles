@@ -413,4 +413,4 @@ augroup END
 " }}}
 
 set termguicolors
-lua require('init')
+lua require('pinealan')
