@@ -89,7 +89,56 @@ call plug#end()
 source ~/.vim/vimrc
 
 "===[ Functions ]=== {{{
-"
+
+function! EnableFastEsc()
+    let b:fastesc=1
+    inoremap <buffer> jj <esc>
+    echom "Enabled insert mdoe fast <esc>"
+endfunction
+
+function! DisableFastEsc()
+    unlet b:fastesc
+    iunmap <buffer> jj
+    echom "Disabled insert mdoe fast <esc>"
+endfunction
+
+function! ToggleFastEsc()
+    if get(b:, 'fastesc', 0)
+        call DisableFastEsc()
+    else
+        call EnableFastEsc()
+    endif
+endfunction
+
+function! Underline(symbol)
+    let line = getline('.')
+    let llen = strlen(line)
+    let str = ''
+    if llen > 0
+        let widx = match(line, '\S')
+        for ii in range(widx)
+            let str = str . " "
+        endfor
+        for ii in range(llen - widx)
+            let str = str . a:symbol
+        endfor
+        call setreg("y", str)
+        exec "normal! o\<esc>\"yp"
+    endif
+endfunction
+
+function! TrimSpace()
+    %s/\s\+$//e
+endfunction
+
+function! TryTrimSpace()
+    if &ft =~ 'markdown'
+        return
+    else
+        call TrimSpace()
+    endif
+endfunction
+
 function! RipgrepFzf(query, fullscreen)
   let command_fmt = join([
     \ 'rg',

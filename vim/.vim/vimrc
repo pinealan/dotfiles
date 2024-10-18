@@ -93,13 +93,6 @@ set shellpipe=&>
 " }}}
 
 "===[ Functions ]=== {{{
-"
-function! HasPaste()
-    if &paste
-        return '[PASTE MODE]'
-    endif
-    return ''
-endfunction
 
 function! PathFilename(path)
     let name = split(a:path, '/')
@@ -142,41 +135,11 @@ function! MyTabLine()
     return s
 endfunction
 
-function! EnableFastEsc()
-    let b:fastesc=1
-    inoremap <buffer> jj <esc>
-    echom "Enabled insert mdoe fast <esc>"
-endfunction!
-
-function! DisableFastEsc()
-    unlet b:fastesc
-    iunmap <buffer> jj
-    echom "Disabled insert mdoe fast <esc>"
-endfunction!
-
-function! ToggleFastEsc()
-    if get(b:, 'fastesc', 0)
-        call DisableFastEsc()
-    else
-        call EnableFastEsc()
+function! HasPaste()
+    if &paste
+        return '[PASTE MODE]'
     endif
-endfunction
-
-function! Underline(symbol)
-    let line = getline('.')
-    let llen = strlen(line)
-    let str = ''
-    if llen > 0
-        let widx = match(line, '\S')
-        for ii in range(widx)
-            let str = str . " "
-        endfor
-        for ii in range(llen - widx)
-            let str = str . a:symbol
-        endfor
-        call setreg("y", str)
-        exec "normal! o\<esc>\"yp"
-    endif
+    return ''
 endfunction
 
 function! MyStatusLine(pathformat)
@@ -187,18 +150,6 @@ function! MyStatusLine(pathformat)
         \'%=',
         \'%y %l,%-2c |%3p%% '
         \], '')
-endfunction
-
-function! TrimSpace()
-    %s/\s\+$//e
-endfunction
-
-function! TryTrimSpace()
-    if &ft =~ 'markdown'
-        return
-    else
-        call TrimSpace()
-    endif
 endfunction
 
 " }}}
