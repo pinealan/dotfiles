@@ -208,10 +208,6 @@ map <silent> <M-h>   <C-w>h
 map <silent> <M-j>   <C-w>j
 map <silent> <M-k>   <C-w>k
 map <silent> <M-l>   <C-w>l
-"map {H          <C-w>9<
-"map {J          <C-w>9-
-"map {K          <C-w>9+
-"map {L          <C-w>9>
 
 " Buffer/Tab/Quickfix navigation
 map <C-q>      :q<cr>
@@ -220,16 +216,17 @@ map <C-r>      :edit<cr>
 
 map <C-h>      :tabprev<cr>
 map <C-l>      :tabnext<cr>
-map <C-j>      :bnext<cr>
-map <C-k>      :bprev<cr>
-map <C-n>      :lnext<cr>
-map <C-p>      :lprev<cr>
 
-nmap <silent> -             :call Underline('-')<cr>
-nmap <silent> =             :call Underline('=')<cr>
+nmap <silent> -     :call Underline('-')<cr>
+nmap <silent> =     :call Underline('=')<cr>
 
 noremap <silent> <M-d>   <C-e>
 noremap <silent> <M-e>   <C-y>
+
+vmap <up>      <Plug>SchleppUp
+vmap <down>    <Plug>SchleppDown
+vmap <left>    <Plug>SchleppLeft
+vmap <right>   <Plug>SchleppRight
 
 " Mnemonic leader mapping to commands {{{
 
@@ -244,7 +241,6 @@ nmap <silent> <leader>h     :setlocal hlsearch!<cr>
 nmap <silent> <leader><tab> <c-^>
 
 nmap <silent> <leader>d     :bdelete<cr>
-nmap <silent> <leader>p     :setlocal paste!<cr>
 nmap <silent> <leader>q     :quit<cr>
 
 nmap <leader>:      :Commands<cr>
@@ -324,8 +320,8 @@ nmap <leader>xt     :Tabularize /
 nmap <leader>xr     :s/ \+/\r/g<cr>
 
 " }}}
-
 " vim-which-key setup {{{
+
 let g:which_key_disable_default_offset = 1
 
 let g:leader_map = {}
@@ -429,11 +425,6 @@ nnoremap <silent> <leader>          :WhichKey '<space>'<cr>
 vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<cr>
 
 " }}}
-
-vmap <up>      <Plug>SchleppUp
-vmap <down>    <Plug>SchleppDown
-vmap <left>    <Plug>SchleppLeft
-vmap <right>   <Plug>SchleppRight
 
 " }}}
 
