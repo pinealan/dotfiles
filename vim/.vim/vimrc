@@ -106,6 +106,7 @@ function! PathFilename(path)
             let s .= name[i][0] . '/'
         endfor
         return s . name[-2] . '/' . name[-1]
+    endif
 endfunction
 
 function! MyTabLabel(n)
