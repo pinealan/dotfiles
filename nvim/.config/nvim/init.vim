@@ -37,7 +37,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
 
-Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'timl'] }
+Plug 'guns/vim-sexp', { 'for': [ 'clojure', 'scheme', 'lisp', 'timl' ] }
 Plug '~/src/vim-iced', { 'for': 'clojure' }
 
 Plug 'sheerun/vim-polyglot'
@@ -87,6 +87,7 @@ call plug#end()
 " }}}
 
 source ~/.vim/vimrc
+set termguicolors
 
 "===[ Functions ]=== {{{
 
@@ -412,5 +413,3 @@ augroup usr
 augroup END
 
 " }}}
-
-set termguicolors
