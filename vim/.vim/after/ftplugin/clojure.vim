@@ -10,6 +10,7 @@ function! AltSrcTestPath()
     else
         echom 'File path does not start with "src" or "test"'
         return expand('%')
+    endif
 endfunction
 
 function! ToggleIcedIdent()
@@ -17,6 +18,7 @@ function! ToggleIcedIdent()
         set indentexpr=GetIcedIndent()
     elseif &indentexpr == 'GetIcedIndent()'
         set indentexpr=
+    endif
 endfunction
 
 """ Sexp mappings {{{1
