@@ -414,4 +414,3 @@ augroup END
 " }}}
 
 set termguicolors
-lua require('pinealan')
