@@ -190,8 +190,8 @@ noremap    U   <C-r>
 noremap <C-r>     U
 
 " Keep commands from moving the cursor around
-nnoremap <silent> n    nzzzv:SearchIndex<cr>
-nnoremap <silent> N    Nzzzv:SearchIndex<cr>
+nnoremap <silent> n    nzzzv<cmd>SearchIndex<cr>
+nnoremap <silent> N    Nzzzv<cmd>SearchIndex<cr>
 nnoremap <silent> J    mzJ`z
 
 " Easier newline
@@ -223,6 +223,12 @@ vmap <down>    <Plug>SchleppDown
 vmap <left>    <Plug>SchleppLeft
 vmap <right>   <Plug>SchleppRight
 
+nmap gs     <Plug>(GitGutterStageHunk)
+nmap gu     <Plug>(GitGutterUndoHunk)
+nmap g[     <Plug>(GitGutterPrevHunk)
+nmap g]     <Plug>(GitGutterNextHunk)
+nmap gp     <Plug>(GitGutterPreviewHunk)
+
 " Mnemonic leader mapping to commands {{{
 
 nmap <leader>:      :Commands<cr>
@@ -245,7 +251,7 @@ nmap <leader>fr     :FzfHistory<cr>
 nmap <leader>fz     :call fzf#run(fzf#wrap('fzf-custom', {'source': ''}))
 
 " git
-nmap <leader>gC     :Git commit<cr>
+nmap <leader>gc     :Git commit<cr>
 nmap <leader>ga     :Gwrite<cr>
 nmap <leader>gb     :Git blame<cr>
 nmap <leader>gc     :FzfCommits<cr>
@@ -255,12 +261,6 @@ nmap <leader>gg     :vert Git<cr>60<c-w>\|
 nmap <leader>gl     :Glog<cr>
 nmap <leader>gs     :Git<cr>
 nmap <leader>gv     :Gvdiffsplit<cr>
-
-nmap <leader>gS     <Plug>(GitGutterStageHunk)
-nmap <leader>gU     <Plug>(GitGutterUndoHunk)
-nmap <leader>g[     <Plug>(GitGutterPrevHunk)
-nmap <leader>g]     <Plug>(GitGutterNextHunk)
-nmap <leader>gp     <Plug>(GitGutterPreviewHunk)
 
 " search
 nmap <leader>s/     :FzfHistory/<cr>
@@ -274,7 +274,6 @@ nmap <leader>ss     :RG<cr>
 nmap <silent> <leader>t1    :MyStatusLineLong<cr>
 nmap <silent> <leader>t2    :MyStatusLineShort<cr>
 nmap <silent> <leader>tg    :GitGutterToggle<cr>
-nmap <silent> <leader>th    :setlocal hlsearch!<cr>
 nmap <silent> <leader>tj    :call ToggleFastEsc()<cr>
 nmap <silent> <leader>tp    :setlocal paste!<cr>
 nmap <silent> <leader>tr    :RainbowToggle<cr>
@@ -287,14 +286,7 @@ nmap <leader>v      :e ~/.vim/vimrc<cr>
 
 " windows
 nmap <leader>w=     <C-w>=
-nmap <leader>wS     :sp<cr>
-nmap <leader>wh     <C-w>h
-nmap <leader>wj     <C-w>j
-nmap <leader>wk     <C-w>k
-nmap <leader>wl     <C-w>l
 nmap <leader>wo     :tab sp<cr>
-nmap <leader>wq     :quit<cr>
-nmap <leader>ws     :vsp<cr>
 nmap <leader>wt     <C-w>T
 nmap <leader>ww     :w<cr>
 
@@ -351,12 +343,7 @@ let g:leader_map['g'] = {
     \ 'l': 'File history',
     \ 's': 'Status',
     \ 'v': 'Diff (vertical)',
-    \ 'p': 'Preview hunk',
     \ 'C': 'Commit',
-    \ 'S': 'Stage hunk',
-    \ 'U': 'Unstage hunk',
-    \ '[': 'Previouw hunk',
-    \ ']': 'Next hunk',
     \ }
 
 let g:leader_map["s"] = {
@@ -383,21 +370,13 @@ let g:leader_map['t'] = {
 let g:leader_map['w'] = {
     \ 'name': '+window',
     \ '=': 'Balance windows',
-    \ 'S': 'Split horizontal',
-    \ 'h': 'Move left',
-    \ 'j': 'Move up',
-    \ 'k': 'Move down',
-    \ 'l': 'Move right',
     \ 'o': 'Open in new tabpage',
-    \ 'q': 'Quit window',
-    \ 's': 'Split vertical',
     \ 't': 'Move to new tabpage',
     \ 'w': 'Jump to last window',
     \ }
 
 let g:leader_map['x'] = {
     \ 'name': '+execute',
-    \ 'm': 'Make',
     \ 'r': 'Split line by spaces',
     \ 't': 'Tabularize',
     \ }
