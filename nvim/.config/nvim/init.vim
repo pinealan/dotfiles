@@ -198,11 +198,6 @@ nnoremap <silent> J    mzJ`z
 nnoremap <cr>  o<esc>
 nnoremap Y     y$
 
-" Set undo break points
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ; ;<c-g>u
-
 " Windows navigation
 map <silent> <M-h>   <C-w>h
 map <silent> <M-j>   <C-w>j
@@ -229,19 +224,6 @@ vmap <left>    <Plug>SchleppLeft
 vmap <right>   <Plug>SchleppRight
 
 " Mnemonic leader mapping to commands {{{
-
-let g:mapleader=" "
-let g:maplocalleader="'"
-
-" prefix conventions inspired by Space/DOOM Emacs
-
-nmap <silent> <leader>'     :vsp<cr>
-nmap <silent> <leader>"     :sp<cr>
-nmap <silent> <leader>h     :setlocal hlsearch!<cr>
-nmap <silent> <leader><tab> <c-^>
-
-nmap <silent> <leader>d     :bdelete<cr>
-nmap <silent> <leader>q     :quit<cr>
 
 nmap <leader>:      :Commands<cr>
 nmap <leader>c      :Inspect<cr>

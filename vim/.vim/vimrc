@@ -155,6 +155,26 @@ endfunction
 
 " }}}
 
+"===[ Mapping ]=== {{{
+
+" Set undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ; ;<c-g>u
+
+let g:mapleader=" "
+let g:maplocalleader="'"
+
+nmap <silent> <leader>'     <cmd>vsp<cr>
+nmap <silent> <leader>"     <cmd>sp<cr>
+nmap <silent> <leader>h     <cmd>setlocal hlsearch!<cr>
+nmap <silent> <leader><tab> <c-^>
+
+nmap <silent> <leader>d     <cmd>bdelete<cr>
+nmap <silent> <leader>q     <cmd>quit<cr>
+
+" }}}
+
 "===[ Abbrevation ]=== {{{
 "
 " Common typos
