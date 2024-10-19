@@ -1,11 +1,4 @@
---[[ Configure LSP & Autocompletion ]]
-
-local enabled_lsp = {
-    'clojure_lsp',
-    'pyright',
-    'rust_analyzer',
-    'lua_ls',
-}
+--[[ LSP ]]
 
 local lsp_capabilities = vim.tbl_deep_extend(
     'force',
@@ -15,11 +8,40 @@ local lsp_capabilities = vim.tbl_deep_extend(
 
 local lsp = require('lspconfig')
 
-for _, lsp_name in ipairs(enabled_lsp) do
-    lsp[lsp_name].setup({
-        capabilities = lsp_capabilities
-    })
-end
+lsp['clojure_lsp'].setup({
+    capabilities = lsp_capabilities
+})
+lsp['pyright'].setup({
+    capabilities = lsp_capabilities
+})
+lsp['rust_analyzer'].setup({
+    capabilities = lsp_capabilities
+})
+lsp['vimls'].setup({
+    capabilities = lsp_capabilities
+})
+lsp['lua_ls'].setup({
+    capabilities = lsp_capabilities,
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT'
+            },
+            diagnostics = {
+                globals = { 'vim', 'require' },
+                disable = { 'missing-fields' }
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true)
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+})
+
+--[[ Autocompletion ]]
 
 require('cmp').setup({
     snippet = {
