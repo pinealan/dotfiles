@@ -120,3 +120,23 @@ require('nvim-treesitter.configs').setup({
 --[[ Others ]]
 
 require('illuminate').configure({ delay = 50, })
+
+local telescope = require('telescope')
+local actions = require('telescope.actions')
+
+telescope.setup({
+    defaults = {
+        mappings = {
+            i = {
+                ['<esc>'] = actions.close,
+                ['c-u>'] = false,
+            },
+        },
+        layout_config = {
+            width = 140,
+            preview_width = 80,
+        },
+    },
+})
+
+telescope.load_extension('fzf')

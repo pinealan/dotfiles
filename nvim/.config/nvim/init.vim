@@ -17,13 +17,15 @@ Plug 'godlygeek/tabular'
 Plug 'zirrostig/vim-schlepp'
 
 Plug 'jiangmiao/auto-pairs'
-Plug '/nix/store/3zc8kjdicrkwlby25dajz3d6bjrdwq08-fzf-0.55.0/share/vim-plugins/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
 Plug 'luochen1990/rainbow'
 Plug 'gyim/vim-boxdraw'
 Plug 'kana/vim-textobj-user'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -140,26 +142,6 @@ function! TryTrimSpace()
     endif
 endfunction
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = join([
-    \ 'rg',
-    \ '--column',
-    \ '--line-number',
-    \ '--no-heading',
-    \ '--color=always',
-    \ '--smart-case',
-    \ '-- %s || true'
-    \ ], ' ')
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {
-    \ 'options': [
-    \   '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command
-    \ ]}
-  call fzf#vim#grep(
-    \ initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
 " }}}
 
 "===[ Commands ]=== {{{
@@ -173,17 +155,12 @@ command! MyStatusLineLong
     \ echohl Debug |
     \ echo "Full path (statusline)"
 
-command! Files
-    \ call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -L -E .git -t f'}))
-command! FilesAll
-    \ call fzf#run(fzf#wrap('files-all', {'source': 'fd . -H -I -L -t f -t l'}))
-command! -nargs=* -bang RG
-    \ call RipgrepFzf(<q-args>, <bang>0)
-
 " }}}
 
 "===[ Mapping ]=== {{{
-"
+
+" Top level mapping {{{2
+
 cnoremap %% <C-R>=substitute(expand('%:h').'/', '^\./', '', '')<cr>
 
 " Swap undo
@@ -232,24 +209,16 @@ nmap gp     <Plug>(GitGutterPreviewHunk)
 
 " Mnemonic leader mapping to commands {{{
 
-nmap <leader>:      :Commands<cr>
 nmap <leader>c      :Inspect<cr>
 
 " buffers
-nmap <leader>bb     :FzfBuffers<cr>
 nmap <leader>bd     :bd<cr>
 nmap <leader>bn     :vnew<cr>
 
-" use e as alias of buffEr mnemonics
-nmap <leader>e      :FzfBuffers<cr>
-
-nmap <leader>fe     :edit %%
-
-" fzf
-nmap <leader>fa     :FilesAll<cr>
-nmap <leader>ff     :Files<cr>
-nmap <leader>fr     :FzfHistory<cr>
-nmap <leader>fz     :call fzf#run(fzf#wrap('fzf-custom', {'source': ''}))
+" fuzzy find (with telescope)
+nmap <leader>ff     <cmd>Telescope find_files<cr>
+nmap <leader>fe     <cmd>Telescope buffers<cr>
+nmap <leader>fs     <cmd>Telescope live_grep<cr>
 
 " git
 nmap <leader>ga     :Gwrite<cr>
@@ -257,17 +226,7 @@ nmap <leader>ga     :Gwrite<cr>
 nmap <leader>gb     :Git blame<cr>
 nmap <leader>gc     :Git commit<cr>
 nmap <leader>gd     :Git diff<cr>
-nmap <leader>gC     :FzfCommits<cr>
-nmap <leader>gf     :FzfGFiles<cr>
 nmap <leader>gg     :vert Git<cr>60<c-w>\|
-
-" search
-nmap <leader>s/     :FzfHistory/<cr>
-nmap <leader>s:     :FzfHistory:<cr>
-nmap <leader>sB     :FzfLines<cr>
-nmap <leader>sb     :FzfBLines<cr>
-nmap <leader>sc     :FzfCommands<cr>
-nmap <leader>ss     :RG<cr>
 
 " toggles
 nmap <silent> <leader>t1    :MyStatusLineLong<cr>
@@ -323,36 +282,19 @@ let g:leader_map['b'] = {
     \ }
 
 let g:leader_map['f'] = {
-    \ 'name': '+file',
-    \ 'a': 'Find all files including vcs-ignored',
-    \ 'e': 'Edit adjacent file',
-    \ 'f': 'Find file',
-    \ 'h': 'Edit file from home directory',
-    \ 'r': 'Recent files',
-    \ 'z': 'FZF function call template',
+    \ 'name': '+fuzzy find',
+    \ 'e': 'Find buffer (telescope)',
+    \ 'f': 'Find file (telescope)',
+    \ 'r': 'Find string (telescope)',
     \ }
 
 let g:leader_map['g'] = {
     \ 'name': '+git',
     \ 'a': 'Add',
     \ 'b': 'Blame',
-    \ 'c': 'Search commits',
+    \ 'c': 'Commit',
     \ 'd': 'Diff',
     \ 'g': 'Status (vertical)',
-    \ 'l': 'File history',
-    \ 's': 'Status',
-    \ 'v': 'Diff (vertical)',
-    \ 'C': 'Commit',
-    \ }
-
-let g:leader_map["s"] = {
-    \ 'name': '+search',
-    \ '/': 'Recent searchs',
-    \ ':': 'Recent commands',
-    \ 'B': 'Search in buffer',
-    \ 'b': 'Search in all buffers',
-    \ 'c': 'Search vim commands',
-    \ 's': 'Search text recursively',
     \ }
 
 let g:leader_map['t'] = {
