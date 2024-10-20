@@ -168,10 +168,9 @@ let g:maplocalleader="'"
 nmap <silent> <leader>'     <cmd>vsp<cr>
 nmap <silent> <leader>"     <cmd>sp<cr>
 nmap <silent> <leader>h     <cmd>setlocal hlsearch!<cr>
-nmap <silent> <leader><tab> <c-^>
-
 nmap <silent> <leader>d     <cmd>bdelete<cr>
 nmap <silent> <leader>q     <cmd>quit<cr>
+nmap <silent> <leader><tab> <c-^>
 
 " }}}
 

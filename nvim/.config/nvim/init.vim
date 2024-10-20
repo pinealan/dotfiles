@@ -44,32 +44,19 @@ Plug '~/src/vim-iced', { 'for': 'clojure' }
 
 Plug 'sheerun/vim-polyglot'
 
-" Polyglot {{{
-
+" Polyglot {{{2
 let g:polyglot_disabled = ['clojure', 'markdown', 'python', 'solidity']
 
-" }}}
-" Git Gutter {{{
-
+" Git Gutter {{{2
 let g:gitgutter_map_keys = 0
 let g:gitgutter_preview_win_floating = 1
 
-" }}}
-" Schlepp {{{
-
+" Schlepp {{{2
 let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
 
-" }}}
-" FZF {{{
-
-let g:fzf_command_prefix = "Fzf"
-let g:fzf_layout = {'window': { 'width': 0.8, 'height': 0.6 }}
-
-" }}}
-" rainbow {{{
-
+" rainbow {{{2
 let g:rainbow_active = 1
 let g:rainbow_conf = {
     \ 'guifgs': [
@@ -207,9 +194,10 @@ nmap g[     <Plug>(GitGutterPrevHunk)
 nmap g]     <Plug>(GitGutterNextHunk)
 nmap gp     <Plug>(GitGutterPreviewHunk)
 
-" Mnemonic leader mapping to commands {{{
+" Leader key mapping {{{2
 
 nmap <leader>c      :Inspect<cr>
+nmap <leader>ee     :edit %%
 
 " buffers
 nmap <leader>bd     :bd<cr>
@@ -251,32 +239,28 @@ nmap <leader>ww     :w<cr>
 nmap <leader>xt     :Tabularize /
 nmap <leader>xr     :s/ \+/\r/g<cr>
 
-" }}}
-" vim-which-key setup {{{
+" vim-which-key setup {{{2
 
 let g:which_key_disable_default_offset = 1
 
 let g:leader_map = {}
 
-"let g:leader_map[" "] = "Toggle highlight search (dup h)"
+" defined by vimrc
 let g:leader_map["'"] = "Split vertical"
 let g:leader_map['"'] = "Split horizontal"
-let g:leader_map[':'] = "Search commands"
-
-let g:leader_map['c'] = "Show highlight group"
-let g:leader_map['e'] = "Search buffer by name"
 let g:leader_map['d'] = "Unload buffer"
 let g:leader_map["h"] = "Toggle highlight search"
-let g:leader_map["p"] = "Toggle paste mode"
 let g:leader_map['q'] = "Quit window"
+let g:leader_map['<Tab>'] = "Goto alternate buffer"
+
+" defined by nvim
+let g:leader_map['c'] = "Show highlight group"
+let g:leader_map["p"] = "Toggle paste mode"
 let g:leader_map['r'] = "Replace word with register"
 let g:leader_map['v'] = "Edit vimrc"
 
-let g:leader_map['<Tab>'] = "Goto alternate buffer"
-
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
-    \ 'b': 'Find buffer',
     \ 'd': 'Unload buffer',
     \ 'n': 'New empty buffer',
     \ }
