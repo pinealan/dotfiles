@@ -243,25 +243,23 @@ nmap <leader>bn     :vnew<cr>
 " use e as alias of buffEr mnemonics
 nmap <leader>e      :FzfBuffers<cr>
 
-" files
-nmap <leader>fa     :FilesAll<cr>
 nmap <leader>fe     :edit %%
+
+" fzf
+nmap <leader>fa     :FilesAll<cr>
 nmap <leader>ff     :Files<cr>
-nmap <leader>fh     :edit ~/
 nmap <leader>fr     :FzfHistory<cr>
 nmap <leader>fz     :call fzf#run(fzf#wrap('fzf-custom', {'source': ''}))
 
 " git
-nmap <leader>gc     :Git commit<cr>
 nmap <leader>ga     :Gwrite<cr>
+" Gwrite is effectively git add
 nmap <leader>gb     :Git blame<cr>
-nmap <leader>gc     :FzfCommits<cr>
+nmap <leader>gc     :Git commit<cr>
 nmap <leader>gd     :Git diff<cr>
+nmap <leader>gC     :FzfCommits<cr>
 nmap <leader>gf     :FzfGFiles<cr>
 nmap <leader>gg     :vert Git<cr>60<c-w>\|
-nmap <leader>gl     :Glog<cr>
-nmap <leader>gs     :Git<cr>
-nmap <leader>gv     :Gvdiffsplit<cr>
 
 " search
 nmap <leader>s/     :FzfHistory/<cr>
