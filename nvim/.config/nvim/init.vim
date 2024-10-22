@@ -204,7 +204,7 @@ nmap <leader>bd     :bd<cr>
 nmap <leader>bn     :vnew<cr>
 
 " fuzzy find (with telescope)
-nmap <leader>ff     <cmd>Telescope find_files<cr>
+nmap <leader>ff     <cmd>lua require('pinealan').project_files()<cr>
 nmap <leader>fe     <cmd>Telescope buffers<cr>
 nmap <leader>fs     <cmd>Telescope live_grep<cr>
 
@@ -219,6 +219,7 @@ nmap <leader>gg     :vert Git<cr>60<c-w>\|
 " toggles
 nmap <silent> <leader>t1    :MyStatusLineLong<cr>
 nmap <silent> <leader>t2    :MyStatusLineShort<cr>
+nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled(), { bufnr = 0 })<cr>
 nmap <silent> <leader>tg    :GitGutterToggle<cr>
 nmap <silent> <leader>tj    :call ToggleFastEsc()<cr>
 nmap <silent> <leader>tp    :setlocal paste!<cr>
