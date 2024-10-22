@@ -258,6 +258,11 @@ let g:leader_map['c'] = "Show highlight group"
 let g:leader_map["p"] = "Toggle paste mode"
 let g:leader_map['r'] = "Replace word with register"
 let g:leader_map['v'] = "Edit vimrc"
+let g:leader_map['l'] = "LSP: Open diagnostics in floating window"
+let g:leader_map['['] = "LSP: Goto prev diagnostic"
+let g:leader_map[']'] = "LSP: Goto next diagnostic"
+let g:leader_map['ca'] = "LSP code action"
+let g:leader_map['ee'] = "Edit file in current directory"
 
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
@@ -266,30 +271,31 @@ let g:leader_map['b'] = {
     \ }
 
 let g:leader_map['f'] = {
-    \ 'name': '+fuzzy find',
+    \ 'name': '+fuzzy-find',
     \ 'e': 'Find buffer (telescope)',
     \ 'f': 'Find file (telescope)',
-    \ 'r': 'Find string (telescope)',
+    \ 's': 'Find string (telescope)',
     \ }
 
 let g:leader_map['g'] = {
     \ 'name': '+git',
-    \ 'a': 'Add',
-    \ 'b': 'Blame',
-    \ 'c': 'Commit',
-    \ 'd': 'Diff',
-    \ 'g': 'Status (vertical)',
+    \ 'a': 'Git Add',
+    \ 'b': 'Git Blame',
+    \ 'c': 'Git Commit',
+    \ 'd': 'Git Diff',
+    \ 'g': 'Git Status (vertical)',
     \ }
 
 let g:leader_map['t'] = {
     \ 'name': '+toggle',
-    \ 'g': 'Git gutter',
-    \ 'h': 'Highlight search',
-    \ 'j': 'Fast escape (jj)',
-    \ 'p': 'Paste mode',
-    \ 'r': 'Rainbow parens',
-    \ 's': 'Spell check',
-    \ 'w': 'Soft wrap',
+    \ 'd': 'Toggle Diagnostics',
+    \ 'g': 'Toggle Git gutter',
+    \ 'h': 'Toggle Highlight search',
+    \ 'j': 'Toggle Fast escape (jj)',
+    \ 'p': 'Toggle Paste mode',
+    \ 'r': 'Toggle Rainbow parens',
+    \ 's': 'Toggle Spell check',
+    \ 'w': 'Toggle Soft wrap',
     \ }
 
 let g:leader_map['w'] = {
