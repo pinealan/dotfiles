@@ -39,7 +39,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
 
-Plug 'guns/vim-sexp', { 'for': [ 'clojure', 'scheme', 'lisp', 'timl' ] }
+Plug 'guns/vim-sexp'
 Plug '~/src/vim-iced', { 'for': 'clojure' }
 
 Plug 'sheerun/vim-polyglot'
@@ -127,6 +127,13 @@ function! TryTrimSpace()
     else
         call TrimSpace()
     endif
+endfunction
+
+" Debug {{{2
+function! InspectRTP()
+    for s in split(&rtp, ',')
+        echo s
+    endfor
 endfunction
 
 " }}}
