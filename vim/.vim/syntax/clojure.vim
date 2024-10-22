@@ -210,6 +210,8 @@ highlight default link clojureError                     Error
 
 highlight default link clojureParen                     Delimiter
 
+highlight link @lsp.mod.definition.clojure              Normal
+
 let b:current_syntax = "clojure"
 
 let &cpo = s:cpo_sav
