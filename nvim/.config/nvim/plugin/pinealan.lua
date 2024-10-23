@@ -77,8 +77,8 @@ cmp.setup({
         end,
     },
     sources = {
-        {name = 'path'},
-        {name = 'nvim_lsp', keyword_length = 1},
+        {name = 'path', keyword_length = 5},
+        {name = 'nvim_lsp', keyword_length = 4},
         {name = 'buffer', keyword_length = 3},
     },
     mapping = cmp.mapping.preset.insert({
