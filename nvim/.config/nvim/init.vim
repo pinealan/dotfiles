@@ -77,6 +77,7 @@ call plug#end()
 
 source ~/.vim/vimrc
 set termguicolors
+set completeopt=menu,menuone,noinsert,noselect
 
 "===[ Functions ]=== {{{
 

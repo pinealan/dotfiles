@@ -82,22 +82,12 @@ cmp.setup({
         {name = 'buffer', keyword_length = 3},
     },
     mapping = cmp.mapping.preset.insert({
-        -- Supposedly "old-school" way of navigating vim completion menu,
-        -- according to :ins-completion
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-e>'] = cmp.mapping.abort(),
-
-        -- More typical way with using Tabs
-        ['<tab>']   = cmp.mapping.select_next_item(),
-        ['<S-tab>'] = cmp.mapping.select_prev_item(),
+        ['<tab>']   = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ['<S-tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ['<cr>']    = cmp.mapping.confirm { select = true },
         ['<esc>']   = cmp.mapping.abort(),
     }),
-    completion = {
-        completeopt = 'menu,menuone,noinsert',
-    },
+    preselect = cmp.PreselectMode.None,
 })
 
 --[[ Treesitter ]]
