@@ -205,7 +205,7 @@ nmap gp     <Plug>(GitGutterPreviewHunk)
 " Leader key mapping {{{2
 
 nmap <leader>c      :Inspect<cr>
-nmap <leader>ee     :edit %%
+nmap <leader>e      :edit %%
 
 " buffers
 nmap <leader>bd     :bd<cr>
@@ -267,11 +267,14 @@ let g:leader_map['c'] = "Show highlight group"
 let g:leader_map["p"] = "Toggle paste mode"
 let g:leader_map['r'] = "Replace word with register"
 let g:leader_map['v'] = "Edit vimrc"
+let g:leader_map['e'] = "Edit file in current directory"
+
 let g:leader_map['l'] = "LSP: Open diagnostics in floating window"
+let g:leader_map['H'] = 'LSP: Signature Help'
+let g:leader_map['R'] = 'LSP: Rename symbol '
 let g:leader_map['['] = "LSP: Goto prev diagnostic"
 let g:leader_map[']'] = "LSP: Goto next diagnostic"
-let g:leader_map['ca'] = "LSP code action"
-let g:leader_map['ee'] = "Edit file in current directory"
+let g:leader_map['ca'] = "LSP: code action"
 
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
