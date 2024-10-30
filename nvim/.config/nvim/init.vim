@@ -177,34 +177,34 @@ map <silent> <M-j>   <C-w>j
 map <silent> <M-k>   <C-w>k
 map <silent> <M-l>   <C-w>l
 
-map <C-s>      :update<cr>
-map <C-r>      :edit<cr>
+map <C-s>           <cmd>update<cr>
+map <C-r>           <cmd>edit<cr>
 
-nmap <silent> -     :call Underline('-')<cr>
-nmap <silent> =     :call Underline('=')<cr>
+nmap <silent> -     <cmd>call Underline('-')<cr>
+nmap <silent> =     <cmd>call Underline('=')<cr>
 
 noremap <silent> <M-d>   <C-e>
 noremap <silent> <M-e>   <C-y>
 
-vmap <up>      <Plug>SchleppUp
-vmap <down>    <Plug>SchleppDown
-vmap <left>    <Plug>SchleppLeft
-vmap <right>   <Plug>SchleppRight
+vmap <up>       <Plug>SchleppUp
+vmap <down>     <Plug>SchleppDown
+vmap <left>     <Plug>SchleppLeft
+vmap <right>    <Plug>SchleppRight
 
-nmap gs     <Plug>(GitGutterStageHunk)
-nmap gu     <Plug>(GitGutterUndoHunk)
-nmap g[     <Plug>(GitGutterPrevHunk)
-nmap g]     <Plug>(GitGutterNextHunk)
-nmap gp     <Plug>(GitGutterPreviewHunk)
+nmap gs         <Plug>(GitGutterStageHunk)
+nmap gu         <Plug>(GitGutterUndoHunk)
+nmap g[         <Plug>(GitGutterPrevHunk)
+nmap g]         <Plug>(GitGutterNextHunk)
+nmap gp         <Plug>(GitGutterPreviewHunk)
 
 " Leader key mapping {{{2
 
-nmap <leader>c      :Inspect<cr>
+nmap <leader>c      <cmd>Inspect<cr>
 nmap <leader>e      :edit %%
 
 " buffers
-nmap <leader>bd     :bd<cr>
-nmap <leader>bn     :vnew<cr>
+nmap <leader>bd     <cmd>bd<cr>
+nmap <leader>bn     <cmd>vnew<cr>
 
 " fuzzy find (with telescope)
 nmap <leader>ff     <cmd>lua require('pinealan').project_files()<cr>
@@ -214,34 +214,34 @@ nmap <leader>fs     <cmd>Telescope live_grep<cr>
 " git
 nmap <leader>ga     :Gwrite<cr>
 " Gwrite is effectively git add
-nmap <leader>gb     :Git blame<cr>
-nmap <leader>gc     :Git commit<cr>
-nmap <leader>gd     :Git diff<cr>
-nmap <leader>gg     :vert Git<cr>60<c-w>\|
+nmap <leader>gb     <cmd>Git blame<cr>
+nmap <leader>gc     <cmd>Git commit<cr>
+nmap <leader>gd     <cmd>Git diff<cr>
+nmap <leader>gg     <cmd>vert Git<cr>60<c-w>\|
 
 " toggles
-nmap <silent> <leader>t1    :MyStatusLineLong<cr>
-nmap <silent> <leader>t2    :MyStatusLineShort<cr>
+nmap <silent> <leader>t1    <cmd>MyStatusLineLong<cr>
+nmap <silent> <leader>t2    <cmd>MyStatusLineShort<cr>
 nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled(), { bufnr = 0 })<cr>
-nmap <silent> <leader>tg    :GitGutterToggle<cr>
-nmap <silent> <leader>tj    :call ToggleFastEsc()<cr>
-nmap <silent> <leader>tp    :setlocal paste!<cr>
-nmap <silent> <leader>tr    :RainbowToggle<cr>
-nmap <silent> <leader>ts    :setlocal spell!<cr>
-nmap <silent> <leader>tw    :setlocal wrap!<cr>
+nmap <silent> <leader>tg    <cmd>GitGutterToggle<cr>
+nmap <silent> <leader>tj    <cmd>call ToggleFastEsc()<cr>
+nmap <silent> <leader>tp    <cmd>setlocal paste!<cr>
+nmap <silent> <leader>tr    <cmd>RainbowToggle<cr>
+nmap <silent> <leader>ts    <cmd>setlocal spell!<cr>
+nmap <silent> <leader>tw    <cmd>setlocal wrap!<cr>
 
 " vim
 nmap <leader>r      "_dwP
-nmap <leader>v      :e ~/.vim/vimrc<cr>
+nmap <leader>v      <cmd>edit ~/.vim/vimrc<cr>
 
 " windows
 nmap <leader>w=     <C-w>=
-nmap <leader>wo     :tab sp<cr>
+nmap <leader>wo     <cmd>tab sp<cr>
 nmap <leader>wt     <C-w>T
-nmap <leader>ww     :w<cr>
+nmap <leader>ww     <cmd>w<cr>
 
-nmap <leader>xt     :Tabularize /
-nmap <leader>xr     :s/ \+/\r/g<cr>
+nmap <leader>xt     <cmd>Tabularize /
+nmap <leader>xr     <cmd>s/ \+/\r/g<cr>
 
 " vim-which-key setup {{{2
 
@@ -320,8 +320,8 @@ let g:leader_map['x'] = {
     \ }
 
 call which_key#register(' ', "g:leader_map")
-nnoremap <silent> <leader>          :WhichKey '<space>'<cr>
-vnoremap <silent> <leader>          :WhichKeyVisual '<space>'<cr>
+nnoremap <silent> <leader>  <cmd>WhichKey '<space>'<cr>
+vnoremap <silent> <leader>  <cmd>WhichKeyVisual '<space>'<cr>
 
 " }}}
 
