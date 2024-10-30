@@ -172,6 +172,12 @@ nmap <silent> <leader>d     <cmd>bdelete<cr>
 nmap <silent> <leader>q     <cmd>quit<cr>
 nmap <silent> <leader><tab> <c-^>
 
+" Buffer/Tab/Quickfix navigation
+map <C-h>      <cmd>tabprev<cr>
+map <C-l>      <cmd>tabnext<cr>
+map <C-n>      <cmd>cnext<cr>
+map <C-p>      <cmd>cprev<cr>
+
 " }}}
 
 "===[ Abbrevation ]=== {{{

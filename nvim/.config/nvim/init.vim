@@ -177,13 +177,8 @@ map <silent> <M-j>   <C-w>j
 map <silent> <M-k>   <C-w>k
 map <silent> <M-l>   <C-w>l
 
-" Buffer/Tab/Quickfix navigation
-map <C-q>      :q<cr>
 map <C-s>      :update<cr>
 map <C-r>      :edit<cr>
-
-map <C-h>      :tabprev<cr>
-map <C-l>      :tabnext<cr>
 
 nmap <silent> -     :call Underline('-')<cr>
 nmap <silent> =     :call Underline('=')<cr>
