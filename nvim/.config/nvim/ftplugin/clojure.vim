@@ -190,15 +190,21 @@ nmap <localLeader>sp    i)()<esc>x2<Plug>(sexp_flow_to_prev_close)J%lywh%a<cr><e
 nmap <localLeader>si    i)()<esc>x
 
 " refactor
-nmap <localleader>raa   :IcedAddArity<cr>
-nmap <localLeader>ram   :IcedAddMissing<cr>
-nmap <localLeader>ran   :IcedAddNs<cr>
-nmap <localLeader>rcn   :IcedCleanNs<cr>
+nmap <localleader>ra    :IcedAddArity<cr>
+nmap <localLeader>rc    :IcedCleanNs<cr>
+nmap <localLeader>ri    :IcedAddMissing<cr>
+nmap <localLeader>rn    :IcedAddNs<cr>
 nmap <localLeader>rs    :IcedRenameSymbol<cr>
+
+nmap <localleader>re    :IcedExtractFunction<cr>
+nmap <localleader>rm    :IcedMoveToLet<cr>
+
+nmap <localleader>rf    :IcedThreadFirst<cr>
+nmap <localleader>rl    :IcedThreadLast<cr>
+
+" for transition period
 nmap <localleader>rtf   :IcedThreadFirst<cr>
 nmap <localleader>rtl   :IcedThreadLast<cr>
-nmap <localleader>ref   :IcedExtractFunction<cr>
-nmap <localleader>rml   :IcedMoveToLet<cr>
 
 " iced buffer
 nmap <localleader>bb    :IcedStdoutBufferOpen<cr>
@@ -274,12 +280,15 @@ let g:localleader_map['t'] = { 'name': '+iced-tap/test' }
 
 let g:localleader_map['r'] = {
     \ 'name': '+iced-refactor',
-    \ 'a': {'name': '+add'},
-    \ 'c': {'name': '+clean'},
-    \ 'e': {'name': '+extract'},
-    \ 'm': {'name': '+move'},
-    \ 'r': {'name': '+rename'},
-    \ 't': {'name': '+thread'},
+    \ 'a': 'Add arity',
+    \ 'c': 'Clean ns form',
+    \ 'e': 'Extract to function',
+    \ 'm': 'Move to let',
+    \ 'n': 'Add namespace',
+    \ 's': 'Rename symbol',
+    \ 'r': 'Require',
+    \ 'f': 'Thread first',
+    \ 'l': 'Thread last',
     \ }
 
 let g:localleader_map['v'] = {
