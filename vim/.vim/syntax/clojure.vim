@@ -209,8 +209,13 @@ highlight default link clojureDiscardForm               clojureDiscard
 highlight default link clojureError                     Error
 
 highlight default link clojureParen                     Delimiter
+highlight default link clojureNSSlash                   Delimiter
 
-highlight link @lsp.mod.definition.clojure              Normal
+" LSP
+highlight link @lsp.mod.definition.clojure      Normal
+highlight link @lsp.type.function.clojure       NONE
+highlight link @lsp.type.variable.clojure       NONE
+highlight link @lsp.type.macro.clojure          clojureMacro
 
 let b:current_syntax = "clojure"
 
