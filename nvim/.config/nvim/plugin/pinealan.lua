@@ -119,7 +119,6 @@ telescope.setup({
         mappings = {
             i = {
                 ['<esc>'] = actions.close,
-                ['c-u>'] = false,
             },
         },
         layout_config = {
