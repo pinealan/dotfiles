@@ -67,7 +67,10 @@ contexts:
     - match: \b(?i:info)\b
       scope: markup.quote
 
-    - match: \b(?i:debug|trace)\b
+    - match: \b(?i:debug)\b
+      scope: markup.other
+
+    - match: \b(?i:trace)\b
       scope: comment
 
     # logger name
