@@ -175,6 +175,8 @@ nmap <silent> <leader><tab> <c-^>
 " Buffer/Tab/Quickfix navigation
 map <C-h>      <cmd>tabprev<cr>
 map <C-l>      <cmd>tabnext<cr>
+map <C-j>      <cmd>bnext<cr>
+map <C-k>      <cmd>bprev<cr>
 map <C-n>      <cmd>cnext<cr>
 map <C-p>      <cmd>cprev<cr>
 
