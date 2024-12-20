@@ -46,3 +46,5 @@ boto3
 automatable
 dataframe
 tradable
+arities
+Backtesting
