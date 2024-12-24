@@ -70,7 +70,7 @@ alias sl='echo $SHLVL'
 alias wa='which -a'
 
 alias mkdtdir='mkdir $(date -Iminutes --utc | sed "s/\+.*//")'
-alias view-log='bat -l plog'
+alias view-log='bat -l plog --wrap never'
 
 # Assumes 256 colors (8 bit)
 export LESS_TERMCAP_mb=$'\e[1;31m'          # begin bold
