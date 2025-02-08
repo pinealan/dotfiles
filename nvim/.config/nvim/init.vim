@@ -46,6 +46,7 @@ Plug 'sheerun/vim-polyglot'
 
 " Polyglot {{{2
 let g:polyglot_disabled = ['clojure', 'markdown', 'python', 'solidity']
+let g:rustfmt_autosave = 1
 
 " Git Gutter {{{2
 let g:gitgutter_map_keys = 0
