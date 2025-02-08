@@ -3,19 +3,29 @@
 *.swp
 
 # Editors
-# .idea
+.idea
+.lsp
 .netrwhist
-# .vscode
+.vscode
 .ycm_extra_conf.py
 Session.vim
 SessionConfig.vim
 session-*.vim
 session.vim
 
-# Python
-.testmondata
+# Direnv
+.direnv
+.env
 
-# .direnv
-# .env
-# .envrc
-# .nrepl-port
+# Clj(s)
+*.jar
+.cpcache
+.nrepl-port
+.rebel_history
+classes/
+target/
+
+# Python
+*.ipynb
+.ipynb_checkpoints/
+__pycache__/
