@@ -40,6 +40,13 @@ lsp['lua_ls'].setup({
         },
     },
 })
+lsp['ts_ls'].setup({
+    capabilities = lsp_capabilities
+})
+lsp['tailwindcss'].setup({
+    capabilities = lsp_capabilities,
+    filetypes = { 'clojure', 'html', 'css', 'javascriptreact', 'typescriptreact' },
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
