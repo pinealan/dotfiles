@@ -151,6 +151,14 @@ command! MyStatusLineLong
     \ echohl Debug |
     \ echo "Full path (statusline)"
 
+command! DarkMode
+    \ set background=dark |
+    \ colorscheme my-onedark
+
+command! LightMode
+    \ set background=light |
+    \ colorscheme my-onelight
+
 " }}}
 
 "===[ Mapping ]=== {{{
