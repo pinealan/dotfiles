@@ -1,3 +1,3 @@
-setl ts=2
-setl sw=2
-setl sts=2
+setl ts=4
+setl sw=4
+setl sts=4
