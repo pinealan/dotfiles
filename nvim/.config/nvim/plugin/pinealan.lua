@@ -75,6 +75,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 --[[ Autocompletion ]]
 
+require('my_snippets').register_cmp_source()
 local cmp = require('cmp')
 
 cmp.setup({
@@ -87,6 +88,7 @@ cmp.setup({
         {name = 'path', keyword_length = 5},
         {name = 'nvim_lsp', keyword_length = 4},
         {name = 'buffer', keyword_length = 3},
+        {name = 'snp', keyword_length = 3},
     },
     mapping = cmp.mapping.preset.insert({
         ['<tab>']   = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -96,6 +98,20 @@ cmp.setup({
     }),
     preselect = cmp.PreselectMode.None,
 })
+
+vim.keymap.set({ 'i', 's' }, '<C-k>', function()
+    if vim.snippet.active({ direction = 1 }) then
+        vim.snippet.jump(1)
+    else
+        vim.snippet.stop()
+    end
+end, { silent = true })
+
+vim.keymap.set({ 'i', 's' }, '<C-j>', function()
+    if vim.snippet.active({ direction = -1 }) then
+        vim.snippet.jump(-1)
+    end
+end, { silent = true })
 
 --[[ Treesitter ]]
 
