@@ -26,6 +26,6 @@ classes/
 target/
 
 # Python
-*.ipynb
 .ipynb_checkpoints/
+.testmondata/
 __pycache__/
