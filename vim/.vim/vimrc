@@ -180,6 +180,12 @@ map <C-k>      <cmd>bprev<cr>
 map <C-n>      <cmd>cnext<cr>
 map <C-p>      <cmd>cprev<cr>
 
+map <C-s>           <cmd>update<cr>
+
+cnoremap %% <C-R>=substitute(expand('%:h').'/', '^\./', '', '')<cr>
+
+nmap <leader>e      :edit %%
+
 " }}}
 
 "===[ Abbrevation ]=== {{{
