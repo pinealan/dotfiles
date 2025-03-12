@@ -145,8 +145,8 @@ telescope.setup({
             },
         },
         layout_config = {
-            width = 140,
-            preview_width = 80,
+            width = 160,
+            preview_width = 92,
         },
     },
 })
