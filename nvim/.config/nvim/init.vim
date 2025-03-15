@@ -172,6 +172,8 @@ noremap    U   <C-r>
 noremap <C-r>     U
 
 " Keep commands from moving the cursor around
+nnoremap <silent> *    <cmd>keepjumps normal! mz*`z<cr><cmd>SearchIndex<cr>
+nnoremap <silent> #    <cmd>keepjumps normal! mz#`z<cr><cmd>SearchIndex<cr>
 nnoremap <silent> n    nzzzv<cmd>SearchIndex<cr>
 nnoremap <silent> N    Nzzzv<cmd>SearchIndex<cr>
 nnoremap <silent> J    mzJ`z
