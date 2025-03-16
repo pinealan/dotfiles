@@ -68,10 +68,10 @@ contexts:
       scope: markup.quote
 
     - match: \b(?i:debug)\b
-      scope: markup.other
+      scope: comment.block.html
 
     - match: \b(?i:trace)\b
-      scope: comment
+      scope: markup.ignored.git_gutter
 
     # logger name
     - match: (?<=\[).*?(?=\])
