@@ -22,6 +22,7 @@ session.vim
 .cpcache
 .nrepl-port
 .rebel_history
+.clj-kondo/
 classes/
 target/
 
