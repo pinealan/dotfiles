@@ -12,6 +12,9 @@ default_time_value = "5m"
 # Amount of lookback changed upon zoom
 time_delta = "5m"
 
+[processes]
+columns = ["pid", "name", "cpu%", "mem%", "time", "user"]
+
 [[row]]
     ratio=3
 [[row.child]]
