@@ -88,14 +88,14 @@ syn region  pythonString
     \ contains=pythonEscape,pythonFEscape,@Spell
 
 syn region  pythonLongString
-    \ start=+[uU]\=\z("""\)+ end=+\z1+ keepend
+    \ start=+[uU]\=\z("""\)+ end=+\z1+ keepend fold
     \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell,Todo
 
 syn region  pythonRawString
     \ start=+[bBrR]\{1,2}\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
 
 syn region  pythonRawString
-    \ start=+[bBrR]\{1,2}\z('''\|"""\)+ end="\z1"
+    \ start=+[bBrR]\{1,2}\z('''\|"""\)+ end="\z1" fold
 
 syn match   pythonEscape        +\\[abfnrtv'"\\]+ contained
 syn match   pythonEscape        "\\\o\{1,3}" contained
@@ -114,7 +114,7 @@ syn region  pythonFString
     \ contains=pythonEscape,pythonFEscape,@Spell
 
 syn region  pythonFLongString
-    \ start=+[fF]\z('''\|"""\)+ end=+\z1+ keepend
+    \ start=+[fF]\z('''\|"""\)+ end=+\z1+ keepend fold
     \ contains=pythonEscape,pythonFEscape,pythonSpaceError,@Spell
 
 syn match   pythonFEscape           /{[^{]\{-}:\?}/ contained contains=pythonFStringField
@@ -128,7 +128,7 @@ syn keyword pythonSQLKeyword    PRIMARY UNIQUE FOREIGN REFERENCES VALUES contain
 syn keyword pythonSQLKeyword    IF NOT FROM WITH KEY EXISTS INDEXED INTO BY contained
 syn keyword pythonSQLType       NULL INT INTEGER REAL TEXT STRING FLOAT BLOB contained
 syn keyword pythonSQLType       DATABASE TABLE TRIGGER TRANSACTION INDEX VIEW contained
-syn region  pythonSQLstring start="'''" end="'''" keepend contains=pythonSQLKeyword,pythonSQLType
+syn region  pythonSQLstring start="'''" end="'''" keepend fold contains=pythonSQLKeyword,pythonSQLType
 " }}}
 
 " Numbers {{{
