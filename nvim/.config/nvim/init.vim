@@ -140,6 +140,8 @@ endfunction
 
 " }}}
 
+" }}}
+
 "===[ Commands ]=== {{{
 "
 command! DarkMode
@@ -231,9 +233,10 @@ nmap <silent> <leader>tr    <cmd>RainbowToggle<cr>
 nmap <silent> <leader>ts    <cmd>setlocal spell!<cr>
 nmap <silent> <leader>tw    <cmd>setlocal wrap!<cr>
 
-" vim
+" editing
 nmap <leader>r      "_dwP
-nmap <leader>v      <cmd>edit ~/.vim/vimrc<cr>
+nmap <leader>xt     <cmd>Tabularize /
+nmap <leader>xx     <cmd>s/ \+/\r/g<cr>
 
 " windows
 nmap <leader>w=     <C-w>=
@@ -241,8 +244,8 @@ nmap <leader>wo     <cmd>tab sp<cr>
 nmap <leader>wt     <C-w>T
 nmap <leader>ww     <cmd>w<cr>
 
-nmap <leader>xt     <cmd>Tabularize /
-nmap <leader>xr     <cmd>s/ \+/\r/g<cr>
+nmap <leader>xr     <cmd>so $MYVIMRC<cr>
+nmap <leader>xv     <cmd>edit $MYVIMRC<cr>
 
 " vim-which-key setup {{{2
 
@@ -317,8 +320,10 @@ let g:leader_map['w'] = {
 
 let g:leader_map['x'] = {
     \ 'name': '+execute',
-    \ 'r': 'Split line by spaces',
+    \ 'r': 'Reload vimrc',
+    \ 'v': 'Edit vimrc',
     \ 't': 'Tabularize',
+    \ 'x': 'Split line by spaces',
     \ }
 
 call which_key#register(' ', "g:leader_map")

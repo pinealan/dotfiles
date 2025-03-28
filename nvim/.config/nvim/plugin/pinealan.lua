@@ -99,7 +99,9 @@ cmp.setup({
     preselect = cmp.PreselectMode.None,
 })
 
-vim.keymap.set({ 'i', 's' }, '<C-k>', function()
+--[[ Snippet ]]
+
+vim.keymap.set({ 'i', 's' }, '<C-j>', function()
     if vim.snippet.active({ direction = 1 }) then
         vim.snippet.jump(1)
     else
@@ -107,7 +109,7 @@ vim.keymap.set({ 'i', 's' }, '<C-k>', function()
     end
 end, { silent = true })
 
-vim.keymap.set({ 'i', 's' }, '<C-j>', function()
+vim.keymap.set({ 'i', 's' }, '<C-k>', function()
     if vim.snippet.active({ direction = -1 }) then
         vim.snippet.jump(-1)
     end
@@ -130,9 +132,7 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
---[[ Others ]]
-
-require('illuminate').configure({ delay = 50, })
+--[[ Telescope ]]
 
 local telescope = require('telescope')
 local actions = require('telescope.actions')
@@ -152,3 +152,7 @@ telescope.setup({
 })
 
 telescope.load_extension('fzf')
+
+--[[ Others ]]
+
+require('illuminate').configure({ delay = 50, })
