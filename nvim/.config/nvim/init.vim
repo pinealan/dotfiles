@@ -142,15 +142,6 @@ endfunction
 
 "===[ Commands ]=== {{{
 "
-command! MyStatusLineShort
-    \ set statusline=%!MyStatusLine('t') |
-    \ echohl Debug |
-    \ echo "Relative path (statusline)"
-command! MyStatusLineLong
-    \ set statusline=%!MyStatusLine('f') |
-    \ echohl Debug |
-    \ echo "Full path (statusline)"
-
 command! DarkMode
     \ set background=dark |
     \ colorscheme my-onedark
@@ -232,8 +223,6 @@ nmap <leader>gd     <cmd>Git diff<cr>
 nmap <leader>gg     <cmd>vert Git<cr>60<c-w>\|
 
 " toggles
-nmap <silent> <leader>t1    <cmd>MyStatusLineLong<cr>
-nmap <silent> <leader>t2    <cmd>MyStatusLineShort<cr>
 nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })<cr>
 nmap <silent> <leader>tg    <cmd>GitGutterToggle<cr>
 nmap <silent> <leader>tj    <cmd>call ToggleFastEsc()<cr>

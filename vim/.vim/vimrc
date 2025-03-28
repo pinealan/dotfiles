@@ -46,7 +46,7 @@ set splitright
 
 " Statusline, Tabline,
 set laststatus=2
-set statusline=%!MyStatusLine('f')
+set statusline=%!MyStatusLine()
 
 set showtabline=1
 set tabline=%!MyTabLine()
@@ -143,11 +143,11 @@ function! HasPaste()
     return ''
 endfunction
 
-function! MyStatusLine(pathformat)
+function! MyStatusLine()
     " [Flags]*File name <gap> [File type] Row,Column | Percent down file
     return join([
         \' %q%w%r%m%{HasPaste()}',
-        \'%' . a:pathformat,
+        \'%f',
         \'%=',
         \'%y %l,%-2c |%3p%% '
         \], '')
