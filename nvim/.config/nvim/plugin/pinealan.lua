@@ -156,3 +156,6 @@ telescope.load_extension('fzf')
 --[[ Others ]]
 
 require('illuminate').configure({ delay = 50, })
+require('colorizer').setup({'*'}, {
+    css = true,
+})
