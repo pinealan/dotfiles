@@ -325,6 +325,8 @@ hi def link pythonSpaceError        Error
 hi def link pythonPunctuation       Special
 hi def link pythonDelimiter         Delimiter
 
+hi link     @module.python          Normal
+
 " }}}
 
 let b:current_syntax = "python"
