@@ -155,6 +155,7 @@ telescope.load_extension('fzf')
 
 --[[ Others ]]
 
+require('nvim-ts-autotag').setup()
 require('illuminate').configure({ delay = 50, })
 require('colorizer').setup({'*'}, {
     css = true,

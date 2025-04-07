@@ -30,6 +30,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'neovim/nvim-lspconfig'
+Plug 'windwp/nvim-ts-autotag'
 
 " Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'
