@@ -23,18 +23,20 @@ Plug 'luochen1990/rainbow'
 Plug 'gyim/vim-boxdraw'
 Plug 'kana/vim-textobj-user'
 
+" Neovim only
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'neovim/nvim-lspconfig'
+
+" Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'norcalli/nvim-colorizer.lua'
 
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
