@@ -135,6 +135,8 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
+require('nvim-ts-autotag').setup()
+
 ---@type rainbow_delimiters.config
 vim.g.rainbow_delimiters = {
     highlight = {
@@ -180,7 +182,6 @@ telescope.load_extension('fzf')
 
 --[[ Others ]]
 
-require('nvim-ts-autotag').setup()
 require('illuminate').configure({ delay = 50, })
 require('colorizer').setup({'*'}, {
     css = true,

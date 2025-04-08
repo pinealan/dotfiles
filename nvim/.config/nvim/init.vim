@@ -21,6 +21,16 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
 Plug 'kana/vim-textobj-user'
 
+" Git Gutter {{{2
+let g:gitgutter_map_keys = 0
+let g:gitgutter_preview_win_floating = 1
+" }}}
+" Schlepp {{{2
+let g:Schlepp#allowSquishingLines = 0
+let g:Schlepp#allowSquishingBlock = 0
+let g:Schlepp#trimWS = 0
+" }}}
+
 " Neovim only
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
@@ -53,15 +63,7 @@ Plug 'sheerun/vim-polyglot'
 " Polyglot {{{2
 let g:polyglot_disabled = ['clojure', 'markdown', 'python', 'solidity']
 let g:rustfmt_autosave = 1
-
-" Git Gutter {{{2
-let g:gitgutter_map_keys = 0
-let g:gitgutter_preview_win_floating = 1
-
-" Schlepp {{{2
-let g:Schlepp#allowSquishingLines = 0
-let g:Schlepp#allowSquishingBlock = 0
-let g:Schlepp#trimWS = 0
+" }}}
 
 call plug#end()
 
