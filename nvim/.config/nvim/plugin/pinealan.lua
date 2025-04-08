@@ -132,6 +132,28 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
+---@type rainbow_delimiters.config
+vim.g.rainbow_delimiters = {
+    highlight = {
+        'Delimiter',
+        'RainbowDelimiterBlue',
+        'RainbowDelimiterOrange',
+        'RainbowDelimiterGreen',
+        'RainbowDelimiterRed',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterYellow',
+        'RainbowDelimiterCyan',
+    },
+}
+
+vim.api.nvim_set_hl(0, 'RainbowDelimiterBlue', { fg = '#3a5fcd' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterOrange', { fg = '#8b4500' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterGreen', { fg = '#2e8b57' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterRed', { fg = '#b22222' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterViolet', { fg = '#68228b' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterYellow', { fg = '#8b6914' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterCyan', { fg = '#b4cdcd' })
+
 --[[ Telescope ]]
 
 local telescope = require('telescope')
