@@ -30,6 +30,7 @@ Plug 'neovim/nvim-lspconfig'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'hiphish/rainbow-delimiters.nvim'
 Plug 'windwp/nvim-ts-autotag'
 
