@@ -19,17 +19,18 @@ Plug 'zirrostig/vim-schlepp'
 Plug 'jiangmiao/auto-pairs'
 Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
-Plug 'luochen1990/rainbow'
-Plug 'gyim/vim-boxdraw'
 Plug 'kana/vim-textobj-user'
 
 " Neovim only
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'neovim/nvim-lspconfig'
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'hiphish/rainbow-delimiters.nvim'
 Plug 'windwp/nvim-ts-autotag'
 
 " Autocompletion
@@ -60,21 +61,6 @@ let g:gitgutter_preview_win_floating = 1
 let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlock = 0
 let g:Schlepp#trimWS = 0
-
-" rainbow {{{2
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-    \ 'guifgs': [
-    \   '#828282',
-    \   'royalblue3',
-    \   'darkorange4',
-    \   'seagreen4',
-    \   'firebrick',
-    \   'darkorchid3'
-    \   ],
-    \ }
-
-" }}}
 
 call plug#end()
 
@@ -233,7 +219,7 @@ nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is
 nmap <silent> <leader>tg    <cmd>GitGutterToggle<cr>
 nmap <silent> <leader>tj    <cmd>call ToggleFastEsc()<cr>
 nmap <silent> <leader>tp    <cmd>setlocal paste!<cr>
-nmap <silent> <leader>tr    <cmd>RainbowToggle<cr>
+nmap <silent> <leader>tr    <cmd>call rainbow_delimiters#toggle(0)<cr>
 nmap <silent> <leader>ts    <cmd>setlocal spell!<cr>
 nmap <silent> <leader>tw    <cmd>setlocal wrap!<cr>
 
@@ -345,7 +331,6 @@ augroup usr
     autocmd BufEnter    * silent call EnableFastEsc()
     autocmd BufNewfile  *.php silent r ~/.vim/template/template.php | normal kdd
     autocmd BufRead     *.vim silent set foldmethod=marker
-    autocmd BufRead     *.html silent RainbowToggle
     autocmd BufWrite    * call TryTrimSpace()
     "autocmd VimEnter    *.c,*.cpp,*.py vsp
 
