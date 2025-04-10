@@ -17,6 +17,13 @@ lsp['pyright'].setup({
 lsp['rust_analyzer'].setup({
     capabilities = lsp_capabilities
 })
+lsp['bashls'].setup({
+    capabilities = lsp_capabilities
+})
+lsp['postgres_lsp'].setup({
+    capabilities = lsp_capabilities,
+    filetypes = { 'sql', 'psql' },
+})
 lsp['vimls'].setup({
     capabilities = lsp_capabilities
 })
