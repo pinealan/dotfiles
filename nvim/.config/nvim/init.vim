@@ -291,11 +291,16 @@ let g:leader_map['g'] = {
     \ 'g': 'Git Status (vertical)',
     \ }
 
+let g:leader_map['s'] = {
+    \ 'name': '+set',
+    \ 'r': 'Illuminate with regex',
+    \ 'l': 'Illuminate with lsp',
+    \ }
+
 let g:leader_map['t'] = {
     \ 'name': '+toggle',
-    \ 'd': 'Toggle Diagnostics',
+    \ 'd': 'Toggle LSP Diagnostics',
     \ 'g': 'Toggle Git gutter',
-    \ 'h': 'Toggle Highlight search',
     \ 'j': 'Toggle Fast escape (jj)',
     \ 'p': 'Toggle Paste mode',
     \ 'r': 'Toggle Rainbow parens',

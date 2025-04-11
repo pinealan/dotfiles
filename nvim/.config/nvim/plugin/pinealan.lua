@@ -184,7 +184,21 @@ telescope.load_extension('fzf')
 
 --[[ Others ]]
 
-require('illuminate').configure({ delay = 50, })
 require('colorizer').setup({'*'}, {
     css = true,
 })
+
+local function config_illuminate(providers)
+    require('illuminate').configure({
+        delay = 20, providers = providers
+    })
+end
+
+config_illuminate({'regex'})
+
+vim.keymap.set('n', '<leader>sr', function()
+    config_illuminate({'regex'})
+end, {})
+vim.keymap.set('n', '<leader>sl', function()
+    config_illuminate({ 'lsp', 'regex'})
+end, {})
