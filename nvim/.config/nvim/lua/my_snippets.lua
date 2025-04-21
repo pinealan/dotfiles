@@ -14,6 +14,11 @@ local snippets_by_filetype = {
     clojure = {
         { trigger = 'class', body = '{:class ${1}}' },
     },
+    python = {
+        { trigger = 'init', body = 'def __init__(self$1):$0' },
+        { trigger = 'repr', body = 'def __repr__(self$1):$0' },
+        { trigger = 'context', body = 'def __enter__(self):\npassdef __exit__(self):\npass' },
+    }
 }
 
 local function get_buf_snips()
