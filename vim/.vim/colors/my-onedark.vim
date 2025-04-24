@@ -51,7 +51,7 @@ let s:transparent   = { "x24": "NONE",    "x8": "NONE" }
 let s:content0      = { "x24": "#dfdfdf", "x8": "253" }
 let s:content1      = { "x24": "#a9a9a9", "x8": "246" }
 let s:content2      = { "x24": "#828282", "x8": "241" }
-let s:content_inv   = { "x24": "#404040", "x8": "237" }
+let s:content_inv   = { "x24": "#555555", "x8": "237" }
 let s:background0   = { "x24": "#28292c", "x8": "235" }
 let s:background1   = { "x24": "#3f3f3f", "x8": "237" }
 let s:background2   = { "x24": "#222222", "x8": "234" }
@@ -146,7 +146,7 @@ call s:h("PmenuThumb",      { "bg": s:content0 }) " Popup menu: Thumb of the scr
 
 call s:h("Question",        { "fg": s:purple }) " hit-enter prompt and yes/no questions
 call s:h("Search",          { "fg": s:_black, "bg": s:yellow }) " Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-call s:h("QuickFixLine",    { "fg": s:_black, "bg": s:gold }) " Current quickfix item in the quickfix window.
+call s:h("QuickFixLine",    { "bg": s:_black }) " Current quickfix item in the quickfix window.
 call s:h("SpecialKey",      { "fg": s:content1 }) " Meta and special keys listed with ':map', also for text used to show unprintable characters in the text, 'listchars'. Generally: text that is displayed differently from what it really is.
 
 call s:h("SpellBad",        { "fg": s:symbol , "gui": "underline", "cterm": "underline" }) " Word that is not recognized by the spellchecker. This will be combined with the highlighting used otherwise.
