@@ -1,0 +1,27 @@
+%YAML 1.2
+---
+name: Lint
+scope: text.log
+file_extensions:
+  - lint
+contexts:
+  main:
+    - match: '^[^:]+(?=:\d*:\d*: )'
+      scope: entity.name
+    - match: ':'
+      scope: comment.block.html
+    - match: '\d+'
+      scope: constant.numeric
+    - match: \b(?i:error)\b
+      scope: markup.bold
+    - match: \b(?i:warn(?:ing)?)\b
+      scope: markup.heading
+    - match: "#'"
+      push: clojure
+
+  clojure:
+    - match: '[\w\.]+(?=/)'
+      scope: string
+    - match: '(?<=/)[^ ]+'
+      scope: string
+      pop: true
