@@ -339,3 +339,4 @@ vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
 let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"'}
 
 setl tw=80
+compiler clj-kondo
