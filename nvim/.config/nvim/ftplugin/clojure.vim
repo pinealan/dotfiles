@@ -202,10 +202,6 @@ nmap <localleader>rm    :IcedMoveToLet<cr>
 nmap <localleader>rf    :IcedThreadFirst<cr>
 nmap <localleader>rl    :IcedThreadLast<cr>
 
-" for transition period
-nmap <localleader>rtf   :IcedThreadFirst<cr>
-nmap <localleader>rtl   :IcedThreadLast<cr>
-
 " iced buffer
 nmap <localleader>bb    :IcedStdoutBufferOpen<cr>
 nmap <localleader>bc    :IcedStdoutBufferClear<cr>
@@ -224,6 +220,7 @@ nmap <localleader>==    :IcedFormat<cr>
 nmap <localleader>=G    :IcedFormatAll<cr>
 
 nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
+nmap <localleader>m     :lmake<cr>
 
 """ WhichKey {{{1
 
