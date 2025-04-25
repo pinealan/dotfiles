@@ -165,22 +165,22 @@ inoremap ; ;<c-g>u
 let g:mapleader=" "
 let g:maplocalleader="'"
 
-nmap <silent> <leader>'     <cmd>vsp<cr>
-nmap <silent> <leader>"     <cmd>sp<cr>
-nmap <silent> <leader>h     <cmd>nohlsearch<cr>
-nmap <silent> <leader>d     <cmd>bdelete<cr>
-nmap <silent> <leader>q     <cmd>quit<cr>
+nmap <silent> <leader>'     :vsp<cr>
+nmap <silent> <leader>"     :sp<cr>
+nmap <silent> <leader>h     :nohlsearch<cr>
+nmap <silent> <leader>d     :bdelete<cr>
+nmap <silent> <leader>q     :quit<cr>
 nmap <silent> <leader><tab> <c-^>
 
 " Buffer/Tab/Quickfix navigation
-map <C-h>      <cmd>tabprev<cr>
-map <C-l>      <cmd>tabnext<cr>
-map <C-j>      <cmd>bnext<cr>
-map <C-k>      <cmd>bprev<cr>
-map <C-n>      <cmd>cnext<cr>
-map <C-p>      <cmd>cprev<cr>
+map <C-h>       :tabprev<cr>
+map <C-l>       :tabnext<cr>
+map <C-j>       :bnext<cr>
+map <C-k>       :bprev<cr>
+map <C-n>       :cnext<cr>
+map <C-p>       :cprev<cr>
 
-map <C-s>           <cmd>update<cr>
+map <C-s>       :update<cr>
 
 cnoremap %% <C-R>=substitute(expand('%:h').'/', '^\./', '', '')<cr>
 
