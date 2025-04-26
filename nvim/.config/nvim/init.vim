@@ -16,7 +16,6 @@ Plug 'google/vim-searchindex'
 Plug 'godlygeek/tabular'
 Plug 'zirrostig/vim-schlepp'
 
-Plug 'jiangmiao/auto-pairs'
 Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
 Plug 'kana/vim-textobj-user'
@@ -37,6 +36,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'neovim/nvim-lspconfig'
+Plug 'm4xshen/autoclose.nvim'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter'

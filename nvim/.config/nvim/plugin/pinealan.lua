@@ -184,6 +184,18 @@ telescope.load_extension('fzf')
 
 --[[ Others ]]
 
+require("autoclose").setup({
+    keys = {
+        ["'"] = {
+            escape = true, close = true, pair = "''",
+            disabled_filetypes = {'clojure'}
+        },
+        ["`"] = {
+            escape = true, close = true, pair = "``",
+            disabled_filetypes = {'clojure'}
+        },
+    }
+})
 require('colorizer').setup({'*'}, {
     css = true,
 })
