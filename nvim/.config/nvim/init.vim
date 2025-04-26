@@ -182,8 +182,8 @@ map <C-r>           <cmd>edit<cr>
 nmap <silent> -     <cmd>call Underline('-')<cr>
 nmap <silent> =     <cmd>call Underline('=')<cr>
 
-noremap <silent> <M-d>   <C-e>
-noremap <silent> <M-e>   <C-y>
+noremap <silent> <M-d>   5<C-e>
+noremap <silent> <M-e>   5<C-y>
 
 vmap <up>       <Plug>SchleppUp
 vmap <down>     <Plug>SchleppDown
