@@ -15,6 +15,7 @@ Plug 'tpope/vim-surround'
 Plug 'google/vim-searchindex'
 Plug 'godlygeek/tabular'
 Plug 'zirrostig/vim-schlepp'
+Plug 'romainl/vim-qf'
 
 Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
@@ -184,6 +185,12 @@ nmap <silent> =     <cmd>call Underline('=')<cr>
 
 noremap <silent> <M-d>   5<C-e>
 noremap <silent> <M-e>   5<C-y>
+
+map <M-n>       <Plug>(qf_loc_next)
+map <M-p>       <Plug>(qf_loc_previous)
+" Override quickfix maps with plugin
+map <C-n>       <Plug>(qf_qf_next)
+map <C-p>       <Plug>(qf_qf_previous)
 
 vmap <up>       <Plug>SchleppUp
 vmap <down>     <Plug>SchleppDown
