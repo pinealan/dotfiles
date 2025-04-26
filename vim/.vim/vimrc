@@ -179,6 +179,8 @@ map <C-j>       :bnext<cr>
 map <C-k>       :bprev<cr>
 map <C-n>       :cnext<cr>
 map <C-p>       :cprev<cr>
+map <C-S-n>     :cnfile<cr>
+map <C-S-p>     :cpfile<cr>
 
 map <C-s>       :update<cr>
 
