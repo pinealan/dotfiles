@@ -214,9 +214,12 @@ nmap <leader>bn     <cmd>vnew<cr>
 
 " fuzzy find (with telescope)
 nmap <leader>fp     <cmd>lua require('pinealan').project_files()<cr>
+nmap <leader>fC     <cmd>Telescope command<cr>
+nmap <leader>fc     <cmd>Telescope command_history<cr>
 nmap <leader>ff     <cmd>Telescope find_files<cr>
 nmap <leader>fe     <cmd>Telescope buffers<cr>
 nmap <leader>fs     <cmd>Telescope live_grep<cr>
+nmap <leader>fl     <cmd>Telescope lsp_document_symbols<cr>
 
 " git
 nmap <leader>ga     :Gwrite<cr>
@@ -284,11 +287,14 @@ let g:leader_map['b'] = {
     \ }
 
 let g:leader_map['f'] = {
-    \ 'name': '+fuzzy-find',
-    \ 'e': 'Find buffer (telescope)',
-    \ 'f': 'Find file (telescope)',
-    \ 'p': 'Find project file (telescope)',
-    \ 's': 'Find string (telescope)',
+    \ 'name': '+fuzzy-find (telescope)',
+    \ 'C': 'Find command',
+    \ 'c': 'Search command history',
+    \ 'e': 'Find buffer',
+    \ 'f': 'Find file',
+    \ 'l': 'Search LSP symbols',
+    \ 'p': 'Find project file',
+    \ 's': 'Find string',
     \ }
 
 let g:leader_map['g'] = {
