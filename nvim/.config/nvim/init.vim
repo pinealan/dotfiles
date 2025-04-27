@@ -175,8 +175,8 @@ map <silent> <M-j>   <C-w>j
 map <silent> <M-k>   <C-w>k
 map <silent> <M-l>   <C-w>l
 
-map <C-q>           <cmd>cclose<cr>
-map <C-S-q>         <cmd>copen<cr>
+map <C-S-q>         <cmd>cclose<cr>
+map <C-q>           <cmd>copen<cr>
 map <C-s>           <cmd>update<cr>
 map <C-r>           <cmd>edit<cr>
 
@@ -209,6 +209,7 @@ nmap <leader>c      <cmd>Inspect<cr>
 nmap <leader>e      :edit %%
 
 " buffers
+nmap <leader>bc     <cmd>%bd \| e#<cr>
 nmap <leader>bd     <cmd>bd<cr>
 nmap <leader>bn     <cmd>vnew<cr>
 
