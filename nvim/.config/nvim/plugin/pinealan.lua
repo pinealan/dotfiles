@@ -178,6 +178,15 @@ telescope.setup({
             preview_width = 92,
         },
     },
+    pickers = {
+        buffers = {
+            mappings = {
+                i = {
+                    ['<M-d>'] = actions.delete_buffer,
+                }
+            }
+        }
+    }
 })
 
 telescope.load_extension('fzf')
