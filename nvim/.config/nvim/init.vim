@@ -221,6 +221,7 @@ nmap <leader>ff     <cmd>Telescope find_files<cr>
 nmap <leader>fe     <cmd>Telescope buffers<cr>
 nmap <leader>fs     <cmd>Telescope live_grep<cr>
 nmap <leader>fl     <cmd>Telescope lsp_document_symbols<cr>
+nmap <leader>f*     <cmd>Telescope grep_string<cr>
 
 " git
 nmap <leader>ga     :Gwrite<cr>
@@ -296,6 +297,7 @@ let g:leader_map['f'] = {
     \ 'l': 'Search LSP symbols',
     \ 'p': 'Find project file',
     \ 's': 'Find string',
+    \ '*': 'Find string under cursor',
     \ }
 
 let g:leader_map['g'] = {
