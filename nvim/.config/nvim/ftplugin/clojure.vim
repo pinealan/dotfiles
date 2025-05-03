@@ -94,10 +94,6 @@ nmap <localleader>W(    m`<Plug>(sexp_round_head_wrap_list)g``
 nmap <localleader>W[    m`<Plug>(sexp_square_head_wrap_list)g``
 nmap <localleader>W{    m`<Plug>(sexp_curly_head_wrap_list)g``
 
-" Duplicate alias for wrapping element + insert
-nmap <localleader>wi    <Plug>(sexp_round_head_wrap_element)a
-nmap <localleader>wa    <Plug>(sexp_round_tail_wrap_element)i
-
 " Mappings to wrap element + insert
 nmap <localleader>ww(   <Plug>(sexp_round_head_wrap_element)a
 nmap <localleader>ww)   <Plug>(sexp_round_tail_wrap_element)i
@@ -113,6 +109,14 @@ nmap <localleader>WW[   <Plug>(sexp_square_head_wrap_list)a
 nmap <localleader>WW]   <Plug>(sexp_square_tail_wrap_list)i
 nmap <localleader>WW{   <Plug>(sexp_curly_head_wrap_list)a
 nmap <localleader>WW}   <Plug>(sexp_curly_tail_wrap_list)i
+
+" Duplicate alias for wrapping element + insert
+nmap <localleader>wi    <Plug>(sexp_round_head_wrap_element)a
+nmap <localleader>wa    <Plug>(sexp_round_tail_wrap_element)i
+
+" Duplicate alias for wrapping list + insert
+nmap <localleader>Wi    <Plug>(sexp_round_head_wrap_list)a
+nmap <localleader>Wa    <Plug>(sexp_round_tail_wrap_list)i
 
 nmap <localleader>D    yaf%pi<cr><esc>
 
