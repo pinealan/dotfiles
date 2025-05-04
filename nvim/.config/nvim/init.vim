@@ -55,6 +55,7 @@ Plug 'hrsh7th/nvim-cmp'
 " Languages
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'mfussenegger/nvim-jdtls'
 
 Plug 'guns/vim-sexp'
 Plug '~/src/vim-iced', { 'for': 'clojure' }
