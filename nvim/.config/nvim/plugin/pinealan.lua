@@ -1,36 +1,22 @@
 --[[ LSP ]]
 
-local lsp_capabilities = vim.tbl_deep_extend(
-    'force',
-    vim.lsp.protocol.make_client_capabilities(),
-    require('cmp_nvim_lsp').default_capabilities()
-)
+vim.lsp.config('*', {
+    capablities = require('cmp_nvim_lsp').default_capabilities()
+})
 
-local lsp = require('lspconfig')
-
-lsp['clojure_lsp'].setup({ capabilities = lsp_capabilities })
-lsp['pyright'].setup({ capabilities = lsp_capabilities })
-lsp['rust_analyzer'].setup({ capabilities = lsp_capabilities })
-lsp['ts_ls'].setup({ capabilities = lsp_capabilities })
-lsp['bashls'].setup({ capabilities = lsp_capabilities })
-lsp['vimls'].setup({ capabilities = lsp_capabilities })
-
-lsp['postgres_lsp'].setup({
-    capabilities = lsp_capabilities,
+vim.lsp.config('postgres_lsp', {
     filetypes = {
         'sql', 'psql',
     },
 })
 
-lsp['tailwindcss'].setup({
-    capabilities = lsp_capabilities,
+vim.lsp.config('tailwindcss', {
     filetypes = {
         'clojure', 'html', 'css', 'javascriptreact', 'typescriptreact',
     },
 })
 
-lsp['lua_ls'].setup({
-    capabilities = lsp_capabilities,
+vim.lsp.config('lua_ls', {
     settings = {
         Lua = {
             runtime = {
@@ -49,6 +35,14 @@ lsp['lua_ls'].setup({
         },
     },
 })
+
+vim.lsp.enable('clojure_lsp')
+vim.lsp.enable('pyright')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('bashls')
+vim.lsp.enable('vimls')
+vim.lsp.enable('lua_ls');
 
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
