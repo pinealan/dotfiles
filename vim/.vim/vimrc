@@ -30,7 +30,7 @@ set lazyredraw
 set mouse=a
 set number
 set relativenumber
-set scrolloff=7
+set scrolloff=4
 set shortmess=aoOscF
 let &showbreak='> '
 set showcmd
