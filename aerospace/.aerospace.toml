@@ -1,0 +1,51 @@
+start-at-login = false
+
+accordion-padding = 50
+
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' binding mode must be always presented
+# Fallback value (if you omit the key): mode.main.binding = {}
+[mode.main.binding]
+
+    # Conventions:
+    #
+    # `cmd-alt-*` for navigation
+    # `ctrl-*` for moving windows
+    #
+    # `*-{h,j,k,l}` for actions within a workspace
+    # `*-{left,right}` for actions across workspaces
+
+    # navigate
+    cmd-ctrl-h = 'focus left'
+    cmd-ctrl-j = 'focus down'
+    cmd-ctrl-k = 'focus up'
+    cmd-ctrl-l = 'focus right'
+
+    cmd-ctrl-leftSquareBracket = 'workspace --wrap-around prev'
+    cmd-ctrl-rightSquareBracket = 'workspace --wrap-around next'
+
+    cmd-alt-1 = 'workspace 1'
+    cmd-alt-2 = 'workspace 2'
+
+    # move window
+    cmd-ctrl-shift-h = 'move left'
+    cmd-ctrl-shift-j = 'move down'
+    cmd-ctrl-shift-k = 'move up'
+    cmd-ctrl-shift-l = 'move right'
+
+    ctrl-alt-shift-h = 'join-with left'
+    ctrl-alt-shift-j = 'join-with down'
+    ctrl-alt-shift-k = 'join-with up'
+    ctrl-alt-shift-l = 'join-with right'
+
+    cmd-ctrl-alt-left = 'move-node-to-workspace --focus-follows-window --wrap-around prev'
+    cmd-ctrl-alt-right = 'move-node-to-workspace --focus-follows-window --wrap-around next'
+
+    # resize
+    cmd-ctrl-minus = 'resize smart -50'
+    cmd-ctrl-equal = 'resize smart +50'
+    cmd-ctrl-enter = 'fullscreen'
