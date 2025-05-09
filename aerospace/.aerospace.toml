@@ -7,6 +7,9 @@ default-root-container-orientation = 'auto'
 
 [mode.main.binding]
 
+    # cmd-ctrl as common prefix for all aerospace commands
+    # ctrl-alt is used for rectangle
+
     # navigate
     cmd-ctrl-h = 'focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
     cmd-ctrl-j = 'focus down --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
@@ -14,22 +17,22 @@ default-root-container-orientation = 'auto'
     cmd-ctrl-l = 'focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
 
     # move window
-    ctrl-alt-shift-h = 'move left'
-    ctrl-alt-shift-j = 'move down'
-    ctrl-alt-shift-k = 'move up'
-    ctrl-alt-shift-l = 'move right'
+    cmd-ctrl-shift-h = 'move left'
+    cmd-ctrl-shift-j = 'move down'
+    cmd-ctrl-shift-k = 'move up'
+    cmd-ctrl-shift-l = 'move right'
 
-    ctrl-alt-shift-y = 'join-with left'
-    ctrl-alt-shift-u = 'join-with down'
-    ctrl-alt-shift-i = 'join-with up'
-    ctrl-alt-shift-o = 'join-with right'
+    cmd-ctrl-shift-y = 'join-with left'
+    cmd-ctrl-shift-u = 'join-with down'
+    cmd-ctrl-shift-i = 'join-with up'
+    cmd-ctrl-shift-o = 'join-with right'
 
     # resize
-    ctrl-alt-minus = 'resize smart -50'
-    ctrl-alt-equal = 'resize smart +50'
-    ctrl-alt-enter = 'fullscreen'
-    ctrl-alt-slash = 'layout accordion tiles'
-    ctrl-alt-c = 'layout floating tiling'
+    cmd-ctrl-minus = 'resize smart -50'
+    cmd-ctrl-equal = 'resize smart +50'
+    cmd-ctrl-enter = 'fullscreen'
+    cmd-ctrl-slash = 'layout accordion tiles'
+    cmd-ctrl-c = 'layout floating tiling'
 
     # multipler monitor
     # I should rarely use these because aerospace is only for single monitor setup
