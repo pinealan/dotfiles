@@ -2,7 +2,7 @@ start-at-login = false
 
 accordion-padding = 40
 
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 default-root-container-orientation = 'auto'
 
 [mode.main.binding]
@@ -28,8 +28,10 @@ default-root-container-orientation = 'auto'
     cmd-ctrl-shift-o = 'join-with right'
 
     # resize
-    cmd-ctrl-minus = 'resize smart -50'
-    cmd-ctrl-equal = 'resize smart +50'
+    cmd-ctrl-minus = 'resize smart -80'
+    cmd-ctrl-equal = 'resize smart +80'
+    cmd-ctrl-shift-minus = 'resize smart-opposite -80'
+    cmd-ctrl-shift-equal = 'resize smart-opposite +80'
     cmd-ctrl-enter = 'fullscreen'
     cmd-ctrl-slash = 'layout accordion tiles'
     cmd-ctrl-c = 'layout floating tiling'
