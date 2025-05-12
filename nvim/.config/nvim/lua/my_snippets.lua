@@ -12,7 +12,8 @@ local snippets_by_filetype = {
         { trigger = 'fun', body = 'function ${1:name}(${2:args}) $0 end' },
     },
     clojure = {
-        { trigger = 'class', body = '{:class ${1}}' },
+        { trigger = 'css', body = '{:class "${1}"}' },
+        { trigger = 'attr', body = '{:${1} "${2}"}' },
     },
     python = {
         { trigger = 'init', body = 'def __init__(self$1):$0' },
