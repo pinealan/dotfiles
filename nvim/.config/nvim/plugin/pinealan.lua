@@ -95,6 +95,15 @@ cmp.setup({
     preselect = cmp.PreselectMode.None,
 })
 
+vim.api.nvim_set_hl(0, 'CmpItemKindClass', { link = 'Type' })
+vim.api.nvim_set_hl(0, 'CmpItemKindField', { link = 'Identifier' })
+vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { link = 'Function' })
+vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { link = 'Identifier' })
+vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { link = 'Function' })
+vim.api.nvim_set_hl(0, 'CmpItemKindSnippet', { link = 'Macro' })
+vim.api.nvim_set_hl(0, 'CmpItemKindModule', { link = 'Include' })
+vim.api.nvim_set_hl(0, 'CmpItemKindFile', { link = 'String' })
+
 --[[ Snippet ]]
 
 vim.keymap.set({ 'i', 's' }, '<C-j>', function()
