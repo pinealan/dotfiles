@@ -85,9 +85,9 @@ cmp.setup({
         end,
     },
     sources = {
+        {name = 'snp'},
         {name = 'nvim_lsp', keyword_pattern = [[\k\+]]},
         {name = 'buffer', keyword_pattern = [[\k\+]]},
-        {name = 'snp'},
     },
     mapping = cmp.mapping.preset.insert({
         ['<tab>']   = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
