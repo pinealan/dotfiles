@@ -85,7 +85,6 @@ cmp.setup({
         end,
     },
     sources = {
-        {name = 'path'},
         {name = 'nvim_lsp', keyword_pattern = [[\k\+]]},
         {name = 'buffer', keyword_pattern = [[\k\+]]},
         {name = 'snp'},
