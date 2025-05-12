@@ -75,16 +75,20 @@ require('my_snippets').register_cmp_source()
 local cmp = require('cmp')
 
 cmp.setup({
+    completion = {
+        keyword_pattern = [[\k\+]],
+        keyword_length = 3,
+    },
     snippet = {
         expand = function(args)
             vim.snippet.expand(args.body)
         end,
     },
     sources = {
-        {name = 'path', keyword_length = 5},
-        {name = 'nvim_lsp', keyword_length = 4},
-        {name = 'buffer', keyword_length = 3},
-        {name = 'snp', keyword_length = 3},
+        {name = 'path'},
+        {name = 'nvim_lsp', keyword_pattern = [[\k\+]]},
+        {name = 'buffer', keyword_pattern = [[\k\+]]},
+        {name = 'snp'},
     },
     mapping = cmp.mapping.preset.insert({
         ['<tab>']   = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
