@@ -79,6 +79,16 @@ cmp.setup({
         keyword_pattern = [[\k\+]],
         keyword_length = 3,
     },
+    formatting = {
+        format = function (cmp_entry, vim_item)
+            vim_item.menu = ({
+                snp = '[SNIP]',
+                nvim_lsp = '[LSP]',
+                buffer = '[BUF]',
+            })[cmp_entry.source.name] or cmp_entry.source.name
+            return vim_item
+        end,
+    },
     snippet = {
         expand = function(args)
             vim.snippet.expand(args.body)
