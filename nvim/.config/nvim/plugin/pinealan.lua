@@ -273,8 +273,13 @@ if vim.g.neovide then
 
     -- Change scale (like vimr)
     -- https://neovide.dev/faq.html#how-can-i-dynamically-change-the-scale-at-runtime
+    local print_scale = function()
+        vim.print('Zoom: ' .. tostring(vim.g.neovide_scale_factor))
+    end
+
     local change_scale_factor = function(delta)
       vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+      vim.defer_fn(print_scale, 50)
     end
 
     vim.keymap.set("n", "<D-=>", function() change_scale_factor(1.05) end)
