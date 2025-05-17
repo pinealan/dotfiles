@@ -77,7 +77,7 @@ local cmp = require('cmp')
 cmp.setup({
     completion = {
         keyword_pattern = [[\k\+]],
-        keyword_length = 3,
+        keyword_length = 2,
     },
     formatting = {
         format = function (cmp_entry, vim_item)
