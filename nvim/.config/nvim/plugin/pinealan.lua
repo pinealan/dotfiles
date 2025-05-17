@@ -210,6 +210,9 @@ telescope.load_extension('fzf')
 --[[ Others ]]
 
 require("autoclose").setup({
+    options = {
+        disable_when_touch = true
+    },
     keys = {
         ["'"] = {
             escape = true, close = true, pair = "''",
