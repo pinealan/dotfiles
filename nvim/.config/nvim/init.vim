@@ -253,7 +253,7 @@ nmap <leader>wt     <C-w>T
 nmap <leader>ww     <cmd>w<cr>
 
 nmap <leader>xr     <cmd>so $MYVIMRC<cr>
-nmap <leader>xv     <cmd>edit $MYVIMRC<cr>
+nmap <leader>xv     <cmd>tabnew $MYVIMRC<cr>
 
 " vim-which-key setup {{{2
 
