@@ -9,13 +9,15 @@ local global_snippets = {
 
 local snippets_by_filetype = {
     lua = {
-        { trigger = 'fun', body = 'function ${1:name}(${2:args}) $0 end' },
+        { trigger = 'function', body = 'function ${1:name}(${2:args}) $0 end' },
     },
     clojure = {
         { trigger = 'css', body = '{:class "${1}"}' },
         { trigger = 'attr', body = '{:${1} "${2}"}' },
     },
     python = {
+        { trigger = 'def', body = 'def $1($2) -> $3:\n$0' },
+        { trigger = 'class', body = 'class $1 -> $3:\n$0' },
         { trigger = 'init', body = 'def __init__(self$1):$0' },
         { trigger = 'repr', body = 'def __repr__(self$1):$0' },
         { trigger = 'context', body = 'def __enter__(self):\npassdef __exit__(self):\npass' },
