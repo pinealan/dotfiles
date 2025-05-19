@@ -132,12 +132,12 @@ let g:iced#format#zprint_option = '{}'
 let g:iced#nrepl#skip_evaluation_when_buffer_size_is_exceeded = v:true
 
 " Normal whitespace-based word navigation
-" nnoremap <buffer>       W w
-" xnoremap <buffer>       W w
-" nnoremap <buffer>       B b
-" xnoremap <buffer>       B b
-" nnoremap <buffer>       E e
-" xnoremap <buffer>       E e
+noremap <buffer>    <M-w> w
+noremap <buffer>    <M-W> W
+noremap <buffer>    <M-b> b
+noremap <buffer>    <M-B> B
+noremap <buffer>    <M-e> e
+noremap <buffer>    <M-E> E
 
 nmap <buffer> <localleader>'     :IcedConnect<cr>
 nmap <buffer> <localleader>rr    :IcedRequire<cr>
