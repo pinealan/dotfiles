@@ -216,7 +216,7 @@ nmap <leader>bn     <cmd>vnew<cr>
 
 " fuzzy find (with telescope)
 nmap <leader>fp     <cmd>lua require('pinealan').project_files()<cr>
-nmap <leader>fC     <cmd>Telescope command<cr>
+nmap <leader>fC     <cmd>Telescope commands<cr>
 nmap <leader>fc     <cmd>Telescope command_history<cr>
 nmap <leader>ff     <cmd>Telescope find_files<cr>
 nmap <leader>fe     <cmd>Telescope buffers<cr>
