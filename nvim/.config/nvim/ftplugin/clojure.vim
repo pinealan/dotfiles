@@ -85,40 +85,40 @@ let g:sexp_mappings = {
     \ }
 
 " Mappings to just wrap element and keep cursor at the same spot
-nmap <localleader>w(    m`<Plug>(sexp_round_head_wrap_element)g``
-nmap <localleader>w[    m`<Plug>(sexp_square_head_wrap_element)g``
-nmap <localleader>w{    m`<Plug>(sexp_curly_head_wrap_element)g``
+nmap <buffer> <localleader>w(    m`<Plug>(sexp_round_head_wrap_element)g``
+nmap <buffer> <localleader>w[    m`<Plug>(sexp_square_head_wrap_element)g``
+nmap <buffer> <localleader>w{    m`<Plug>(sexp_curly_head_wrap_element)g``
 
 " Mappings to just wrap list and keep cursor at the same spot
-nmap <localleader>W(    m`<Plug>(sexp_round_head_wrap_list)g``
-nmap <localleader>W[    m`<Plug>(sexp_square_head_wrap_list)g``
-nmap <localleader>W{    m`<Plug>(sexp_curly_head_wrap_list)g``
+nmap <buffer> <localleader>W(    m`<Plug>(sexp_round_head_wrap_list)g``
+nmap <buffer> <localleader>W[    m`<Plug>(sexp_square_head_wrap_list)g``
+nmap <buffer> <localleader>W{    m`<Plug>(sexp_curly_head_wrap_list)g``
 
 " Mappings to wrap element + insert
-nmap <localleader>ww(   <Plug>(sexp_round_head_wrap_element)a
-nmap <localleader>ww)   <Plug>(sexp_round_tail_wrap_element)i
-nmap <localleader>ww[   <Plug>(sexp_square_head_wrap_element)a
-nmap <localleader>ww]   <Plug>(sexp_square_tail_wrap_element)i
-nmap <localleader>ww{   <Plug>(sexp_curly_head_wrap_element)a
-nmap <localleader>ww}   <Plug>(sexp_curly_tail_wrap_element)i
+nmap <buffer> <localleader>ww(   <Plug>(sexp_round_head_wrap_element)a
+nmap <buffer> <localleader>ww)   <Plug>(sexp_round_tail_wrap_element)i
+nmap <buffer> <localleader>ww[   <Plug>(sexp_square_head_wrap_element)a
+nmap <buffer> <localleader>ww]   <Plug>(sexp_square_tail_wrap_element)i
+nmap <buffer> <localleader>ww{   <Plug>(sexp_curly_head_wrap_element)a
+nmap <buffer> <localleader>ww}   <Plug>(sexp_curly_tail_wrap_element)i
 
 " Mappings to wrap list + insert
-nmap <localleader>WW(   <Plug>(sexp_round_head_wrap_list)a
-nmap <localleader>WW)   <Plug>(sexp_round_tail_wrap_list)i
-nmap <localleader>WW[   <Plug>(sexp_square_head_wrap_list)a
-nmap <localleader>WW]   <Plug>(sexp_square_tail_wrap_list)i
-nmap <localleader>WW{   <Plug>(sexp_curly_head_wrap_list)a
-nmap <localleader>WW}   <Plug>(sexp_curly_tail_wrap_list)i
+nmap <buffer> <localleader>WW(   <Plug>(sexp_round_head_wrap_list)a
+nmap <buffer> <localleader>WW)   <Plug>(sexp_round_tail_wrap_list)i
+nmap <buffer> <localleader>WW[   <Plug>(sexp_square_head_wrap_list)a
+nmap <buffer> <localleader>WW]   <Plug>(sexp_square_tail_wrap_list)i
+nmap <buffer> <localleader>WW{   <Plug>(sexp_curly_head_wrap_list)a
+nmap <buffer> <localleader>WW}   <Plug>(sexp_curly_tail_wrap_list)i
 
 " Duplicate alias for wrapping element + insert
-nmap <localleader>wi    <Plug>(sexp_round_head_wrap_element)a
-nmap <localleader>wa    <Plug>(sexp_round_tail_wrap_element)i
+nmap <buffer> <localleader>wi    <Plug>(sexp_round_head_wrap_element)a
+nmap <buffer> <localleader>wa    <Plug>(sexp_round_tail_wrap_element)i
 
 " Duplicate alias for wrapping list + insert
-nmap <localleader>Wi    <Plug>(sexp_round_head_wrap_list)a
-nmap <localleader>Wa    <Plug>(sexp_round_tail_wrap_list)i
+nmap <buffer> <localleader>Wi    <Plug>(sexp_round_head_wrap_list)a
+nmap <buffer> <localleader>Wa    <Plug>(sexp_round_tail_wrap_list)i
 
-nmap <localleader>D    yaf%pi<cr><esc>
+nmap <buffer> <localleader>D    yaf%pi<cr><esc>
 
 """ Iced mappings & configs {{{1
 
@@ -139,92 +139,92 @@ let g:iced#nrepl#skip_evaluation_when_buffer_size_is_exceeded = v:true
 " nnoremap <buffer>       E e
 " xnoremap <buffer>       E e
 
-nmap <localleader>'     :IcedConnect<cr>
-nmap <localleader>rr    :IcedRequire<cr>
-nmap <localleader>ew    m`<Plug>(iced_eval)<Plug>(sexp_inner_element)g``
-nmap <localleader>ef    m`<Plug>(iced_eval)<Plug>(sexp_outer_list)g``
-nmap <localleader>ee    m`<Plug>(iced_eval_outer_top_list)g``
+nmap <buffer> <localleader>'     :IcedConnect<cr>
+nmap <buffer> <localleader>rr    :IcedRequire<cr>
+nmap <buffer> <localleader>ew    m`<Plug>(iced_eval)<Plug>(sexp_inner_element)g``
+nmap <buffer> <localleader>ef    m`<Plug>(iced_eval)<Plug>(sexp_outer_list)g``
+nmap <buffer> <localleader>ee    m`<Plug>(iced_eval_outer_top_list)g``
 
-nmap <localleader>er    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_inner_element)g``
-nmap <localleader>eR    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_outer_list)g``
+nmap <buffer> <localleader>er    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_inner_element)g``
+nmap <buffer> <localleader>eR    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_outer_list)g``
 
-nmap <localleader>eW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
-nmap <localleader>eF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
-nmap <localleader>eE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
+nmap <buffer> <localleader>eW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
+nmap <buffer> <localleader>eF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
+nmap <buffer> <localleader>eE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
 
 " Duplicate in case of fat finger fast typing
-nmap <localleader>EW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
-nmap <localleader>EF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
-nmap <localleader>EE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
-nmap <localleader>ER    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_outer_list)g``
+nmap <buffer> <localleader>EW    m`<Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)g``
+nmap <buffer> <localleader>EF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)g``
+nmap <buffer> <localleader>EE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
+nmap <buffer> <localleader>ER    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_outer_list)g``
 
-nmap <localleader>eq    :IcedInterrupt<cr>
+nmap <buffer> <localleader>eq    :IcedInterrupt<cr>
 xmap <localleader>ee    :IcedEvalVisual<cr>
 
-nmap <localleader>l     :IcedPrintLast<cr>
+nmap <buffer> <localleader>l     :IcedPrintLast<cr>
 
 " docs
-nmap <localleader>hc    :IcedClojureDocsOpen<cr>
-nmap <localleader>hd    :IcedDocumentOpen<cr>
-nmap <localleader>hq    :IcedDocumentClose<cr>
-nmap <localleader>hs    :IcedSourceShow<cr>
+nmap <buffer> <localleader>hc    :IcedClojureDocsOpen<cr>
+nmap <buffer> <localleader>hd    :IcedDocumentOpen<cr>
+nmap <buffer> <localleader>hq    :IcedDocumentClose<cr>
+nmap <buffer> <localleader>hs    :IcedSourceShow<cr>
 " Alias for open/close doc
-nmap <localleader>d     :IcedDocumentOpen<cr>
-nmap <localleader>q     :IcedDocumentClose<cr>
+nmap <buffer> <localleader>d     :IcedDocumentOpen<cr>
+nmap <buffer> <localleader>q     :IcedDocumentClose<cr>
 
-nmap <localleader>jd    :IcedDefJump .<cr>
-nmap <localleader>jl    :IcedJumpToLet<cr>
+nmap <buffer> <localleader>jd    :IcedDefJump .<cr>
+nmap <buffer> <localleader>jl    :IcedJumpToLet<cr>
 
 " tap
-nmap <localleader>tb    :IcedBrowseTapped
-nmap <localLeader>tc    :IcedClearTapped<cr>
-nmap <localleader>td    :IcedDeleteTapped<cr>
+nmap <buffer> <localleader>tb    :IcedBrowseTapped
+nmap <buffer> <localLeader>tc    :IcedClearTapped<cr>
+nmap <buffer> <localleader>td    :IcedDeleteTapped<cr>
 
 " test
-nmap <localleader>tt    :IcedTestUnderCursor<cr>
-nmap <localLeader>tn    :IcedTestNs<cr>
-nmap <localleader>tr    :IcedTestRedo<cr>
-nmap <localLeader>tl    :IcedTestRerunLast<cr>
+nmap <buffer> <localleader>tt    :IcedTestUnderCursor<cr>
+nmap <buffer> <localLeader>tn    :IcedTestNs<cr>
+nmap <buffer> <localleader>tr    :IcedTestRedo<cr>
+nmap <buffer> <localLeader>tl    :IcedTestRerunLast<cr>
 
-nmap <localLeader>ss    :IcedCljsRepl (figwheel.main.api/repl-env "dev")
-nmap <localLeader>sc    :IcedCycleSession<cr>
-nmap <localLeader>sq    :IcedQuitCljsRepl<cr>
+nmap <buffer> <localLeader>ss    :IcedCljsRepl (figwheel.main.api/repl-env "dev")
+nmap <buffer> <localLeader>sc    :IcedCycleSession<cr>
+nmap <buffer> <localLeader>sq    :IcedQuitCljsRepl<cr>
 
-nmap <localLeader>sp    i)()<esc>x2<Plug>(sexp_flow_to_prev_close)J%lywh%a<cr><esc>p
-nmap <localLeader>si    i)()<esc>x
+nmap <buffer> <localLeader>sp    i)()<esc>x2<Plug>(sexp_flow_to_prev_close)J%lywh%a<cr><esc>p
+nmap <buffer> <localLeader>si    i)()<esc>x
 
 " refactor
-nmap <localleader>ra    :IcedAddArity<cr>
-nmap <localLeader>rc    :IcedCleanNs<cr>
-nmap <localLeader>ri    :IcedAddMissing<cr>
-nmap <localLeader>rn    :IcedAddNs<cr>
-nmap <localLeader>rs    :IcedRenameSymbol<cr>
+nmap <buffer> <localleader>ra    :IcedAddArity<cr>
+nmap <buffer> <localLeader>rc    :IcedCleanNs<cr>
+nmap <buffer> <localLeader>ri    :IcedAddMissing<cr>
+nmap <buffer> <localLeader>rn    :IcedAddNs<cr>
+nmap <buffer> <localLeader>rs    :IcedRenameSymbol<cr>
 
-nmap <localleader>re    :IcedExtractFunction<cr>
-nmap <localleader>rm    :IcedMoveToLet<cr>
+nmap <buffer> <localleader>re    :IcedExtractFunction<cr>
+nmap <buffer> <localleader>rm    :IcedMoveToLet<cr>
 
-nmap <localleader>rf    :IcedThreadFirst<cr>
-nmap <localleader>rl    :IcedThreadLast<cr>
+nmap <buffer> <localleader>rf    :IcedThreadFirst<cr>
+nmap <buffer> <localleader>rl    :IcedThreadLast<cr>
 
 " iced buffer
-nmap <localleader>bb    :IcedStdoutBufferOpen<cr>
-nmap <localleader>bc    :IcedStdoutBufferClear<cr>
-nmap <localleader>be    :IcedEval *e<cr>:IcedPrintLast<cr>
-nmap <localleader>bl    :IcedPrintLast<cr>
-nmap <localleader>bq    :IcedStdoutBufferClose<cr>
-nmap <localleader>bt    :IcedTestBufferOpen<cr>
+nmap <buffer> <localleader>bb    :IcedStdoutBufferOpen<cr>
+nmap <buffer> <localleader>bc    :IcedStdoutBufferClear<cr>
+nmap <buffer> <localleader>be    :IcedEval *e<cr>:IcedPrintLast<cr>
+nmap <buffer> <localleader>bl    :IcedPrintLast<cr>
+nmap <buffer> <localleader>bq    :IcedStdoutBufferClose<cr>
+nmap <buffer> <localleader>bt    :IcedTestBufferOpen<cr>
 
 " lookup usage
-nmap <localleader>bd    :IcedBrowseDependencies<cr>
-nmap <localleader>br    :IcedBrowseReferences<cr>
+nmap <buffer> <localleader>bd    :IcedBrowseDependencies<cr>
+nmap <buffer> <localleader>br    :IcedBrowseReferences<cr>
 
-nmap <localleader>vc    :IcedEval {:vlaaad.reveal/command '(clear-output)}<cr>
+nmap <buffer> <localleader>vc    :IcedEval {:vlaaad.reveal/command '(clear-output)}<cr>
 
-nmap <localleader>==    :IcedFormat<cr>
-nmap <localleader>=G    :IcedFormatAll<cr>
+nmap <buffer> <localleader>==    :IcedFormat<cr>
+nmap <buffer> <localleader>=G    :IcedFormatAll<cr>
 
-nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
-nmap <localleader>m     :lmake<cr>
+nmap <buffer> <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
+nmap <buffer> <localleader>m     :lmake<cr>
 
 """ WhichKey {{{1
 
