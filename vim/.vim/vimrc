@@ -173,16 +173,16 @@ nmap <silent> <leader>q     :quit<cr>
 nmap <silent> <leader><tab> <c-^>
 
 " Buffer/Tab/Quickfix navigation
-map <C-h>       :tabprev<cr>
-map <C-l>       :tabnext<cr>
-map <C-j>       :bnext<cr>
-map <C-k>       :bprev<cr>
-map <C-n>       :cnext<cr>
-map <C-p>       :cprev<cr>
-map <C-S-n>     :cnfile<cr>
-map <C-S-p>     :cpfile<cr>
+nmap <C-h>      :tabprev<cr>
+nmap <C-l>      :tabnext<cr>
+nmap <C-j>      :bnext<cr>
+nmap <C-k>      :bprev<cr>
+nmap <C-n>      :cnext<cr>
+nmap <C-p>      :cprev<cr>
+nmap <C-S-n>    :cnfile<cr>
+nmap <C-S-p>    :cpfile<cr>
 
-map <C-s>       :update<cr>
+nmap <C-s>      :update<cr>
 
 cnoremap %% <C-R>=substitute(expand('%:h').'/', '^\./', '', '')<cr>
 
