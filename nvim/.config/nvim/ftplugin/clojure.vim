@@ -85,38 +85,38 @@ let g:sexp_mappings = {
     \ }
 
 " Mappings to just wrap element and keep cursor at the same spot
-nmap <buffer> <localleader>w(    m`<Plug>(sexp_round_head_wrap_element)g``
-nmap <buffer> <localleader>w[    m`<Plug>(sexp_square_head_wrap_element)g``
-nmap <buffer> <localleader>w{    m`<Plug>(sexp_curly_head_wrap_element)g``
+nmap <buffer> <localleader>W(    m`<Plug>(sexp_round_head_wrap_element)g``
+nmap <buffer> <localleader>W[    m`<Plug>(sexp_square_head_wrap_element)g``
+nmap <buffer> <localleader>W{    m`<Plug>(sexp_curly_head_wrap_element)g``
 
 " Mappings to just wrap list and keep cursor at the same spot
-nmap <buffer> <localleader>W(    m`<Plug>(sexp_round_head_wrap_list)g``
-nmap <buffer> <localleader>W[    m`<Plug>(sexp_square_head_wrap_list)g``
-nmap <buffer> <localleader>W{    m`<Plug>(sexp_curly_head_wrap_list)g``
+nmap <buffer> <localleader>WW(    m`<Plug>(sexp_round_head_wrap_list)g``
+nmap <buffer> <localleader>WW[    m`<Plug>(sexp_square_head_wrap_list)g``
+nmap <buffer> <localleader>WW{    m`<Plug>(sexp_curly_head_wrap_list)g``
 
-" Mappings to wrap element + insert
-nmap <buffer> <localleader>ww(   <Plug>(sexp_round_head_wrap_element)a
-nmap <buffer> <localleader>ww)   <Plug>(sexp_round_tail_wrap_element)i
-nmap <buffer> <localleader>ww[   <Plug>(sexp_square_head_wrap_element)a
-nmap <buffer> <localleader>ww]   <Plug>(sexp_square_tail_wrap_element)i
-nmap <buffer> <localleader>ww{   <Plug>(sexp_curly_head_wrap_element)a
-nmap <buffer> <localleader>ww}   <Plug>(sexp_curly_tail_wrap_element)i
+" Mappings to wrap element + insert at start or end
+nmap <buffer> <localleader>w(   <Plug>(sexp_round_head_wrap_element)a
+nmap <buffer> <localleader>w)   <Plug>(sexp_round_tail_wrap_element)i
+nmap <buffer> <localleader>w[   <Plug>(sexp_square_head_wrap_element)a
+nmap <buffer> <localleader>w]   <Plug>(sexp_square_tail_wrap_element)i
+nmap <buffer> <localleader>w{   <Plug>(sexp_curly_head_wrap_element)a
+nmap <buffer> <localleader>w}   <Plug>(sexp_curly_tail_wrap_element)i
 
-" Mappings to wrap list + insert
-nmap <buffer> <localleader>WW(   <Plug>(sexp_round_head_wrap_list)a
-nmap <buffer> <localleader>WW)   <Plug>(sexp_round_tail_wrap_list)i
-nmap <buffer> <localleader>WW[   <Plug>(sexp_square_head_wrap_list)a
-nmap <buffer> <localleader>WW]   <Plug>(sexp_square_tail_wrap_list)i
-nmap <buffer> <localleader>WW{   <Plug>(sexp_curly_head_wrap_list)a
-nmap <buffer> <localleader>WW}   <Plug>(sexp_curly_tail_wrap_list)i
+" Mappings to wrap list + insert at start or end
+nmap <buffer> <localleader>ww(   <Plug>(sexp_round_head_wrap_list)a
+nmap <buffer> <localleader>ww)   <Plug>(sexp_round_tail_wrap_list)i
+nmap <buffer> <localleader>ww[   <Plug>(sexp_square_head_wrap_list)a
+nmap <buffer> <localleader>ww]   <Plug>(sexp_square_tail_wrap_list)i
+nmap <buffer> <localleader>ww{   <Plug>(sexp_curly_head_wrap_list)a
+nmap <buffer> <localleader>ww}   <Plug>(sexp_curly_tail_wrap_list)i
 
 " Duplicate alias for wrapping element + insert
 nmap <buffer> <localleader>wi    <Plug>(sexp_round_head_wrap_element)a
 nmap <buffer> <localleader>wa    <Plug>(sexp_round_tail_wrap_element)i
 
 " Duplicate alias for wrapping list + insert
-nmap <buffer> <localleader>Wi    <Plug>(sexp_round_head_wrap_list)a
-nmap <buffer> <localleader>Wa    <Plug>(sexp_round_tail_wrap_list)i
+nmap <buffer> <localleader>wwi    <Plug>(sexp_round_head_wrap_list)a
+nmap <buffer> <localleader>wwa    <Plug>(sexp_round_tail_wrap_list)i
 
 nmap <buffer> <localleader>D    yaf%pi<cr><esc>
 
@@ -298,36 +298,38 @@ let g:localleader_map['v'] = {
     \ }
 
 let g:localleader_map['w'] = {
-    \ 'name': '+sexp-wrap-element',
-    \ '(': 'In parens',
-    \ '[': 'In brackets',
-    \ '{': 'In braces',
-    \ 'i': 'In parens & start insert at head',
-    \ 'a': 'In parens & start insert at tail',
+    \ 'name': '+sexp-wrap-insert',
+    \ 'i': 'Wrap element in parens & insert',
+    \ 'a': 'Wrap element in parens & append',
+    \ '(': 'Wrap element in parens & insert',
+    \ ')': 'Wrap element in parens & append',
+    \ '[': 'Wrap element in brackets & insert',
+    \ ']': 'Wrap element in brackets & append',
+    \ '{': 'Wrap element in braces & insert',
+    \ '}': 'Wrap element in braces & append',
     \ 'w': {
-    \     'name': '+wrap-and-insert',
-    \     '(': 'In parens & start insert at head',
-    \     ')': 'In parens & start insert at tail',
-    \     '[': 'In brackets & start insert at head',
-    \     ']': 'In brackets & start insert at tail',
-    \     '{': 'In braces & start insert at head',
-    \     '}': 'In braces & start insert at tail',
+    \     'name': '+for-list',
+    \     'i': 'Wrap list in parens & insert',
+    \     'a': 'Wrap list in parens & append',
+    \     '(': 'Wrap list in parens & insert',
+    \     ')': 'Wrap list in parens & append',
+    \     '[': 'Wrap list in brackets & insert',
+    \     ']': 'Wrap list in brackets & append',
+    \     '{': 'Wrap list in braces & insert',
+    \     '}': 'Wrap list in braces & append',
     \     },
     \ }
 
 let g:localleader_map['W'] = {
-    \ 'name': '+sexp-wrap-list',
-    \ '(': 'In parens',
-    \ '[': 'In brackets',
-    \ '{': 'In braces',
+    \ 'name': '+sexp-wrap-only',
+    \ '(': 'Wrap element in parens',
+    \ '[': 'Wrap element in brackets',
+    \ '{': 'Wrap element in braces',
     \ 'W': {
-    \     'name': '+wrap-and-insert',
-    \     '(': 'In parens & start insert at head',
-    \     ')': 'In parens & start insert at tail',
-    \     '[': 'In brackets & start insert at head',
-    \     ']': 'In brackets & start insert at tail',
-    \     '{': 'In braces & start insert at head',
-    \     '}': 'In braces & start insert at tail',
+    \     'name': '+for-list',
+    \     '(': 'Wrap list in parens',
+    \     '[': 'Wrap list in brackets',
+    \     '{': 'Wrap list in braces',
     \     },
     \ }
 
