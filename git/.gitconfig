@@ -98,6 +98,7 @@
 	llocal   = log --pretty=fo --graph --tags --branches=* HEAD
 	ll  = llocal
 	lr  = lrelease
+	lh  = l -n 5
 
 	g = grep --break --heading --line-number
 
