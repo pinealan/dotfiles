@@ -334,8 +334,8 @@ let g:localleader_map['W'] = {
 let g:localleader_map['<Tab>'] = "Goto corresponding src/test file"
 
 call which_key#register("'", "g:localleader_map")
-nnoremap <silent> <localleader>     :WhichKey "'"<CR>
-vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
+nnoremap <buffer> <silent> <localleader>     :WhichKey "'"<CR>
+vnoremap <buffer> <silent> <localleader>     :WhichKeyVisual "'"<CR>
 
 let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"'}
 

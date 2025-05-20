@@ -119,19 +119,19 @@ call textobj#user#plugin('pypercent', {
 \      }
 \    })
 
-nmap <localleader>gk        :vimgrep /^ *class/g @%
-nmap <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
+nmap <buffer> <localleader>gk        :vimgrep /^ *class/g @%
+nmap <buffer> <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 
 " Mappings for working with percent scripts (jupyter notebook as text)
-nmap <localleader>j  ]e
-nmap <localleader>k  [e
+nmap <buffer> <localleader>j  ]e
+nmap <buffer> <localleader>k  [e
 
-nmap <localleader>a  [ek<cr>i# %%<esc><cr><cr>k
-nmap <localleader>b  ]ek<cr>i# %%<esc><cr><cr>k
-nmap <localleader>d  dae
-nmap <localleader>s  :!jupytext -s %<cr>
+nmap <buffer> <localleader>a  [ek<cr>i# %%<esc><cr><cr>k
+nmap <buffer> <localleader>b  ]ek<cr>i# %%<esc><cr><cr>k
+nmap <buffer> <localleader>d  dae
+nmap <buffer> <localleader>s  :!jupytext -s %<cr>
 
-nmap <localleader>ti A # type: ignore<esc>
+nmap <buffer> <localleader>ti A # type: ignore<esc>
 
 
 """ WhichKey {{{1
@@ -146,5 +146,5 @@ let g:localleader_map['j'] = 'Move to next cell'
 let g:localleader_map['k'] = 'Move to previous cell'
 
 call which_key#register("'", "g:localleader_map")
-nnoremap <silent> <localleader>     :WhichKey "'"<CR>
-vnoremap <silent> <localleader>     :WhichKeyVisual "'"<CR>
+nnoremap <buffer> <silent> <localleader>     :WhichKey "'"<CR>
+vnoremap <buffer> <silent> <localleader>     :WhichKeyVisual "'"<CR>
