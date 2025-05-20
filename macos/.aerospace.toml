@@ -2,8 +2,9 @@ start-at-login = false
 
 accordion-padding = 40
 
-default-root-container-layout = 'accordion'
-default-root-container-orientation = 'auto'
+after-startup-command = [
+    'layout h_tiles',
+]
 
 [mode.main.binding]
 
