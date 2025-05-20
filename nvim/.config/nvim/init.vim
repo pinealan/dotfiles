@@ -166,6 +166,11 @@ nnoremap <silent> n    nzzzv<cmd>SearchIndex<cr>
 nnoremap <silent> N    Nzzzv<cmd>SearchIndex<cr>
 nnoremap <silent> J    mzJ`z
 
+" Override default where these motions add to jumplist
+nnoremap <silent> L    <cmd>keepjumps normal! L<cr>
+nnoremap <silent> M    <cmd>keepjumps normal! M<cr>
+nnoremap <silent> H    <cmd>keepjumps normal! H<cr>
+
 " Easier newline
 nnoremap <cr>  o<esc>
 nnoremap Y     y$
