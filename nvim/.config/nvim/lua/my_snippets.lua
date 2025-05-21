@@ -21,6 +21,10 @@ local snippets_by_filetype = {
         { trigger = 'init', body = 'def __init__(self$1):$0' },
         { trigger = 'repr', body = 'def __repr__(self$1):$0' },
         { trigger = 'context', body = 'def __enter__(self):\npassdef __exit__(self):\npass' },
+    },
+    rust = {
+        { trigger = 'print_debug', body = 'println!("{:?}", $1)' },
+        { trigger = 'pprint_debug', body = 'println!("{:#?}", $1)' },
     }
 }
 
