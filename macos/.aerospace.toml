@@ -37,11 +37,12 @@ after-startup-command = [
     cmd-ctrl-slash = 'layout accordion tiles'
     cmd-ctrl-c = 'layout floating tiling'
 
-    # multipler monitor
-    # I should rarely use these because aerospace is only for single monitor setup
+    # workspace2
+    cmd-ctrl-1 = 'workspace 1'
+    cmd-ctrl-2 = 'workspace 2'
 
-    #cmd-ctrl-leftSquareBracket = 'workspace --wrap-around prev'
-    #cmd-ctrl-rightSquareBracket = 'workspace --wrap-around next'
+    cmd-ctrl-leftSquareBracket = 'workspace --wrap-around prev'
+    cmd-ctrl-rightSquareBracket = 'workspace --wrap-around next'
 
-    #cmd-ctrl-alt-leftSquareBracket = 'move-node-to-monitor --focus-follows-window --wrap-around prev'
-    #cmd-ctrl-alt-rightSquareBracket = 'move-node-to-monitor --focus-follows-window --wrap-around next'
+    cmd-ctrl-shift-leftSquareBracket = 'move-node-to-workspace --focus-follows-window --wrap-around prev'
+    cmd-ctrl-shift-rightSquareBracket = 'move-node-to-workspace --focus-follows-window --wrap-around next'
