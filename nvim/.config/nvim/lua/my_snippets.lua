@@ -12,8 +12,11 @@ local snippets_by_filetype = {
         { trigger = 'function', body = 'function ${1:name}(${2:args}) $0 end' },
     },
     clojure = {
-        { trigger = 'css', body = '{:class "${1}"}' },
+        { trigger = 'css', body = '{:class "${1}"} ' },
         { trigger = 'attr', body = '{:${1} "${2}"}' },
+        { trigger = 'comment', body = '(comment\n  $0)' },
+        { trigger = 'const-def', body = '(def ^:const $1 $2)' },
+        { trigger = ':keys-destruct', body = '{:keys [$2]} $1' },
     },
     python = {
         { trigger = 'def', body = 'def $1($2) -> $3:\n$0' },
