@@ -189,9 +189,18 @@ telescope.setup({
                 ['<esc>'] = actions.close,
             },
         },
+        layout_strategy = 'flex',
         layout_config = {
-            width = 160,
-            preview_width = 92,
+            flip_columns = 120,
+            vertical = {
+                preview_cutoff = 40,
+                preview_height = 0.75,
+            },
+            horizontal = {
+                width = 170,
+                preview_cutoff = 0,
+                preview_width = { 9 / 16, min = 70 , max = 90 },
+            }
         },
     },
     pickers = {
