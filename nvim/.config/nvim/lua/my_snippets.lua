@@ -16,7 +16,7 @@ local snippets_by_filetype = {
         { trigger = 'attr', body = '{:${1} "${2}"}' },
         { trigger = 'comment', body = '(comment\n  $0)' },
         { trigger = 'const-def', body = '(def ^:const $1 $2)' },
-        { trigger = ':keys-destruct', body = '{:keys [$2]} $1' },
+        { trigger = ':keys-destruct', body = '{:keys [$2]}${1: }' },
     },
     python = {
         { trigger = 'def', body = 'def $1($2) -> $3:\n$0' },
@@ -28,6 +28,8 @@ local snippets_by_filetype = {
     rust = {
         { trigger = 'print_debug', body = 'println!("{:?}", $1)' },
         { trigger = 'pprint_debug', body = 'println!("{:#?}", $1)' },
+        { trigger = ': vec', body = ': Vec<${1:_}>' },
+        { trigger = 'lambda', body = '|${1:x}| ${2:x}' },
     }
 }
 

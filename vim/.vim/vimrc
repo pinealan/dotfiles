@@ -200,6 +200,9 @@ iabbrev swihtc      switch
 iabbrev siwthc      switch
 iabbrev csae        case
 iabbrev caes        case
+iabbrev retrun      return
+iabbrev retrnu      return
+iabbrev retunr      return
 
 " }}}
 
