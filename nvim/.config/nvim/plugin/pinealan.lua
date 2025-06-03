@@ -95,10 +95,14 @@ cmp.setup({
         end,
     },
     sources = {
-        {name = 'snp'},
+        {
+            name = 'snp',
+            keyword_length = 1,
+        },
         {
             name = 'nvim_lsp',
             keyword_pattern = [[\k\+]],
+            keyword_length = 0,
             option = {
                 keyword_pattern = [[\k\+]],
             },
