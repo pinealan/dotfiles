@@ -220,10 +220,12 @@ nmap <leader>bd     <cmd>bd<cr>
 nmap <leader>bn     <cmd>vnew<cr>
 
 " fuzzy find (with telescope)
-nmap <leader>fp     <cmd>lua require('pinealan').project_files()<cr>
 nmap <leader>fC     <cmd>Telescope commands<cr>
 nmap <leader>fc     <cmd>Telescope command_history<cr>
-nmap <leader>ff     <cmd>Telescope find_files<cr>
+nmap <leader>ff     <cmd>lua require('pinealan').project_files()<cr>
+nmap <leader>fF     <cmd>Telescope find_files<cr>
+nmap <leader>fg     <cmd>Telescope git_commits<cr>
+nmap <leader>fh     <cmd>Telescope git_bcommits<cr>
 nmap <leader>fe     <cmd>Telescope buffers<cr>
 nmap <leader>fs     <cmd>Telescope live_grep<cr>
 nmap <leader>fl     <cmd>Telescope lsp_document_symbols<cr>
@@ -299,9 +301,11 @@ let g:leader_map['f'] = {
     \ 'C': 'Find command',
     \ 'c': 'Search command history',
     \ 'e': 'Find buffer',
-    \ 'f': 'Find file',
+    \ 'f': 'Find files tracked by git',
+    \ 'F': 'Find files under working directory',
+    \ 'g': 'List git commits',
+    \ 'h': 'List git history of current buffer',
     \ 'l': 'Search LSP symbols',
-    \ 'p': 'Find project file',
     \ 's': 'Find string',
     \ '*': 'Find string under cursor',
     \ }
