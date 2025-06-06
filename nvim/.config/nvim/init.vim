@@ -155,6 +155,8 @@ command! LightMode
 
 cnoremap %% <C-R>=substitute(expand('%:h').'/', '^\./', '', '')<cr>
 
+"" Motions {{{3
+
 " Swap undo
 noremap    U   <C-r>
 noremap <C-r>     U
@@ -176,32 +178,48 @@ nnoremap <cr>  o<esc>
 nnoremap Y     y$
 
 " Windows navigation
-map <silent> <M-h>   <C-w>h
-map <silent> <M-j>   <C-w>j
-map <silent> <M-k>   <C-w>k
-map <silent> <M-l>   <C-w>l
-
-map <C-S-q>         <cmd>cclose<cr>
-map <C-q>           <cmd>copen<cr>
-map <C-s>           <cmd>update<cr>
-map <C-r>           <cmd>edit<cr>
+nmap <silent> <M-h>   <C-w>h
+nmap <silent> <M-j>   <C-w>j
+nmap <silent> <M-k>   <C-w>k
+nmap <silent> <M-l>   <C-w>l
 
 nmap <silent> -     <cmd>call Underline('-')<cr>
 nmap <silent> =     <cmd>call Underline('=')<cr>
 
+" Scroll
 noremap <silent> <M-d>   5<C-e>
 noremap <silent> <M-e>   5<C-y>
 
-map <M-n>       <Plug>(qf_loc_next)
-map <M-p>       <Plug>(qf_loc_previous)
-" Override quickfix maps with plugin
-map <C-n>       <Plug>(qf_qf_next)
-map <C-p>       <Plug>(qf_qf_previous)
+" }}}
+"" Editing {{{3
+
+" Posix shell / EMACS motions in edit mode
+imap <M-f>      <esc>gEWWi
+imap <M-b>      <esc>gEBi
+imap <C-a>      <esc>0i
+imap <C-e>      <esc>$a
+imap <C-k>      <esc>C
 
 vmap <up>       <Plug>SchleppUp
 vmap <down>     <Plug>SchleppDown
 vmap <left>     <Plug>SchleppLeft
 vmap <right>    <Plug>SchleppRight
+
+"}}}
+
+" File management
+map <C-s>           <cmd>update<cr>
+map <C-r>           <cmd>edit<cr>
+
+"" Quickfix
+map <C-S-q>         <cmd>cclose<cr>
+map <C-q>           <cmd>copen<cr>
+map <C-q>
+" Override keymaps from `vim-qf` plugin
+map <M-n>       <Plug>(qf_loc_next)
+map <M-p>       <Plug>(qf_loc_previous)
+map <C-n>       <Plug>(qf_qf_next)
+map <C-p>       <Plug>(qf_qf_previous)
 
 nmap gs         <Plug>(GitGutterStageHunk)
 nmap gu         <Plug>(GitGutterUndoHunk)

@@ -74,10 +74,10 @@ let g:sexp_mappings = {
     \ 'sexp_convolute':                 '<localleader>c',
     \ 'sexp_raise_list':                '<localleader>O',
     \ 'sexp_raise_element':             '<localleader>o',
-    \ 'sexp_swap_list_backward':        '<M-Up>',
-    \ 'sexp_swap_list_forward':         '<M-Down>',
-    \ 'sexp_swap_element_backward':     '<M-Left>',
-    \ 'sexp_swap_element_forward':      '<M-Right>',
+    \ 'sexp_swap_list_backward':        '<M-S-k>',
+    \ 'sexp_swap_list_forward':         '<M-S-j>',
+    \ 'sexp_swap_element_backward':     '<M-S-h>',
+    \ 'sexp_swap_element_forward':      '<M-S-l>',
     \ 'sexp_emit_head_element':         '><',
     \ 'sexp_emit_tail_element':         '<>',
     \ 'sexp_capture_prev_element':      '<<',
@@ -119,6 +119,11 @@ nmap <buffer> <localleader>wwi    <Plug>(sexp_round_head_wrap_list)a
 nmap <buffer> <localleader>wwa    <Plug>(sexp_round_tail_wrap_list)i
 
 nmap <buffer> <localleader>D    yaf%pi<cr><esc>
+
+imap <buffer> <silent> <M-S-k>    <esc><Plug>(sexp_swap_list_backward)
+imap <buffer> <silent> <M-S-j>    <esc><Plug>(sexp_swap_list_forward)
+imap <buffer> <silent> <M-S-h>    <esc><Plug>(sexp_swap_element_backward)
+imap <buffer> <silent> <M-S-l>    <esc><Plug>(sexp_swap_element_forward)
 
 """ Iced mappings & configs {{{1
 
