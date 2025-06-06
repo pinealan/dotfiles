@@ -1,6 +1,6 @@
 set editor-line-number = yes
 set line-graphics = default
-set main-view = line-number:no id:no date:relative-compact author:no commit-title:yes,graph=v2,refs,overflow=yes
+set main-view = line-number:no id:no date:default author:no commit-title:yes,graph=v2,refs,overflow=yes
 set mouse = yes
 set show-changes = no
 set refresh-interval = 1
