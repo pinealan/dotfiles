@@ -183,8 +183,8 @@ nmap <silent> <M-j>   <C-w>j
 nmap <silent> <M-k>   <C-w>k
 nmap <silent> <M-l>   <C-w>l
 
-nmap <silent> -     <cmd>call Underline('-')<cr>
-nmap <silent> =     <cmd>call Underline('=')<cr>
+"nmap <silent> -     <cmd>call Underline('-')<cr>
+"nmap <silent> =     <cmd>call Underline('=')<cr>
 
 " Scroll
 noremap <silent> <M-d>   5<C-e>
@@ -304,8 +304,6 @@ let g:leader_map['e'] = "Edit file in current directory"
 let g:leader_map['l'] = "LSP: Open diagnostics in floating window"
 let g:leader_map['H'] = 'LSP: Signature Help'
 let g:leader_map['R'] = 'LSP: Rename symbol '
-let g:leader_map['['] = "LSP: Goto prev diagnostic"
-let g:leader_map[']'] = "LSP: Goto next diagnostic"
 let g:leader_map['ca'] = "LSP: code action"
 
 let g:leader_map['b'] = {

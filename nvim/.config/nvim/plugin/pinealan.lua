@@ -58,14 +58,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
         bufnmap('gi', vim.lsp.buf.implementation)
         bufnmap('gr', vim.lsp.buf.references)
         bufnmap('gD', vim.lsp.buf.declaration)
-        bufnmap('go', vim.lsp.buf.type_definition)
+        bufnmap('gt', vim.lsp.buf.type_definition)
 
         bufnmap('<leader>H', vim.lsp.buf.signature_help)
         bufnmap('<leader>R', vim.lsp.buf.rename)
         bufnmap('<leader>ca', vim.lsp.buf.code_action)
         bufnmap('<leader>l', vim.diagnostic.open_float)
-        bufnmap('<leader>[', function() vim.diagnostic.jump({count=-1, float=true}) end)
-        bufnmap('<leader>]', function() vim.diagnostic.jump({count=1, float=true}) end)
+        bufnmap('<M-[>', function() vim.diagnostic.jump({count=-1, float=true}) end)
+        bufnmap('<M-]>', function() vim.diagnostic.jump({count=1, float=true}) end)
     end
 });
 
