@@ -196,6 +196,22 @@ noremap <silent> <M-e>   5<C-y>
 " Posix shell / EMACS motions in edit mode
 imap <M-f>      <esc>gEWWi
 imap <M-b>      <esc>gEBi
+imap <M-'>      <esc>ysiw'
+imap <M-">      <esc>ysiw"
+imap <M-(>      <esc>ysiw)
+imap <M-[>      <esc>ysiw]
+imap <M-{>      <esc>ysiw}
+
+nmap <M-'>      ysiw'
+nmap <M-">      ysiw"
+nmap <M-(>      ysiw)
+nmap <M-[>      ysiw]
+nmap <M-{>      ysiw}
+
+nmap <M-/>      gcc
+vmap <M-/>      gc
+imap <M-/>      <esc>gcc`^a
+
 imap <C-a>      <esc>0i
 imap <C-e>      <esc>$a
 imap <C-k>      <esc>C
