@@ -144,8 +144,8 @@ noremap <buffer>    <M-B> B
 noremap <buffer>    <M-e> e
 noremap <buffer>    <M-E> E
 
-nmap <buffer> <localleader>'     :IcedConnect<cr>
-nmap <buffer> <localleader>rr    :IcedRequire<cr>
+nmap <buffer> <localleader>'     <cmd>IcedConnect<cr>
+nmap <buffer> <localleader>rr    <cmd>IcedRequire<cr><cmd>w<cr>
 nmap <buffer> <localleader>ew    m`<Plug>(iced_eval)<Plug>(sexp_inner_element)g``
 nmap <buffer> <localleader>ef    m`<Plug>(iced_eval)<Plug>(sexp_outer_list)g``
 nmap <buffer> <localleader>ee    m`<Plug>(iced_eval_outer_top_list)g``
