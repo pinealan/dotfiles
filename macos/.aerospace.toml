@@ -12,10 +12,10 @@ after-startup-command = [
     # ctrl-alt is used for rectangle
 
     # navigate
-    cmd-ctrl-h = 'focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-    cmd-ctrl-j = 'focus down --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-    cmd-ctrl-k = 'focus up --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-    cmd-ctrl-l = 'focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+    cmd-ctrl-h = 'focus left --boundaries all-monitors-outer-frame'
+    cmd-ctrl-j = 'focus down --boundaries all-monitors-outer-frame'
+    cmd-ctrl-k = 'focus up --boundaries all-monitors-outer-frame'
+    cmd-ctrl-l = 'focus right --boundaries all-monitors-outer-frame'
 
     # move window
     cmd-ctrl-shift-h = 'move left'
