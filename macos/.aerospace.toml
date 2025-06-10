@@ -29,10 +29,10 @@ after-startup-command = [
     cmd-ctrl-shift-o = 'join-with right'
 
     # resize
-    cmd-ctrl-minus = 'resize smart -80'
-    cmd-ctrl-equal = 'resize smart +80'
-    cmd-ctrl-shift-minus = 'resize smart-opposite -80'
-    cmd-ctrl-shift-equal = 'resize smart-opposite +80'
+    cmd-ctrl-minus = 'resize smart -200'
+    cmd-ctrl-equal = 'resize smart +200'
+    cmd-ctrl-shift-minus = 'resize smart-opposite -50'
+    cmd-ctrl-shift-equal = 'resize smart-opposite +50'
     cmd-ctrl-enter = 'fullscreen'
     cmd-ctrl-slash = 'layout accordion tiles'
     cmd-ctrl-c = 'layout floating tiling'
