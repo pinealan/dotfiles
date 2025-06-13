@@ -190,6 +190,8 @@ nmap <silent> <M-l>   <C-w>l
 noremap <silent> <M-d>   5<C-e>
 noremap <silent> <M-e>   5<C-y>
 
+nnoremap <silent> , '
+
 " }}}
 "" Editing {{{3
 
@@ -205,7 +207,6 @@ imap <M-{>      <esc>ysiw}
 nmap <M-'>      ysiw'
 nmap <M-">      ysiw"
 nmap <M-(>      ysiw)
-nmap <M-[>      ysiw]
 nmap <M-{>      ysiw}
 
 nmap <M-/>      gcc
@@ -267,7 +268,7 @@ nmap <leader>fl     <cmd>Telescope lsp_document_symbols<cr>
 nmap <leader>f*     <cmd>Telescope grep_string<cr>
 
 " git
-nmap <leader>ga     :Gwrite<cr>
+nmap <leader>ga     <cmd>Gwrite<cr>
 " Gwrite is effectively git add
 nmap <leader>gb     <cmd>Git blame<cr>
 nmap <leader>gc     <cmd>Git commit<cr>
