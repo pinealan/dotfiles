@@ -305,24 +305,24 @@ let g:which_key_disable_default_offset = 1
 let g:leader_map = {}
 
 " defined by vimrc
-let g:leader_map["'"] = "Split vertical"
-let g:leader_map['"'] = "Split horizontal"
-let g:leader_map['d'] = "Unload buffer"
-let g:leader_map["h"] = "Toggle highlight search"
-let g:leader_map['q'] = "Quit window"
-let g:leader_map['<Tab>'] = "Goto alternate buffer"
+let g:leader_map["'"] = 'Split vertical'
+let g:leader_map['"'] = 'Split horizontal'
+let g:leader_map['d'] = 'Unload buffer'
+let g:leader_map['e'] = 'Edit file in current directory'
+let g:leader_map['h'] = 'Toggle highlight search'
+let g:leader_map['q'] = 'Quit window'
+let g:leader_map['<Tab>'] = 'Goto alternate buffer'
 
 " defined by nvim
-let g:leader_map['c'] = "Show highlight group"
-let g:leader_map["p"] = "Toggle paste mode"
-let g:leader_map['r'] = "Replace word with register"
-let g:leader_map['v'] = "Edit vimrc"
-let g:leader_map['e'] = "Edit file in current directory"
+let g:leader_map['c'] = 'Show highlight group'
+let g:leader_map['p'] = 'Toggle paste mode'
+let g:leader_map['r'] = 'Replace word with register'
+let g:leader_map['v'] = 'Edit vimrc'
 
-let g:leader_map['D'] = "LSP: Open diagnostics in floating window"
+let g:leader_map['D'] = 'LSP: Open diagnostics in floating window'
 let g:leader_map['H'] = 'LSP: Signature Help'
 let g:leader_map['R'] = 'LSP: Rename symbol '
-let g:leader_map['A'] = "LSP: code action"
+let g:leader_map['A'] = 'LSP: code action'
 
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
