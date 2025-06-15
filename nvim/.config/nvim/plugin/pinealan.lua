@@ -236,15 +236,20 @@ telescope.load_extension('fzf')
 
 require("autoclose").setup({
     options = {
-        disable_when_touch = true
+        disable_when_touch = true,
+        disable_command_mode = true,
     },
     keys = {
         ["'"] = {
-            escape = true, close = true, pair = "''",
+            escape = true,
+            close = true,
+            pair = "''",
             disabled_filetypes = {'clojure'}
         },
         ["`"] = {
-            escape = true, close = true, pair = "``",
+            escape = true,
+            close = true,
+            pair = "``",
             disabled_filetypes = {'clojure'}
         },
     }
