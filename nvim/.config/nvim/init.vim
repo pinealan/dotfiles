@@ -260,8 +260,8 @@ nmap <leader>fc     <cmd>Telescope command_history<cr>
 nmap <leader>fe     <cmd>Telescope buffers<cr>
 nmap <leader>ff     <cmd>lua require('pinealan').project_files()<cr>
 nmap <leader>fF     <cmd>Telescope find_files<cr>
-nmap <leader>fg     <cmd>Telescope git_commits<cr>
-nmap <leader>fh     <cmd>Telescope git_bcommits<cr>
+"nmap <leader>fg     <cmd>Telescope git_commits<cr>
+"nmap <leader>fh     <cmd>Telescope git_bcommits<cr>
 nmap <leader>fm     <cmd>Telescope marks<cr>
 nmap <leader>fs     <cmd>Telescope live_grep<cr>
 nmap <leader>fl     <cmd>Telescope lsp_document_symbols<cr>
