@@ -163,73 +163,73 @@ nmap <buffer> <localleader>EF    m`<Plug>(iced_eval_and_print)<Plug>(sexp_outer_
 nmap <buffer> <localleader>EE    m`<Plug>(iced_eval_outer_top_list)g``:IcedPrintLast<cr>
 nmap <buffer> <localleader>ER    m`<Plug>(iced_eval_and_replace)<Plug>(sexp_outer_list)g``
 
-nmap <buffer> <localleader>eq    :IcedInterrupt<cr>
-xmap <localleader>ee    :IcedEvalVisual<cr>
+nmap <buffer> <localleader>eq       <cmd>IcedInterrupt<cr>
+xmap <localleader>ee                <cmd>IcedEvalVisual<cr>
 
-nmap <buffer> <localleader>l     :IcedPrintLast<cr>
+nmap <buffer> <localleader>l        <cmd>IcedPrintLast<cr>
 
 " docs
-nmap <buffer> <localleader>hc    :IcedClojureDocsOpen<cr>
-nmap <buffer> <localleader>hd    :IcedDocumentOpen<cr>
-nmap <buffer> <localleader>hq    :IcedDocumentClose<cr>
-nmap <buffer> <localleader>hs    :IcedSourceShow<cr>
+nmap <buffer> <localleader>hc       <cmd>IcedClojureDocsOpen<cr>
+nmap <buffer> <localleader>hd       <cmd>IcedDocumentOpen<cr>
+nmap <buffer> <localleader>hq       <cmd>IcedDocumentClose<cr>
+nmap <buffer> <localleader>hs       <cmd>IcedSourceShow<cr>
 " Alias for open/close doc
-nmap <buffer> <localleader>d     :IcedDocumentOpen<cr>
-nmap <buffer> <localleader>q     :IcedDocumentClose<cr>
+nmap <buffer> <localleader>d        <cmd>IcedDocumentOpen<cr>
+nmap <buffer> <localleader>q        <cmd>IcedDocumentClose<cr>
 
-nmap <buffer> <localleader>jd    :IcedDefJump .<cr>
-nmap <buffer> <localleader>jl    :IcedJumpToLet<cr>
+nmap <buffer> <localleader>jd       <cmd>IcedDefJump .<cr>
+nmap <buffer> <localleader>jl       <cmd>IcedJumpToLet<cr>
 
 " tap
-nmap <buffer> <localleader>tb    :IcedBrowseTapped
-nmap <buffer> <localLeader>tc    :IcedClearTapped<cr>
-nmap <buffer> <localleader>td    :IcedDeleteTapped<cr>
+nmap <buffer> <localleader>tb       <cmd>IcedBrowseTapped
+nmap <buffer> <localLeader>tc       <cmd>IcedClearTapped<cr>
+nmap <buffer> <localleader>td       <cmd>IcedDeleteTapped<cr>
 
 " test
-nmap <buffer> <localleader>tt    :IcedTestUnderCursor<cr>
-nmap <buffer> <localLeader>tn    :IcedTestNs<cr>
-nmap <buffer> <localleader>tr    :IcedTestRedo<cr>
-nmap <buffer> <localLeader>tl    :IcedTestRerunLast<cr>
+nmap <buffer> <localleader>tt       <cmd>IcedTestUnderCursor<cr>
+nmap <buffer> <localLeader>tn       <cmd>IcedTestNs<cr>
+nmap <buffer> <localleader>tr       <cmd>IcedTestRedo<cr>
+nmap <buffer> <localLeader>tl       <cmd>IcedTestRerunLast<cr>
 
-nmap <buffer> <localLeader>ss    :IcedCljsRepl (figwheel.main.api/repl-env "dev")
-nmap <buffer> <localLeader>sc    :IcedCycleSession<cr>
-nmap <buffer> <localLeader>sq    :IcedQuitCljsRepl<cr>
+nmap <buffer> <localLeader>ss       :IcedCljsRepl (figwheel.main.api/repl-env "dev")
+nmap <buffer> <localLeader>sc       <cmd>IcedCycleSession<cr>
+nmap <buffer> <localLeader>sq       <cmd>IcedQuitCljsRepl<cr>
 
-nmap <buffer> <localLeader>sp    i)()<esc>x2<Plug>(sexp_flow_to_prev_close)J%lywh%a<cr><esc>p
-nmap <buffer> <localLeader>si    i)()<esc>x
+nmap <buffer> <localLeader>sp       i)()<esc>x2<Plug>(sexp_flow_to_prev_close)J%lywh%a<cr><esc>p
+nmap <buffer> <localLeader>si       i)()<esc>x
 
 " refactor
-nmap <buffer> <localleader>ra    :IcedAddArity<cr>
-nmap <buffer> <localLeader>rc    :IcedCleanNs<cr>
-nmap <buffer> <localLeader>ri    :IcedAddMissing<cr>
-nmap <buffer> <localLeader>rn    :IcedAddNs<cr>
-nmap <buffer> <localLeader>rs    :IcedRenameSymbol<cr>
+nmap <buffer> <localleader>ra       <cmd>IcedAddArity<cr>
+nmap <buffer> <localLeader>rc       <cmd>IcedCleanNs<cr>
+nmap <buffer> <localLeader>ri       <cmd>IcedAddMissing<cr>
+nmap <buffer> <localLeader>rn       <cmd>IcedAddNs<cr>
+nmap <buffer> <localLeader>rs       <cmd>IcedRenameSymbol<cr>
 
-nmap <buffer> <localleader>re    :IcedExtractFunction<cr>
-nmap <buffer> <localleader>rm    :IcedMoveToLet<cr>
+nmap <buffer> <localleader>re       <cmd>IcedExtractFunction<cr>
+nmap <buffer> <localleader>rm       <cmd>IcedMoveToLet<cr>
 
-nmap <buffer> <localleader>rf    :IcedThreadFirst<cr>
-nmap <buffer> <localleader>rl    :IcedThreadLast<cr>
+nmap <buffer> <localleader>rf       <cmd>IcedThreadFirst<cr>
+nmap <buffer> <localleader>rl       <cmd>IcedThreadLast<cr>
 
 " iced buffer
-nmap <buffer> <localleader>bb    :IcedStdoutBufferOpen<cr>
-nmap <buffer> <localleader>bc    :IcedStdoutBufferClear<cr>
-nmap <buffer> <localleader>be    :IcedEval *e<cr>:IcedPrintLast<cr>
-nmap <buffer> <localleader>bl    :IcedPrintLast<cr>
-nmap <buffer> <localleader>bq    :IcedStdoutBufferClose<cr>
-nmap <buffer> <localleader>bt    :IcedTestBufferOpen<cr>
+nmap <buffer> <localleader>bb       <cmd>IcedStdoutBufferOpen<cr>
+nmap <buffer> <localleader>bc       <cmd>IcedStdoutBufferClear<cr>
+nmap <buffer> <localleader>be       <cmd>IcedEval *e<cr>:IcedPrintLast<cr>
+nmap <buffer> <localleader>bl       <cmd>IcedPrintLast<cr>
+nmap <buffer> <localleader>bq       <cmd>IcedStdoutBufferClose<cr>
+nmap <buffer> <localleader>bt       <cmd>IcedTestBufferOpen<cr>
 
 " lookup usage
-nmap <buffer> <localleader>bd    :IcedBrowseDependencies<cr>
-nmap <buffer> <localleader>br    :IcedBrowseReferences<cr>
+nmap <buffer> <localleader>bd       <cmd>IcedBrowseDependencies<cr>
+nmap <buffer> <localleader>br       <cmd>IcedBrowseReferences<cr>
 
-nmap <buffer> <localleader>vc    :IcedEval {:vlaaad.reveal/command '(clear-output)}<cr>
+nmap <buffer> <localleader>vc       <cmd>IcedEval {:vlaaad.reveal/command '(clear-output)}<cr>
 
-nmap <buffer> <localleader>==    :IcedFormat<cr>
-nmap <buffer> <localleader>=G    :IcedFormatAll<cr>
+nmap <buffer> <localleader>==       <cmd>IcedFormat<cr>
+nmap <buffer> <localleader>=G       <cmd>IcedFormatAll<cr>
 
-nmap <buffer> <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
-nmap <buffer> <localleader>m     :lmake<cr>
+nmap <buffer> <localleader><Tab>    :edit <C-R>=AltSrcTestPath()<cr><cr>
+nmap <buffer> <localleader>m        <cmd>lmake<cr>
 
 """ WhichKey {{{1
 
@@ -341,8 +341,8 @@ let g:localleader_map['W'] = {
 let g:localleader_map['<Tab>'] = "Goto corresponding src/test file"
 
 call which_key#register("'", "g:localleader_map")
-nnoremap <buffer> <silent> <localleader>     :WhichKey "'"<CR>
-vnoremap <buffer> <silent> <localleader>     :WhichKeyVisual "'"<CR>
+nnoremap <buffer> <silent> <localleader>     <cmd>WhichKey "'"<CR>
+vnoremap <buffer> <silent> <localleader>     <cmd>WhichKeyVisual "'"<CR>
 
 let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"'}
 
