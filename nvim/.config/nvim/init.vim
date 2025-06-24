@@ -311,7 +311,7 @@ nmap <leader>ga     <cmd>Gwrite<cr>
 nmap <leader>gb     <cmd>Git blame<cr>
 nmap <leader>gc     <cmd>Git commit<cr>
 nmap <leader>gd     <cmd>Git diff<cr>
-nmap <leader>gg     <cmd>vert Git<cr>60<c-w>\|
+nmap <leader>gg     <cmd>Git<cr>
 " }}}
 
 " toggles {{{3
