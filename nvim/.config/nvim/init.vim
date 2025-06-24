@@ -24,6 +24,7 @@ Plug 'kana/vim-textobj-user'
 " Git Gutter {{{2
 let g:gitgutter_map_keys = 0
 let g:gitgutter_preview_win_floating = 1
+let g:gitgutter_signs = 0
 " }}}
 " Schlepp {{{2
 let g:Schlepp#allowSquishingLines = 0
@@ -74,6 +75,24 @@ call plug#end()
 source ~/.vim/vimrc
 set termguicolors
 set completeopt=menu,menuone,noinsert,noselect
+
+" Extend statusline function
+function! GitStatus()
+    let [a, m, r] = GitGutterGetHunkSummary()
+    return printf('(+%d ~%d -%d)', a, m, r)
+endfunction
+
+function! MyStatusLine()
+    " [Flags] <File name> (git stats)
+    " ~gap~
+    " [File type] Row,Column | Percent down file
+    return join([
+        \' %q%w%r%m%{HasPaste()}',
+        \'%f %{GitStatus()}',
+        \'%=',
+        \'%y %l,%-2c |%3p%% '
+        \], '')
+endfunction
 
 set laststatus=3
 set numberwidth=2
@@ -254,6 +273,11 @@ nmap g[         <Plug>(GitGutterPrevHunk)
 nmap g]         <Plug>(GitGutterNextHunk)
 nmap gp         <Plug>(GitGutterPreviewHunk)
 
+omap ih         <Plug>(GitGutterTextObjectInnerPending)
+omap ah         <Plug>(GitGutterTextObjectOuterPending)
+xmap ih         <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah         <Plug>(GitGutterTextObjectOuterVisual)
+
 " Leader key mapping {{{2
 
 nmap <leader>c      <cmd>Inspect<cr>
@@ -287,7 +311,7 @@ nmap <leader>gg     <cmd>vert Git<cr>60<c-w>\|
 
 " toggles
 nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })<cr>
-nmap <silent> <leader>tg    <cmd>GitGutterToggle<cr>
+nmap <silent> <leader>tg    <cmd>GitGutterSignsToggle<cr>
 nmap <silent> <leader>tj    <cmd>call ToggleFastEsc()<cr>
 nmap <silent> <leader>tp    <cmd>setlocal paste!<cr>
 nmap <silent> <leader>tr    <cmd>call rainbow_delimiters#toggle(0)<cr>
