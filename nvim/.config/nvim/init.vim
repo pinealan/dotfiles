@@ -75,6 +75,11 @@ source ~/.vim/vimrc
 set termguicolors
 set completeopt=menu,menuone,noinsert,noselect
 
+set laststatus=3
+set numberwidth=2
+set signcolumn=auto:2
+set updatetime=100
+
 "===[ Functions ]=== {{{
 
 function! EnableFastEsc()
