@@ -26,6 +26,7 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_preview_win_floating = 1
 let g:gitgutter_signs = 0
 " }}}
+
 " Schlepp {{{2
 let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlock = 0
@@ -179,7 +180,7 @@ command! LightMode
 
 cnoremap %% <C-R>=substitute(expand('%:h').'/', '^\./', '', '')<cr>
 
-"" Motions {{{3
+" Motions {{{3
 
 " Swap undo
 noremap    U   <C-r>
@@ -207,11 +208,6 @@ nmap <silent> <M-j>   <C-w>j
 nmap <silent> <M-k>   <C-w>k
 nmap <silent> <M-l>   <C-w>l
 
-nmap <silent> <M-H>   <C-w>>
-nmap <silent> <M-J>   <C-w>-
-nmap <silent> <M-K>   <C-w>+
-nmap <silent> <M-L>   <C-w><
-
 "nmap <silent> -     <cmd>call Underline('-')<cr>
 "nmap <silent> =     <cmd>call Underline('=')<cr>
 
@@ -222,7 +218,8 @@ noremap <silent> <M-e>   5<C-y>
 nnoremap <silent> , '
 
 " }}}
-"" Editing {{{3
+
+" Editing {{{3
 
 " Posix shell / EMACS motions in edit mode
 imap <M-f>      <esc>gEWWi
@@ -251,13 +248,14 @@ vmap <down>     <Plug>SchleppDown
 vmap <left>     <Plug>SchleppLeft
 vmap <right>    <Plug>SchleppRight
 
-"}}}
+" }}}
 
-" File management
+" File management {{{3
 map <C-s>           <cmd>update<cr>
 map <C-r>           <cmd>edit<cr>
+" }}}
 
-"" Quickfix
+" Quickfix {{{3
 map <C-S-q>         <cmd>cclose<cr>
 map <C-q>           <cmd>copen<cr>
 map <C-q>
@@ -266,7 +264,9 @@ map <M-n>       <Plug>(qf_loc_next)
 map <M-p>       <Plug>(qf_loc_previous)
 map <C-n>       <Plug>(qf_qf_next)
 map <C-p>       <Plug>(qf_qf_previous)
+" }}}
 
+" GitGutter {{{3
 nmap gs         <Plug>(GitGutterStageHunk)
 nmap gu         <Plug>(GitGutterUndoHunk)
 nmap g[         <Plug>(GitGutterPrevHunk)
@@ -277,6 +277,9 @@ omap ih         <Plug>(GitGutterTextObjectInnerPending)
 omap ah         <Plug>(GitGutterTextObjectOuterPending)
 xmap ih         <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah         <Plug>(GitGutterTextObjectOuterVisual)
+" }}}
+
+" }}}
 
 " Leader key mapping {{{2
 
@@ -288,7 +291,7 @@ nmap <leader>bc     <cmd>%bd \| e#<cr>
 nmap <leader>bd     <cmd>bd<cr>
 nmap <leader>bn     <cmd>vnew<cr>
 
-" fuzzy find (with telescope)
+" fuzzy find (with telescope) {{{3
 nmap <leader>fC     <cmd>Telescope commands<cr>
 nmap <leader>fc     <cmd>Telescope command_history<cr>
 nmap <leader>fe     <cmd>Telescope buffers<cr>
@@ -300,16 +303,18 @@ nmap <leader>fm     <cmd>Telescope marks<cr>
 nmap <leader>fs     <cmd>Telescope live_grep<cr>
 nmap <leader>fl     <cmd>Telescope lsp_document_symbols<cr>
 nmap <leader>f*     <cmd>Telescope grep_string<cr>
+" }}}
 
-" git
+" git {{{3
 nmap <leader>ga     <cmd>Gwrite<cr>
 " Gwrite is effectively git add
 nmap <leader>gb     <cmd>Git blame<cr>
 nmap <leader>gc     <cmd>Git commit<cr>
 nmap <leader>gd     <cmd>Git diff<cr>
 nmap <leader>gg     <cmd>vert Git<cr>60<c-w>\|
+" }}}
 
-" toggles
+" toggles {{{3
 nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })<cr>
 nmap <silent> <leader>tg    <cmd>GitGutterSignsToggle<cr>
 nmap <silent> <leader>tj    <cmd>call ToggleFastEsc()<cr>
@@ -317,13 +322,15 @@ nmap <silent> <leader>tp    <cmd>setlocal paste!<cr>
 nmap <silent> <leader>tr    <cmd>call rainbow_delimiters#toggle(0)<cr>
 nmap <silent> <leader>ts    <cmd>setlocal spell!<cr>
 nmap <silent> <leader>tw    <cmd>setlocal wrap!<cr>
+" }}}
 
-" editing
+" editing {{{3
 nmap <leader>r      "_dwP
 nmap <leader>xt     <cmd>Tabularize /
 nmap <leader>xx     <cmd>s/ \+/\r/g<cr>
+" }}}
 
-" windows
+" windows {{{3
 nmap <leader>w=     <C-w>=
 nmap <leader>wo     <cmd>tab sp<cr>
 nmap <leader>wt     <C-w>T
@@ -331,8 +338,9 @@ nmap <leader>ww     <cmd>w<cr>
 
 nmap <leader>xr     <cmd>so $MYVIMRC<cr>
 nmap <leader>xv     <cmd>tabnew $MYVIMRC<cr>
+" }}}
 
-" vim-which-key setup {{{2
+" vim-which-key setup {{{3
 
 let g:which_key_disable_default_offset = 1
 
@@ -423,6 +431,8 @@ let g:leader_map['x'] = {
 call which_key#register(' ', "g:leader_map")
 nnoremap <silent> <leader>  <cmd>WhichKey '<space>'<cr>
 vnoremap <silent> <leader>  <cmd>WhichKeyVisual '<space>'<cr>
+
+" }}}
 
 " }}}
 
