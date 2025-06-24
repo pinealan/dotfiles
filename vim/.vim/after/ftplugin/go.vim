@@ -1,1 +1,1 @@
-set noexpandtab
+setl noexpandtab

@@ -1,2 +1,2 @@
-set norelativenumber
-set nobuflisted
+setl norelativenumber
+setl nobuflisted
