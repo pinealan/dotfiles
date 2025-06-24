@@ -6,7 +6,7 @@ vim.lsp.config('*', {
 
 vim.lsp.config('postgres_lsp', {
     filetypes = {
-        'sql', 'psql',
+        'sql', 'pgsql',
     },
 })
 
@@ -42,7 +42,10 @@ vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('bashls')
 vim.lsp.enable('vimls')
-vim.lsp.enable('lua_ls');
+
+vim.lsp.enable('postgres_lsp')
+vim.lsp.enable('tailwindcss')
+vim.lsp.enable('lua_ls')
 
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
