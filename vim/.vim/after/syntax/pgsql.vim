@@ -1,10 +1,9 @@
 syntax case ignore
 
-syntax keyword sqlTable    table
-syntax keyword sqlView     view
+" The naming is hacky because vim-polygot pgsql was bad at making an extensible highlighting scheme
 
-syntax case match
+syntax keyword sqlIdentifier    primary key unique constraint check contained
+syntax keyword sqlType          table
+syntax keyword sqlConstant      view
 
 hi link sqlIsFunction   Function
-hi link sqlTable        Type
-hi link sqlView         Macro
