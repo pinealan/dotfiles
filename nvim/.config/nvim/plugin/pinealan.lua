@@ -297,7 +297,7 @@ end, {})
 
 if vim.g.neovide then
     vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
-    vim.g.neovide_hide_mouse_when_typing = true
+    --vim.g.neovide_hide_mouse_when_typing = true
     vim.g.neovide_scale_factor = 1.05
 
     -- Reduce animations
