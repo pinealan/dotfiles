@@ -188,6 +188,11 @@ nmap <silent> <M-j>   <C-w>j
 nmap <silent> <M-k>   <C-w>k
 nmap <silent> <M-l>   <C-w>l
 
+nmap <silent> <M-H>   <C-w>>
+nmap <silent> <M-J>   <C-w>-
+nmap <silent> <M-K>   <C-w>+
+nmap <silent> <M-L>   <C-w><
+
 "nmap <silent> -     <cmd>call Underline('-')<cr>
 "nmap <silent> =     <cmd>call Underline('=')<cr>
 
