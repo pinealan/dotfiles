@@ -94,7 +94,7 @@ function! MyStatusLine()
         \], '')
 endfunction
 
-set laststatus=3
+set laststatus=2
 set numberwidth=2
 set signcolumn=auto:2
 set updatetime=100
