@@ -203,7 +203,11 @@ iabbrev caes        case
 iabbrev retrun      return
 iabbrev retrnu      return
 iabbrev retunr      return
-
+iabbrev reutrn      return
+iabbrev loalc       local
+iabbrev loacl       local
+iabbrev lcaol       local
+iabbrev lcoal       local
 " }}}
 
 "===[ Generic highlights ]=== {{{
