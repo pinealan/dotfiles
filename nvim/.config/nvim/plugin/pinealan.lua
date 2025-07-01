@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         bufnmap('K', vim.lsp.buf.hover)
         bufnmap('gd', vim.lsp.buf.definition)
-        bufnmap('g<c-d>', function() vim.cmd('tab sp'); vim.lsp.buf.definition() end)
+        bufnmap('g<C-d>', function() vim.cmd('tab sp'); vim.lsp.buf.definition() end)
         bufnmap('gi', vim.lsp.buf.implementation)
         bufnmap('gr', vim.lsp.buf.references)
         bufnmap('gD', vim.lsp.buf.declaration)
@@ -102,6 +102,27 @@ local cmp_buffer_source = {
     },
 }
 
+local cmp_insert_mapping = {
+    ['<C-n>'] = { i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), },
+    ['<C-p>'] = { i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), },
+    ['<C-e>'] = { i = cmp.mapping.abort() },
+    ['<C-y>'] = { i = cmp.mapping.confirm({ select = true })},
+    ['<cr>']  = { i = cmp.mapping.confirm({ select = true })},
+
+    ['<M-k>'] = { i = cmp.mapping.open_docs() },
+    ['<M-K>'] = { i = cmp.mapping.close_docs() },
+    ['<C-d>'] = { i = cmp.mapping.scroll_docs(4) },
+    ['<C-u>'] = { i = cmp.mapping.scroll_docs(-4) },
+}
+
+local cmp_cmdline_mapping = {
+    ['<C-n>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), },
+    ['<C-p>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), },
+    ['<C-e>'] = { c = cmp.mapping.abort() },
+    ['<C-y>'] = { c = cmp.mapping.confirm()},
+    ['<cr>']  = { c = cmp.mapping.confirm()},
+}
+
 cmp.setup({
     completion = {
         keyword_pattern = [[\k\+]],
@@ -133,25 +154,9 @@ cmp.setup({
         },
         cmp_buffer_source,
     },
-    mapping = {
-        ['<Tab>'] = { i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), },
-        ['<S-Tab>'] = { i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), },
-        ['<cr>']  = { i = cmp.mapping.confirm()},
-        ['<esc>'] = { i = cmp.mapping.abort() },
-        ['<M-k>'] = { i = cmp.mapping.open_docs() },
-        ['<M-K>'] = { i = cmp.mapping.close_docs() },
-        ['<C-d>'] = { i = cmp.mapping.scroll_docs(4) },
-        ['<C-u>'] = { i = cmp.mapping.scroll_docs(-4) },
-    },
+    mapping = cmp_insert_mapping,
     preselect = cmp.PreselectMode.None,
 })
-
-local cmp_cmdline_mapping = {
-    ['<C-n>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), },
-    ['<C-p>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), },
-    ['<cr>']  = { c = cmp.mapping.confirm()},
-    ['<esc>'] = { c = cmp.mapping.abort() },
-}
 
 cmp.setup.cmdline({'/', '?'}, {
     completion = {
@@ -259,6 +264,8 @@ telescope.setup({
         mappings = {
             i = {
                 ['<esc>'] = actions.close,
+                ['<up>'] = nil,
+                ['<down>'] = nil,
             },
         },
         layout_strategy = 'flex',
