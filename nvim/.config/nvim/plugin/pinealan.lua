@@ -87,6 +87,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 require('my_snippets').register_cmp_source()
 local cmp = require('cmp')
+local cmp_menu_name = {
+    snp = '[SNIP]',
+    nvim_lsp = '[LSP]',
+    buffer = '[BUF]',
+    cmdline = '[CMD]',
+    path = '[PATH]',
+}
+local cmp_buffer_source = {
+    name = 'buffer',
+    keyword_pattern = [[\k\+]],
+    option = {
+        keyword_pattern = [[\k\+]],
+    },
+}
 
 cmp.setup({
     completion = {
@@ -95,11 +109,7 @@ cmp.setup({
     },
     formatting = {
         format = function (cmp_entry, vim_item)
-            vim_item.menu = ({
-                snp = '[SNIP]',
-                nvim_lsp = '[LSP]',
-                buffer = '[BUF]',
-            })[cmp_entry.source.name] or cmp_entry.source.name
+            vim_item.menu = cmp_menu_name[cmp_entry.source.name] or cmp_entry.source.name
             return vim_item
         end,
     },
@@ -121,29 +131,53 @@ cmp.setup({
                 keyword_pattern = [[\k\+]],
             },
         },
-        {
-            name = 'buffer',
-            keyword_pattern = [[\k\+]],
-            option = {
-                keyword_pattern = [[\k\+]],
-            },
-        },
+        cmp_buffer_source,
     },
     mapping = {
-        ['<Tab>'] = cmp.mapping({
-            i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        }),
-        ['<S-Tab>'] = cmp.mapping({
-            i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        }),
-        ['<cr>']  = cmp.mapping(cmp.mapping.confirm({ select = true}), {'i'}),
-        ['<esc>'] = cmp.mapping(cmp.mapping.abort(), {'i'}),
-        ['<M-k>'] = cmp.mapping(cmp.mapping.open_docs(), {'i'}),
-        ['<M-K>'] = cmp.mapping(cmp.mapping.close_docs(), {'i'}),
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i'}),
-        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i'}),
+        ['<Tab>'] = { i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), },
+        ['<S-Tab>'] = { i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), },
+        ['<cr>']  = { i = cmp.mapping.confirm()},
+        ['<esc>'] = { i = cmp.mapping.abort() },
+        ['<M-k>'] = { i = cmp.mapping.open_docs() },
+        ['<M-K>'] = { i = cmp.mapping.close_docs() },
+        ['<C-d>'] = { i = cmp.mapping.scroll_docs(4) },
+        ['<C-u>'] = { i = cmp.mapping.scroll_docs(-4) },
     },
     preselect = cmp.PreselectMode.None,
+})
+
+local cmp_cmdline_mapping = {
+    ['<C-n>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), },
+    ['<C-p>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), },
+    ['<cr>']  = { c = cmp.mapping.confirm()},
+    ['<esc>'] = { c = cmp.mapping.abort() },
+}
+
+cmp.setup.cmdline({'/', '?'}, {
+    completion = {
+        keyword_length = 2,
+    },
+    sources = {
+        cmp_buffer_source,
+    },
+    mapping = cmp_cmdline_mapping,
+    preselect = cmp.PreselectMode.None,
+})
+
+cmp.setup.cmdline(':', {
+    completion = {
+        keyword_length = 1,
+    },
+    sources = {
+      { name = 'path' },
+      { name = 'cmdline' },
+    },
+    mapping = cmp_cmdline_mapping,
+    matching = { disallow_symbol_nonprefix_matching = false },
+    preselect = cmp.PreselectMode.None,
+    view = {
+        entries = { selection_order = 'near_cursor' }
+    }
 })
 
 vim.api.nvim_set_hl(0, 'CmpItemKindClass', { link = 'Type' })
