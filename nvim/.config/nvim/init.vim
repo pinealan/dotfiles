@@ -60,6 +60,7 @@ Plug 'mfussenegger/nvim-jdtls'
 
 Plug 'guns/vim-sexp'
 Plug '~/src/vim-iced', { 'for': 'clojure' }
+Plug '~/lab/callisto'
 
 Plug 'sheerun/vim-polyglot'
 
