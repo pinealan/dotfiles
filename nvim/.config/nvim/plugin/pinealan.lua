@@ -58,6 +58,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         bufnmap('K', vim.lsp.buf.hover)
         bufnmap('gd', vim.lsp.buf.definition)
+        bufnmap('g<c-d>', function() vim.cmd('tab sp'); vim.lsp.buf.definition() end)
         bufnmap('gi', vim.lsp.buf.implementation)
         bufnmap('gr', vim.lsp.buf.references)
         bufnmap('gD', vim.lsp.buf.declaration)
