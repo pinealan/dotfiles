@@ -118,12 +118,22 @@ cmp.setup({
             },
         },
     },
-    mapping = cmp.mapping.preset.insert({
-        ['<tab>']   = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ['<S-tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ['<cr>']    = cmp.mapping.confirm { select = true },
-        ['<esc>']   = cmp.mapping.abort(),
-    }),
+    mapping = {
+        ['<Tab>'] = cmp.mapping(
+            cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+            { 'i', 'c' }
+        ),
+        ['<S-Tab>'] = cmp.mapping(
+            cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+            { 'i', 'c' }
+        ),
+        ['<cr>']  = cmp.mapping(cmp.mapping.confirm({ select = true}), {'i', 'c'}),
+        ['<esc>'] = cmp.mapping(cmp.mapping.abort(), {'i', 'c'}),
+        ['<M-k>'] = cmp.mapping(cmp.mapping.open_docs(), {'i', 'c'}),
+        ['<M-K>'] = cmp.mapping(cmp.mapping.close_docs(), {'i', 'c'}),
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
+        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
+    },
     preselect = cmp.PreselectMode.None,
 })
 
@@ -138,7 +148,7 @@ vim.api.nvim_set_hl(0, 'CmpItemKindFile', { link = 'String' })
 
 --[[ Snippet ]]
 
-vim.keymap.set({ 'i', 's' }, '<C-j>', function()
+vim.keymap.set({ 'i', 's' }, '<C-n>', function()
     if vim.snippet.active({ direction = 1 }) then
         vim.snippet.jump(1)
     else
@@ -146,7 +156,7 @@ vim.keymap.set({ 'i', 's' }, '<C-j>', function()
     end
 end, { silent = true })
 
-vim.keymap.set({ 'i', 's' }, '<C-k>', function()
+vim.keymap.set({ 'i', 's' }, '<C-p>', function()
     if vim.snippet.active({ direction = -1 }) then
         vim.snippet.jump(-1)
     end
