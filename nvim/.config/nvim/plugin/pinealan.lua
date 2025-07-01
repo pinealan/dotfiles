@@ -130,20 +130,18 @@ cmp.setup({
         },
     },
     mapping = {
-        ['<Tab>'] = cmp.mapping(
-            cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-            { 'i', 'c' }
-        ),
-        ['<S-Tab>'] = cmp.mapping(
-            cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-            { 'i', 'c' }
-        ),
-        ['<cr>']  = cmp.mapping(cmp.mapping.confirm({ select = true}), {'i', 'c'}),
-        ['<esc>'] = cmp.mapping(cmp.mapping.abort(), {'i', 'c'}),
-        ['<M-k>'] = cmp.mapping(cmp.mapping.open_docs(), {'i', 'c'}),
-        ['<M-K>'] = cmp.mapping(cmp.mapping.close_docs(), {'i', 'c'}),
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
-        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
+        ['<Tab>'] = cmp.mapping({
+            i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        }),
+        ['<S-Tab>'] = cmp.mapping({
+            i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        }),
+        ['<cr>']  = cmp.mapping(cmp.mapping.confirm({ select = true}), {'i'}),
+        ['<esc>'] = cmp.mapping(cmp.mapping.abort(), {'i'}),
+        ['<M-k>'] = cmp.mapping(cmp.mapping.open_docs(), {'i'}),
+        ['<M-K>'] = cmp.mapping(cmp.mapping.close_docs(), {'i'}),
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i'}),
+        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i'}),
     },
     preselect = cmp.PreselectMode.None,
 })
