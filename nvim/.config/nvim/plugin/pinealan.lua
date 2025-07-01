@@ -10,6 +10,16 @@ vim.lsp.config('postgres_lsp', {
     },
 })
 
+vim.lsp.config('pyright', {
+    root_markers = {
+        'pyproject.toml',
+        'setup.py',
+        'setup.cfg',
+        'Pipfile',
+        'pyrightconfig.json',
+    }
+})
+
 vim.lsp.config('tailwindcss', {
     filetypes = {
         'clojure', 'html', 'css', 'javascriptreact', 'typescriptreact',
