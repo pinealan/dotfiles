@@ -160,20 +160,17 @@ cmp.setup({
 })
 
 cmp.setup.cmdline({'/', '?'}, {
-    completion = {
-        keyword_length = 2,
-    },
+    completion = { keyword_length = 2, },
     sources = {
         cmp_buffer_source,
     },
     mapping = cmp_cmdline_mapping,
     preselect = cmp.PreselectMode.None,
+    view = { entries = { selection_order = 'near_cursor' } },
 })
 
 cmp.setup.cmdline(':', {
-    completion = {
-        keyword_length = 1,
-    },
+    completion = { keyword_length = 1, },
     sources = {
       { name = 'path' },
       { name = 'cmdline' },
@@ -181,9 +178,7 @@ cmp.setup.cmdline(':', {
     mapping = cmp_cmdline_mapping,
     matching = { disallow_symbol_nonprefix_matching = false },
     preselect = cmp.PreselectMode.None,
-    view = {
-        entries = { selection_order = 'near_cursor' }
-    }
+    view = { entries = { selection_order = 'near_cursor' } },
 })
 
 vim.api.nvim_set_hl(0, 'CmpItemKindClass', { link = 'Type' })
