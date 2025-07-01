@@ -152,6 +152,7 @@ cmp.setup({
                 keyword_pattern = [[\k\+]],
             },
         },
+        { name = 'nvim_lsp_signature_help' },
         cmp_buffer_source,
     },
     mapping = cmp_insert_mapping,
