@@ -270,7 +270,7 @@ require("autoclose").setup({
             escape = true,
             close = true,
             pair = "''",
-            disabled_filetypes = {'clojure'}
+            disabled_filetypes = {'clojure', 'markdown'}
         },
         ["`"] = {
             escape = true,
