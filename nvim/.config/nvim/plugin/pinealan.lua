@@ -106,26 +106,28 @@ local cmp_buffer_source = {
         keyword_pattern = [[\k\+]],
     },
 }
-
-local cmp_insert_mapping = {
-    ['<C-n>'] = { i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), },
-    ['<C-p>'] = { i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), },
-    ['<C-e>'] = { i = cmp.mapping.abort() },
-    ['<C-y>'] = { i = cmp.mapping.confirm({ select = true })},
-    ['<cr>']  = { i = cmp.mapping.confirm({ select = true })},
+local cmp_mapping = {
+    ['<C-n>'] = cmp.mapping(
+        cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        { 'i', 'c' }
+    ),
+    ['<C-p>'] = cmp.mapping(
+        cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        { 'i', 'c' }
+    ),
+    ['<C-e>'] = cmp.mapping(
+        cmp.mapping.abort(),
+        { 'i', 'c' }
+    ),
+    ['<C-y>'] = {
+        i = cmp.mapping.confirm({ select = true }),
+        c = cmp.mapping.confirm(),
+    },
 
     ['<M-k>'] = { i = cmp.mapping.open_docs() },
     ['<M-K>'] = { i = cmp.mapping.close_docs() },
     ['<C-d>'] = { i = cmp.mapping.scroll_docs(4) },
     ['<C-u>'] = { i = cmp.mapping.scroll_docs(-4) },
-}
-
-local cmp_cmdline_mapping = {
-    ['<C-n>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), },
-    ['<C-p>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), },
-    ['<C-e>'] = { c = cmp.mapping.abort() },
-    ['<C-y>'] = { c = cmp.mapping.confirm()},
-    ['<cr>']  = { c = cmp.mapping.confirm()},
 }
 
 cmp.setup({
@@ -160,7 +162,7 @@ cmp.setup({
         { name = 'nvim_lsp_signature_help' },
         cmp_buffer_source,
     },
-    mapping = cmp_insert_mapping,
+    mapping = cmp_mapping,
     preselect = cmp.PreselectMode.None,
 })
 
@@ -169,21 +171,18 @@ cmp.setup.cmdline({'/', '?'}, {
     sources = {
         cmp_buffer_source,
     },
-    mapping = cmp_cmdline_mapping,
     preselect = cmp.PreselectMode.None,
-    view = { entries = { selection_order = 'near_cursor' } },
+    view = { entries = 'wildmenu' },
 })
 
 cmp.setup.cmdline(':', {
-    completion = { keyword_length = 1, },
+    completion = { keyword_length = 2, },
     sources = {
       { name = 'path' },
       { name = 'cmdline' },
     },
-    mapping = cmp_cmdline_mapping,
     matching = { disallow_symbol_nonprefix_matching = false },
     preselect = cmp.PreselectMode.None,
-    view = { entries = { selection_order = 'near_cursor' } },
 })
 
 vim.api.nvim_set_hl(0, 'CmpItemKindClass', { link = 'Type' })
