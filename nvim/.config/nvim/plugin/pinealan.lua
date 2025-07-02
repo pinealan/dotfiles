@@ -86,6 +86,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 --[[ Autocompletion ]]
 
 require('my_snippets').register_cmp_source()
+
+-- Disable builtin cmdline-completion
+vim.o.wildmenu = false
+vim.o.wildchar = 0
+
 local cmp = require('cmp')
 local cmp_menu_name = {
     snp = '[SNIP]',
