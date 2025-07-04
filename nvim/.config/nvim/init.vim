@@ -180,6 +180,7 @@ command! LightMode
 " Top level mapping {{{2
 
 cnoremap %% <C-R>=substitute(expand('%:h').'/', '^\./', '', '')<cr>
+cnoremap @@ \(.*\)
 
 " Motions {{{3
 
@@ -326,6 +327,7 @@ nmap <silent> <leader>tw    <cmd>setlocal wrap!<cr>
 " }}}
 
 " editing {{{3
+map <leader>S       :s/
 nmap <leader>r      "_dwP
 nmap <leader>xt     <cmd>Tabularize /
 nmap <leader>xx     <cmd>s/ \+/\r/g<cr>
