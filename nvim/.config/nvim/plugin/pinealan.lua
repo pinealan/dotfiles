@@ -124,6 +124,9 @@ local cmp_mapping = {
         c = cmp.mapping.confirm(),
     },
 
+    ['<tab>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
+    ['<S-tab>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
+
     ['<M-k>'] = { i = cmp.mapping.open_docs() },
     ['<M-K>'] = { i = cmp.mapping.close_docs() },
     ['<C-d>'] = { i = cmp.mapping.scroll_docs(4) },
