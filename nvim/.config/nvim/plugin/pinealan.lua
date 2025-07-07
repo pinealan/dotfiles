@@ -273,7 +273,7 @@ telescope.setup({
             flip_columns = 120,
             vertical = {
                 preview_cutoff = 40,
-                preview_height = 0.75,
+                preview_height = 0.7,
             },
             horizontal = {
                 width = 170,
