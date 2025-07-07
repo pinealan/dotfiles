@@ -177,11 +177,12 @@ cmp.setup.cmdline({'/', '?'}, {
 
 cmp.setup.cmdline(':', {
     completion = { keyword_length = 2, },
-    sources = {
+    sources = cmp.config.sources({
       { name = 'path', option = { trailing_slash = true } },
+    }, {
       { name = 'cmdline' },
-    },
-    matching = { disallow_symbol_nonprefix_matching = false },
+      cmp_buffer_source,
+    }),
     preselect = cmp.PreselectMode.None,
 })
 
