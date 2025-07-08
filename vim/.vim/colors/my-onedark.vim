@@ -46,16 +46,19 @@ let s:carrot        = { "x24": "#d7875f", "x8": "173" } " HSL 20° 60% 61%
 let s:blue          = { "x24": "#61afef", "x8": "75" }  " HSL 207° 82% 66%
 let s:purple        = { "x24": "#c678dd", "x8": "170" } " HSL 286° 60% 67%
 let s:transparent   = { "x24": "NONE",    "x8": "NONE" }
+let s:black         = { "x24": "#000000", "x8": "232" }
 
 " Semantic colors
 let s:content0      = { "x24": "#dfdfdf", "x8": "253" }
 let s:content1      = { "x24": "#a9a9a9", "x8": "246" }
 let s:content2      = { "x24": "#828282", "x8": "241" }
 let s:content_inv   = { "x24": "#555555", "x8": "237" }
+
+let s:background_2  = { "x24": "#444444", "x8": "237" }
+let s:background_1  = { "x24": "#383838", "x8": "237" }
 let s:background0   = { "x24": "#28292c", "x8": "235" }
-let s:background1   = { "x24": "#3f3f3f", "x8": "237" }
-let s:background2   = { "x24": "#222222", "x8": "234" }
-let s:_black        = { "x24": "#000000", "x8": "232" }
+let s:background1   = { "x24": "#222222", "x8": "234" }
+let s:background2   = s:black
 
 let s:docstring     = s:teagreen
 let s:string        = s:teagreen
@@ -112,18 +115,18 @@ call s:h("Todo",            { "fg": s:content1 })
 
 " [ Default Highlighting Groups (:h highlight-groups) ] {{{
 "
-call s:h("ColorColumn",     { "bg": s:background2 })
+call s:h("ColorColumn",     { "bg": s:background1 })
 call s:h("Conceal",         {})
-call s:h("Cursor",          { "fg": s:_black, "bg": s:blue })
+call s:h("Cursor",          { "fg": s:black, "bg": s:blue })
 call s:h("CursorIM",        {})
-call s:h("CursorColumn",    { "bg": s:background2 })
-call s:h("CursorLine",      { "bg": s:background2 })
+call s:h("CursorColumn",    { "bg": s:background1 })
+call s:h("CursorLine",      { "bg": s:background1 })
 call s:h("Directory",       { "fg": s:blue })
 
-call s:h("DiffAdd",         { "bg": s:green, "fg": s:_black })
-call s:h("DiffChange",      { "bg": s:gold, "fg": s:_black })
-call s:h("DiffDelete",      { "bg": s:pink, "fg": s:_black })
-call s:h("DiffText",        { "bg": s:_black, "fg": s:gold })
+call s:h("DiffAdd",         { "bg": s:green, "fg": s:black })
+call s:h("DiffChange",      { "bg": s:gold, "fg": s:black })
+call s:h("DiffDelete",      { "bg": s:pink, "fg": s:black })
+call s:h("DiffText",        { "bg": s:black, "fg": s:gold })
 
 call s:h("ErrorMsg",        { "fg": s:pink })
 call s:h("VertSplit",       { "fg": s:content2 })
@@ -139,14 +142,14 @@ call s:h("MoreMsg",         {})
 call s:h("NonText",         { "fg": s:content2 })
 call s:h("Normal",          { "fg": s:content0, "bg": s:background0 })
 
-call s:h("Pmenu",           { "bg": s:background1 })
-call s:h("PmenuSel",        { "bg": s:blue, "fg": s:_black })
+call s:h("Pmenu",           { "bg": s:background_2 })
+call s:h("PmenuSel",        { "bg": s:blue, "fg": s:black })
 call s:h("PmenuSbar",       { "bg": s:content0 })
 call s:h("PmenuThumb",      { "bg": s:content0 })
 
 call s:h("Question",        { "fg": s:purple })
-call s:h("Search",          { "fg": s:_black, "bg": s:yellow })
-call s:h("QuickFixLine",    { "bg": s:_black })
+call s:h("QuickFixLine",    { "bg": s:background2 })
+call s:h("Search",          { "fg": s:black, "bg": s:yellow })
 call s:h("SpecialKey",      { "fg": s:content1 })
 
 call s:h("SpellBad",        { "fg": s:symbol , "gui": "underline", "cterm": "underline" })
@@ -154,19 +157,19 @@ call s:h("SpellCap",        { "fg": s:carrot })
 call s:h("SpellLocal",      { "fg": s:carrot })
 call s:h("SpellRare",       { "fg": s:carrot })
 
-call s:h("StatusLine",      { "bg": s:background1, "fg": s:content0 })
-call s:h("StatusLineGit",   { "bg": s:content2, "fg": s:_black })
-call s:h("StatusLineNC",    { "bg": s:_black, "fg": s:content2 })
+call s:h("StatusLine",      { "bg": s:background_1, "fg": s:content0 })
+call s:h("StatusLineGit",   { "bg": s:content2, "fg": s:black })
+call s:h("StatusLineNC",    { "bg": s:background2, "fg": s:content2 })
 
 call s:h("TabLine",         { "fg": s:content1 })
 call s:h("TabLineFill",     { "fg": s:content1 })
 call s:h("TabLineSel",      { "fg": s:content0 })
 
 call s:h("Title",           { "fg": s:symbol })
-call s:h("Visual",          { "bg": s:background1 })
+call s:h("Visual",          { "bg": s:background_2 })
 call s:h("VisualNOS",       { "bg": s:background0 })
 call s:h("WarningMsg",      { "fg": s:gold })
-call s:h("WildMenu",        { "fg": s:_black, "bg": s:blue })
+call s:h("WildMenu",        { "fg": s:black, "bg": s:blue })
 " }}}
 
 " [ Python ] {{{
@@ -221,9 +224,9 @@ call s:h("diffAdded",               { "fg": s:teagreen })
 call s:h("diffRemoved",             { "fg": s:pink })
 
 " RRethy/vim-illuminate
-call s:h("IlluminatedWordText",     { "bg": s:background1, "gui": "underline" })
-call s:h("IlluminatedWordRead",     { "bg": s:background1, "gui": "underline" })
-call s:h("IlluminatedWordWrite",    { "bg": s:background1, "gui": "italic" })
+call s:h("IlluminatedWordText",     { "bg": s:background_2, "gui": "underline" })
+call s:h("IlluminatedWordRead",     { "bg": s:background_2, "gui": "underline" })
+call s:h("IlluminatedWordWrite",    { "bg": s:background_2, "gui": "italic" })
 " }}}
 
 " [ Neovim terminal colors ] {{{
