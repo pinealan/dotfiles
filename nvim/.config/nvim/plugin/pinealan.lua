@@ -184,12 +184,22 @@ cmp.setup.cmdline({'/', '?'}, {
 })
 
 cmp.setup.cmdline(':', {
-    completion = { keyword_length = 2, },
     sources = cmp.config.sources({
-      { name = 'path', option = { trailing_slash = true } },
+        {
+            name = 'async_path',
+            option = {
+                show_hidden_files_by_default = true
+            },
+        }
     }, {
-      { name = 'cmdline' },
-      cmp_buffer_source,
+        {
+            name = 'cmdline',
+            keyword_length = 1,
+            option = {
+                ignore_cmds = { "Man", "!", "edit", "write" }
+            }
+        },
+        cmp_buffer_source,
     }),
     preselect = cmp.PreselectMode.None,
 })
