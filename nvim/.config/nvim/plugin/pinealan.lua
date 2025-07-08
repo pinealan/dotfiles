@@ -124,8 +124,13 @@ local cmp_mapping = {
         c = cmp.mapping.confirm(),
     },
 
+    -- Aliases
     ['<tab>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
     ['<S-tab>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
+    ['<C-k>'] = {
+        i = cmp.mapping.confirm({ select = true }),
+        c = cmp.mapping.confirm(),
+    },
 
     ['<M-k>'] = { i = cmp.mapping.open_docs() },
     ['<M-K>'] = { i = cmp.mapping.close_docs() },
@@ -200,7 +205,7 @@ vim.api.nvim_set_hl(0, 'CmpItemKindFile', { link = 'String' })
 
 --[[ Snippet ]]
 
-vim.keymap.set({ 'i', 's' }, '<C-n>', function()
+vim.keymap.set({ 'i', 's' }, '<C-h>', function()
     if vim.snippet.active({ direction = 1 }) then
         vim.snippet.jump(1)
     else
@@ -208,7 +213,7 @@ vim.keymap.set({ 'i', 's' }, '<C-n>', function()
     end
 end, { silent = true })
 
-vim.keymap.set({ 'i', 's' }, '<C-p>', function()
+vim.keymap.set({ 'i', 's' }, '<C-l>', function()
     if vim.snippet.active({ direction = -1 }) then
         vim.snippet.jump(-1)
     end

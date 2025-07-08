@@ -243,7 +243,6 @@ imap <M-/>      <esc>gcc`^a
 
 imap <C-a>      <esc>0i
 imap <C-e>      <esc>$a
-imap <C-k>      <esc>C
 
 vmap <up>       <Plug>SchleppUp
 vmap <down>     <Plug>SchleppDown
