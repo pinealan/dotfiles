@@ -249,12 +249,13 @@ vmap <up>       <Plug>SchleppUp
 vmap <down>     <Plug>SchleppDown
 vmap <left>     <Plug>SchleppLeft
 vmap <right>    <Plug>SchleppRight
-
 " }}}
 
-" File management {{{3
+" Buffer/File management {{{3
 map <C-s>           <cmd>update<cr>
 map <C-r>           <cmd>edit<cr>
+" To complement the builtin <C-w>n which maps to :new
+map <C-w>N          <cmd>vnew<cr>
 " }}}
 
 " Quickfix {{{3
