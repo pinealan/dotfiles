@@ -97,7 +97,7 @@ local cmp_menu_name = {
     nvim_lsp = '[LSP]',
     buffer = '[BUF]',
     cmdline = '[CMD]',
-    path = '[PATH]',
+    async_path = '[PATH]',
 }
 local cmp_buffer_source = {
     name = 'buffer',
