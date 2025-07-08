@@ -14,9 +14,10 @@ local snippets_by_filetype = {
     clojure = {
         { trigger = 'css', body = '{:class "${1}"} ' },
         { trigger = 'attr', body = '{:${1} "${2}"}' },
-        { trigger = 'comment', body = '(comment\n  $0)' },
+        { trigger = '(comment', body = '(comment\n  $0)' },
         { trigger = 'const-def', body = '(def ^:const $1 $2)' },
         { trigger = ':keys-destruct', body = '{:keys [$2]}${1: }' },
+        { trigger = '(try', body = '(try $3 (catch ${1:Exception} ${2:e} $4)) ' },
     },
     python = {
         { trigger = 'def', body = 'def $1($2) -> $3:\n$0' },
