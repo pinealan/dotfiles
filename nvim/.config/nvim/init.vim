@@ -180,9 +180,6 @@ command! LightMode
 
 " Top level mapping {{{2
 
-cnoremap %% <C-R>=substitute(expand('%:h').'/', '^\./', '', '')<cr>
-cnoremap @@ \(.*\)
-
 " Motions {{{3
 
 " Swap undo
@@ -224,9 +221,13 @@ nnoremap <silent> , '
 
 " Editing {{{3
 
-" Posix shell / EMACS motions in edit mode
-imap <M-f>      <esc>gEWWi
-imap <M-b>      <esc>gEBi
+" Emacs-style motion shortcuts for insert mode
+inoremap <M-f>  <esc>gEWWi
+inoremap <M-b>  <esc>gEBi
+inoremap <C-a>  <esc>0i
+inoremap <C-e>  <esc>$a
+
+" Surround
 imap <M-'>      <esc>ysiw'
 imap <M-">      <esc>ysiw"
 imap <M-(>      <esc>ysiw)
@@ -238,17 +239,23 @@ nmap <M-">      ysiw"
 nmap <M-(>      ysiw)
 nmap <M-{>      ysiw}
 
+" Comments (new in neovim)
 nmap <M-/>      gcc
 vmap <M-/>      gc
 imap <M-/>      <esc>gcc`^a
-
-imap <C-a>      <esc>0i
-imap <C-e>      <esc>$a
 
 vmap <up>       <Plug>SchleppUp
 vmap <down>     <Plug>SchleppDown
 vmap <left>     <Plug>SchleppLeft
 vmap <right>    <Plug>SchleppRight
+" }}}
+
+" Cmdline {{{3
+cnoremap %%     <C-R>=expand('%:h').'/'<cr>
+cnoremap @@     \(.*\)
+cnoremap <M-f>  <S-Right>
+cnoremap <M-b>  <S-Left>
+cnoremap <C-a>  <C-b>
 " }}}
 
 " Buffer/File management {{{3
