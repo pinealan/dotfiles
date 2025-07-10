@@ -75,9 +75,16 @@ call plug#end()
 
 " }}}
 
+"===[ Load and override vimrc ]=== {{{
+
 source ~/.vim/vimrc
 set termguicolors
 set completeopt=menu,menuone,noinsert,noselect
+
+set laststatus=2
+set numberwidth=2
+set signcolumn=auto:2
+set updatetime=100
 
 " Extend statusline function
 function! GitStatus()
@@ -85,6 +92,7 @@ function! GitStatus()
     return printf('(+%d ~%d -%d)', a, m, r)
 endfunction
 
+" Override statusline function defined in vimrc
 function! MyStatusLine()
     " [Flags] <File name> (git stats)
     " ~gap~
@@ -97,10 +105,7 @@ function! MyStatusLine()
         \], '')
 endfunction
 
-set laststatus=2
-set numberwidth=2
-set signcolumn=auto:2
-set updatetime=100
+" }}}
 
 "===[ Functions ]=== {{{
 
