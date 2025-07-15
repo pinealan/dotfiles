@@ -256,7 +256,7 @@ vmap <right>    <Plug>SchleppRight
 " }}}
 
 " Cmdline {{{3
-cnoremap %%     <C-R>=expand('%:h').'/'<cr>
+cnoremap %%     <C-R>=substitute(expand('%:h'), '^\(\w\)', './\1', '').'/'<cr>
 cnoremap @@     \(.*\)
 cnoremap <M-f>  <S-Right>
 cnoremap <M-b>  <S-Left>
