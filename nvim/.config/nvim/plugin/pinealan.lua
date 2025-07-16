@@ -413,3 +413,6 @@ if vim.g.neovide then
     vim.keymap.set("n", "<D-+>", function() change_scale_factor(1.1025) end)
     vim.keymap.set("n", "<D-_>", function() change_scale_factor(1/1.1025) end)
 end
+
+vim.opt.title = true
+vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
