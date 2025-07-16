@@ -143,11 +143,13 @@
 	lineNumber = true
 
 [diff]
-	tool = opendiff
+	tool = nvim
 [diff "notebook"]
 	textconv = nbextract
 
 [difftool]
 	prompt = false
+[difftool "nvim"]
+	cmd = "nvim -d $LOCAL $REMOTE"
 [init]
 	defaultBranch = master
