@@ -40,6 +40,9 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'm4xshen/autoclose.nvim'
 
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
+
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-context'
