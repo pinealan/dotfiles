@@ -377,6 +377,8 @@ config_illuminate({'regex'})
 vim.keymap.set('n', '<leader>sr', function() config_illuminate({'regex'}) end, {})
 vim.keymap.set('n', '<leader>sl', function() config_illuminate({ 'lsp', 'regex'}) end, {})
 
+--[[ Neo-tree ]]
+
 require("neo-tree").setup({
     sources = {
         "filesystem",
@@ -450,6 +452,9 @@ require("neo-tree").setup({
 
 vim.keymap.set('n', '<leader>1', ':Neotree filesystem left<cr>', { noremap = true})
 vim.keymap.set('n', '<leader>2', ':Neotree document_symbols right<cr>', { noremap = true})
+
+vim.api.nvim_set_hl(0, '@field', { link = 'Identifier' })
+vim.api.nvim_set_hl(0, '@property', { link = 'Identifier' })
 
 if vim.g.neovide then
     vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
