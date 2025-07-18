@@ -34,7 +34,7 @@ vim.lsp.config('lua_ls', {
             },
             diagnostics = {
                 globals = { 'vim', 'require' },
-                disable = { 'missing-fields' }
+                disable = { 'missing-fields', 'lowercase-global' }
             },
             workspace = {
                 library = vim.api.nvim_get_runtime_file("", true)
