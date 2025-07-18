@@ -486,3 +486,17 @@ end
 
 vim.opt.title = true
 vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+
+function split_string(input, separator)
+    local result = {}
+    for match in string.gmatch(input, "([^" .. separator .. "]+)") do
+        table.insert(result, match)
+    end
+    return result
+end
+
+function show_rtp()
+    for _, s in pairs(split_string(vim.o.rtp, ',')) do
+        print(s)
+    end
+end
