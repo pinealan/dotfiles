@@ -524,10 +524,10 @@ vim.api.nvim_create_autocmd('BufRead', {
             or vim.startswith(ev.file, '~/')
             or vim.startswith(ev.file, '/')
         then
-            vim.api.nvim_buf_set_name(
-                ev.buf,
-                vim.fn.fnamemodify(ev.file, ':~:.')
-            )
+            local canonical_name = vim.fn.fnamemodify(ev.file, ':~:.')
+            if canonical_name ~= ev.file then
+                vim.api.nvim_buf_set_name(ev.buf, canonical_name)
+            end
         end
     end,
 })
