@@ -302,7 +302,7 @@ xmap ah         <Plug>(GitGutterTextObjectOuterVisual)
 " Leader key mapping {{{2
 
 nmap <leader>c      <cmd>Inspect<cr>
-nmap <leader>e      :edit %%
+nmap <leader>e      :edit %%<C-space>
 
 " buffers
 nmap <leader>bc     <cmd>%bd \| e#<cr>
