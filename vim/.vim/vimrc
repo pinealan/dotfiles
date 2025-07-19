@@ -94,18 +94,23 @@ set shellpipe=&>
 
 "===[ Functions ]=== {{{
 
+let g:tabline_path_fullname_depth = 3
+
 function! PathFilename(path)
     let name = split(a:path, '/')
     if len(name) == 0
         return '[no name]'
-    elseif len(name) < 3
+    elseif len(name) <= g:tabline_path_fullname_depth
         return a:path
     else
         let s = ''
-        for i in range(len(name) - 2)
+        for i in range(len(name) - g:tabline_path_fullname_depth)
             let s .= name[i][0] . '/'
         endfor
-        return s . name[-2] . '/' . name[-1]
+        for i in range(len(name) - g:tabline_path_fullname_depth, len(name) - 2)
+            let s .= name[i] . '/'
+        endfor
+        return s .. name[-1]
     endif
 endfunction
 
