@@ -416,12 +416,18 @@ require("neo-tree").setup({
             },
         },
     },
+    window = {
+        mappings = {
+            ["Z"] = "expand_all_nodes",
+            ["="] = "toggle_node",
+        },
+    },
     document_symbols = {
         kinds = {
           Unknown = { icon = "?", hl = "" },
           Root = { icon = "*", hl = "NeoTreeRootName" },
-          File = { icon = "F", hl = "Tag" },
-          Module = { icon = "M", hl = "Exception" },
+          File = { icon = "F", hl = "Identifier" },
+          Module = { icon = "M", hl = "Include" },
           Namespace = { icon = "N", hl = "Include" },
           Package = { icon = "P", hl = "Label" },
           Class = { icon = "C", hl = "Include" },
@@ -437,8 +443,8 @@ require("neo-tree").setup({
           String = { icon = "s", hl = "String" },
           Number = { icon = "n", hl = "Number" },
           Boolean = { icon = "b", hl = "Boolean" },
-          Array = { icon = "A", hl = "Type" },
-          Object = { icon = "O", hl = "Type" },
+          Array = { icon = "A", hl = "Special" },
+          Object = { icon = "O", hl = "Special" },
           Key = { icon = "k", hl = "" },
           Null = { icon = "0", hl = "Constant" },
           EnumMember = { icon = "n", hl = "Number" },
@@ -450,8 +456,8 @@ require("neo-tree").setup({
     }
 })
 
-vim.keymap.set('n', '<leader>1', ':Neotree filesystem left<cr>', { noremap = true})
-vim.keymap.set('n', '<leader>2', ':Neotree document_symbols right<cr>', { noremap = true})
+vim.keymap.set('n', '<M-1>', ':Neotree filesystem left<cr>', { noremap = true})
+vim.keymap.set('n', '<M-2>', ':Neotree document_symbols right<cr>', { noremap = true})
 
 vim.api.nvim_set_hl(0, '@field', { link = 'Identifier' })
 vim.api.nvim_set_hl(0, '@property', { link = 'Identifier' })
