@@ -27,8 +27,8 @@ local snippets_by_filetype = {
         { trigger = 'context', body = 'def __enter__(self):\npassdef __exit__(self):\npass' },
     },
     rust = {
-        { trigger = 'print_debug', body = 'println!("{:?}", $1)' },
-        { trigger = 'pprint_debug', body = 'println!("{:#?}", $1)' },
+        { trigger = 'print_debug', body = 'println!("{:?}", $1);' },
+        { trigger = 'pprint_debug', body = 'println!("{:#?}", $1);' },
         { trigger = ': vec', body = ': Vec<${1:_}>' },
         { trigger = 'lambda', body = '|${1:x}| ${2:x}' },
     }
