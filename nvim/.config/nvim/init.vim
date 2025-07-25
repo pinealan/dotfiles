@@ -102,7 +102,7 @@ function! MyStatusLine()
     " [File type] Row,Column | Percent down file
     return join([
         \' %q%w%r%m%{HasPaste()}',
-        \'%f %{GitStatus()}',
+        \'%{MyBufName()} %{GitStatus()}',
         \'%=',
         \'%y %l,%-2c |%3p%% '
         \], '')

@@ -148,11 +148,15 @@ function! HasPaste()
     return ''
 endfunction
 
+function! MyBufName()
+    return fnamemodify(bufname(), ':~:.')
+endfunction
+
 function! MyStatusLine()
     " [Flags]*File name <gap> [File type] Row,Column | Percent down file
     return join([
         \' %q%w%r%m%{HasPaste()}',
-        \'%f',
+        \'%{MyBufName()}',
         \'%=',
         \'%y %l,%-2c |%3p%% '
         \], '')

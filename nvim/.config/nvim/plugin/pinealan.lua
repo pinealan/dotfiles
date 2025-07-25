@@ -520,23 +520,4 @@ function show_rtp()
 end
 
 -- Normalise buffer names when reading from file
-vim.api.nvim_create_autocmd('BufRead', {
-    group = vim.api.nvim_create_augroup('usr', { clear = false }),
-    pattern = '*',
-    callback = function(ev)
-        -- Only do it when it's not already normalised, cuz when it does rename buffer name, the
-        -- BF_NOTEDITED flag gets set and an overwrite confirmation is required (bad ux)
-        if vim.startswith(ev.file, './')
-            or vim.startswith(ev.file, '~/')
-            or vim.startswith(ev.file, '/')
-        then
-            local canonical_name = vim.fn.fnamemodify(ev.file, ':.')
-            if canonical_name ~= ev.file then
-                print('Renaming file from ' .. ev.file .. ' to ' .. canonical_name)
-                vim.api.nvim_buf_set_name(ev.buf, canonical_name)
-            end
-        end
-    end,
-})
-
 vim.opt.confirm = true
