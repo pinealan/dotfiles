@@ -20,6 +20,16 @@ vim.lsp.config('pyright', {
     }
 })
 
+vim.lsp.config('rust_analyzer', {
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = {
+                features = 'all'
+            },
+        }
+    }
+})
+
 vim.lsp.config('tailwindcss', {
     filetypes = {
         'clojure', 'html', 'css', 'javascriptreact', 'typescriptreact',
