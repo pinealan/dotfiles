@@ -96,6 +96,10 @@ set shellpipe=&>
 
 let g:tabline_path_fullname_depth = 3
 
+function! NormaliseBufName(bufname)
+    return fnamemodify(a:bufname, ':~:.')
+endfunction
+
 function! PathFilename(path)
     let name = split(a:path, '/')
     if len(name) == 0
@@ -118,7 +122,7 @@ function! MyTabLabel(n)
     "let wincount = tabpagewinnr(a:n, '$')
     let winnr = tabpagewinnr(a:n)
     let bufls = tabpagebuflist(a:n)
-    return PathFilename(bufname(bufls[winnr - 1]))
+    return PathFilename(NormaliseBufName(bufname(bufls[winnr - 1])))
 endfunction
 
 function! MyTabLine()
@@ -149,7 +153,7 @@ function! HasPaste()
 endfunction
 
 function! MyBufName()
-    return fnamemodify(bufname(), ':~:.')
+    return NormaliseBufName(bufname())
 endfunction
 
 function! MyStatusLine()
