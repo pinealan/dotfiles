@@ -88,6 +88,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         bufnmap('<leader>R', vim.lsp.buf.rename)
         bufnmap('<leader>A', vim.lsp.buf.code_action)
         bufnmap('<leader>D', vim.diagnostic.open_float)
+        bufnmap('<leader>F', vim.diagnostic.setloclist)
+        bufnmap('<leader>Q', vim.diagnostic.setqflist)
         bufnmap('<M-[>', function() vim.diagnostic.jump({count=-1, float=true}) end)
         bufnmap('<M-]>', function() vim.diagnostic.jump({count=1, float=true}) end)
     end
