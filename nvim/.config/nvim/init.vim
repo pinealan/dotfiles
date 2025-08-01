@@ -382,10 +382,13 @@ let g:leader_map['p'] = 'Toggle paste mode'
 let g:leader_map['r'] = 'Replace word with register'
 let g:leader_map['v'] = 'Edit vimrc'
 
-let g:leader_map['D'] = 'LSP: Open diagnostics in floating window'
-let g:leader_map['H'] = 'LSP: Signature Help'
-let g:leader_map['R'] = 'LSP: Rename symbol '
+" LSP actions
 let g:leader_map['A'] = 'LSP: code action'
+let g:leader_map['D'] = 'LSP: Open diagnostics in floating window'
+let g:leader_map['F'] = 'LSP: Send diagnostics to loclist'
+let g:leader_map['H'] = 'LSP: Signature Help'
+let g:leader_map['Q'] = 'LSP: Send diagnostics to quickfix'
+let g:leader_map['R'] = 'LSP: Rename symbol '
 
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
@@ -424,6 +427,7 @@ let g:leader_map['s'] = {
 
 let g:leader_map['t'] = {
     \ 'name': '+toggle',
+    \ 'c': 'Toggle Treesitter context',
     \ 'd': 'Toggle LSP Diagnostics',
     \ 'g': 'Toggle Git gutter',
     \ 'j': 'Toggle Fast escape (jj)',
