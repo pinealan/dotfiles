@@ -487,3 +487,5 @@ augroup usr
 augroup END
 
 " }}}
+
+highlight! link @variable   Normal
