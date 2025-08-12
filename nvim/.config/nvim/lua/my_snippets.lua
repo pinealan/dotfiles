@@ -7,6 +7,8 @@ local global_snippets = {
     {trigger = 'shebang', body = '#!/bin sh'}
 }
 
+local rust_test_module_snippet = '#[cfg(test)]\nmod tests {\n    use super::*;    \n\n#[test]\nfn test_$1() {$2}}'
+
 local snippets_by_filetype = {
     lua = {
         { trigger = 'function', body = 'function ${1:name}(${2:args}) $0 end' },
@@ -31,6 +33,9 @@ local snippets_by_filetype = {
         { trigger = 'pprint_debug', body = 'println!("{:#?}", $1);' },
         { trigger = ': vec', body = ': Vec<${1:_}>' },
         { trigger = 'lambda', body = '|${1:x}| ${2:x}' },
+        { trigger = 'modtest', body = rust_test_module_snippet },
+        { trigger = 'testmod', body = rust_test_module_snippet },
+        { trigger = 'testfn', body = '#[test]\nfn test_$1()\n{$2}' },
     }
 }
 
