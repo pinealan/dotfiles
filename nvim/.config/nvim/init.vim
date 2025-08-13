@@ -319,6 +319,7 @@ nmap <leader>fF     <cmd>Telescope find_files<cr>
 "nmap <leader>fh     <cmd>Telescope git_bcommits<cr>
 nmap <leader>fk     <cmd>Telescope keymaps<cr>
 nmap <leader>fm     <cmd>Telescope marks<cr>
+nmap <leader>fr     <cmd>Telescope registers<cr>
 nmap <leader>fs     <cmd>Telescope live_grep<cr>
 nmap <leader>fl     <cmd>Telescope lsp_document_symbols<cr>
 nmap <leader>f*     <cmd>Telescope grep_string<cr>
@@ -398,16 +399,19 @@ let g:leader_map['b'] = {
 
 let g:leader_map['f'] = {
     \ 'name': '+fuzzy-find (telescope)',
-    \ 'C': 'Find command',
-    \ 'c': 'Search command history',
-    \ 'e': 'Find buffer',
-    \ 'f': 'Find files tracked by git',
-    \ 'F': 'Find files under working directory',
-    \ 'g': 'List git commits',
-    \ 'h': 'List git history of current buffer',
-    \ 'l': 'Search LSP symbols',
-    \ 's': 'Find string',
-    \ '*': 'Find string under cursor',
+    \ 'C': 'Command',
+    \ 'c': 'Command history',
+    \ 'e': 'Buffer',
+    \ 'f': 'Files tracked by git',
+    \ 'F': 'Files under working directory',
+    \ 'g': 'Git commits',
+    \ 'h': 'Git history of current buffer',
+    \ 'l': 'LSP symbols',
+    \ 'k': 'Keymap',
+    \ 'm': 'Mark',
+    \ 'r': 'Register',
+    \ 's': 'String',
+    \ '*': 'String under cursor',
     \ }
 
 let g:leader_map['g'] = {
