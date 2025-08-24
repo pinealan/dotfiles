@@ -6,7 +6,7 @@ vim.lsp.config('*', {
 
 vim.lsp.config('postgres_lsp', {
     filetypes = {
-        'sql', 'pgsql',
+        'sql', 'psql', 'pgsql',
     },
 })
 
@@ -234,7 +234,7 @@ vim.api.nvim_set_hl(0, 'CmpItemKindFile', { link = 'String' })
 
 --[[ Snippet ]]
 
-vim.keymap.set({ 'i', 's' }, '<C-h>', function()
+vim.keymap.set({ 'i', 's' }, '<M-j>', function()
     if vim.snippet.active({ direction = 1 }) then
         vim.snippet.jump(1)
     else
@@ -242,7 +242,7 @@ vim.keymap.set({ 'i', 's' }, '<C-h>', function()
     end
 end, { silent = true })
 
-vim.keymap.set({ 'i', 's' }, '<C-l>', function()
+vim.keymap.set({ 'i', 's' }, '<M-k>', function()
     if vim.snippet.active({ direction = -1 }) then
         vim.snippet.jump(-1)
     end
