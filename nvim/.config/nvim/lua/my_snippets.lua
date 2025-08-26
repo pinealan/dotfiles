@@ -36,6 +36,9 @@ local snippets_by_filetype = {
         { trigger = 'modtest', body = rust_test_module_snippet },
         { trigger = 'testmod', body = rust_test_module_snippet },
         { trigger = 'testfn', body = '#[test]\nfn test_$1()\n{$2}' },
+        { trigger = 'leterr', body = 'if let Err(e) = ' },
+        { trigger = 'leterr_full', body = 'if let Err(${2:e}) = $1 {\n$3;}' },
+        { trigger = 'letelse', body = 'let Ok($2) = $1 else {\n$3};' },
     },
     pgsql = {
         { trigger = 'create table', body = 'create table if not exists $1 (\n$0);' },
