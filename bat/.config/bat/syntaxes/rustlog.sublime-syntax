@@ -1,72 +1,27 @@
 %YAML 1.2
 ---
-name: Pinelog
+name: Rustlog
 file_extensions:
-  - plog
+  - rlog
 scope: text.log
 variables:
-  date: (?:(?:\b\d{4}-\d{2}-\d{2}\b)|(?:\b\d{4}/\d{2}/\d{2}\b))
+  date: (?:(?:\b\d{4}-\d{2}-\d{2})|(?:\b\d{4}/\d{2}/\d{2}))
   time: (?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)(?:([\.,])\d{3,6})?
   timezone: (?:[\+\-]\d{2}|Z)
   datetime: '{{date}}[T ]{{time}}{{timezone}}?'
-  ns_chars: '[\d\w\.\-_]'
-  sym_chars: '[\d\w\.\-_*=!?><]'
-  symbol: '(?:{{ns_chars}}+/)?{{sym_chars}}+'
+  fs_chars: '[\d\w\-_]'
 
 contexts:
   main:
-    - match: ^(?={{datetime}}|{{date}}|{{time}})
-      push: header
+    - match: ^(?:{{datetime}}|{{date}}|{{time}})
+      scope: constant.other
 
-    - include: datetimes
-
-    - match: '(?<!\w):{{symbol}}\b'
-      scope: entity.name
-
-    - match: \{
-      push: clojure
-
-    - match: '[\w\.]*Exception[\w\.]*'
-      scope: string
-
-    - match: (\S+)\.(\S+)\((\w+\.\w+):(\d+)\)
-      scope: meta.java.stackframe
-      captures:
-        1: string
-        3: entity.name.function
-        4: constant.numeric
-
-  clojure:
-    - include: datetimes
+    - include: log_levels
+    - include: rs_file_path
     - include: strings
 
-    - match: '(?:nil|true|false)'
-      scope: constant.language.clojure
-
-    - match: ':{{symbol}}\b'
-      scope: keyword
-
-    - match: '\W[\-+]?\d+(?:\.(?:\d+)?)?(?:[eEM])?\b'
-      scope: constant.numeric
-
-    - match: \{
-      push: clojure
-
-    - match: \}
-      pop: true
-
-  header:
-    - include: datetimes
-    - include: log_levels
-
-    # logger name
-    - match: (?<=\[).*?(?=\])
-      scope: entity.name
-
-    - match: \]
-      pop: true
-
   log_levels:
+    # log levels
     - match: \b(?i:fail(?:ure|ed)?|error|exception|critical)\b
       scope: markup.bold
 
@@ -81,6 +36,10 @@ contexts:
 
     - match: \b(?i:trace)\b
       scope: markup.ignored.git_gutter
+
+  rs_file_path:
+    - match: '(?:{{fs_chars}}+/)+{{fs_chars}}+\.rs'
+      scope: entity.name
 
   datetimes:
     - match: '{{datetime}}'
