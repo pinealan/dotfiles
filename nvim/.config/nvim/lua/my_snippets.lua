@@ -39,6 +39,9 @@ local snippets_by_filetype = {
         { trigger = 'leterr', body = 'if let Err(e) = ' },
         { trigger = 'leterr_full', body = 'if let Err(${2:e}) = $1 {\n$3;}' },
         { trigger = 'letelse', body = 'let Ok($2) = $1 else {\n$3};' },
+        { trigger = 'matchresult', body = 'match $1 { Ok(${1:_}) => { $2 },\n Err(${3:_}) => { $4 ;} }' },
+        { trigger = 'method', body = 'fn $1(&self${2:, }) -> $3 {\n$0\n}' },
+        { trigger = 'ok_unit', body = 'Ok(())' },
     },
     pgsql = {
         { trigger = 'create table', body = 'create table if not exists $1 (\n$0);' },
