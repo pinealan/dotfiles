@@ -42,6 +42,7 @@ local snippets_by_filetype = {
         { trigger = 'matchresult', body = 'match $1 { Ok(${1:_}) => { $2 },\n Err(${3:_}) => { $4 ;} }' },
         { trigger = 'method', body = 'fn $1(&self${2:, }) -> $3 {\n$0\n}' },
         { trigger = 'ok_unit', body = 'Ok(())' },
+        { trigger = 'turbofish', body = '<_$0>' },
     },
     pgsql = {
         { trigger = 'create table', body = 'create table if not exists $1 (\n$0);' },
