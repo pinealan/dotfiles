@@ -24,4 +24,44 @@ M.project_files = function()
   end
 end
 
+function M.to_camel_case()
+    -- Save cursor position
+    local cursor = vim.fn.getpos(".")
+
+    -- Get current line
+    local line = vim.fn.getline(".")
+
+    -- Replace _x with X
+    line = line:gsub("_(%l)", function(c) return c:upper() end)
+
+    -- First letter lowercase
+    line = line:gsub("^%u", function(c) return c:lower() end)
+
+    -- Set the line
+    vim.fn.setline(".", line)
+
+    -- Restore cursor
+    vim.fn.setpos(".", cursor)
+end
+
+function M.to_snake_case()
+    -- Save cursor position
+    local cursor = vim.fn.getpos(".")
+
+    -- Get current line
+    local line = vim.fn.getline(".")
+
+    -- Replace camelCase with camel_case
+    line = line:gsub("(%l)(%u)", function(l, u) return l .. "_" .. u:lower() end)
+
+    -- Convert any remaining uppercase to lowercase
+    line = line:lower()
+
+    -- Set the line
+    vim.fn.setline(".", line)
+
+    -- Restore cursor
+    vim.fn.setpos(".", cursor)
+end
+
 return M
