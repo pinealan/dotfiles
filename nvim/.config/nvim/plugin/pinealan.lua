@@ -79,12 +79,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
         bufnmap('K', function() vim.lsp.buf.hover({
             max_width = 100, wrap = true, wrap_at = 98
         }) end)
-        bufnmap('gd', vim.lsp.buf.definition)
+        bufnmap('gd', function() vim.lsp.buf.definition({ reuse_win = true }) end)
         bufnmap('g<C-d>', function() vim.cmd('tab sp'); vim.lsp.buf.definition() end)
-        bufnmap('gi', vim.lsp.buf.implementation)
+        bufnmap('gi', function() vim.lsp.buf.implementation({ reuse_win = true }) end)
         bufnmap('gr', vim.lsp.buf.references)
+        bufnmap('gC', vim.lsp.buf.incoming_calls)
         bufnmap('gD', vim.lsp.buf.declaration)
-        bufnmap('gt', vim.lsp.buf.type_definition)
+        bufnmap('gt', function() vim.lsp.buf.type_definition({ reuse_win = true }) end)
 
         bufnmap('<leader>H', vim.lsp.buf.signature_help)
         bufnmap('<leader>R', vim.lsp.buf.rename)
