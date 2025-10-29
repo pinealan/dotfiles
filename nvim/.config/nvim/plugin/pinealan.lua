@@ -46,6 +46,11 @@ vim.lsp.config('lua_ls', {
                 globals = { 'vim', 'require' },
                 disable = { 'missing-fields', 'lowercase-global' }
             },
+            format = {
+                defaultConfig = {
+                    max_line_length = 100,
+                },
+            },
             workspace = {
                 library = vim.api.nvim_get_runtime_file("", true)
             },
@@ -441,6 +446,7 @@ require("neo-tree").setup({
         },
     },
     document_symbols = {
+        follow_cursor = false,
         kinds = {
           Unknown = { icon = "?", hl = "" },
           Root = { icon = "*", hl = "NeoTreeRootName" },
