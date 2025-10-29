@@ -24,6 +24,8 @@ Plug 'kana/vim-textobj-user'
 " Git Gutter {{{2
 let g:gitgutter_map_keys = 0
 let g:gitgutter_preview_win_floating = 1
+" Turn off signs column by default
+let g:gitgutter_signs = 0
 " }}}
 
 " Schlepp {{{2
@@ -77,7 +79,6 @@ let g:rustfmt_autosave = 1
 call plug#end()
 
 " }}}
-
 "===[ Load and override vimrc ]=== {{{
 
 source ~/.vim/vimrc
