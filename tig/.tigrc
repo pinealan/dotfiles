@@ -5,7 +5,7 @@ set mouse = yes
 set show-changes = no
 set refresh-interval = 1
 set refresh-mode = periodic
-set commit-order = date
+set commit-order = topo
 set ignore-case = smart-case
 
 color "---"                     yellow  default
