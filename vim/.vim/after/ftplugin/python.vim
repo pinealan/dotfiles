@@ -1,9 +1,11 @@
 setl cc=89
 setl tw=88
 
-command! -nargs=* PythonGoto YcmCompleter GoTo
+setl foldmethod=manual
 
-set keywordprg=:PythonGoto
+" We have LSP now
+"command! -nargs=* PythonGoto YcmCompleter GoTo
+"set keywordprg=:PythonGoto
 
 function! AltSrcTestPath()
     let head = expand('%:h')

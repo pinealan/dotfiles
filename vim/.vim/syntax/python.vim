@@ -326,6 +326,7 @@ hi def link pythonPunctuation       Special
 hi def link pythonDelimiter         Delimiter
 
 hi link     @module.python          Normal
+hi link     @variable.parameter.python Identifier
 
 " }}}
 
