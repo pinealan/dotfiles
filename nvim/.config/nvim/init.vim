@@ -363,6 +363,14 @@ nmap <leader>xr     <cmd>so $MYVIMRC<cr>
 nmap <leader>xv     <cmd>tabnew $MYVIMRC<cr>
 " }}}
 
+" fold (z) {{{3
+nmap <leader>ze     <cmd>set foldmethod=expr<cr>
+nmap <leader>zi     <cmd>set foldmethod=indent<cr>
+nmap <leader>zm     <cmd>set foldmethod=manual<cr>
+nmap <leader>zr     <cmd>set foldmethod=marker<cr>
+nmap <leader>zz     <cmd>set foldmethod?<cr>
+" }}}
+
 " vim-which-key setup {{{3
 
 let g:which_key_disable_default_offset = 1
