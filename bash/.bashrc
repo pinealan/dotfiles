@@ -73,6 +73,10 @@ stty -ixon
 
 # ----- Source more -----
 
+# Machine local bashrc
+local_bashrc="$HOME/.local/bashrc"
+[ -f $local_bashrc ] && . $local_bashrc
+
 # Execute optional extensions
 local_bash_plugins="$HOME/.local/bash_plugins"
 if [ -d $local_bash_plugins ]; then
@@ -80,7 +84,3 @@ if [ -d $local_bash_plugins ]; then
         [ -f $f ] && . $f
     done
 fi
-
-# Machine local bashrc
-local_bashrc="$HOME/.local/bashrc"
-[ -f $local_bashrc ] && . $local_bashrc

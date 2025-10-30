@@ -84,6 +84,16 @@ export LESS_TERMCAP_ue=$'\e[0m'             # end underline
 export LESS_TERMCAP_so=$'\e[30;48;5;214m'   # standout-mode, dunno what this do
 export LESS_TERMCAP_se=$'\e[0m'             # end standout-mode
 
+dotenv () {
+    local f
+    if [ -f .env ]; then
+        f=.env
+    elif [ -f ~/.env ]; then
+        f=~/.env
+    fi
+    export $(cat $f | sed '/^$/d; s/#.*//g' | xargs)
+}
+
 venv() {
     if [[ -n $1 ]]; then
         . ~/venv/$1/bin/activate
