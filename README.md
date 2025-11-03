@@ -52,6 +52,7 @@ by the [bashgit](#bashgit) plugin that adds a git prompt to bash.
 The following is the complete order in which bash scripts are source. Later
 scripts inherit and can override the environment set up by earlier scripts.
 
+    .bash_profile
     .profile
     .local/profile
     .bashrc
