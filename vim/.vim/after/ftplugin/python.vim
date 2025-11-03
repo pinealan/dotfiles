@@ -125,13 +125,13 @@ nmap <buffer> <localleader>gk        :vimgrep /^ *class/g @%
 nmap <buffer> <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 
 " Mappings for working with percent scripts (jupyter notebook as text)
-nmap <buffer> <localleader>j  ]e
-nmap <buffer> <localleader>k  [e
-
-nmap <buffer> <localleader>a  [ek<cr>i# %%<esc><cr><cr>k
-nmap <buffer> <localleader>b  ]ek<cr>i# %%<esc><cr><cr>k
-nmap <buffer> <localleader>d  dae
-nmap <buffer> <localleader>s  :!jupytext -s %<cr>
+"nmap <buffer> <localleader>j  ]e
+"nmap <buffer> <localleader>k  [e
+"
+"nmap <buffer> <localleader>a  [ek<cr>i# %%<esc><cr><cr>k
+"nmap <buffer> <localleader>b  ]ek<cr>i# %%<esc><cr><cr>k
+"nmap <buffer> <localleader>d  dae
+"nmap <buffer> <localleader>s  :!jupytext -s %<cr>
 
 nmap <buffer> <localleader>ti A # type: ignore<esc>
 
@@ -140,12 +140,12 @@ nmap <buffer> <localleader>ti A # type: ignore<esc>
 
 let g:localleader_map = {}
 
-let g:localleader_map['a'] = 'Create cell above'
-let g:localleader_map['b'] = 'Create cell below'
-let g:localleader_map['d'] = 'Delete cell'
-let g:localleader_map['d'] = 'Sync with notebook'
-let g:localleader_map['j'] = 'Move to next cell'
-let g:localleader_map['k'] = 'Move to previous cell'
+"let g:localleader_map['a'] = 'Create cell above'
+"let g:localleader_map['b'] = 'Create cell below'
+"let g:localleader_map['d'] = 'Delete cell'
+"let g:localleader_map['d'] = 'Sync with notebook'
+"let g:localleader_map['j'] = 'Move to next cell'
+"let g:localleader_map['k'] = 'Move to previous cell'
 
 call which_key#register("'", "g:localleader_map")
 nnoremap <buffer> <silent> <localleader>     :WhichKey "'"<CR>
