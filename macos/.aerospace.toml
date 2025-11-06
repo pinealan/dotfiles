@@ -28,6 +28,12 @@ after-startup-command = [
     cmd-ctrl-shift-i = 'join-with up'
     cmd-ctrl-shift-o = 'join-with right'
 
+    # swap (since 0.19)
+    cmd-ctrl-shift-n = 'swap left'
+    cmd-ctrl-shift-m = 'swap down'
+    cmd-ctrl-shift-comma = 'swap up'
+    cmd-ctrl-shift-period = 'swap right'
+
     # resize
     cmd-ctrl-minus = 'resize smart -200'
     cmd-ctrl-equal = 'resize smart +200'
