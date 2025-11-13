@@ -21,6 +21,27 @@ function! ToggleIcedIdent()
     endif
 endfunction
 
+function! HighlightHiccup()
+    " Tags
+    for tag in [
+        \ 'html', 'header', 'head', 'body', 'nav', 'aside', 'footer', 'main',
+        \ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'p', 'span', 'b', 'i',
+        \ 'li', 'ul', 'ol', 'div', 'section', 'article', 'button', 'input',
+        \ 'select', 'progress'
+    \]
+        call matchadd('Identifier', '\[\zs:' .. tag .. '\ze\s')
+        call matchadd('Identifier', '\[\zs:' .. tag .. '\ze\n')
+    endfor
+
+    " Attrs
+    for attr in ['class', 'href', 'type', 'placeholder']
+        call matchadd('Type', '\[\zs:' .. attr .. '\ze\s')
+        call matchadd('Type', '\[\zs:' .. attr .. '\ze\n')
+    endfor
+endfunction
+
+command! HighlightHiccup call HighlightHiccup()
+
 """ Sexp mappings {{{1
 
 " doing my own mappings because the defaults uses <Leader> or <M-*>
