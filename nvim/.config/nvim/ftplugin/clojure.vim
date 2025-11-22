@@ -35,8 +35,8 @@ function! HighlightHiccup()
 
     " Attrs
     for attr in ['class', 'href', 'type', 'placeholder']
-        call matchadd('Type', '\[\zs:' .. attr .. '\ze\s')
-        call matchadd('Type', '\[\zs:' .. attr .. '\ze\n')
+        call matchadd('Type', '\zs:' .. attr .. '\ze\s')
+        call matchadd('Type', '\zs:' .. attr .. '\ze\n')
     endfor
 endfunction
 
@@ -256,11 +256,13 @@ nmap <buffer> <localleader>m        <cmd>lmake<cr>
 
 let g:localleader_map = {}
 
+let g:localleader_map["'"] = 'Iced connect'
 let g:localleader_map['a'] = 'Sexp insert at tail'
 let g:localleader_map['c'] = 'Sexp convolute'
 let g:localleader_map['d'] = 'Iced document open'
 let g:localleader_map['q'] = 'Iced document close'
 let g:localleader_map['i'] = 'Sexp insert at head'
+let g:localleader_map['m'] = 'Run :lmake'
 let g:localleader_map['l'] = 'Iced print last'
 let g:localleader_map['o'] = 'Sexp raise element'
 let g:localleader_map['D'] = 'Sexp duplicate'
