@@ -217,6 +217,13 @@ cmp.setup.cmdline(':', {
             option = {
                 show_hidden_files_by_default = true
             },
+            entry_filter = function(entry, _ctx)
+                if entry.word == '__pycache__' then
+                    return false
+                else
+                    return true
+                end
+            end,
         }
     }, {
         {

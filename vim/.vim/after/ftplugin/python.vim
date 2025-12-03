@@ -1,7 +1,7 @@
 setl cc=89
 setl tw=88
 
-setl foldmethod=manual
+"setl foldmethod=indent
 
 " We have LSP now
 "command! -nargs=* PythonGoto YcmCompleter GoTo
