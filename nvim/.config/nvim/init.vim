@@ -316,8 +316,8 @@ nmap <leader>fc     <cmd>Telescope command_history<cr>
 nmap <leader>fe     <cmd>Telescope buffers<cr>
 nmap <leader>ff     <cmd>lua require('pinealan').project_files()<cr>
 nmap <leader>fF     <cmd>Telescope find_files<cr>
-"nmap <leader>fg     <cmd>Telescope git_commits<cr>
-"nmap <leader>fh     <cmd>Telescope git_bcommits<cr>
+nmap <leader>fg     <cmd>lua require("telescope.builtin").git_commits({ "git", "log", "--pretty=format:%h %as %s", "--abbrev-commit", "--", "." })<cr>
+nmap <leader>fh     <cmd>lua require("telescope.builtin").git_bcommits({ "git", "log", "--pretty=format:%h %as %s", "--abbrev-commit", "--follow" })<cr>
 nmap <leader>fk     <cmd>Telescope keymaps<cr>
 nmap <leader>fm     <cmd>Telescope marks<cr>
 nmap <leader>fr     <cmd>Telescope registers<cr>
@@ -339,6 +339,7 @@ nmap <leader>gg     <cmd>Git<cr>
 nmap <silent> <leader>tc    <cmd>TSContextToggle<cr>
 nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })<cr>
 nmap <silent> <leader>tg    <cmd>GitGutterSignsToggle<cr>
+nmap <silent> <leader>tj    <cmd>IlluminateToggle<cr>
 nmap <silent> <leader>tj    <cmd>call ToggleFastEsc()<cr>
 nmap <silent> <leader>tp    <cmd>setlocal paste!<cr>
 nmap <silent> <leader>tr    <cmd>call rainbow_delimiters#toggle(0)<cr>
@@ -396,9 +397,7 @@ let g:leader_map['v'] = 'Edit vimrc'
 let g:leader_map['A'] = 'LSP: code action'
 let g:leader_map['D'] = 'LSP: Open diagnostics in floating window'
 let g:leader_map['F'] = 'LSP: Send diagnostics to loclist'
-let g:leader_map['H'] = 'LSP: Signature Help'
 let g:leader_map['Q'] = 'LSP: Send diagnostics to quickfix'
-let g:leader_map['R'] = 'LSP: Rename symbol '
 
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
@@ -443,6 +442,7 @@ let g:leader_map['t'] = {
     \ 'c': 'Toggle Treesitter context',
     \ 'd': 'Toggle LSP Diagnostics',
     \ 'g': 'Toggle Git gutter',
+    \ 'i': 'Toggle Illuminate',
     \ 'j': 'Toggle Fast escape (jj)',
     \ 'p': 'Toggle Paste mode',
     \ 'r': 'Toggle Rainbow parens',

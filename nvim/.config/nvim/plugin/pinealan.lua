@@ -341,19 +341,6 @@ telescope.setup({
 
 telescope.load_extension('fzf')
 
-vim.keymap.set('n', '<leader>fg', function()
-    require("telescope.builtin").git_commits({ git_command = {
-        "git", "log", "--pretty=format:%h %as %s", "--abbrev-commit", "--", "."
-    }})
-end, {})
-
-vim.keymap.set('n', '<leader>fh', function()
-    require("telescope.builtin").git_bcommits({ git_command = {
-        "git", "log", "--pretty=format:%h %as %s", "--abbrev-commit", "--follow"
-    }})
-end, {})
-
-
 --[[ Others ]]
 
 require("autoclose").setup({
