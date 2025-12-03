@@ -42,6 +42,15 @@ endfunction
 
 command! HighlightHiccup call HighlightHiccup()
 
+function! TrimComma()
+    %s/,$//e
+endfunction
+
+augroup usr
+    autocmd BufWrite    *.clj,*.cljc,*.cljs call TrimComma()
+augroup END
+
+
 """ Sexp mappings {{{1
 
 " doing my own mappings because the defaults uses <Leader> or <M-*>
