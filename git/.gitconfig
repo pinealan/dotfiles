@@ -144,6 +144,10 @@
 
 [diff]
 	tool = nvim
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [diff "notebook"]
 	textconv = nbextract
 
@@ -153,3 +157,7 @@
 	cmd = "nvim -d $LOCAL $REMOTE"
 [init]
 	defaultBranch = master
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
