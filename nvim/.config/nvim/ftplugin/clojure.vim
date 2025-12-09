@@ -27,7 +27,7 @@ function! HighlightHiccup()
         \ 'html', 'header', 'head', 'body', 'nav', 'aside', 'footer', 'main',
         \ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'p', 'span', 'b', 'i',
         \ 'li', 'ul', 'ol', 'div', 'section', 'article', 'button', 'input',
-        \ 'select', 'progress'
+        \ 'select', 'progress', 'form', 'img', 'strong', 'label'
     \]
         call matchadd('Identifier', '\[\zs:' .. tag .. '\ze\s')
         call matchadd('Identifier', '\[\zs:' .. tag .. '\ze\n')
@@ -42,8 +42,12 @@ endfunction
 
 command! HighlightHiccup call HighlightHiccup()
 
+let g:clj_trim_comma = 1
+
 function! TrimComma()
-    %s/,$//e
+    if (exists("b:clj_trim_comma") && b:clj_trim_comma != v:false) || g:clj_trim_comma != v:false
+        %s/,$//e
+    endif
 endfunction
 
 augroup usr
