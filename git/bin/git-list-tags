@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for t in `git tag -l | sort -V --reverse`; do
+for t in `git tag -l $@ | sort -V --reverse`; do
     echo "------------------------------------";
-    git cat-file -p `git rev-parse $t`; 
+    git cat-file -p `git rev-parse $t`;
 done;
