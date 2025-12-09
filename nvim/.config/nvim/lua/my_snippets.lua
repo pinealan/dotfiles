@@ -51,6 +51,13 @@ local snippets_by_filetype = {
         { trigger = 'primary key', body = 'primary key' },
         { trigger = 'comment header', body = '----------------------------------------\n-- $1\n----------------------------------------' },
     },
+    gitcommit = {
+        { trigger = 'ui', body = '[UI]' },
+        { trigger = 'ux', body = '[UX]' },
+        { trigger = 'feature', body = '[FT]' },
+        { trigger = 'business logic', body = '[BL]' },
+        { trigger = 'refactor', body = '[RFT]' },
+    }
 }
 
 local function get_buf_snips()
