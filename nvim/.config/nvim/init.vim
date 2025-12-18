@@ -350,7 +350,7 @@ nmap <silent> <leader>tw    <cmd>setlocal wrap!<cr>
 " editing {{{3
 map <leader>S       :s/
 nmap <leader>r      "_dwP
-nmap <leader>xt     <cmd>Tabularize /
+nmap <leader>xt     :Tabularize /
 nmap <leader>xx     <cmd>s/ \+/\r/g<cr>
 " }}}
 
