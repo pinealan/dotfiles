@@ -248,6 +248,10 @@ nmap <M-">      ysiw"
 nmap <M-(>      ysiw)
 nmap <M-{>      ysiw}
 
+nmap <M-r>      :s/
+nmap <M-R>      :%s/
+xmap <M-r>      :s/
+
 " Comments (new in neovim)
 nmap <M-/>      gcc
 vmap <M-/>      gc
