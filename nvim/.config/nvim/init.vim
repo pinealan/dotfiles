@@ -41,6 +41,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'm4xshen/autoclose.nvim'
+Plug 'chentoast/marks.nvim'
 
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'

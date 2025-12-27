@@ -394,6 +394,12 @@ vim.keymap.set('n', '<leader>sl', function() config_illuminate({ 'lsp', 'regex'}
 vim.keymap.set({ 'n', 'i' }, '<M-c>', require('pinealan').to_camel_case, {})
 vim.keymap.set({ 'n', 'i' }, '<M-s>', require('pinealan').to_snake_case, {})
 
+require('marks').setup({
+    default_mappings = true,
+    signs = true,
+    mappings = {},
+})
+
 --[[ Neo-tree ]]
 
 require("neo-tree").setup({
