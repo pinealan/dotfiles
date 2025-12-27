@@ -245,6 +245,11 @@ nmap <buffer> <localleader>rm       <cmd>IcedMoveToLet<cr>
 nmap <buffer> <localleader>rf       <cmd>IcedThreadFirst<cr>
 nmap <buffer> <localleader>rl       <cmd>IcedThreadLast<cr>
 
+" Keyword to string and vice versa
+" Leverage binding of vim-sexp and vim-surround
+nmap <buffer> <localleader>K        ds"i:<esc>
+nmap <buffer> <localleader>S        wbxysiw"
+
 " iced buffer
 nmap <buffer> <localleader>bb       <cmd>IcedStdoutBufferOpen<cr>
 nmap <buffer> <localleader>bc       <cmd>IcedStdoutBufferClear<cr>
