@@ -14,7 +14,9 @@ local snippets_by_filetype = {
         { trigger = 'function', body = 'function ${1:name}(${2:args}) $0 end' },
     },
     clojure = {
+        { trigger = 'div', body = '[:div {:class "$1"} $2]' },
         { trigger = 'css', body = '{:class "${1}"} ' },
+        { trigger = 'element-hiccup', body = '[:${1:div} {:class "${2}"} $3' },
         { trigger = 'attr', body = '{:${1} "${2}"}' },
         { trigger = '(comment', body = '(comment\n  $0)' },
         { trigger = 'const-def', body = '(def ^:const $1 $2)' },
