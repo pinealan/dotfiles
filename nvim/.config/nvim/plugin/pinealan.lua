@@ -148,17 +148,20 @@ local cmp_mapping = {
     },
 
     -- Aliases
-    ['<tab>'] = {
-        c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-    },
-    ['<S-tab>'] = {
-        c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-    },
+    ['<tab>'] = cmp.mapping(
+        cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        { 'i', 'c' }
+    ),
+    ['<S-tab>'] = cmp.mapping(
+        cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        { 'i', 'c' }
+    ),
     ['<C-k>'] = {
         i = cmp.mapping.confirm({ select = true }),
         c = cmp.mapping.confirm(),
     },
 
+    -- Item docs
     ['<M-k>'] = { i = cmp.mapping.open_docs() },
     ['<M-K>'] = { i = cmp.mapping.close_docs() },
     ['<C-d>'] = { i = cmp.mapping.scroll_docs(4) },
