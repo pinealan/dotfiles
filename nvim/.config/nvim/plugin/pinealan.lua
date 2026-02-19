@@ -546,5 +546,27 @@ function show_rtp()
     end
 end
 
+function swap_comment_string_colors()
+  local cmt = vim.api.nvim_get_hl(0, { name = "Comment", link = false })
+  local str = vim.api.nvim_get_hl(0, { name = "String", link = false })
+  cmt.fg, str.fg = str.fg, cmt.fg
+  cmt.bg, str.bg = str.bg, cmt.bg
+  vim.api.nvim_set_hl(0, "Comment", cmt)
+  vim.api.nvim_set_hl(0, "String", str)
+  vim.notify("Swapped Comment and String colors")
+end
+
+function toggle_comment_bold()
+  local hl = vim.api.nvim_get_hl(0, { name = "Comment", link = false })
+  hl.bold = not hl.bold
+  vim.api.nvim_set_hl(0, "Comment", hl)
+  vim.notify("Comment bold: " .. (hl.bold and "ON" or "OFF"))
+end
+
+vim.api.nvim_create_user_command("SwapCommentStringColors", swap_comment_string_colors, {})
+vim.api.nvim_create_user_command("ToggleCommentBold", toggle_comment_bold, {})
+vim.keymap.set('n', '<leader>ta', swap_comment_string_colors)
+vim.keymap.set('n', '<leader>tb', toggle_comment_bold)
+
 -- Normalise buffer names when reading from file
 vim.opt.confirm = true

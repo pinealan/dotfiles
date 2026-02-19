@@ -402,7 +402,9 @@ let g:leader_map['v'] = 'Edit vimrc'
 let g:leader_map['A'] = 'LSP: code action'
 let g:leader_map['D'] = 'LSP: Open diagnostics in floating window'
 let g:leader_map['F'] = 'LSP: Send diagnostics to loclist'
+let g:leader_map['H'] = 'LSP: Show signature help'
 let g:leader_map['Q'] = 'LSP: Send diagnostics to quickfix'
+let g:leader_map['R'] = 'LSP: Rename symbol under cursor'
 
 let g:leader_map['b'] = {
     \ 'name': '+buffer',
@@ -444,6 +446,8 @@ let g:leader_map['s'] = {
 
 let g:leader_map['t'] = {
     \ 'name': '+toggle',
+    \ 'a': 'Toggle string/comment color',
+    \ 'b': 'Toggle bold comments',
     \ 'c': 'Toggle Treesitter context',
     \ 'd': 'Toggle LSP Diagnostics',
     \ 'g': 'Toggle Git gutter',
@@ -498,6 +502,8 @@ augroup usr
 
 
     autocmd BufNewFile,BufRead  *.sol setf solidity
+    autocmd BufNewFile,BufRead  *.bb  setf clojure
+    autocmd BufNewFile,BufRead  *.jte setf html
     autocmd BufWritePost        *.sync.py !jupytext -s %
 
     autocmd BufEnter    iced_stdout lua vim.diagnostic.enable(false, { bufnr = 0 })
