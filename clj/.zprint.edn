@@ -15,6 +15,7 @@
                   "with-precision"              :arg1
                   "with-transaction"            :arg1-body
                   "with-connection-pool"        :arg1-body
+                  "select"                      :wrap
                   }
  :extend         {:indent 0}
  :remove         {:fn-force-nl #{:noarg1 :noarg1-body}}
