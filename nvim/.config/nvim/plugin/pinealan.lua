@@ -351,58 +351,6 @@ telescope.setup({
 
 telescope.load_extension('fzf')
 
---[[ Others ]]
-
-require("autoclose").setup({
-    options = {
-        disable_when_touch = true,
-        disable_command_mode = true,
-    },
-    keys = {
-        ["'"] = {
-            escape = true,
-            close = true,
-            pair = "''",
-            disabled_filetypes = {'clojure', 'markdown'}
-        },
-        ["`"] = {
-            escape = true,
-            close = true,
-            pair = "``",
-            disabled_filetypes = {'clojure'}
-        },
-    }
-})
-require('colorizer').setup({'*'}, {
-    css = true,
-})
-
-local function config_illuminate(providers)
-    require('illuminate').configure({
-        delay = 20, providers = providers
-    })
-
-    for _, grp  in pairs({
-        'IlluminatedWordText', 'IlluminatedWordRead', 'IlluminatedWordWrite'
-    }) do
-        vim.api.nvim_set_hl(0, grp, { underline = true, bg = '#4a4a4a'})
-    end
-end
-
-config_illuminate({'regex'})
-
-vim.keymap.set('n', '<leader>sr', function() config_illuminate({'regex'}) end, {})
-vim.keymap.set('n', '<leader>sl', function() config_illuminate({ 'lsp', 'regex'}) end, {})
-
-vim.keymap.set({ 'n', 'i' }, '<M-c>', require('pinealan').to_camel_case, {})
-vim.keymap.set({ 'n', 'i' }, '<M-s>', require('pinealan').to_snake_case, {})
-
-require('marks').setup({
-    default_mappings = true,
-    signs = true,
-    mappings = {},
-})
-
 --[[ Neo-tree ]]
 
 require("neo-tree").setup({
@@ -489,6 +437,8 @@ vim.keymap.set('n', '<M-2>', ':Neotree document_symbols right<cr>', { noremap = 
 vim.api.nvim_set_hl(0, '@field', { link = 'Identifier' })
 vim.api.nvim_set_hl(0, '@property', { link = 'Identifier' })
 
+--[[ Neovide ]]
+
 if vim.g.neovide then
     vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
     --vim.g.neovide_hide_mouse_when_typing = true
@@ -531,6 +481,58 @@ end
 
 vim.opt.title = true
 vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+
+--[[ Others ]]
+
+require("autoclose").setup({
+    options = {
+        disable_when_touch = true,
+        disable_command_mode = true,
+    },
+    keys = {
+        ["'"] = {
+            escape = true,
+            close = true,
+            pair = "''",
+            disabled_filetypes = {'clojure', 'markdown'}
+        },
+        ["`"] = {
+            escape = true,
+            close = true,
+            pair = "``",
+            disabled_filetypes = {'clojure'}
+        },
+    }
+})
+require('colorizer').setup({'*'}, {
+    css = true,
+})
+
+local function config_illuminate(providers)
+    require('illuminate').configure({
+        delay = 20, providers = providers
+    })
+
+    for _, grp  in pairs({
+        'IlluminatedWordText', 'IlluminatedWordRead', 'IlluminatedWordWrite'
+    }) do
+        vim.api.nvim_set_hl(0, grp, { underline = true, bg = '#4a4a4a'})
+    end
+end
+
+config_illuminate({'regex'})
+
+vim.keymap.set('n', '<leader>sr', function() config_illuminate({'regex'}) end, {})
+vim.keymap.set('n', '<leader>sl', function() config_illuminate({ 'lsp', 'regex'}) end, {})
+
+vim.keymap.set({ 'n', 'i' }, '<M-c>', require('pinealan').to_camel_case, {})
+vim.keymap.set({ 'n', 'i' }, '<M-s>', require('pinealan').to_snake_case, {})
+
+require('marks').setup({
+    default_mappings = true,
+    signs = true,
+    mappings = {},
+})
 
 function split_string(input, separator)
     local result = {}

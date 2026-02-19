@@ -58,7 +58,7 @@ local snippets_by_filetype = {
         { trigger = 'ux', body = '[UX]' },
         { trigger = 'feature', body = '[FT]' },
         { trigger = 'business logic', body = '[BL]' },
-        { trigger = 'refactor', body = '[RFT]' },
+        { trigger = 'refactor', body = '[RF]' },
     }
 }
 
