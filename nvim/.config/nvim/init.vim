@@ -326,7 +326,7 @@ nmap <leader>gg     <cmd>Git<cr>
 " }}}
 
 " toggles {{{3
-nmap <silent> <leader>tc    <cmd>TSContextToggle<cr>
+nmap <silent> <leader>tt    <cmd>TSContextToggle<cr>
 nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })<cr>
 nmap <silent> <leader>tg    <cmd>GitGutterSignsToggle<cr>
 nmap <silent> <leader>tj    <cmd>IlluminateToggle<cr>

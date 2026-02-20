@@ -143,7 +143,7 @@ end
 
 vim.api.nvim_create_user_command("SwapCommentStringColors", swap_comment_string_colors, {})
 vim.api.nvim_create_user_command("ToggleCommentBold", toggle_comment_bold, {})
-vim.keymap.set('n', '<leader>ta', swap_comment_string_colors)
+vim.keymap.set('n', '<leader>tc', swap_comment_string_colors)
 vim.keymap.set('n', '<leader>tb', toggle_comment_bold)
 
 --[[ Which key ]]
@@ -227,9 +227,9 @@ require('which-key').add({
 
     -- Leader: Toggle
     { '<leader>t', group = 'toggle' },
-    { '<leader>ta', desc = 'Toggle string/comment color' },
+    { '<leader>tc', desc = 'Toggle string/comment color' },
     { '<leader>tb', desc = 'Toggle bold comments' },
-    { '<leader>tc', desc = 'Toggle Treesitter context' },
+    { '<leader>tt', desc = 'Toggle Treesitter context' },
     { '<leader>td', desc = 'Toggle LSP Diagnostics' },
     { '<leader>tg', desc = 'Toggle Git gutter' },
     { '<leader>ti', desc = 'Toggle Illuminate' },
