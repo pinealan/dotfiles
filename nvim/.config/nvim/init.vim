@@ -17,7 +17,6 @@ Plug 'godlygeek/tabular'
 Plug 'zirrostig/vim-schlepp'
 Plug 'romainl/vim-qf'
 
-Plug 'liuchengxu/vim-which-key'
 Plug 'RRethy/vim-illuminate'
 Plug 'kana/vim-textobj-user'
 
@@ -42,6 +41,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'm4xshen/autoclose.nvim'
 Plug 'chentoast/marks.nvim'
+Plug 'folke/which-key.nvim'
 
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
@@ -80,6 +80,7 @@ let g:rustfmt_autosave = 1
 call plug#end()
 
 " }}}
+
 "===[ Load and override vimrc ]=== {{{
 
 source ~/.vim/vimrc
@@ -315,25 +316,9 @@ nmap <leader>bc     <cmd>%bd \| e#<cr>
 nmap <leader>bd     <cmd>bd<cr>
 nmap <leader>bn     <cmd>vnew<cr>
 
-" fuzzy find (with telescope) {{{3
-nmap <leader>fC     <cmd>Telescope commands<cr>
-nmap <leader>fc     <cmd>Telescope command_history<cr>
-nmap <leader>fe     <cmd>Telescope buffers<cr>
-nmap <leader>ff     <cmd>lua require('pinealan').project_files()<cr>
-nmap <leader>fF     <cmd>Telescope find_files<cr>
-nmap <leader>fg     <cmd>lua require("telescope.builtin").git_commits({ "git", "log", "--pretty=format:%h %as %s", "--abbrev-commit", "--", "." })<cr>
-nmap <leader>fh     <cmd>lua require("telescope.builtin").git_bcommits({ "git", "log", "--pretty=format:%h %as %s", "--abbrev-commit", "--follow" })<cr>
-nmap <leader>fk     <cmd>Telescope keymaps<cr>
-nmap <leader>fm     <cmd>Telescope marks<cr>
-nmap <leader>fr     <cmd>Telescope registers<cr>
-nmap <leader>fs     <cmd>Telescope live_grep<cr>
-nmap <leader>fl     <cmd>Telescope lsp_document_symbols<cr>
-nmap <leader>f*     <cmd>Telescope grep_string<cr>
-" }}}
-
 " git {{{3
-nmap <leader>ga     <cmd>Gwrite<cr>
 " Gwrite is effectively git add
+nmap <leader>ga     <cmd>Gwrite<cr>
 nmap <leader>gb     <cmd>Git blame<cr>
 nmap <leader>gc     <cmd>Git commit<cr>
 nmap <leader>gd     <cmd>Git diff<cr>
@@ -375,110 +360,6 @@ nmap <leader>zi     <cmd>set foldmethod=indent<cr>
 nmap <leader>zm     <cmd>set foldmethod=manual<cr>
 nmap <leader>zr     <cmd>set foldmethod=marker<cr>
 nmap <leader>zz     <cmd>set foldmethod?<cr>
-" }}}
-
-" vim-which-key setup {{{3
-
-let g:which_key_disable_default_offset = 1
-
-let g:leader_map = {}
-
-" defined by vimrc
-let g:leader_map["'"] = 'Split vertical'
-let g:leader_map['"'] = 'Split horizontal'
-let g:leader_map['d'] = 'Unload buffer'
-let g:leader_map['e'] = 'Edit file in current directory'
-let g:leader_map['h'] = 'Toggle highlight search'
-let g:leader_map['q'] = 'Quit window'
-let g:leader_map['<Tab>'] = 'Goto alternate buffer'
-
-" defined by nvim
-let g:leader_map['c'] = 'Show highlight group'
-let g:leader_map['p'] = 'Toggle paste mode'
-let g:leader_map['r'] = 'Replace word with register'
-let g:leader_map['v'] = 'Edit vimrc'
-
-" LSP actions
-let g:leader_map['A'] = 'LSP: code action'
-let g:leader_map['D'] = 'LSP: Open diagnostics in floating window'
-let g:leader_map['F'] = 'LSP: Send diagnostics to loclist'
-let g:leader_map['H'] = 'LSP: Show signature help'
-let g:leader_map['Q'] = 'LSP: Send diagnostics to quickfix'
-let g:leader_map['R'] = 'LSP: Rename symbol under cursor'
-
-let g:leader_map['b'] = {
-    \ 'name': '+buffer',
-    \ 'd': 'Unload buffer',
-    \ 'n': 'New empty buffer',
-    \ }
-
-let g:leader_map['f'] = {
-    \ 'name': '+fuzzy-find (telescope)',
-    \ 'C': 'Command',
-    \ 'c': 'Command history',
-    \ 'e': 'Buffer',
-    \ 'f': 'Files tracked by git',
-    \ 'F': 'Files under working directory',
-    \ 'g': 'Git commits',
-    \ 'h': 'Git history of current buffer',
-    \ 'l': 'LSP symbols',
-    \ 'k': 'Keymap',
-    \ 'm': 'Mark',
-    \ 'r': 'Register',
-    \ 's': 'String',
-    \ '*': 'String under cursor',
-    \ }
-
-let g:leader_map['g'] = {
-    \ 'name': '+git',
-    \ 'a': 'Git Add',
-    \ 'b': 'Git Blame',
-    \ 'c': 'Git Commit',
-    \ 'd': 'Git Diff',
-    \ 'g': 'Git Status (vertical)',
-    \ }
-
-let g:leader_map['s'] = {
-    \ 'name': '+set',
-    \ 'r': 'Illuminate with regex',
-    \ 'l': 'Illuminate with lsp',
-    \ }
-
-let g:leader_map['t'] = {
-    \ 'name': '+toggle',
-    \ 'a': 'Toggle string/comment color',
-    \ 'b': 'Toggle bold comments',
-    \ 'c': 'Toggle Treesitter context',
-    \ 'd': 'Toggle LSP Diagnostics',
-    \ 'g': 'Toggle Git gutter',
-    \ 'i': 'Toggle Illuminate',
-    \ 'j': 'Toggle Fast escape (jj)',
-    \ 'p': 'Toggle Paste mode',
-    \ 'r': 'Toggle Rainbow parens',
-    \ 's': 'Toggle Spell check',
-    \ 'w': 'Toggle Soft wrap',
-    \ }
-
-let g:leader_map['w'] = {
-    \ 'name': '+window',
-    \ '=': 'Balance windows',
-    \ 'o': 'Open in new tabpage',
-    \ 't': 'Move to new tabpage',
-    \ 'w': 'Jump to last window',
-    \ }
-
-let g:leader_map['x'] = {
-    \ 'name': '+execute',
-    \ 'r': 'Reload vimrc',
-    \ 'v': 'Edit vimrc',
-    \ 't': 'Tabularize',
-    \ 'x': 'Split line by spaces',
-    \ }
-
-call which_key#register(' ', "g:leader_map")
-nnoremap <silent> <leader>  <cmd>WhichKey '<space>'<cr>
-vnoremap <silent> <leader>  <cmd>WhichKeyVisual '<space>'<cr>
-
 " }}}
 
 " }}}
