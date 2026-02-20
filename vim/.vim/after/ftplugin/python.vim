@@ -134,19 +134,3 @@ nmap <buffer> <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
 "nmap <buffer> <localleader>s  :!jupytext -s %<cr>
 
 nmap <buffer> <localleader>ti A # type: ignore<esc>
-
-
-""" WhichKey {{{1
-
-let g:localleader_map = {}
-
-"let g:localleader_map['a'] = 'Create cell above'
-"let g:localleader_map['b'] = 'Create cell below'
-"let g:localleader_map['d'] = 'Delete cell'
-"let g:localleader_map['d'] = 'Sync with notebook'
-"let g:localleader_map['j'] = 'Move to next cell'
-"let g:localleader_map['k'] = 'Move to previous cell'
-
-call which_key#register("'", "g:localleader_map")
-nnoremap <buffer> <silent> <localleader>     :WhichKey "'"<CR>
-vnoremap <buffer> <silent> <localleader>     :WhichKeyVisual "'"<CR>
