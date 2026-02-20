@@ -274,45 +274,7 @@ nmap <buffer> <localleader>m        <cmd>lmake<cr>
 
 let g:localleader_map = {}
 
-let g:localleader_map["'"] = 'Iced connect'
-let g:localleader_map['a'] = 'Sexp insert at tail'
-let g:localleader_map['c'] = 'Sexp convolute'
-let g:localleader_map['d'] = 'Iced document open'
-let g:localleader_map['q'] = 'Iced document close'
-let g:localleader_map['i'] = 'Sexp insert at head'
-let g:localleader_map['m'] = 'Run :lmake'
-let g:localleader_map['l'] = 'Iced print last'
-let g:localleader_map['o'] = 'Sexp raise element'
-let g:localleader_map['D'] = 'Sexp duplicate'
-let g:localleader_map['O'] = 'Sexp raise list'
-let g:localleader_map['p'] = 'Sexp splice'
-
-let g:localleader_map['e'] = {
-    \ 'name': '+iced-eval',
-    \ 'e': 'Eval top list',
-    \ 'f': 'Eval list',
-    \ 'w': 'Eval element',
-    \ 'E': 'Eval & print top list',
-    \ 'F': 'Eval & print list',
-    \ 'W': 'Eval & print element',
-    \ }
-
-let g:localleader_map['E'] = {
-    \ 'name': '+iced-eval-print',
-    \ 'E': 'Eval & print top list',
-    \ 'F': 'Eval & print list',
-    \ 'W': 'Eval & print element',
-    \ }
-
 let g:localleader_map['='] = { 'name': '+iced-format' }
-
-let g:localleader_map['b'] = {
-    \ 'name': '+iced-buffers/browse',
-    \ 'd': 'Browse dependencies',
-    \ 'r': 'Browse references',
-    \ 'e': 'Print last error',
-    \ 'l': 'Print last result',
-    \ }
 
 let g:localleader_map['h'] = { 'name': '+iced-docs' }
 let g:localleader_map['j'] = { 'name': '+iced-jump' }
@@ -325,66 +287,10 @@ let g:localleader_map['s'] = {
 
 let g:localleader_map['t'] = { 'name': '+iced-tap/test' }
 
-let g:localleader_map['r'] = {
-    \ 'name': '+iced-refactor',
-    \ 'a': 'Add arity',
-    \ 'c': 'Clean ns form',
-    \ 'e': 'Extract to function',
-    \ 'm': 'Move to let',
-    \ 'n': 'Add namespace',
-    \ 's': 'Rename symbol',
-    \ 'r': 'Require',
-    \ 'f': 'Thread first',
-    \ 'l': 'Thread last',
-    \ }
-
 let g:localleader_map['v'] = {
     \ 'name': '+vlaaad.reveal',
     \ 'c': 'Clear reveal output',
     \ }
-
-let g:localleader_map['w'] = {
-    \ 'name': '+sexp-wrap-insert',
-    \ 'i': 'Wrap element in parens & insert',
-    \ 'a': 'Wrap element in parens & append',
-    \ '(': 'Wrap element in parens & insert',
-    \ ')': 'Wrap element in parens & append',
-    \ '[': 'Wrap element in brackets & insert',
-    \ ']': 'Wrap element in brackets & append',
-    \ '{': 'Wrap element in braces & insert',
-    \ '}': 'Wrap element in braces & append',
-    \ 'w': {
-    \     'name': '+for-list',
-    \     'i': 'Wrap list in parens & insert',
-    \     'a': 'Wrap list in parens & append',
-    \     '(': 'Wrap list in parens & insert',
-    \     ')': 'Wrap list in parens & append',
-    \     '[': 'Wrap list in brackets & insert',
-    \     ']': 'Wrap list in brackets & append',
-    \     '{': 'Wrap list in braces & insert',
-    \     '}': 'Wrap list in braces & append',
-    \     },
-    \ }
-
-let g:localleader_map['W'] = {
-    \ 'name': '+sexp-wrap-only',
-    \ '(': 'Wrap element in parens',
-    \ '[': 'Wrap element in brackets',
-    \ '{': 'Wrap element in braces',
-    \ 'W': {
-    \     'name': '+for-list',
-    \     '(': 'Wrap list in parens',
-    \     '[': 'Wrap list in brackets',
-    \     '{': 'Wrap list in braces',
-    \     },
-    \ }
-
-let g:localleader_map['<Tab>'] = "Goto corresponding src/test file"
-
-call which_key#register("'", "g:localleader_map")
-nnoremap <buffer> <silent> <localleader>     <cmd>WhichKey "'"<CR>
-vnoremap <buffer> <silent> <localleader>     <cmd>WhichKeyVisual "'"<CR>
-
 let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"'}
 
 setl tw=80
