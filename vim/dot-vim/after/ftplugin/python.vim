@@ -120,6 +120,12 @@ hi link @field              Normal
 hi link @variable           Normal
 hi link @variable.builtin   Special
 
+hi link @module.python          Normal
+hi link @variable.parameter.python Identifier
+
+command! HLDocstrAsComment  hi link @string.documentation.python Comment
+command! HLDocstrAsString   hi link @string.documentation.python String
+
 call textobj#user#plugin('pypercent', {
 \      '-': {
 \        '*sfile*': expand('<sfile>:p'),

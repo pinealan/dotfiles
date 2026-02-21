@@ -325,9 +325,6 @@ hi def link pythonSpaceError        Error
 hi def link pythonPunctuation       Special
 hi def link pythonDelimiter         Delimiter
 
-hi link     @module.python          Normal
-hi link     @variable.parameter.python Identifier
-
 " }}}
 
 let b:current_syntax = "python"
