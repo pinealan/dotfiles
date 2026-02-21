@@ -7,8 +7,16 @@ setl tw=88
 "command! -nargs=* PythonGoto YcmCompleter GoTo
 "set keywordprg=:PythonGoto
 
+function! StripDotSlash(s)
+    if a:s[:1] == './'
+        return a:s[2:]
+    else
+        return a:s
+    endif
+endfunction
+
 function! AltSrcTestPath()
-    let head = expand('%:h')
+    let head = StripDotSlash(expand('%:h'))
     let tail = expand('%:t')
     if head =~# '^src'
         return substitute( head . '/test_' . tail,'^src','test','' )
@@ -17,6 +25,7 @@ function! AltSrcTestPath()
     else
         echom 'File path does not start with "src" or "test"'
         return expand('%')
+    endif
 endfunction
 
 function! ToggleDocstring()
