@@ -60,8 +60,8 @@ let s:background0   = { "x24": "#28292c", "x8": "235" }
 let s:background1   = { "x24": "#222222", "x8": "234" }
 let s:background2   = s:black
 
-let s:docstring     = s:teagreen
-let s:string        = s:teagreen
+let s:comment       = s:teagreen
+let s:string        = s:teal
 let s:macro         = s:carrot
 let s:numeric       = s:carrot
 let s:statement     = s:purple
@@ -70,7 +70,7 @@ let s:symbol        = s:pink
 
 " [ Syntax Groups (:h group-name) ] {{{
 "
-call s:h("Comment",         { "fg": s:teal, "gui": "italic" })
+call s:h("Comment",         { "fg": s:comment })
 call s:h("Constant",        { "fg": s:numeric })
 call s:h("String",          { "fg": s:string })
 call s:h("Character",       { "fg": s:string })
@@ -104,7 +104,7 @@ call s:h("Special",         { "fg": s:content1 })
 call s:h("SpecialChar",     { "fg": s:content1 })
 call s:h("Tag",             { "fg": s:symbol })
 call s:h("Delimiter",       { "fg": s:content2 })
-call s:h("SpecialComment",  { "fg": s:string })
+call s:h("SpecialComment",  { "fg": s:comment })
 call s:h("Debug",           { "fg": s:content1 })
 
 call s:h("Underlined",      { "gui": "underline", "cterm": "underline" })
@@ -170,11 +170,6 @@ call s:h("Visual",          { "bg": s:background_2 })
 call s:h("VisualNOS",       { "bg": s:background0 })
 call s:h("WarningMsg",      { "fg": s:gold })
 call s:h("WildMenu",        { "fg": s:black, "bg": s:blue })
-" }}}
-
-" [ Python ] {{{
-"
-call s:h("pythonDocString", { "fg": s:docstring })
 " }}}
 
 " [ Git Highlighting ] {{{
