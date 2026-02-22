@@ -84,6 +84,9 @@ require('colorizer').setup({'*'}, {
     css = true,
 })
 
+vim.keymap.set('n', '<leader>tz',
+    function() vim.cmd('ColorizerToggle') end, { desc = 'Toggle colorizer'})
+
 local function config_illuminate(providers)
     require('illuminate').configure({
         delay = 20, providers = providers
