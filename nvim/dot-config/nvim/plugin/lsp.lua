@@ -17,7 +17,18 @@ vim.lsp.config('pyright', {
         'setup.cfg',
         'Pipfile',
         'pyrightconfig.json',
+    },
+    settings = {
+        -- use ruff for import organisation
+        disableOrganizeImports = true,
     }
+})
+
+vim.lsp.config('ruff', {
+    on_attach = function (client, _)
+        -- use pyright for hover/autocomplete
+        client.server_capabilities.hoverProvider = false
+    end,
 })
 
 vim.lsp.config('rust_analyzer', {
@@ -61,16 +72,18 @@ vim.lsp.config('lua_ls', {
     },
 })
 
-vim.lsp.enable('clojure_lsp')
-vim.lsp.enable('pyright')
-vim.lsp.enable('rust_analyzer')
-vim.lsp.enable('ts_ls')
-vim.lsp.enable('bashls')
-vim.lsp.enable('vimls')
-
-vim.lsp.enable('postgres_lsp')
-vim.lsp.enable('tailwindcss')
-vim.lsp.enable('lua_ls')
+vim.lsp.enable({
+    'clojure_lsp',
+    'pyright',
+    'ruff',
+    'rust_analyzer',
+    'ts_ls',
+    'bashls',
+    'vimls',
+    'postgres_lsp',
+    'tailwindcss',
+    'lua_ls',
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
