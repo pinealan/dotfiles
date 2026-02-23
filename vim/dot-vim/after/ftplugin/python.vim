@@ -136,8 +136,11 @@ call textobj#user#plugin('pypercent', {
 \      }
 \    })
 
-nmap <buffer> <localleader>gk        :vimgrep /^ *class/g @%
-nmap <buffer> <localleader><Tab>     :edit <C-R>=AltSrcTestPath()<cr><cr>
+nmap <buffer> <localleader>gk       :vimgrep /^ *class/g @%
+nmap <buffer> <localleader><Tab>    :edit <C-R>=AltSrcTestPath()<cr><cr>
+
+nmap <buffer> <localleader>rc       :!ruff check %<cr>
+nmap <buffer> <localleader>rf       :!ruff format %<cr>
 
 " Mappings for working with percent scripts (jupyter notebook as text)
 "nmap <buffer> <localleader>j  ]e
