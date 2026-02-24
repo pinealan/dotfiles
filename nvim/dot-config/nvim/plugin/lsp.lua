@@ -95,12 +95,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         bufnmap('K', function() vim.lsp.buf.hover({ max_width = 100, wrap = true, wrap_at = 98 }) end, 'LSP: Quick docs')
-        bufnmap('gd', function() vim.lsp.buf.definition({ reuse_win = true }) end, 'LSP: Goto definition')
+        bufnmap('gd', function() vim.lsp.buf.definition({ reuse_win = true }) end, 'LSP: Goto definition (reuse_win)')
+        bufnmap('gD', vim.lsp.buf.definition, 'LSP: Goto declaration (current wind)')
         bufnmap('g<C-d>', function() vim.cmd('tab sp'); vim.lsp.buf.definition() end, 'LSP: Goto definition in new tabpage')
         bufnmap('gi', function() vim.lsp.buf.implementation({ reuse_win = true }) end, 'LSP: Goto implementation')
         bufnmap('gr', vim.lsp.buf.references, 'LSP: Goto refrences')
         bufnmap('gC', vim.lsp.buf.incoming_calls, 'LSP: Goto incoming calls')
-        bufnmap('gD', vim.lsp.buf.declaration, 'LSP: Goto declaration')
         bufnmap('gt', function() vim.lsp.buf.type_definition({ reuse_win = true }) end, 'LSP: Goto type declaration')
 
         bufnmap('<leader>A', vim.lsp.buf.code_action, 'LSP: code action')
