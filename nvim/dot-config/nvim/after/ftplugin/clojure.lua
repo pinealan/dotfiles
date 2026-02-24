@@ -1,12 +1,7 @@
 require('which-key').add({
 
-    { '<localleader>\'', desc = 'Iced connect' },
-    { '<localleader>d', desc = 'Iced document open' },
-    { '<localleader>q', desc = 'Iced document close' },
-    { '<localleader>l', desc = 'Iced print last' },
-    { '<localleader>m', desc = 'Run :lmake' },
-    { '<localleader><Tab>', desc = 'Goto corresponding src/test file' },
-
+    -- Sexp
+    { 'gE', desc = 'Sexp: Move to prev element tail' },
     { '<localleader>a', desc = 'Sexp insert at tail' },
     { '<localleader>c', desc = 'Sexp convolute' },
     { '<localleader>i', desc = 'Sexp insert at head' },
@@ -14,6 +9,14 @@ require('which-key').add({
     { '<localleader>D', desc = 'Sexp duplicate' },
     { '<localleader>O', desc = 'Sexp raise list' },
     { '<localleader>p', desc = 'Sexp splice' },
+
+    -- Iced
+    { '<localleader>\'', desc = 'Iced connect' },
+    { '<localleader>d', desc = 'Iced document open' },
+    { '<localleader>q', desc = 'Iced document close' },
+    { '<localleader>l', desc = 'Iced print last' },
+    { '<localleader>m', desc = 'Run :lmake' },
+    { '<localleader><Tab>', desc = 'Goto corresponding src/test file' },
 
     -- Iced: evaluate
     { '<localleader>e', group = 'iced eval' },
