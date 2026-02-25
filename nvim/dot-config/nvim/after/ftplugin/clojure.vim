@@ -214,3 +214,6 @@ noremap <buffer>    <M-E> E
 " Leverage binding of vim-sexp and vim-surround
 nmap <buffer> <localleader>K        ds"i:<esc>
 nmap <buffer> <localleader>S        wbxysiw"
+
+" Comment out a form
+nmap <buffer> <localleader>C        vaf%<esc>i#_<esc>

@@ -2,6 +2,7 @@ require('which-key').add({
 
     -- General
     { '<localleader>m', desc = 'Run :lmake' },
+    { '<localleader>C', desc = 'Comment out form under cursor' },
     { '<localleader><Tab>', desc = 'Goto corresponding src/test file' },
 
     -- Sexp
