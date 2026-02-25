@@ -209,7 +209,7 @@ highlight default link clojureDispatch                  SpecialChar
 
 highlight default link clojureComment                   Comment
 highlight default link clojureCommentTodo               Todo
-highlight default link clojureDiscard                   clojureComment
+highlight default link clojureDiscard                   SpecialComment
 highlight default link clojureDiscardForm               clojureDiscard
 
 highlight default link clojureError                     Error

@@ -393,4 +393,5 @@ augroup END
 
 " }}}
 
-highlight! link @variable   Normal
+highlight! link @variable               Normal
+highlight! link DiagnosticUnnecessary   Special

@@ -60,8 +60,6 @@ let s:background0   = { "x24": "#28292c", "x8": "235" }
 let s:background1   = { "x24": "#222222", "x8": "234" }
 let s:background2   = s:black
 
-let s:comment       = s:teagreen
-let s:string        = s:teal
 let s:macro         = s:carrot
 let s:numeric       = s:carrot
 let s:statement     = s:purple
@@ -70,10 +68,10 @@ let s:symbol        = s:pink
 
 " [ Syntax Groups (:h group-name) ] {{{
 "
-call s:h("Comment",         { "fg": s:comment })
+call s:h("Comment",         { "fg": s:teagreen })
 call s:h("Constant",        { "fg": s:numeric })
-call s:h("String",          { "fg": s:string })
-call s:h("Character",       { "fg": s:string })
+call s:h("String",          { "fg": s:teal })
+call s:h("Character",       { "fg": s:teal })
 call s:h("Number",          { "fg": s:numeric })
 call s:h("Boolean",         { "fg": s:numeric })
 call s:h("Float",           { "fg": s:numeric })
@@ -104,7 +102,7 @@ call s:h("Special",         { "fg": s:content1 })
 call s:h("SpecialChar",     { "fg": s:content1 })
 call s:h("Tag",             { "fg": s:symbol })
 call s:h("Delimiter",       { "fg": s:content2 })
-call s:h("SpecialComment",  { "fg": s:comment })
+call s:h("SpecialComment",  { "fg": s:teal })
 call s:h("Debug",           { "fg": s:content1 })
 
 call s:h("Underlined",      { "gui": "underline", "cterm": "underline" })
@@ -152,7 +150,7 @@ call s:h("QuickFixLine",    { "bg": s:background2 })
 call s:h("Search",          { "fg": s:black, "bg": s:yellow })
 call s:h("SpecialKey",      { "fg": s:content1 })
 
-call s:h("SpellBad",        { "fg": s:symbol , "gui": "underline", "cterm": "underline" })
+call s:h("SpellBad",        { "fg": s:red , "gui": "underline", "cterm": "underline" })
 call s:h("SpellCap",        { "fg": s:carrot })
 call s:h("SpellLocal",      { "fg": s:carrot })
 call s:h("SpellRare",       { "fg": s:carrot })
