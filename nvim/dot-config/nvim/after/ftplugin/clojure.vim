@@ -101,7 +101,6 @@ imap <buffer> <silent> <M-S-j>    <esc><Plug>(sexp_swap_list_forward)
 imap <buffer> <silent> <M-S-h>    <esc><Plug>(sexp_swap_element_backward)
 imap <buffer> <silent> <M-S-l>    <esc><Plug>(sexp_swap_element_forward)
 
-
 """ Iced mappings & configs {{{1
 
 set keywordprg=:IcedDocumentPopupOpen
@@ -112,14 +111,6 @@ let g:iced_clj_kondo_analysis_dirs = ['src', 'dev', 'test']
 let g:iced_formatter = 'zprint'
 let g:iced#format#zprint_option = '{}'
 let g:iced#nrepl#skip_evaluation_when_buffer_size_is_exceeded = v:true
-
-" Normal whitespace-based word navigation
-noremap <buffer>    <M-w> w
-noremap <buffer>    <M-W> W
-noremap <buffer>    <M-b> b
-noremap <buffer>    <M-B> B
-noremap <buffer>    <M-e> e
-noremap <buffer>    <M-E> E
 
 nmap <buffer> <localleader>'     <cmd>IcedConnect<cr>
 nmap <buffer> <localleader>rr    <cmd>IcedRequire<cr><cmd>w<cr>
@@ -188,11 +179,6 @@ nmap <buffer> <localleader>rm       <cmd>IcedMoveToLet<cr>
 nmap <buffer> <localleader>rf       <cmd>IcedThreadFirst<cr>
 nmap <buffer> <localleader>rl       <cmd>IcedThreadLast<cr>
 
-" Keyword to string and vice versa
-" Leverage binding of vim-sexp and vim-surround
-nmap <buffer> <localleader>K        ds"i:<esc>
-nmap <buffer> <localleader>S        wbxysiw"
-
 " iced buffer
 nmap <buffer> <localleader>bb       <cmd>IcedStdoutBufferOpen<cr>
 nmap <buffer> <localleader>bc       <cmd>IcedStdoutBufferClear<cr>
@@ -215,3 +201,16 @@ nmap <buffer> <localleader>=G       <cmd>IcedFormatAll<cr>
 
 nmap <buffer> <localleader><Tab>    :edit <C-R>=AltSrcTestPath()<cr><cr>
 nmap <buffer> <localleader>m        <cmd>lmake<cr>
+
+" Normal whitespace-based word navigation
+noremap <buffer>    <M-w> w
+noremap <buffer>    <M-W> W
+noremap <buffer>    <M-b> b
+noremap <buffer>    <M-B> B
+noremap <buffer>    <M-e> e
+noremap <buffer>    <M-E> E
+
+" Keyword to string and vice versa
+" Leverage binding of vim-sexp and vim-surround
+nmap <buffer> <localleader>K        ds"i:<esc>
+nmap <buffer> <localleader>S        wbxysiw"

@@ -1,5 +1,9 @@
 require('which-key').add({
 
+    -- General
+    { '<localleader>m', desc = 'Run :lmake' },
+    { '<localleader><Tab>', desc = 'Goto corresponding src/test file' },
+
     -- Sexp
     { 'gE', desc = 'Sexp: Move to prev element tail' },
     { '<localleader>a', desc = 'Sexp insert at tail' },
@@ -9,42 +13,6 @@ require('which-key').add({
     { '<localleader>D', desc = 'Sexp duplicate' },
     { '<localleader>O', desc = 'Sexp raise list' },
     { '<localleader>p', desc = 'Sexp splice' },
-
-    -- Iced
-    { '<localleader>\'', desc = 'Iced connect' },
-    { '<localleader>d', desc = 'Iced document open' },
-    { '<localleader>q', desc = 'Iced document close' },
-    { '<localleader>l', desc = 'Iced print last' },
-    { '<localleader>m', desc = 'Run :lmake' },
-    { '<localleader><Tab>', desc = 'Goto corresponding src/test file' },
-
-    -- Iced: evaluate
-    { '<localleader>e', group = 'iced eval' },
-    { '<localleader>ee', desc = 'Eval top list' },
-    { '<localleader>ef', desc = 'Eval list' },
-    { '<localleader>ew', desc = 'Eval element' },
-    { '<localleader>eE', desc = 'Eval & print top list' },
-    { '<localleader>eF', desc = 'Eval & print list' },
-    { '<localleader>eW', desc = 'Eval & print element' },
-
-    -- Iced: buffer
-    { '<localleader>b', group = 'iced buffer' },
-    { '<localleader>bd', desc = 'Browse dependencies' },
-    { '<localleader>br', desc = 'Browse references' },
-    { '<localleader>be', desc = 'Print last error' },
-    { '<localleader>bl', desc = 'Print last result' },
-
-    -- Iced: refactor
-    { '<localleader>b', group = 'iced refactor' },
-    { '<localleader>ra', desc = 'Add arity' },
-    { '<localleader>rc', desc = 'Clean ns form' },
-    { '<localleader>re', desc = 'Extract to function' },
-    { '<localleader>rm', desc = 'Move to let' },
-    { '<localleader>rn', desc = 'Add namespace' },
-    { '<localleader>rs', desc = 'Rename symbol' },
-    { '<localleader>rr', desc = 'Require' },
-    { '<localleader>rf', desc = 'Thread first' },
-    { '<localleader>rl', desc = 'Thread last' },
 
     -- Sexp: wrap & insert
     { '<localleader>w', group = 'sexp wrap & insert' },
@@ -76,4 +44,38 @@ require('which-key').add({
     { '<localleader>WW(', desc = 'Wrap list in parens' },
     { '<localleader>WW[', desc = 'Wrap list in brackets' },
     { '<localleader>WW{', desc = 'Wrap list in braces' },
+
+    -- Iced
+    { '<localleader>\'', desc = 'Iced connect' },
+    { '<localleader>d', desc = 'Iced document open' },
+    { '<localleader>q', desc = 'Iced document close' },
+    { '<localleader>l', desc = 'Iced print last' },
+
+    -- Iced: evaluate
+    { '<localleader>e', group = 'iced eval' },
+    { '<localleader>ee', desc = 'Eval top list' },
+    { '<localleader>ef', desc = 'Eval list' },
+    { '<localleader>ew', desc = 'Eval element' },
+    { '<localleader>eE', desc = 'Eval & print top list' },
+    { '<localleader>eF', desc = 'Eval & print list' },
+    { '<localleader>eW', desc = 'Eval & print element' },
+
+    -- Iced: buffer
+    { '<localleader>b', group = 'iced buffer' },
+    { '<localleader>bd', desc = 'Browse dependencies' },
+    { '<localleader>br', desc = 'Browse references' },
+    { '<localleader>be', desc = 'Print last error' },
+    { '<localleader>bl', desc = 'Print last result' },
+
+    -- Iced: refactor
+    { '<localleader>b', group = 'iced refactor' },
+    { '<localleader>ra', desc = 'Add arity' },
+    { '<localleader>rc', desc = 'Clean ns form' },
+    { '<localleader>re', desc = 'Extract to function' },
+    { '<localleader>rm', desc = 'Move to let' },
+    { '<localleader>rn', desc = 'Add namespace' },
+    { '<localleader>rs', desc = 'Rename symbol' },
+    { '<localleader>rr', desc = 'Require' },
+    { '<localleader>rf', desc = 'Thread first' },
+    { '<localleader>rl', desc = 'Thread last' },
 })
