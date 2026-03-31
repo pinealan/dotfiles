@@ -49,6 +49,9 @@ vim.keymap.set('n', '<leader>fl', t.lsp_document_symbols, { desc = 'LSP symbols'
 vim.keymap.set('n', '<leader>fm', t.marks, { desc = 'Marks' })
 vim.keymap.set('n', '<leader>fr', t.registers, { desc = 'Registers' })
 vim.keymap.set('n', '<leader>fs', t.live_grep, { desc = 'Grep string' })
+vim.keymap.set('n', '<leader>fS', function ()
+    t.live_grep({ cwd = 'src' })
+end, { desc = 'Grep string (only in src)' })
 vim.keymap.set('n', '<leader>f*', t.grep_string, { desc = 'Grep string under cursor' })
 
 vim.keymap.set('n', '<leader>ff', require('pinealan').project_files, { desc = 'Project files' })

@@ -329,8 +329,9 @@ nmap <leader>gg     <cmd>vert Git<cr>
 nmap <silent> <leader>tt    <cmd>TSContextToggle<cr>
 nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })<cr>
 nmap <silent> <leader>tg    <cmd>GitGutterSignsToggle<cr>
-nmap <silent> <leader>tj    <cmd>IlluminateToggle<cr>
+nmap <silent> <leader>ti    <cmd>IlluminateToggle<cr>
 nmap <silent> <leader>tj    <cmd>call ToggleFastEsc()<cr>
+nmap <silent> <leader>tm    <cmd>MarksToggleSigns<cr>
 nmap <silent> <leader>tp    <cmd>setlocal paste!<cr>
 nmap <silent> <leader>tr    <cmd>call rainbow_delimiters#toggle(0)<cr>
 nmap <silent> <leader>ts    <cmd>setlocal spell!<cr>

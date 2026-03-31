@@ -86,6 +86,7 @@ require('which-key').add({
     { '<leader>tg', desc = 'Toggle Git gutter' },
     { '<leader>ti', desc = 'Toggle Illuminate' },
     { '<leader>tj', desc = 'Toggle Fast escape (jj)' },
+    { '<leader>tm', desc = 'Toggle mark sign column' },
     { '<leader>tp', desc = 'Toggle Paste mode' },
     { '<leader>tr', desc = 'Toggle Rainbow parens' },
     { '<leader>ts', desc = 'Toggle Spell check' },
