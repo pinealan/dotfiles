@@ -91,15 +91,20 @@ nmap <buffer> <localleader>wi    <Plug>(sexp_round_head_wrap_element)a
 nmap <buffer> <localleader>wa    <Plug>(sexp_round_tail_wrap_element)i
 
 " Duplicate alias for wrapping list + insert
-nmap <buffer> <localleader>wwi    <Plug>(sexp_round_head_wrap_list)a
-nmap <buffer> <localleader>wwa    <Plug>(sexp_round_tail_wrap_list)i
+nmap <buffer> <localleader>wwi   <Plug>(sexp_round_head_wrap_list)a
+nmap <buffer> <localleader>wwa   <Plug>(sexp_round_tail_wrap_list)i
 
 nmap <buffer> <localleader>D    yaf%pi<cr><esc>
 
-imap <buffer> <silent> <M-S-k>    <esc><Plug>(sexp_swap_list_backward)
-imap <buffer> <silent> <M-S-j>    <esc><Plug>(sexp_swap_list_forward)
-imap <buffer> <silent> <M-S-h>    <esc><Plug>(sexp_swap_element_backward)
-imap <buffer> <silent> <M-S-l>    <esc><Plug>(sexp_swap_element_forward)
+imap <buffer> <silent> <M-S-k>  <esc><Plug>(sexp_swap_list_backward)
+imap <buffer> <silent> <M-S-j>  <esc><Plug>(sexp_swap_list_forward)
+imap <buffer> <silent> <M-S-h>  <esc><Plug>(sexp_swap_element_backward)
+imap <buffer> <silent> <M-S-l>  <esc><Plug>(sexp_swap_element_forward)
+
+nmap <buffer> <silent> ><       <Plug>(sexp_emit_head_element)
+nmap <buffer> <silent> <>       <Plug>(sexp_emit_tail_element)
+nmap <buffer> <silent> <<       <Plug>(sexp_capture_prev_element)
+nmap <buffer> <silent> >>       <Plug>(sexp_capture_next_element)
 
 """ Iced mappings & configs {{{1
 

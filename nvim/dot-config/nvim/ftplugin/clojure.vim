@@ -55,10 +55,10 @@ let g:sexp_mappings = {
     \ 'sexp_swap_list_forward':         '<M-S-j>',
     \ 'sexp_swap_element_backward':     '<M-S-h>',
     \ 'sexp_swap_element_forward':      '<M-S-l>',
-    \ 'sexp_emit_head_element':         '><',
-    \ 'sexp_emit_tail_element':         '<>',
-    \ 'sexp_capture_prev_element':      '<<',
-    \ 'sexp_capture_next_element':      '>>',
+    \ 'sexp_emit_head_element':         '',
+    \ 'sexp_emit_tail_element':         '',
+    \ 'sexp_capture_prev_element':      '',
+    \ 'sexp_capture_next_element':      '',
     \ }
 
 let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"'}
