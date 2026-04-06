@@ -29,25 +29,24 @@ let colors = {
     \ "carrot":         { "x24": "#d7875f", "x8": "173" },
     \ "blue":           { "x24": "#61afef", "x8": "75" },
     \ "purple":         { "x24": "#c678dd", "x8": "170" },
-    \ "transparent":    { "x24": "NONE",    "x8": "NONE" },
-    \ "black":          { "x24": "#000000", "x8": "232" },
     \
-    \ "content0":       { "x24": "#dfdfdf", "x8": "253" },
-    \ "content1":       { "x24": "#a9a9a9", "x8": "246" },
-    \ "content2":       { "x24": "#828282", "x8": "241" },
-    \ "content_inv":    { "x24": "#555555", "x8": "237" },
+    \ "fg_normal":      { "x24": "#dfdfdf", "x8": "253" },
+    \ "fg_special":     { "x24": "#a9a9a9", "x8": "246" },
+    \ "fg_quiet":       { "x24": "#828282", "x8": "241" },
+    \ "fg_muted":       { "x24": "#555555", "x8": "237" },
     \
-    \ "background_2":   { "x24": "#444444", "x8": "237" },
-    \ "background_1":   { "x24": "#383838", "x8": "237" },
-    \ "background0":    { "x24": "#28292c", "x8": "235" },
-    \ "background1":    { "x24": "#222222", "x8": "234" },
+    \ "bg_visual":      { "x24": "#444444", "x8": "237" },
+    \ "bg_status":      { "x24": "#383838", "x8": "237" },
+    \ "bg_normal":      { "x24": "#28292c", "x8": "235" },
+    \ "bg_grid":        { "x24": "#222222", "x8": "234" },
+    \ "bg_qf":          { "x24": "#000000", "x8": "254" },
     \ }
 
-let colors["background2"] = colors["black"]
 let colors["macro"] = colors["carrot"]
 let colors["numeric"] = colors["carrot"]
 let colors["statement"] = colors["purple"]
 let colors["symbol"] = colors["pink"]
+" }}}
 
 call onecolor#set_all(colors)
 
