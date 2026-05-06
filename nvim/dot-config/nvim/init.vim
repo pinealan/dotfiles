@@ -35,13 +35,14 @@ let g:Schlepp#trimWS = 0
 
 " Neovim only
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'm4xshen/autoclose.nvim'
 Plug 'chentoast/marks.nvim'
 Plug 'folke/which-key.nvim'
+Plug 'folke/zen-mode.nvim'
 
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
@@ -74,7 +75,7 @@ Plug 'sheerun/vim-polyglot'
 
 " Polyglot {{{2
 let g:polyglot_disabled = ['clojure', 'markdown', 'python', 'solidity']
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave_if_config_present = 1
 " }}}
 
 call plug#end()

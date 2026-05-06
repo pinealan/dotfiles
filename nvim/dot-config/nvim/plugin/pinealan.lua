@@ -16,7 +16,7 @@ end, { silent = true })
 
 --[[ Treesitter ]]
 
-require('nvim-treesitter.configs').setup({
+require('nvim-treesitter').setup({
   ensure_installed = { "c", "lua", "python", "rust", "vim" },
 
   sync_install = false,
