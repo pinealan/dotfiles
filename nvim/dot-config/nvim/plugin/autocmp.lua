@@ -134,6 +134,9 @@ cmp.setup.cmdline(':', {
         cmp_buffer_source,
     }),
     preselect = cmp.PreselectMode.None,
+    window = {
+        completion = { max_height = 15 },
+    }
 })
 
 vim.api.nvim_set_hl(0, 'CmpItemKindClass', { link = 'Type' })
