@@ -111,7 +111,7 @@ require('which-key').add({
     { '<leader>ze', desc = 'method = expr' },
     { '<leader>zi', desc = 'method = indent' },
     { '<leader>zm', desc = 'method = manual' },
-    { '<leader>zr', desc = 'method = market' },
+    { '<leader>zr', desc = 'method = marker' },
     { '<leader>zz', desc = 'Check foldmethod' },
 })
 
