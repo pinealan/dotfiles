@@ -48,7 +48,7 @@ Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
 
 " Treesitter
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.10.0' }
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'hiphish/rainbow-delimiters.nvim'
 Plug 'windwp/nvim-ts-autotag'
