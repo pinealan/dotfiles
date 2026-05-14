@@ -14,49 +14,14 @@ vim.keymap.set({ 'i', 's' }, '<M-k>', function()
     end
 end, { silent = true })
 
---[[ Treesitter ]]
+--[[ Colorizer for CSS ]]
 
-require('nvim-treesitter').setup({
-  ensure_installed = { "c", "lua", "python", "rust", "vim" },
-
-  sync_install = false,
-  auto_install = false,
-
-  -- List of parsers to ignore installing (for "all")
-  ignore_install = { "javascript" },
-
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-    disable = {
-        'clojure',
-    }
-  },
+require('colorizer').setup({'*'}, {
+    css = true,
 })
 
-require('nvim-ts-autotag').setup()
-
----@type rainbow_delimiters.config
-vim.g.rainbow_delimiters = {
-    highlight = {
-        'Delimiter',
-        'RainbowDelimiterBlue',
-        'RainbowDelimiterOrange',
-        'RainbowDelimiterGreen',
-        'RainbowDelimiterRed',
-        'RainbowDelimiterViolet',
-        'RainbowDelimiterYellow',
-        'RainbowDelimiterCyan',
-    },
-}
-
-vim.api.nvim_set_hl(0, 'RainbowDelimiterBlue', { fg = '#3a5fcd' })
-vim.api.nvim_set_hl(0, 'RainbowDelimiterOrange', { fg = '#8b4500' })
-vim.api.nvim_set_hl(0, 'RainbowDelimiterGreen', { fg = '#2e8b57' })
-vim.api.nvim_set_hl(0, 'RainbowDelimiterRed', { fg = '#b22222' })
-vim.api.nvim_set_hl(0, 'RainbowDelimiterViolet', { fg = '#68228b' })
-vim.api.nvim_set_hl(0, 'RainbowDelimiterYellow', { fg = '#8b6914' })
-vim.api.nvim_set_hl(0, 'RainbowDelimiterCyan', { fg = '#b4cdcd' })
+vim.keymap.set('n', '<leader>tz',
+    function() vim.cmd('ColorizerToggle') end, { desc = 'Toggle colorizer'})
 
 --[[ Others ]]
 
@@ -80,38 +45,17 @@ require("autoclose").setup({
         },
     }
 })
-require('colorizer').setup({'*'}, {
-    css = true,
-})
-
-vim.keymap.set('n', '<leader>tz',
-    function() vim.cmd('ColorizerToggle') end, { desc = 'Toggle colorizer'})
-
-local function config_illuminate(providers)
-    require('illuminate').configure({
-        delay = 20, providers = providers
-    })
-
-    for _, grp  in pairs({
-        'IlluminatedWordText', 'IlluminatedWordRead', 'IlluminatedWordWrite'
-    }) do
-        vim.api.nvim_set_hl(0, grp, { underline = true, bg = '#4a4a4a'})
-    end
-end
-
-config_illuminate({'regex'})
-
-vim.keymap.set('n', '<leader>sr', function() config_illuminate({'regex'}) end, {})
-vim.keymap.set('n', '<leader>sl', function() config_illuminate({ 'lsp', 'regex'}) end, {})
-
-vim.keymap.set({ 'n', 'i' }, '<M-c>', require('pinealan').to_camel_case, {})
-vim.keymap.set({ 'n', 'i' }, '<M-s>', require('pinealan').to_snake_case, {})
 
 require('marks').setup({
     default_mappings = true,
     signs = true,
     mappings = {},
 })
+
+--[[ Keyamps / Functions / Commands ]]
+
+vim.keymap.set({ 'n', 'i' }, '<M-c>', require('pinealan').to_camel_case, {})
+vim.keymap.set({ 'n', 'i' }, '<M-s>', require('pinealan').to_snake_case, {})
 
 function split_string(input, separator)
     local result = {}
