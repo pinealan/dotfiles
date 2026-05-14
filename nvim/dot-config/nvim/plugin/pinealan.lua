@@ -84,6 +84,8 @@ function show_rtp()
     end
 end
 
+--- Dynamically change highlight links
+
 function swap_comment_string_colors()
   local cmt = vim.api.nvim_get_hl(0, { name = "Comment", link = false })
   local str = vim.api.nvim_get_hl(0, { name = "String", link = false })
@@ -101,10 +103,13 @@ function toggle_comment_bold()
   vim.notify("Comment bold: " .. (hl.bold and "ON" or "OFF"))
 end
 
+-- Hook up command and keymap to the functions
 vim.api.nvim_create_user_command("SwapCommentStringColors", swap_comment_string_colors, {})
 vim.api.nvim_create_user_command("ToggleCommentBold", toggle_comment_bold, {})
 vim.keymap.set('n', '<leader>tc', swap_comment_string_colors)
 vim.keymap.set('n', '<leader>tb', toggle_comment_bold)
+
+--[[ Options ]]
 
 -- Normalise buffer names when reading from file
 vim.opt.confirm = true

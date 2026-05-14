@@ -20,8 +20,8 @@ let g:clojure_discard_macro = v:true
 set backspace=eol,start,indent
 set clipboard+=unnamedplus
 set cursorline
-set nofoldenable
 set foldmethod=indent
+set nofoldenable
 set hidden
 set history=10000
 set hlsearch

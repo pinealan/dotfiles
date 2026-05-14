@@ -83,7 +83,7 @@ call plug#end()
 
 " }}}
 
-"===[ Load and override vimrc ]=== {{{
+"===[ Load and override vimrc options ]=== {{{
 
 source ~/.vim/vimrc
 set termguicolors
