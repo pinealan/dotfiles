@@ -52,6 +52,19 @@ require('marks').setup({
     mappings = {},
 })
 
+require("notify").setup({
+    stages = 'static',
+    icons = {
+      DEBUG = "⚙️",
+      ERROR = "E",
+      INFO = "ⓘ",
+      TRACE = "T",
+      WARN = "W"
+    },
+})
+-- TODO Figure out how to allow toggling
+-- vim.notify = require("notify")
+
 --[[ Keyamps / Functions / Commands ]]
 
 vim.keymap.set({ 'n', 'i' }, '<M-c>', require('pinealan').to_camel_case, {})

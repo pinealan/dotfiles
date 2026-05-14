@@ -46,6 +46,7 @@ Plug 'folke/zen-mode.nvim'
 
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
+Plug 'rcarriga/nvim-notify'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.10.0' }
