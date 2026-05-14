@@ -97,6 +97,9 @@ cmp.setup({
     },
     mapping = cmp_mapping,
     preselect = cmp.PreselectMode.None,
+    window = {
+        completion = { max_height = 25 },
+    }
 })
 
 cmp.setup.cmdline({'/', '?'}, {
