@@ -89,6 +89,9 @@ source ~/.vim/vimrc
 set termguicolors
 set completeopt=menu,menuone,noinsert,noselect
 
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
+
 set laststatus=2
 set numberwidth=2
 set signcolumn=auto:2
