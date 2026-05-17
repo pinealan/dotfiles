@@ -14,10 +14,6 @@ HISTSIZE=1000000000
 SAVEHIST=1000000000
 HISTFILE=~/.zsh_history
 
-# Use modern completion system
-autoload -Uz compinit
-compinit -u
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -46,3 +42,7 @@ fi
 # Machine local zshrc
 local_zsh="$HOME/.local/zshrc"
 [ -f $local_zsh ] && . $local_zsh
+
+# Use modern completion system
+autoload -Uz compinit
+compinit -u
