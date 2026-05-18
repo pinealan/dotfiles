@@ -82,12 +82,12 @@ cmp.setup({
     sources = {
         {
             name = 'snp',
-            keyword_length = 1,
+            keyword_length = 2,
         },
         {
             name = 'nvim_lsp',
             keyword_pattern = [[\k\+]],
-            keyword_length = 0,
+            keyword_length = 1,
             option = {
                 keyword_pattern = [[\k\+]],
             },
@@ -98,7 +98,7 @@ cmp.setup({
     mapping = cmp_mapping,
     preselect = cmp.PreselectMode.None,
     window = {
-        completion = { max_height = 25 },
+        completion = { max_height = 15 },
     }
 })
 
