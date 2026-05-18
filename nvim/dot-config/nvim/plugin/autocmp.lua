@@ -150,3 +150,19 @@ vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { link = 'Function' })
 vim.api.nvim_set_hl(0, 'CmpItemKindSnippet', { link = 'Macro' })
 vim.api.nvim_set_hl(0, 'CmpItemKindModule', { link = 'Include' })
 vim.api.nvim_set_hl(0, 'CmpItemKindFile', { link = 'String' })
+
+
+-- Taken from https://github.com/gitaarik/nvim-cmp-toggle/blob/main/plugin/nvim_cmp_toggle.lua
+local function toggle_autocomplete()
+  local current_setting = cmp.get_config().completion.autocomplete
+  if current_setting and #current_setting > 0 then
+    cmp.setup({ completion = { autocomplete = false } })
+    vim.notify('Autocomplete disabled')
+  else
+    cmp.setup({ completion = { autocomplete = { cmp.TriggerEvent.TextChanged } } })
+    vim.notify('Autocomplete enabled')
+  end
+end
+
+vim.api.nvim_create_user_command('NvimCmpToggle', toggle_autocomplete, {})
+vim.keymap.set('n', '<leader>ta', toggle_autocomplete, { desc = 'Autocomplete' })
