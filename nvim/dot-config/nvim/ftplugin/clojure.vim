@@ -59,6 +59,10 @@ let g:sexp_mappings = {
     \ 'sexp_emit_tail_element':         '',
     \ 'sexp_capture_prev_element':      '',
     \ 'sexp_capture_next_element':      '',
+    \ 'sexp_put_before': "",
+    \ 'sexp_put_after':  "",
+    \ 'sexp_replace':    "",
+    \ 'sexp_replace_P':  "",
     \ }
 
 let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"'}
