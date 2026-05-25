@@ -401,5 +401,9 @@ augroup END
 
 " }}}
 
+" Treesitter highlight groups
+highlight! link @constant.builtin       Macro
 highlight! link @variable               Normal
+highlight! link @variable.member        Identifier
+
 highlight! link DiagnosticUnnecessary   Special
