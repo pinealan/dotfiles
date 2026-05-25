@@ -1,5 +1,3 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-
 "===[ Plugin ]=== {{{
 "
 filetype off
@@ -84,6 +82,8 @@ call plug#end()
 " }}}
 
 "===[ Load and override vimrc options ]=== {{{
+
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
 
 source ~/.vim/vimrc
 set termguicolors
