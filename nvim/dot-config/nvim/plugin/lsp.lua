@@ -5,6 +5,7 @@ vim.lsp.config('*', {
 })
 
 vim.lsp.config('postgres_lsp', {
+    cmd = { 'postgrestools', 'lsp-proxy' },
     filetypes = {
         'sql', 'psql', 'pgsql',
     },
