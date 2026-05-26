@@ -89,7 +89,7 @@ source ~/.vim/vimrc
 set termguicolors
 set completeopt=menu,menuone,noinsert,noselect
 
-set foldexpr=nvim_treesitter#foldexpr()
+set foldexpr=v:lua.vim.treesitter.foldexpr()
 set nofoldenable
 
 set noequalalways
@@ -368,6 +368,8 @@ nmap <leader>zi     <cmd>set foldmethod=indent<cr>
 nmap <leader>zm     <cmd>set foldmethod=manual<cr>
 nmap <leader>zr     <cmd>set foldmethod=marker<cr>
 nmap <leader>zz     <cmd>set foldmethod?<cr>
+nmap <leader>zx     <cmd>lua vim.print(vim.treesitter.foldexpr(vim.api.nvim_win_get_cursor(0)[1]))<cr>
+
 " }}}
 
 " }}}
