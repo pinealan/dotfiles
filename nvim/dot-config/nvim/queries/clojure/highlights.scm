@@ -32,6 +32,8 @@
 [ "{" "}" "[" "]" "(" ")" ] @punctuation.bracket
 
 ; ===== Symbols
+; TODO: Define new capture groups and highlights so we dont have semantically
+; incorrect capture group assignement like variable.builtin v.s. variable.member
 
 ; General symbol highlighting
 ; (sym_lit) always has a :name (sym_name), and sometimes a :namespace (sym_ns). When there is no
@@ -62,22 +64,32 @@
 ((sym_name) @variable.member
   (#any-of? @variable.member "*1" "*2" "*3" "*e"))
 
+; Builtin dynamic variables
+((sym_name) @variable.member
+  (#any-of? @variable.member
+    "*agent*" "*allow-unresolved-vars*" "*assert*" "*clojure-version*" "*command-line-args*"
+    "*compile-files*" "*compile-path*" "*compiler-options*" "*data-readers*"
+    "*default-data-reader-fn*" "*err*" "*file*" "*flush-on-newline*" "*fn-loader*" "*in*"
+    "*math-context*" "*ns*" "*out*" "*print-dup*" "*print-length*" "*print-level*" "*print-meta*"
+    "*print-namespace-maps*" "*print-readably*" "*read-eval*" "*reader-resolver*" "*source-path*"
+    "*suppress-read*" "*unchecked-math*" "*use-context-classloader*" "*verbose-defrecords*"
+    "*warn-on-reflection*"))
+
 ; Used in destructure pattern
 ((sym_name) @variable.parameter.builtin
   (#lua-match? @variable.parameter.builtin "^&$"))
 
-; ===== Functions
+; ===== Functions calls
 
-; Function calls
 (list_lit
   .
   (sym_lit
-    name: (sym_name) @function.call))
+    (sym_name) @function.call))
 
 (anon_fn_lit
   .
   (sym_lit
-    name: (sym_name) @function.call))
+    (sym_name) @function.call))
 
 ; Lambda function args (special)
 ((sym_name) @variable.builtin
@@ -86,20 +98,11 @@
 ((sym_name) @variable.builtin
   (#eq? @variable.builtin "%&"))
 
-; Function definitions
-(list_lit
-  .
-  ((sym_lit
-    name: (sym_name) @keyword.function) @keyword.function
-    (#any-of? @keyword.function "defn" "defn-" "fn" "fn*"))
-  .
-  (sym_lit)? @function)
-
 ; ===== Interop
 
 ; Constructor
-((sym_name) @constructor
-  (#lua-match? @constructor "^-%>[^>].*"))
+;((sym_name) @constructor
+;  (#lua-match? @constructor "^-%>[^>].*"))
 
 ; Symbols with `.` but not `/`
 ;(sym_lit
@@ -137,14 +140,24 @@
     "def" "defonce" "defrecord" "defmacro" "definline" "definterface" "defmulti" "defmethod"
     "defstruct" "defprotocol" "deftype" "declare"))
 
+; Function definitions
+(list_lit
+  .
+  ((sym_lit
+    (sym_name) @keyword.function) @keyword.function
+    (#any-of? @keyword.function "defn" "defn-" "fn" "fn*"))
+  .
+  (sym_lit
+    (sym_name) @function))
+
 ((sym_name) @comment
   (#eq? @comment "comment"))
 
-; Special symbols
-
+; Special form
 ((sym_name) @variable.builtin
   (#eq? @variable.builtin "do"))
 
+; unused variables
 ((sym_name) @variable.builtin
   (#lua-match? @variable.builtin "^_.*$"))
 
@@ -185,6 +198,7 @@
     "timeout" "<!" "<!!" ">!" ">!!"))
 
 ; Hiccup vectors, set priority to override LSP
+; TODO: Use special capture groups and highlights so we can turn this on/off
 (vec_lit
   . (kwd_lit) @tag
   . (map_lit

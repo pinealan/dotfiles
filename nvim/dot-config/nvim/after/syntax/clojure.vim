@@ -2,10 +2,10 @@
 highlight! link @tag                            Identifier
 highlight! link @_include                       clojureMacro
 highlight! link @function.macro                 clojureMacro
-highlight! link @keyword.function               clojureMacro
+highlight! link @keyword.function               clojureDefine
+highlight! link @keyword.import                 clojureDefine
 highlight! link @keyword.conditional            clojureMacro
 highlight! link @keyword.repeat                 clojureMacro
-highlight! link @keyword.import                 clojureMacro
 highlight! link @keyword.coroutine              clojureMacro
 
 " LSP Semantic highlight groups
