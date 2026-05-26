@@ -405,5 +405,6 @@ augroup END
 highlight! link @constant.builtin       Macro
 highlight! link @variable               Normal
 highlight! link @variable.member        Identifier
+highlight! link @constructor            Type
 
 highlight! link DiagnosticUnnecessary   Special

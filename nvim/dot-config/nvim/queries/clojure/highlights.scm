@@ -13,8 +13,8 @@
 
 ; ===== Literals
 
-; Higher priority to mark the whole sexpr as a comment
-((dis_expr) @comment (#set! priority 135))
+; Higher priority to mark the whole sexpr as a comment, and override LSP
+((dis_expr) @comment.discard (#set! priority 135))
 
 (num_lit) @number
 (bool_lit) @boolean
@@ -23,7 +23,7 @@
 (str_lit) @string
 (char_lit) @character
 
-(comment) @comment @spell
+((comment) @comment @spell (#set! priority 135))
 
 (regex_lit) @string.regexp
 [ "'" "`" ] @string.escape
@@ -32,26 +32,24 @@
 [ "{" "}" "[" "]" "(" ")" ] @punctuation.bracket
 
 ; ===== Symbols
-; TODO: Define new capture groups and highlights so we dont have semantically
-; incorrect capture group assignement like variable.builtin v.s. variable.member
 
 ; General symbol highlighting
 ; (sym_lit) always has a :name (sym_name), and sometimes a :namespace (sym_ns). When there is no
 ; namespace, then the whole node is (sym_name) and it will be highlighted entired as that. When
 ; there is a namespace, there will be a / in between the (sym_ns) and (sym_name), which is the only
 ; time the @variable.builtin group will get assigned
-(sym_lit) @variable.builtin
+(sym_lit) @punctuation.delimiter
 (sym_ns) @type
 (sym_name) @variable
 
 ; Keywords have a similar structure as symbols
-(kwd_lit) @variable.builtin
+(kwd_lit) @punctuation.delimiter
 (kwd_ns) @type
 (kwd_name) @keyword
 
 ; My convention of using & prefix for atoms
-((sym_name) @variable.member
-  (#lua-match? @variable.member "^&.+"))
+((sym_name) @variable.convention
+  (#lua-match? @variable.convention "^&.+"))
 
 ; Quoted symbols
 (quoting_lit
@@ -61,12 +59,12 @@
   (sym_lit) @string.special.symbol)
 
 ; Builtin repl variables
-((sym_name) @variable.member
-  (#any-of? @variable.member "*1" "*2" "*3" "*e"))
+((sym_name) @variable.builtin
+  (#any-of? @variable.builtin "*1" "*2" "*3" "*e"))
 
 ; Builtin dynamic variables
-((sym_name) @variable.member
-  (#any-of? @variable.member
+((sym_name) @variable.builtin
+  (#any-of? @variable.builtin
     "*agent*" "*allow-unresolved-vars*" "*assert*" "*clojure-version*" "*command-line-args*"
     "*compile-files*" "*compile-path*" "*compiler-options*" "*data-readers*"
     "*default-data-reader-fn*" "*err*" "*file*" "*flush-on-newline*" "*fn-loader*" "*in*"
@@ -92,11 +90,11 @@
     (sym_name) @function.call))
 
 ; Lambda function args (special)
-((sym_name) @variable.builtin
-  (#lua-match? @variable.builtin "^%%%d*$"))
+((sym_name) @variable.parameter.builtin
+  (#lua-match? @variable.parameter.builtin "^%%%d*$"))
 
-((sym_name) @variable.builtin
-  (#eq? @variable.builtin "%&"))
+((sym_name) @variable.parameter.builtin
+  (#eq? @variable.parameter.builtin "%&"))
 
 ; ===== Interop
 
@@ -112,9 +110,8 @@
 
 ; (.instanceMember instance args*)
 ; (.instanceMember Classname args*)
-((sym_lit
-  name: (sym_name) @_name) @function.method
-  (#lua-match? @_name "^%.[^-]"))
+((sym_name) @function.method
+  (#lua-match? @function.method "^%.[^-]"))
 
 ; (.-instanceField instance)
 ((sym_name) @variable.member
@@ -150,24 +147,17 @@
   (sym_lit
     (sym_name) @function))
 
+; Special blocks
 ((sym_name) @comment
-  (#eq? @comment "comment"))
+  (#eq? @comment "comment")
+  (#set! priority 135))
 
-; Special form
-((sym_name) @variable.builtin
-  (#eq? @variable.builtin "do"))
+((sym_name) @variable.special
+  (#eq? @variable.special "do"))
 
 ; unused variables
-((sym_name) @variable.builtin
-  (#lua-match? @variable.builtin "^_.*$"))
-
-; Namespaces
-(list_lit
-  .
-  (sym_lit) @keyword.import
-  (#eq? @keyword.import "ns")
-  .
-  (sym_lit) @module)
+((sym_name) @variable.special
+  (#lua-match? @variable.special "^_.*$"))
 
 ; ===== Stdlib control flow macros
 
@@ -185,9 +175,20 @@
 ((sym_name) @keyword.exception
   (#any-of? @keyword.exception "throw" "try" "catch" "finally"))
 
+; Namespaces
+(list_lit
+  .
+  (sym_lit) @keyword.import
+  (#eq? @keyword.import "ns")
+  .
+  (sym_lit) @module)
+
 ; Includes
-((sym_name) @keyword.import
-  (#any-of? @keyword.import "ns" "import" "require" "use"))
+(list_lit
+  .
+  (sym_lit
+    (sym_name) @keyword.import
+    (#any-of? @keyword.import "import" "require" "use")))
 
 ; ===== Others
 
@@ -198,11 +199,10 @@
     "timeout" "<!" "<!!" ">!" ">!!"))
 
 ; Hiccup vectors, set priority to override LSP
-; TODO: Use special capture groups and highlights so we can turn this on/off
 (vec_lit
-  . (kwd_lit) @tag
+  . (kwd_lit) @tag.hiccup
   . (map_lit
       (kwd_lit
-        name: (kwd_name) @type
-        (#any-of? @type "class" "href" "type" "placeholder")))?
+        name: (kwd_name) @tag.attr.hiccup
+        (#any-of? @tag.attr.hiccup "class" "href" "type" "placeholder")))?
   (#set! priority 130))
