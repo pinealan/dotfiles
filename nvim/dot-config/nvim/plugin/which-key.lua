@@ -112,6 +112,7 @@ require('which-key').add({
     { '<leader>zi', desc = 'method = indent' },
     { '<leader>zm', desc = 'method = manual' },
     { '<leader>zr', desc = 'method = marker' },
+    { '<leader>zx', desc = 'Check foldexpr level' },
     { '<leader>zz', desc = 'Check foldmethod' },
 })
 
