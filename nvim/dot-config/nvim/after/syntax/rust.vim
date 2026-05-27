@@ -4,3 +4,4 @@ highlight! link @lsp.mod.controlFlow.rust   Keyword
 highlight! link @variable                   Normal
 
 highlight! link @lsp.typemod.keyword.crateRoot.rust     Identifier
+highlight! link @lsp.type.keyword.rust                  Keyword
