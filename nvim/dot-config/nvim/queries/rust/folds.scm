@@ -18,8 +18,9 @@
     (while_expression)
     (if_expression)
     (match_expression)
-    ;(call_expression)
     (array_expression)
+
+    (match_arm)
 
     (macro_definition)
     (macro_invocation)
