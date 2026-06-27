@@ -1,18 +1,18 @@
 " Treesitter groups
-highlight! link @function.macro                 clojureMacro
+highlight! link @function.macro.clojure         clojureMacro
 
-highlight! link @keyword.function               clojureDefine
-highlight! link @keyword.import                 clojureDefine
-highlight! link @keyword.conditional            clojureMacro
-highlight! link @keyword.repeat                 clojureMacro
-highlight! link @keyword.coroutine              clojureMacro
+highlight! link @keyword.function.clojure       clojureDefine
+highlight! link @keyword.import.clojure         clojureDefine
+highlight! link @keyword.conditional.clojure    clojureMacro
+highlight! link @keyword.repeat.clojure         clojureMacro
+highlight! link @keyword.coroutine.clojure      clojureMacro
 
-highlight! link @comment.discard                clojureDiscard
+highlight! link @comment.discard.clojure        clojureDiscard
 
-highlight! link @variable.builtin               Identifier
-highlight! link @variable.convention            Identifier
-highlight! link @variable.special               clojureSpecial
-highlight! link @variable.discard               clojureDiscard
+highlight! link @variable.builtin.clojure       Identifier
+highlight! link @variable.convention.clojure    Identifier
+highlight! link @variable.special.clojure       clojureSpecial
+highlight! link @variable.discard.clojure       clojureDiscard
 
 highlight! link @tag.hiccup                     Identifier
 highlight! link @tag.attr.hiccup                Type
