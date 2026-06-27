@@ -9,6 +9,7 @@
     (const_item)
 
     (function_item)
+    (parameters)
     (struct_item)
     (enum_item)
 
@@ -25,17 +26,10 @@
     (macro_definition)
     (macro_invocation)
 
-    ; TODO: This was too aggresive, causing extra levels on most items, but it would still be useful
-    ; to fold these that are inside item bodies (like when manual scoping is employed)
-    ;(block)
+    (closure_expression
+      body: (block))
 
-    (use_declaration)+
-    (line_comment doc: (doc_comment))+
 ] @fold
 
-
-;((attribute_item)*
-; .
-; [(function_item)
-;  (struct_item)
-;  (enum_item)]) @fold
+(use_declaration)+ @fold
+(line_comment doc: (doc_comment))+ @fold
