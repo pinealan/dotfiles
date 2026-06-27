@@ -53,10 +53,12 @@
 
 ; Quoted symbols
 (quoting_lit
-  (sym_lit) @string.special.symbol)
+  (sym_lit) @string.special.symbol) @punctuation.delimiter
 
 (syn_quoting_lit
-  (sym_lit) @string.special.symbol)
+  (sym_lit) @string.special.symbol) @punctuation.delimiter
+
+(derefing_lit) @punctuation.delimiter
 
 ; Builtin repl variables
 ((sym_name) @variable.builtin
