@@ -60,6 +60,9 @@ augroup END
 
 """ Sexp mappings {{{1
 
+" See also plugin/sexp.vim where generic mappings for all Lisp is defined using
+" vim-sexp's own mapping config mechanism
+
 " Mappings to just wrap element and keep cursor at the same spot
 nmap <buffer> <localleader>W(    m`<Plug>(sexp_round_head_wrap_element)g``
 nmap <buffer> <localleader>W[    m`<Plug>(sexp_square_head_wrap_element)g``

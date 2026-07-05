@@ -1,5 +1,6 @@
 " doing my own mappings because the defaults uses <Leader> or <M-*>
 "
+let g:sexp_auto_indent = 0
 let g:sexp_enable_insert_mode_mappings = 0
 let g:sexp_insert_after_wrap = 0
 let g:sexp_mappings = {

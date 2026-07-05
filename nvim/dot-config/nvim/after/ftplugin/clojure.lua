@@ -7,6 +7,10 @@ require('which-key').add({
 
     -- Sexp
     { 'gE', desc = 'Sexp: Move to prev element tail' },
+    { '><', desc = 'Sexp: Emit head element' },
+    { '<>', desc = 'Sexp: Emit tail element' },
+    { '<<', desc = 'Sexp: Capture prev element' },
+    { '>>', desc = 'Sexp: Capture next element' },
     { '<localleader>a', desc = 'Sexp insert at tail' },
     { '<localleader>c', desc = 'Sexp convolute' },
     { '<localleader>i', desc = 'Sexp insert at head' },
