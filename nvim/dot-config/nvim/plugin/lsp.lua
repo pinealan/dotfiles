@@ -80,10 +80,10 @@ vim.lsp.enable({
     'rust_analyzer',
     'ts_ls',
     'bashls',
-    'vimls',
-    'postgres_lsp',
-    'tailwindcss',
+    -- 'postgres_lsp',
+    -- 'tailwindcss',
     'lua_ls',
+    'vimls',
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {

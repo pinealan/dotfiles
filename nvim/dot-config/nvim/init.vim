@@ -391,10 +391,10 @@ augroup usr
         \   exe "normal g'\"" |
         \ endif
 
-
-    autocmd BufNewFile,BufRead  *.sol setf solidity
-    autocmd BufNewFile,BufRead  *.bb  setf clojure
-    autocmd BufNewFile,BufRead  *.jte setf html
+    autocmd BufNewFile,BufRead  *.psql  setf pgsql
+    autocmd BufNewFile,BufRead  *.sol   setf solidity
+    autocmd BufNewFile,BufRead  *.bb    setf clojure
+    autocmd BufNewFile,BufRead  *.jte   setf html
     autocmd BufWritePost        *.sync.py !jupytext -s %
 
     autocmd BufEnter    iced_stdout lua vim.diagnostic.enable(false, { bufnr = 0 })
