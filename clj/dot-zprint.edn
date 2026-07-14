@@ -7,6 +7,7 @@
                   "some->>"        :hang
                   "defn"           :fn
                   "defonce"        :arg1
+                  "locking"        :arg1-body
                   "sdef"           :arg1
                   "testing"        :arg1-body
                   "with-let"                    :binding
