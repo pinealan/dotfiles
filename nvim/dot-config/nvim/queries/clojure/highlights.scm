@@ -206,5 +206,6 @@
   . (map_lit
       (kwd_lit
         name: (kwd_name) @tag.attr.hiccup
-        (#any-of? @tag.attr.hiccup "class" "href" "type" "placeholder")))?
+        (#any-of? @tag.attr.hiccup
+         "class" "style" "href" "type" "placeholder" "x-data" "x-show" "x-bind")))?
   (#set! priority 130))
