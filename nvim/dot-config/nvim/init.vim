@@ -90,7 +90,6 @@ set termguicolors
 set completeopt=menu,menuone,noinsert,noselect
 
 set foldexpr=v:lua.vim.treesitter.foldexpr()
-set foldtext=
 set nofoldenable
 
 set noequalalways
