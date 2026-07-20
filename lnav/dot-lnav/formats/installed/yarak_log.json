@@ -1,0 +1,140 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "yarak_log": {
+        "title": "Yarak Trading Log",
+        "description": "Log format for the yarak trading application (Clojure/timbre-style output)",
+        "url": "https://example.com",
+        "regex": {
+            "std": {
+                "pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2},\\d{3}) (?<level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL)\\s+\\[(?<logger>[^\\]]+)\\](?: \\[:(?<event>[a-zA-Z-]+) (?<venue_id>\\d+)\\])? (?<body>.*)$"
+            }
+        },
+        "timestamp-format": [
+            "%Y-%m-%d %H:%M:%S,%L"
+        ],
+        "level": {
+            "trace": "TRACE",
+            "debug": "DEBUG",
+            "info": "INFO",
+            "warning": "WARN",
+            "error": "ERROR",
+            "critical": "FATAL"
+        },
+        "value": {
+            "timestamp": {
+                "kind": "timestamp",
+                "highlights": {
+                    "whole": {
+                        "pattern": ".*",
+                        "base-style": {"color": "#7d6c87"}
+                    }
+                }
+            },
+            "level": {
+                "kind": "string",
+                "highlights": {
+                    "level-fatal": {
+                        "pattern": "\\bFATAL\\b",
+                        "base-style": {"color": "Red"}
+                    },
+                    "level-error": {
+                        "pattern": "\\bERROR\\b",
+                        "base-style": {"color": "#ff0071" }
+                    },
+                    "level-warn": {
+                        "pattern": "\\bWARN\\b",
+                        "base-style": { "color": "#f79413" }
+                    },
+                    "level-info": {
+                        "pattern": "\\bINFO\\b",
+                        "base-style": { "color": "#13dcf8" }
+                    },
+                    "level-debug": {
+                        "pattern": "\\bDEBUG\\b",
+                        "base-style": { "color": "#999999" }
+                    },
+                    "level-trace": {
+                        "pattern": "\\bTRACE\\b",
+                        "base-style": { "color": "#555555" }
+                    }
+                }
+            },
+            "logger": {
+                "kind": "string",
+                "identifier": true,
+                "description": "The namespace/logger that emitted the message"
+            },
+            "event": {
+                "kind": "string",
+                "identifier": true,
+                "description": "Optional event source tag, e.g. bnc-fu-event"
+            },
+            "venue_id": {
+                "kind": "integer",
+                "description": "Venue id of the event source"
+            },
+            "body": {
+                "kind": "string",
+                "description": "Log message body, often containing EDN data",
+                "highlights": {
+                    "edn-tagged-literal": {
+                        "pattern": "#[a-zA-Z][a-zA-Z0-9./-]*(?=[\\[\\{\"])",
+                        "base-style": { "color": "#5fafff" }
+                    }
+                }
+            }
+        },
+        "highlights": {
+            "edn-keyword": {
+                "pattern": ":[a-zA-Z][a-zA-Z0-9*+!?_<>=./-]*",
+                "color": "#c678dd"
+            },
+            "edn-string": {
+                "pattern": "\"(?:[^\"\\\\]|\\\\.)*\"",
+                "color": "#56b6c2"
+            },
+            "edn-decimal": {
+                "pattern": "(?<![,-:\\w\\d\"])-?\\d+(?:\\.\\d+)?M?(?![-:\\w])",
+                "color": "#ffaf5f",
+                "nestable": false
+            },
+            "edn-braces": {
+                "pattern": "[\\[\\]{}]",
+                "color": "#98c379"
+            },
+            "exception-class": {
+                "pattern": "\\b(?:[a-z_$][\\w$]*\\.)+[A-Z][\\w$]*(?:Exception(Info)?|Error|Throwable)\\b",
+                "color": "Red",
+                "underline": true
+            },
+            "stack-frame-class": {
+                "pattern": "(?<=\\bat )[^$(]+",
+                "color": "Yellow"
+            },
+            "stack-frame-location": {
+                "pattern": "\\(([\\w$]+\\.(?:java|clj|cljc|kt|scala)):(\\d+)\\)",
+                "color": "Aqua"
+            },
+            "caused-by": {
+                "pattern": "^(?:Caused by|Suppressed): ",
+                "color": "Red",
+                "underline": true
+            },
+            "frames-omitted": {
+                "pattern": "^\\s*\\.\\.\\. \\d+ (?:more|common frames omitted)",
+                "color": "Grey"
+            }
+        },
+        "sample": [
+            {
+                "line": "2026-07-19 19:28:43,018 TRACE [yarak.exchange.binance.portfolio-margin] Submitting order {:type LIMIT, :symbol APRUSDT, :side BUY, :quantity 1246.0000M, :price 0.2161000M, :timeInForce GTX, :newClientOrderId 6b4af3a7740b4c41bc1abb1af5a378cb}"
+            },
+            {
+                "line": "2026-07-19 19:28:48,267 TRACE [yarak.execution] [:bnc-fu-event 37] [:position-history-update {:e \"POSITION_HISTORY_UPDATE\", :T 1784489322844, :E 1784489322847, :fs \"UM\", :o {:cq \"-41.35080633\", :ix 1, :s \"APRUSDT\", :am \"-279004\", :cp \"-1343.14665287\", :c \"-41.35080633\", :f \"10.96762051\", :p \"1130382050642980864\", :i \"0.0\", :ps \"BOTH\"}}]"
+            },
+            {
+                "line": "2026-07-19 19:28:49,999 TRACE [yarak.execution.flow] Updating flow trader 1000 #inst[\"2026-07-19T19:28:50Z\"]"
+            }
+        ]
+    }
+}
