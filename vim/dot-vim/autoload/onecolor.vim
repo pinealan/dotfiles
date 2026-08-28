@@ -21,7 +21,20 @@ let s:black = { "x24": "#000000", "x8": "232" }
 " }}}
 
 function! onecolor#set_all(colors)
-    " [ Syntax Groups (:h group-name) ] {{{
+    " Set highlight groups mapping directly to the color palette
+    call onecolor#set("onecolorRed",     { "fg": a:colors.red })
+    call onecolor#set("onecolorPink",    { "fg": a:colors.pink })
+    call onecolor#set("onecolorGreen",   { "fg": a:colors.green })
+    call onecolor#set("onecolorTeagreen",{ "fg": a:colors.teagreen })
+    call onecolor#set("onecolorTeal",    { "fg": a:colors.teal })
+    call onecolor#set("onecolorYellow",  { "fg": a:colors.yellow })
+    call onecolor#set("onecolorGold",    { "fg": a:colors.gold })
+    call onecolor#set("onecolorCarrot",  { "fg": a:colors.carrot })
+    call onecolor#set("onecolorBlue",    { "fg": a:colors.blue })
+    call onecolor#set("onecolorPurple",  { "fg": a:colors.purple })
+
+
+    " [ Builtin Syntax Groups (:h group-name) ] {{{
     "
     call onecolor#set("Comment",         { "fg": a:colors.teagreen })
     call onecolor#set("Constant",        { "fg": a:colors.numeric })
@@ -66,7 +79,7 @@ function! onecolor#set_all(colors)
     call onecolor#set("Todo",            { "fg": a:colors.fg_special })
     " }}}
 
-    " [ Default Highlighting Groups (:h highlight-groups) ] {{{
+    " [ Builtin UI Highlight Groups (:h highlight-groups) ] {{{
     "
     call onecolor#set("ColorColumn",     { "bg": a:colors.bg_grid })
     call onecolor#set("Conceal",         {})
