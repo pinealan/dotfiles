@@ -391,6 +391,7 @@ augroup usr
         \   exe "normal g'\"" |
         \ endif
 
+    autocmd BufNewFile,BufRead  .env.*  setf sh
     autocmd BufNewFile,BufRead  *.psql  setf pgsql
     autocmd BufNewFile,BufRead  *.sol   setf solidity
     autocmd BufNewFile,BufRead  *.bb    setf clojure
