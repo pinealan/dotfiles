@@ -15,7 +15,7 @@ M.project_files = function()
     require("telescope.builtin").git_files({
         show_untracked = true,
         git_command = {
-            "git","ls-files","--exclude-standard","--cached",
+            "git","ls-files","--recurse-submodules","--exclude-standard","--cached",
             "--",".", ":!:*.png", ":!:*.jpg", ":!:*.jpeg"
         },
     })
