@@ -21,18 +21,41 @@ let s:black = { "x24": "#000000", "x8": "232" }
 " }}}
 
 function! onecolor#set_all(colors)
-    " Set highlight groups mapping directly to the color palette
-    call onecolor#set("onecolorRed",     { "fg": a:colors.red })
-    call onecolor#set("onecolorPink",    { "fg": a:colors.pink })
-    call onecolor#set("onecolorGreen",   { "fg": a:colors.green })
-    call onecolor#set("onecolorTeagreen",{ "fg": a:colors.teagreen })
-    call onecolor#set("onecolorTeal",    { "fg": a:colors.teal })
-    call onecolor#set("onecolorYellow",  { "fg": a:colors.yellow })
-    call onecolor#set("onecolorGold",    { "fg": a:colors.gold })
-    call onecolor#set("onecolorCarrot",  { "fg": a:colors.carrot })
-    call onecolor#set("onecolorBlue",    { "fg": a:colors.blue })
-    call onecolor#set("onecolorPurple",  { "fg": a:colors.purple })
+    " [ Set highlight groups mapping directly to the color palette ] {{{
+    "
+    call onecolor#set("OnecolorRed",        { "fg": a:colors.red })
+    call onecolor#set("OnecolorPink",       { "fg": a:colors.pink })
+    call onecolor#set("OnecolorGreen",      { "fg": a:colors.green })
+    call onecolor#set("OnecolorTeagreen",   { "fg": a:colors.teagreen })
+    call onecolor#set("OnecolorTeal",       { "fg": a:colors.teal })
+    call onecolor#set("OnecolorYellow",     { "fg": a:colors.yellow })
+    call onecolor#set("OnecolorGold",       { "fg": a:colors.gold })
+    call onecolor#set("OnecolorCarrot",     { "fg": a:colors.carrot })
+    call onecolor#set("OnecolorBlue",       { "fg": a:colors.blue })
+    call onecolor#set("OnecolorPurple",     { "fg": a:colors.purple })
 
+    call onecolor#set("OnecolorRedBold",        { "gui": "bold", "fg": a:colors.red })
+    call onecolor#set("OnecolorPinkBold",       { "gui": "bold", "fg": a:colors.pink })
+    call onecolor#set("OnecolorGreenBold",      { "gui": "bold", "fg": a:colors.green })
+    call onecolor#set("OnecolorTeagreenBold",   { "gui": "bold", "fg": a:colors.teagreen })
+    call onecolor#set("OnecolorTealBold",       { "gui": "bold", "fg": a:colors.teal })
+    call onecolor#set("OnecolorYellowBold",     { "gui": "bold", "fg": a:colors.yellow })
+    call onecolor#set("OnecolorGoldBold",       { "gui": "bold", "fg": a:colors.gold })
+    call onecolor#set("OnecolorCarrotBold",     { "gui": "bold", "fg": a:colors.carrot })
+    call onecolor#set("OnecolorBlueBold",       { "gui": "bold", "fg": a:colors.blue })
+    call onecolor#set("OnecolorPurpleBold",     { "gui": "bold", "fg": a:colors.purple })
+
+    call onecolor#set("OnecolorRedItalic",      { "gui": "italic", "fg": a:colors.red })
+    call onecolor#set("OnecolorPinkItalic",     { "gui": "italic", "fg": a:colors.pink })
+    call onecolor#set("OnecolorGreenItalic",    { "gui": "italic", "fg": a:colors.green })
+    call onecolor#set("OnecolorTeagreenItalic", { "gui": "italic", "fg": a:colors.teagreen })
+    call onecolor#set("OnecolorTealItalic",     { "gui": "italic", "fg": a:colors.teal })
+    call onecolor#set("OnecolorYellowItalic",   { "gui": "italic", "fg": a:colors.yellow })
+    call onecolor#set("OnecolorGoldItalic",     { "gui": "italic", "fg": a:colors.gold })
+    call onecolor#set("OnecolorCarrotItalic",   { "gui": "italic", "fg": a:colors.carrot })
+    call onecolor#set("OnecolorBlueItalic",     { "gui": "italic", "fg": a:colors.blue })
+    call onecolor#set("OnecolorPurpleItalic",   { "gui": "italic", "fg": a:colors.purple })
+    " }}}
 
     " [ Builtin Syntax Groups (:h group-name) ] {{{
     "
