@@ -68,7 +68,7 @@ local cmp_mapping = {
 cmp.setup({
     completion = {
         -- Default to off
-        autocomplete = false,
+        -- autocomplete = false,
         keyword_pattern = [[\k\+]],
         keyword_length = 2,
     },
