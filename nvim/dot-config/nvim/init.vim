@@ -164,10 +164,23 @@ function! TrimSpace()
 endfunction
 
 function! TryTrimSpace()
+    if get(b:, 'notrim', 0)
+        return
+    endif
+
     if &ft =~ 'markdown'
         return
+    endif
+
+    call TrimSpace()
+endfunction
+
+function! ToggleTrimSpace()
+    let b:notrim=!get(b:, 'notrim', v:false)
+    if b:notrim
+        echom 'Disabled trailing space trim on file save'
     else
-        call TrimSpace()
+        echom 'Enabled trailing space trim on file save'
     endif
 endfunction
 
@@ -343,6 +356,7 @@ nmap <silent> <leader>tp    <cmd>setlocal paste!<cr>
 nmap <silent> <leader>tr    <cmd>call rainbow_delimiters#toggle(0)<cr>
 nmap <silent> <leader>ts    <cmd>setlocal spell!<cr>
 nmap <silent> <leader>tw    <cmd>setlocal wrap!<cr>
+nmap <silent> <leader>tx    <cmd>call ToggleTrimSpace()<cr>
 " }}}
 
 " editing {{{3
