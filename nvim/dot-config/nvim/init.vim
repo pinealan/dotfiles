@@ -87,7 +87,6 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 
 source ~/.vim/vimrc
 set termguicolors
-set completeopt=menu,menuone,noinsert,noselect
 set guicursor=a:block-Cursor,i-ci-ve:ver20,r-cr-o:CursorIM,t:blinkon300-blinkoff300-TermCursor
 
 set foldexpr=v:lua.vim.treesitter.foldexpr()

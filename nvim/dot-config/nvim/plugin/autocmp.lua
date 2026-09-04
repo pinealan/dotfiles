@@ -6,6 +6,8 @@ require('my_snippets').register_cmp_source()
 vim.o.wildmenu = false
 vim.o.wildchar = 0
 
+vim.o.completeopt = 'menu,menuone,noinsert'
+
 local cmp = require('cmp')
 local cmp_menu_name = {
     snp = '[SNIP]',
