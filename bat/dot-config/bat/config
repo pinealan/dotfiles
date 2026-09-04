@@ -1,2 +1,3 @@
 --map-syntax "log:Pinelog"
---theme "Monokai Extended"
+--theme-light "Monokai Extended Light"
+--theme-dark "Monokai Extended"
