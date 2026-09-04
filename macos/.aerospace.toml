@@ -52,3 +52,11 @@ after-startup-command = [
 
     cmd-ctrl-shift-leftSquareBracket = 'move-node-to-workspace --focus-follows-window --wrap-around prev'
     cmd-ctrl-shift-rightSquareBracket = 'move-node-to-workspace --focus-follows-window --wrap-around next'
+
+
+[[on-window-detected]]
+if.app-id ="com.mitchellh.ghostty"
+run = [
+    "layout floating",
+]
+
