@@ -8,6 +8,7 @@
 	autocrlf = false
 	attributesFile = ~/.gitattributes
 	excludesfile = ~/.gitignore_global
+	pager = delta
 
 [credential]
 	helper = cache
@@ -53,6 +54,7 @@
 	d = diff --stat
 	dc = diff --staged # alias for alias
 	ds = diff --staged
+	dt = -c diff.external=difft diff
 
 	m = merge
 	ma = merge --abort
@@ -155,6 +157,10 @@
 	prompt = false
 [difftool "nvim"]
 	cmd = "nvim -d $LOCAL $REMOTE"
+
+[delta]
+	navigate = true
+
 [init]
 	defaultBranch = master
 [branch]

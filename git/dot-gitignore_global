@@ -30,3 +30,5 @@ target/
 .ipynb_checkpoints/
 .testmondata/
 __pycache__/
+
+**/.claude/settings.local.json
