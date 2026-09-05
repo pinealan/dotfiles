@@ -20,4 +20,7 @@ quit-after-last-window-closed = true
 macos-option-as-alt = true
 macos-titlebar-style = tabs
 
+keybind = cmd+i=prompt_tab_title
+keybind = cmd+shift+i=prompt_surface_title
+
 shell-integration-features = no-cursor,no-sudo,title,ssh-env,no-ssh-terminfo,path
