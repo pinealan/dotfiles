@@ -1,0 +1,23 @@
+#theme = dark:Tomorrow Night Bright, light:Tomorrow
+theme = Tomorrow Night Bright
+
+font-size = 16
+font-thicken = true
+font-thicken-strength = 32
+
+# cursor-text/color is equivalent to fg/bg in vim highlighting
+cursor-text = cell-background
+cursor-color = cell-foreground
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+unfocused-split-opacity = 0.8
+split-divider-color = #555555
+split-preserve-zoom = navigation
+
+quit-after-last-window-closed = true
+macos-option-as-alt = true
+macos-titlebar-style = tabs
+
+shell-integration-features = no-cursor,no-sudo,title,ssh-env,no-ssh-terminfo,path
