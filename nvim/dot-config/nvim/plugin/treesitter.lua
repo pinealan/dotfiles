@@ -40,14 +40,10 @@ vim.api.nvim_set_hl(0, 'RainbowDelimiterCyan', { fg = '#b4cdcd' })
 
 local function config_illuminate(providers)
     require('illuminate').configure({
-        delay = 20, providers = providers
+        delay = 20,
+        providers = providers,
+        under_cursor = false,
     })
-
-    for _, grp  in pairs({
-        'IlluminatedWordText', 'IlluminatedWordRead', 'IlluminatedWordWrite'
-    }) do
-        vim.api.nvim_set_hl(0, grp, { underline = true, bg = '#4a4a4a'})
-    end
 end
 
 config_illuminate({'regex'})
