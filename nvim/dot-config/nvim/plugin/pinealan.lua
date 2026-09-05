@@ -23,7 +23,7 @@ require('colorizer').setup({'*'}, {
 vim.keymap.set('n', '<leader>tz',
     function() vim.cmd('ColorizerToggle') end, { desc = 'Toggle colorizer'})
 
---[[ Others ]]
+--[[ Autoclose ]]
 
 require("autoclose").setup({
     options = {
@@ -46,11 +46,15 @@ require("autoclose").setup({
     }
 })
 
+--[[ Marks ]]
+
 require('marks').setup({
     default_mappings = true,
     signs = true,
     mappings = {},
 })
+
+--[[ Notify ]]
 
 require("notify").setup({
     stages = 'static',
@@ -62,8 +66,17 @@ require("notify").setup({
       WARN = "W"
     },
 })
--- TODO Figure out how to allow toggling
--- vim.notify = require("notify")
+
+vim.g.notify_original = vim.notify
+function toggle_notify()
+    if vim.notify == vim.g.notify_original then
+        vim.notify = require("notify")
+    else
+        vim.notify = vim.g.notify_original
+    end
+end
+
+vim.notify = require("notify")
 
 --[[ Keyamps / Functions / Commands ]]
 
