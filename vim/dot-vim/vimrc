@@ -101,13 +101,13 @@ function! NormaliseBufName(bufname, maxlen)
 
     let cname = fnamemodify(a:bufname, ':p:~:.')
 
+    if cname == ''
+        return '[no name]'
+    endif
+
     " Return names of special buffers and short names as is
     if stridx(cname, '://') != -1 || strlen(cname) < a:maxlen
         return cname
-    endif
-
-    if cname == ''
-        return '[no name]'
     endif
 
     " === Following is the juicy algo for shortening the path ===
