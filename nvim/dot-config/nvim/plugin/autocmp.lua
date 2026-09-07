@@ -140,7 +140,7 @@ cmp.setup.cmdline(':', {
         },
         cmp_buffer_source,
     }),
-    preselect = cmp.PreselectMode.None,
+    preselect = cmp.PreselectMode.Item,
     window = {
         completion = { max_height = 15 },
     }
