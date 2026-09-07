@@ -55,7 +55,7 @@ after-startup-command = [
 
 
 [[on-window-detected]]
-if.app-id ="com.mitchellh.ghostty"
+if = "test %{app-build-id} = com.mitchellh.ghostty"
 run = [
     "layout floating",
 ]
