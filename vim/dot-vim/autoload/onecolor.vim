@@ -129,7 +129,9 @@ function! onecolor#set_all(colors)
     call onecolor#set("ModeMsg",         {})
     call onecolor#set("MoreMsg",         {})
     call onecolor#set("NonText",         { "fg": a:colors.fg_quiet })
+
     call onecolor#set("Normal",          { "fg": a:colors.fg_normal, "bg": a:colors.bg_normal })
+    call onecolor#set("NormalFloat",     { "bg": a:colors.bg_qf })
 
     call onecolor#set("Pmenu",           { "bg": a:colors.bg_visual })
     call onecolor#set("PmenuSel",        { "bg": a:colors.blue, "fg": s:black })
