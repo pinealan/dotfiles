@@ -94,36 +94,61 @@ set shellpipe=&>
 
 "===[ Functions ]=== {{{
 
-let g:buf_path_fullname_depth = 4
-let g:tabline_path_fullname_depth = 3
+let g:statusline_bufname_maxlen = 120
+let g:tabline_bufname_maxlen = 25
 
-function! NormaliseBufName(bufname)
-    return fnamemodify(a:bufname, ':~:.')
-endfunction
+function! NormaliseBufName(bufname, maxlen)
 
-function! PathFilename(path, fullname_depth)
-    let name = split(a:path, '/')
-    if len(name) == 0
-        return '[no name]'
-    elseif len(name) <= a:fullname_depth
-        return a:path
-    else
-        let s = ''
-        for i in range(len(name) - a:fullname_depth)
-            let s .= name[i][0] . '/'
-        endfor
-        for i in range(len(name) - a:fullname_depth, len(name) - 2)
-            let s .= name[i] . '/'
-        endfor
-        return s .. name[-1]
+    let cname = fnamemodify(a:bufname, ':p:~:.')
+
+    " Return names of special buffers and short names as is
+    if stridx(cname, '://') != -1 || strlen(cname) < a:maxlen
+        return cname
     endif
+
+    if cname == ''
+        return '[no name]'
+    endif
+
+    " === Following is the juicy algo for shortening the path ===
+    let name_segs = split(cname, '/')
+    " Always include the tail (filename)
+    let s_right = name_segs[-1]
+    let right = 1
+    let s_left = ''
+    let left = 0
+    let nsegs = len(name_segs)
+
+    " Prepend '/' if path starts at root
+    if cname[0] ==? '/'
+        let s_left .= '/'
+    endif
+
+    while (strlen(s_left .. s_right) < a:maxlen) && (left + right < nsegs)
+        " At least have 2 segments on right (end of path), then alternate
+        " between adding to left and right
+        if right < left + 2
+            let right += 1
+            let s_right = name_segs[-right] .. '/' .. s_right
+        else
+            let s_left = s_left .. name_segs[left] .. '/'
+            let left += 1
+        endif
+    endwhile
+
+    if left + right < nsegs
+        return s_left .. '.../' .. s_right
+    else
+        return s_left .. s_right
+    endif
+
 endfunction
 
 function! MyTabLabel(n)
     "let wincount = tabpagewinnr(a:n, '$')
     let winnr = tabpagewinnr(a:n)
     let bufls = tabpagebuflist(a:n)
-    return PathFilename(NormaliseBufName(bufname(bufls[winnr - 1])), g:tabline_path_fullname_depth)
+    return NormaliseBufName(bufname(bufls[winnr - 1]), g:tabline_bufname_maxlen)
 endfunction
 
 function! MyTabLine()
@@ -153,15 +178,11 @@ function! HasPaste()
     return ''
 endfunction
 
-function! MyBufName()
-    return PathFilename(NormaliseBufName(bufname()), g:buf_path_fullname_depth)
-endfunction
-
 function! MyStatusLine()
     " [Flags]*File name <gap> [File type] Row,Column | Percent down file
     return join([
         \' %q%w%r%m%{HasPaste()}',
-        \'%{MyBufName()}',
+        \'%{NormaliseBufName(bufname(), g:statusline_bufname_maxlen)}',
         \'%=',
         \'%y %l,%-2c |%3p%% '
         \], '')

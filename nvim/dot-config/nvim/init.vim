@@ -99,12 +99,6 @@ set numberwidth=2
 set signcolumn=auto:2
 set updatetime=100
 
-" Extend statusline function
-function! GitStatus()
-    let [a, m, r] = GitGutterGetHunkSummary()
-    return printf('(+%d ~%d -%d)', a, m, r)
-endfunction
-
 " Override statusline function defined in vimrc
 function! MyStatusLine()
     " [Flags] <File name> (git stats)
@@ -112,7 +106,7 @@ function! MyStatusLine()
     " [File type] Row,Column | Percent down file
     return join([
         \' %q%w%r%m%{HasPaste()}',
-        \'%{MyBufName()} %{FugitiveStatusline()}',
+        \'%{NormaliseBufName(bufname(), g:statusline_bufname_maxlen)} %{FugitiveStatusline()}',
         \'%=',
         \'%y %l,%-2c |%3p%% '
         \], '')
