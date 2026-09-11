@@ -50,7 +50,7 @@ require("autoclose").setup({
 
 require('marks').setup({
     default_mappings = true,
-    signs = true,
+    signs = false,
     mappings = {},
 })
 
