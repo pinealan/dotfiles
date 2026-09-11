@@ -95,7 +95,7 @@ set shellpipe=&>
 "===[ Functions ]=== {{{
 
 let g:statusline_bufname_maxlen = 120
-let g:tabline_bufname_maxlen = 25
+let g:tabline_bufname_maxlen = 30
 
 function! NormaliseBufName(bufname, maxlen)
 
