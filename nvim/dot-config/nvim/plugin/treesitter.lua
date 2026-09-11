@@ -14,6 +14,12 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
+require 'treesitter-context' .setup({
+    enable = true,
+    min_window_height = 30,
+    line_numbers = false,
+})
+
 require('nvim-ts-autotag').setup()
 
 ---@type rainbow_delimiters.config
