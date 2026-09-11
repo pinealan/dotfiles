@@ -22,5 +22,7 @@ macos-titlebar-style = tabs
 
 keybind = cmd+i=prompt_tab_title
 keybind = cmd+shift+i=prompt_surface_title
+keybind = cmd+alt+d=new_split:left
+keybind = cmd+alt+shift+d=new_split:up
 
 shell-integration-features = no-cursor,no-sudo,title,ssh-env,no-ssh-terminfo,path
