@@ -7,7 +7,7 @@ require("neo-tree").setup({
         "git_status",
         "document_symbols",
     },
-    enable_diagnostics = true,
+    enable_diagnostics = false,
     enable_git_status = true,
     enable_cursor_hijack = true,
     default_component_configs = {
@@ -24,10 +24,10 @@ require("neo-tree").setup({
         },
         git_status = {
             symbols = {
-                added     = "",
-                deleted   = "",
-                modified  = "",
-                renamed   = "",
+                added     = "+",
+                deleted   = "-",
+                modified  = "~",
+                renamed   = "R",
                 -- Status type
                 untracked = "?",
                 ignored   = "",
@@ -41,7 +41,11 @@ require("neo-tree").setup({
         mappings = {
             ["Z"] = "expand_all_nodes",
             ["="] = "toggle_node",
+            ["<C-r>"] = "none",
         },
+    },
+    filesystem = {
+        hijack_netrw_behavior = "disabled",
     },
     document_symbols = {
         follow_cursor = false,
@@ -78,8 +82,9 @@ require("neo-tree").setup({
     }
 })
 
-vim.keymap.set('n', '<M-1>', ':Neotree filesystem left<cr>', { noremap = true})
-vim.keymap.set('n', '<M-2>', ':Neotree document_symbols right<cr>', { noremap = true})
+vim.keymap.set('n', '<M-1>', ':Neotree buffers float toggle<cr>', { noremap = true})
+vim.keymap.set('n', '<M-2>', ':Neotree document_symbols right toggle<cr>', { noremap = true})
+vim.keymap.set('n', '<M-3>', ':Neotree git_status float toggle<cr>', { noremap = true})
 
 vim.api.nvim_set_hl(0, '@field', { link = 'Identifier' })
 vim.api.nvim_set_hl(0, '@property', { link = 'Identifier' })
