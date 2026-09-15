@@ -116,6 +116,7 @@ cmp.setup.cmdline({'/', '?'}, {
 })
 
 cmp.setup.cmdline(':', {
+    completion = { keyword_length = 1, },
     sources = cmp.config.sources({
         {
             name = 'async_path',

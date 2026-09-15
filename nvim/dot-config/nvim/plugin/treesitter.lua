@@ -36,19 +36,19 @@ vim.g.rainbow_delimiters = {
     },
 }
 
-vim.api.nvim_set_hl(0, 'RainbowDelimiterBlue', { fg = '#3a5fcd' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterBlue',   { fg = '#3a5fcd' })
 vim.api.nvim_set_hl(0, 'RainbowDelimiterOrange', { fg = '#8b4500' })
-vim.api.nvim_set_hl(0, 'RainbowDelimiterGreen', { fg = '#2e8b57' })
-vim.api.nvim_set_hl(0, 'RainbowDelimiterRed', { fg = '#b22222' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterGreen',  { fg = '#2e8b57' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterRed',    { fg = '#b22222' })
 vim.api.nvim_set_hl(0, 'RainbowDelimiterViolet', { fg = '#68228b' })
 vim.api.nvim_set_hl(0, 'RainbowDelimiterYellow', { fg = '#8b6914' })
-vim.api.nvim_set_hl(0, 'RainbowDelimiterCyan', { fg = '#b4cdcd' })
+vim.api.nvim_set_hl(0, 'RainbowDelimiterCyan',   { fg = '#b4cdcd' })
 
 local function config_illuminate(providers)
     require('illuminate').configure({
         delay = 20,
         providers = providers,
-        under_cursor = false,
+        under_cursor = true,
     })
 end
 
