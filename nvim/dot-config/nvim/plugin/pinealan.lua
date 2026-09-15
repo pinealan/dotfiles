@@ -78,6 +78,21 @@ end
 
 vim.notify = require("notify")
 
+--[[ oil ]]
+require('oil').setup({
+    columns = {
+        -- 'icon',
+        -- 'permissions',
+        'size',
+        'mtime'
+    },
+    skip_confirm_for_simple_edits = true,
+    view_options = {
+        show_hidden = true,
+    },
+})
+
+
 --[[ Keyamps / Functions / Commands ]]
 
 vim.keymap.set({ 'n', 'i' }, '<M-c>', require('pinealan').to_camel_case, {})

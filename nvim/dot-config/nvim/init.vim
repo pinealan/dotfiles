@@ -41,6 +41,7 @@ Plug 'm4xshen/autoclose.nvim'
 Plug 'chentoast/marks.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'folke/zen-mode.nvim'
+Plug 'stevearc/oil.nvim'
 
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
