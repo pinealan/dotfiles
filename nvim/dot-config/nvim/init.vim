@@ -319,6 +319,11 @@ xmap ih         <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah         <Plug>(GitGutterTextObjectOuterVisual)
 " }}}
 
+" Toggles {{{3
+nmap <C-S-d>          <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })<cr>
+nmap <C-S-g>          <cmd>GitGutterSignsToggle<cr>
+" }}}
+
 " }}}
 
 " Leader key mapping {{{2
@@ -341,17 +346,17 @@ nmap <leader>gg     <cmd>vert Git<cr>
 " }}}
 
 " toggles {{{3
-nmap <silent> <leader>tt    <cmd>TSContext toggle<cr>
-nmap <silent> <leader>td    <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })<cr>
-nmap <silent> <leader>tg    <cmd>GitGutterSignsToggle<cr>
-nmap <silent> <leader>ti    <cmd>IlluminateToggle<cr>
-nmap <silent> <leader>tj    <cmd>call ToggleFastEsc()<cr>
-nmap <silent> <leader>tm    <cmd>MarksToggleSigns<cr>
-nmap <silent> <leader>tp    <cmd>setlocal paste!<cr>
-nmap <silent> <leader>tr    <cmd>call rainbow_delimiters#toggle(0)<cr>
-nmap <silent> <leader>ts    <cmd>setlocal spell!<cr>
-nmap <silent> <leader>tw    <cmd>setlocal wrap!<cr>
-nmap <silent> <leader>tx    <cmd>call ToggleTrimSpace()<cr>
+nmap <leader>tt     <cmd>TSContext toggle<cr>
+nmap <leader>td     <cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })<cr>
+nmap <leader>tg     <cmd>GitGutterSignsToggle<cr>
+nmap <leader>ti     <cmd>IlluminateToggle<cr>
+nmap <leader>tj     <cmd>call ToggleFastEsc()<cr>
+nmap <leader>tm     <cmd>MarksToggleSigns<cr>
+nmap <leader>tp     <cmd>setlocal paste!<cr>
+nmap <leader>tr     <cmd>call rainbow_delimiters#toggle(0)<cr>
+nmap <leader>ts     <cmd>setlocal spell!<cr>
+nmap <leader>tw     <cmd>setlocal wrap!<cr>
+nmap <leader>tx     <cmd>call ToggleTrimSpace()<cr>
 " }}}
 
 " editing {{{3
