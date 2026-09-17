@@ -148,7 +148,11 @@ function! MyTabLabel(n)
     "let wincount = tabpagewinnr(a:n, '$')
     let winnr = tabpagewinnr(a:n)
     let bufls = tabpagebuflist(a:n)
-    return NormaliseBufName(bufname(bufls[winnr - 1]), g:tabline_bufname_maxlen)
+    if tabpagenr() == a:n
+        return NormaliseBufName(bufname(bufls[winnr - 1]), 1000)
+    else
+        return NormaliseBufName(bufname(bufls[winnr - 1]), g:tabline_bufname_maxlen)
+    endif
 endfunction
 
 function! MyTabLine()
