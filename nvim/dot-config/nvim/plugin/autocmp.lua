@@ -102,8 +102,17 @@ cmp.setup({
     mapping = cmp_mapping,
     preselect = cmp.PreselectMode.None,
     window = {
-        completion = { max_height = 15 },
-    }
+        completion = cmp.config.window.bordered({
+            border = "rounded",
+            winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
+            max_height = 15,
+        }),
+        documentation = cmp.config.window.bordered({
+            border = "rounded",
+            winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
+            max_height = 15,
+        }),
+    },
 })
 
 cmp.setup.cmdline({'/', '?'}, {
@@ -112,7 +121,7 @@ cmp.setup.cmdline({'/', '?'}, {
         cmp_buffer_source,
     },
     preselect = cmp.PreselectMode.None,
-    view = { entries = 'wildmenu' },
+    view = { entries = { name = 'wildmenu', separator = ' | ' } },
 })
 
 cmp.setup.cmdline(':', {
@@ -143,7 +152,10 @@ cmp.setup.cmdline(':', {
     }),
     preselect = cmp.PreselectMode.Item,
     window = {
-        completion = { max_height = 15 },
+        completion = {
+            border = "none",
+            winhighlight = 'Normal:Pmenu,CursorLine:PmenuSel,Search:None'
+        }
     }
 })
 

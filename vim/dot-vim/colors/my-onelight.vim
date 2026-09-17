@@ -34,12 +34,13 @@ let colors = {
     \ "fg_special":     { "x24": "#606370", "x8": "60" },
     \ "fg_quiet":       { "x24": "#999999", "x8": "145" },
     \ "fg_muted":       { "x24": "#c2c2c3", "x8": "250" },
+    \ "fg_max":         { "x24": "#000000", "x8": "232" },
     \
     \ "bg_visual":      { "x24": "#cccccc", "x8": "251" },
     \ "bg_status":      { "x24": "#bbbbbb", "x8": "254" },
     \ "bg_normal":      { "x24": "#fafafa", "x8": "255" },
     \ "bg_grid":        { "x24": "#dddddd", "x8": "251" },
-    \ "bg_qf":          { "x24": "#bbbbbb", "x8": "254" },
+    \ "bg_max":         { "x24": "#ffffff", "x8": "255" },
     \ }
 
 let colors["macro"] = colors["carrot"]
