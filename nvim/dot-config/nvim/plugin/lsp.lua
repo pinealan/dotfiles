@@ -86,6 +86,14 @@ vim.lsp.enable({
     'vimls',
 })
 
+vim.diagnostic.config({
+    float = { source = true, },
+    virtual_lines = {
+        current_line = true,
+        severity = vim.diagnostic.severity.ERROR,
+    },
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -110,7 +118,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         bufnmap('<leader>D', vim.diagnostic.open_float, 'LSP: Open diagnostics in floating window')
         bufnmap('<leader>F', vim.diagnostic.setloclist, 'LSP: Send diagnostics to loclist')
         bufnmap('<leader>Q', vim.diagnostic.setqflist, 'LSP: Send diagnostics to quickfix')
-        bufnmap('<M-[>', function() vim.diagnostic.jump({count=-1, float=true}) end)
-        bufnmap('<M-]>', function() vim.diagnostic.jump({count=1, float=true}) end)
+        bufnmap('<M-[>', function() vim.diagnostic.jump({count=-1}) end)
+        bufnmap('<M-]>', function() vim.diagnostic.jump({count=1}) end)
     end
 });
