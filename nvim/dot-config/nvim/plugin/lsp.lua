@@ -75,7 +75,8 @@ vim.lsp.config('lua_ls', {
 
 vim.lsp.enable({
     'clojure_lsp',
-    'pyright',
+    -- 'pyright',
+    'pyrefly',
     'ruff',
     'rust_analyzer',
     'ts_ls',
