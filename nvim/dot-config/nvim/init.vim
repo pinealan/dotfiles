@@ -343,6 +343,7 @@ nmap <leader>gb     <cmd>Git blame<cr>
 nmap <leader>gc     <cmd>Git commit<cr>
 nmap <leader>gd     <cmd>Git diff<cr>
 nmap <leader>gg     <cmd>vert Git<cr>
+nmap <leader>gl     <cmd>Gclog!<cr>
 " }}}
 
 " toggles {{{3

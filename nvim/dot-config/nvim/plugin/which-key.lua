@@ -76,6 +76,7 @@ require('which-key').add({
     { '<leader>gc', desc = 'Git Commit' },
     { '<leader>gd', desc = 'Git Diff' },
     { '<leader>gg', desc = 'Git Status (vertical)' },
+    { '<leader>gl', desc = 'Git Log' },
 
     -- Leader: Toggle
     { '<leader>t', group = 'toggle' },
