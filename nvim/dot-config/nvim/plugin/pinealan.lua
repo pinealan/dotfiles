@@ -90,6 +90,15 @@ require('oil').setup({
     view_options = {
         show_hidden = true,
     },
+    keymaps = {
+        ["<C-s>"] = false,
+        ["<C-h>"] = false,
+        ["<C-l>"] = false,
+
+        ["'"] = { "actions.select", opts = { vertical = true } },
+        ["\""] = { "actions.select", opts = { horizontal = true } },
+        ["<C-r>"] = "actions.refresh",
+    },
 })
 
 
