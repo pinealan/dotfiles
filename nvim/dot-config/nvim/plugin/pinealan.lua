@@ -79,6 +79,7 @@ end
 vim.notify = require("notify")
 
 --[[ oil ]]
+
 require('oil').setup({
     columns = {
         -- 'icon',
@@ -101,8 +102,13 @@ require('oil').setup({
     },
 })
 
+vim.keymap.set('n', '<M-1>', ':vsp | e %%<cr>',
+    {
+        desc = 'Open file directory with oil',
+        remap = true
+    })
 
---[[ Keyamps / Functions / Commands ]]
+--[[ Keymaps / Functions / Commands ]]
 
 vim.keymap.set({ 'n', 'i' }, '<M-c>', require('pinealan').to_camel_case, {})
 vim.keymap.set({ 'n', 'i' }, '<M-s>', require('pinealan').to_snake_case, {})

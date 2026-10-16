@@ -82,9 +82,9 @@ require("neo-tree").setup({
     }
 })
 
-vim.keymap.set('n', '<M-1>', ':Neotree buffers float toggle<cr>', { noremap = true})
 vim.keymap.set('n', '<M-2>', ':Neotree document_symbols right toggle<cr>', { noremap = true})
-vim.keymap.set('n', '<M-3>', ':Neotree git_status float toggle<cr>', { noremap = true})
+vim.keymap.set('n', '<M-3>', ':Neotree buffers float toggle<cr>', { noremap = true})
+vim.keymap.set('n', '<M-4>', ':Neotree git_status float toggle<cr>', { noremap = true})
 
 vim.api.nvim_set_hl(0, '@field', { link = 'Identifier' })
 vim.api.nvim_set_hl(0, '@property', { link = 'Identifier' })
