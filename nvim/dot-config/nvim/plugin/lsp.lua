@@ -104,14 +104,24 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
         end
 
-        bufnmap('K', function() vim.lsp.buf.hover({ max_width = 100, wrap = true, wrap_at = 98 }) end, 'LSP: Quick docs')
-        bufnmap('gd', function() vim.lsp.buf.definition({ reuse_win = true }) end, 'LSP: Goto definition (reuse_win)')
-        bufnmap('gD', vim.lsp.buf.definition, 'LSP: Goto declaration (current window)')
-        bufnmap('g<C-d>', function() vim.cmd('tab sp'); vim.lsp.buf.definition() end, 'LSP: Goto definition in new tabpage')
-        bufnmap('gi', function() vim.lsp.buf.implementation({ reuse_win = true }) end, 'LSP: Goto implementation')
-        bufnmap('gr', vim.lsp.buf.references, 'LSP: Goto refrences')
-        bufnmap('gC', vim.lsp.buf.incoming_calls, 'LSP: Goto incoming calls')
-        bufnmap('gt', function() vim.lsp.buf.type_definition({ reuse_win = true }) end, 'LSP: Goto type declaration')
+        bufnmap('K', function() vim.lsp.buf.hover({ max_width = 100, wrap = true, wrap_at = 98 }) end,
+            'LSP: Quick docs')
+
+        bufnmap('gd', function() vim.lsp.buf.definition({ reuse_win = true }) end,
+            'LSP: Goto definition (reuse_win)')
+        bufnmap('gD', vim.lsp.buf.definition,
+            'LSP: Goto declaration (current window)')
+        bufnmap('g<C-d>', function() vim.cmd('tab sp'); vim.lsp.buf.definition() end,
+            'LSP: Goto definition in new tabpage')
+
+        bufnmap('gi', function() vim.lsp.buf.implementation({ reuse_win = true }) end,
+            'LSP: Goto implementation')
+        bufnmap('gr', vim.lsp.buf.references,
+            'LSP: Goto refrences')
+        bufnmap('gC', vim.lsp.buf.incoming_calls,
+            'LSP: Goto incoming calls')
+        bufnmap('gt', function() vim.lsp.buf.type_definition({ reuse_win = true }) end,
+            'LSP: Goto type declaration')
 
         bufnmap('<leader>A', vim.lsp.buf.code_action, 'LSP: code action')
         bufnmap('<leader>H', vim.lsp.buf.signature_help, 'LSP: Show signature help')
@@ -119,7 +129,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         bufnmap('<leader>D', vim.diagnostic.open_float, 'LSP: Open diagnostics in floating window')
         bufnmap('<leader>F', vim.diagnostic.setloclist, 'LSP: Send diagnostics to loclist')
         bufnmap('<leader>Q', vim.diagnostic.setqflist, 'LSP: Send diagnostics to quickfix')
-        bufnmap('<M-[>', function() vim.diagnostic.jump({count=-1}) end)
-        bufnmap('<M-]>', function() vim.diagnostic.jump({count=1}) end)
+        bufnmap('<M-[>', function() vim.diagnostic.jump({count=-1}) end, 'LSP: Jump to previous diagnostic')
+        bufnmap('<M-]>', function() vim.diagnostic.jump({count=1}) end, 'LSP: Jump to next diagnostic')
     end
 });
