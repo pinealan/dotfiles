@@ -97,7 +97,7 @@ set noequalalways
 
 set laststatus=2
 set numberwidth=2
-set signcolumn=auto:2
+set signcolumn=yes:3
 set updatetime=100
 
 " Override statusline function defined in vimrc
@@ -396,18 +396,16 @@ nmap <leader>zx     <cmd>lua vim.print(vim.treesitter.foldexpr(vim.api.nvim_win_
 augroup usr
     autocmd!
     autocmd BufEnter    * silent call EnableFastEsc()
-    autocmd BufNewfile  *.php silent r ~/.vim/template/template.php | normal kdd
-    autocmd BufRead     *.vim silent set foldmethod=marker
-    autocmd BufWrite    * call TryTrimSpace()
-    "autocmd VimEnter    *.c,*.cpp,*.py vsp
 
+    " Restore cursor to last position before exit
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \   exe "normal g'\"" |
         \ endif
 
-    autocmd BufNewFile,BufRead  .env.*  setf sh
-    autocmd BufNewFile,BufRead  *.psql  setf pgsql
+    autocmd BufNewfile  *.php silent r ~/.vim/template/template.php | normal kdd
+    autocmd BufWrite    * call TryTrimSpace()
+
     autocmd BufNewFile,BufRead  *.sol   setf solidity
     autocmd BufNewFile,BufRead  *.bb    setf clojure
     autocmd BufNewFile,BufRead  *.jte   setf html
