@@ -26,7 +26,7 @@ vim.lsp.config('pyright', {
 })
 
 vim.lsp.config('ruff', {
-    on_attach = function (client, _)
+    on_attach = function(client, _)
         -- use pyright for hover/autocomplete
         client.server_capabilities.hoverProvider = false
     end,
@@ -89,10 +89,11 @@ vim.lsp.enable({
 
 vim.diagnostic.config({
     float = { source = true, },
-    virtual_lines = {
-        current_line = true,
-        severity = vim.diagnostic.severity.ERROR,
-    },
+
+    -- virtual_lines = {
+    --     current_line = true,
+    --     severity = vim.diagnostic.severity.ERROR,
+    -- },
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -129,7 +130,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         bufnmap('<leader>D', vim.diagnostic.open_float, 'LSP: Open diagnostics in floating window')
         bufnmap('<leader>F', vim.diagnostic.setloclist, 'LSP: Send diagnostics to loclist')
         bufnmap('<leader>Q', vim.diagnostic.setqflist, 'LSP: Send diagnostics to quickfix')
-        bufnmap('<M-[>', function() vim.diagnostic.jump({count=-1}) end, 'LSP: Jump to previous diagnostic')
-        bufnmap('<M-]>', function() vim.diagnostic.jump({count=1}) end, 'LSP: Jump to next diagnostic')
+        bufnmap('<M-[>', function() vim.diagnostic.jump({count=-1, float=true}) end, 'LSP: Jump to previous diagnostic')
+        bufnmap('<M-]>', function() vim.diagnostic.jump({count=1, float=true}) end, 'LSP: Jump to next diagnostic')
     end
 });
